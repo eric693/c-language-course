@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 13 - 演算法設計與分析 | C語言程式設計</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', Arial, sans-serif;
+            background: linear-gradient(to bottom, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.7;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .nav {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .nav a:hover { background: #3498db; color: white; }
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header .subtitle { font-size: 1.1em; opacity: 0.9; }
+        .content {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+        .content h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+        }
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.95em;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .note-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #66bb6a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .exercise-section {
+            background: #f8f9fa;
+            border: 2px solid #3498db;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        ul, ol { margin-left: 30px; margin-top: 10px; }
+        li { margin: 8px 0; }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="week12.html">← Week 12</a>
+            <span style="color: #7f8c8d; font-weight: 600;">Week 13 / 16</span>
+            <a href="week14.html">Week 14 →</a>
+        </div>
+
+        <header>
+            <h1>Week 13 - 演算法設計與分析</h1>
+            <div class="subtitle">學習目標：實作與分析常用演算法</div>
+        </header>
+
+        <div class="content">
+            <h2>本週學習內容</h2>
+            <ul>
+                <li>核心概念與理論基礎</li>
+                <li>程式碼範例與詳細說明</li>
+                <li>實作練習與應用</li>
+                <li>常見問題與解決方案</li>
+                <li>最佳實務與開發技巧</li>
+            </ul>
+        </div>
+
+        
+        <div class="content">
+            <h2>核心內容</h2>
+            <p>本週將深入學習 演算法設計與分析，這是 C 語言程式設計中的重要主題。</p>
+            
+            <div class="note-box">
+                <strong>學習重點：</strong>
+                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
+            </div>
+            
+            <h3>詳細說明</h3>
+            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
+            
+            <h3>實作建議</h3>
+            <ul>
+                <li>從基本概念開始，逐步進階</li>
+                <li>每個範例都要實際撰寫並執行</li>
+                <li>遇到問題要積極查找資料</li>
+                <li>完成練習題以驗證理解程度</li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="exercise-section">
+                <h3>本週練習題</h3>
+                <p>請完成以下練習以鞏固本週所學：</p>
+                <ol>
+                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
+                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
+                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
+                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
+                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>本週總結</h2>
+            <div class="tip-box">
+                <strong>重點回顧：</strong>
+                <ul>
+                    <li>確實理解本週所有核心概念</li>
+                    <li>能夠獨立撰寫相關程式碼</li>
+                    <li>完成所有練習題並理解解答</li>
+                    <li>能夠除錯和優化程式碼</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="week12.html" class="btn btn-secondary">← Week 12</a>
+            <a href="week14.html" class="btn">Week 14 →</a>
+        </div>
+    </div>
+</body>
+</html>

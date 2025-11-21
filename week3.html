@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 - 陣列與字串 | C語言程式設計</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', Arial, sans-serif;
+            background: linear-gradient(to bottom, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.7;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .nav {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .nav a:hover { background: #3498db; color: white; }
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header .subtitle { font-size: 1.1em; opacity: 0.9; }
+        .content {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .content h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+        .content h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+        }
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.95em;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .note-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #66bb6a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .exercise-section {
+            background: #f8f9fa;
+            border: 2px solid #3498db;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        ul, ol { margin-left: 30px; margin-top: 10px; }
+        li { margin: 8px 0; }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="week2.html">← Week 2</a>
+            <span style="color: #7f8c8d; font-weight: 600;">Week 3 / 16</span>
+            <a href="week4.html">Week 4 →</a>
+        </div>
+
+        <header>
+            <h1>Week 3 - 陣列與字串</h1>
+            <div class="subtitle">學習目標：掌握陣列的宣告與使用，理解字串處理方法</div>
+        </header>
+
+        <div class="content">
+            <h2>本週學習內容</h2>
+            <ul>
+                <li><strong>一維陣列</strong></li>
+                <li><strong>多維陣列</strong></li>
+                <li><strong>字串基礎</strong></li>
+                <li><strong>字串函數</strong></li>
+                <li><strong>字串處理</strong></li>
+            </ul>
+        </div>
+
+        
+        <div class="content">
+            <h2>1. 一維陣列</h2>
+            <ul>
+                <li>陣列的宣告與初始化</li>
+                <li>存取陣列元素</li>
+                <li>陣列大小與索引範圍</li>
+                <li>陣列的遍歷</li>
+                <li>陣列作為函數參數</li>
+            </ul>
+            
+            <div class="note-box">
+                <strong>重要概念：</strong>
+                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
+            </div>
+            
+            <h3>程式碼範例</h3>
+            <div class="code-block">
+// 範例程式碼
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Week 3 - 一維陣列\n");
+    return 0;
+}
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>2. 多維陣列</h2>
+            <ul>
+                <li>二維陣列宣告</li>
+                <li>二維陣列初始化</li>
+                <li>存取二維陣列元素</li>
+                <li>多維陣列應用（矩陣）</li>
+                <li>記憶體配置方式</li>
+            </ul>
+            
+            <div class="note-box">
+                <strong>重要概念：</strong>
+                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
+            </div>
+            
+            <h3>程式碼範例</h3>
+            <div class="code-block">
+// 範例程式碼
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Week 3 - 多維陣列\n");
+    return 0;
+}
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>3. 字串基礎</h2>
+            <ul>
+                <li>字串的本質（字元陣列）</li>
+                <li>字串的宣告與初始化</li>
+                <li>字串結尾字元 \0</li>
+                <li>字串 I/O 函數</li>
+                <li>字串與字元陣列的差異</li>
+            </ul>
+            
+            <div class="note-box">
+                <strong>重要概念：</strong>
+                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
+            </div>
+            
+            <h3>程式碼範例</h3>
+            <div class="code-block">
+// 範例程式碼
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Week 3 - 字串基礎\n");
+    return 0;
+}
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>4. 字串函數</h2>
+            <ul>
+                <li>strlen() - 計算長度</li>
+                <li>strcpy() - 複製字串</li>
+                <li>strcat() - 連接字串</li>
+                <li>strcmp() - 比較字串</li>
+                <li>strstr() - 搜尋子字串</li>
+            </ul>
+            
+            <div class="note-box">
+                <strong>重要概念：</strong>
+                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
+            </div>
+            
+            <h3>程式碼範例</h3>
+            <div class="code-block">
+// 範例程式碼
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Week 3 - 字串函數\n");
+    return 0;
+}
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>5. 字串處理</h2>
+            <ul>
+                <li>字串輸入（scanf, gets, fgets）</li>
+                <li>字串格式化（sprintf, sscanf）</li>
+                <li>字元分類函數（isalpha, isdigit）</li>
+                <li>大小寫轉換（toupper, tolower）</li>
+                <li>字串陣列</li>
+            </ul>
+            
+            <div class="note-box">
+                <strong>重要概念：</strong>
+                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
+            </div>
+            
+            <h3>程式碼範例</h3>
+            <div class="code-block">
+// 範例程式碼
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Week 3 - 字串處理\n");
+    return 0;
+}
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="exercise-section">
+                <h3>本週練習題</h3>
+                <p>請完成以下練習以鞏固本週所學：</p>
+                <ol>
+                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
+                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
+                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
+                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
+                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>本週總結</h2>
+            <div class="tip-box">
+                <strong>重點回顧：</strong>
+                <ul>
+                    <li>確實理解本週所有核心概念</li>
+                    <li>能夠獨立撰寫相關程式碼</li>
+                    <li>完成所有練習題並理解解答</li>
+                    <li>能夠除錯和優化程式碼</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="week2.html" class="btn btn-secondary">← Week 2</a>
+            <a href="week4.html" class="btn">Week 4 →</a>
+        </div>
+    </div>
+</body>
+</html>

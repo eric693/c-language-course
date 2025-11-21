@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C語言程式設計課程 - 16週完整教學</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', Arial, sans-serif;
+            background: linear-gradient(to bottom, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .code-display {
+            background: rgba(0,0,0,0.2);
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #3498db;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .week-card {
+            background: #34495e;
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            border-left: 4px solid #3498db;
+        }
+
+        .week-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background: #2c3e50;
+        }
+
+        .week-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #3498db;
+        }
+
+        .week-title {
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .week-desc {
+            font-size: 0.9em;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .info-card {
+            background: #ecf0f1;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .info-card h4 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-card li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background: #34495e;
+            color: white;
+            font-weight: 600;
+        }
+
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .note-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffa726;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>C語言程式設計課程</h1>
+            <div class="subtitle">16週系統化學習路徑 | 從基礎到進階完整教學</div>
+            <div class="code-display">
+                typedef struct { int week; char *topic; void (*learn)(void); } Course;
+            </div>
+        </header>
+
+        <div class="section">
+            <h2>課程介紹</h2>
+            <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                本課程是一套完整的C語言學習教材，專為程式設計初學者與希望紮實掌握C語言的學習者設計。
+                課程內容涵蓋從基礎語法到進階應用，包含指標、記憶體管理、資料結構、演算法等核心主題，
+                並透過大量實作練習與專案開發，幫助學習者建立紮實的程式設計能力。
+            </p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>課程特色</h4>
+                    <ul>
+                        <li>16週系統化課程規劃</li>
+                        <li>循序漸進的學習路徑</li>
+                        <li>大量程式碼範例與實作</li>
+                        <li>完整的練習題與專案</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>學習時間</h4>
+                    <ul>
+                        <li>建議每週7-10小時</li>
+                        <li>每天1-2小時持續學習</li>
+                        <li>完整課程約16週</li>
+                        <li>可依個人進度調整</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>適合對象</h4>
+                    <ul>
+                        <li>程式設計初學者</li>
+                        <li>資訊相關科系學生</li>
+                        <li>需要學習C語言者</li>
+                        <li>想紮實打好基礎者</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>學習成果</h4>
+                    <ul>
+                        <li>掌握C語言核心語法</li>
+                        <li>理解記憶體管理機制</li>
+                        <li>實作資料結構與演算法</li>
+                        <li>完成實際開發專案</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>課程大綱</h2>
+            
+            <h3>第一階段：基礎入門 (Week 1-4)</h3>
+            <p>建立C語言程式設計的基礎知識，包含開發環境建置、基本語法、控制結構、陣列與函數等核心概念。</p>
+            
+            <div class="course-grid">
+                <a href="week1.html" class="week-card">
+                    <div class="week-number">Week 1</div>
+                    <div class="week-title">開發環境與基礎語法</div>
+                    <div class="week-desc">
+                        開發環境建置、第一個程式、變數與資料型態、基本運算、輸入輸出函數
+                    </div>
+                </a>
+                
+                <a href="week2.html" class="week-card">
+                    <div class="week-number">Week 2</div>
+                    <div class="week-title">流程控制</div>
+                    <div class="week-desc">
+                        條件判斷 (if-else)、多重選擇 (switch)、迴圈結構 (for, while, do-while)、break 與 continue
+                    </div>
+                </a>
+                
+                <a href="week3.html" class="week-card">
+                    <div class="week-number">Week 3</div>
+                    <div class="week-title">陣列與字串</div>
+                    <div class="week-desc">
+                        一維陣列、多維陣列、字串處理、字串函數庫、陣列應用實例
+                    </div>
+                </a>
+                
+                <a href="week4.html" class="week-card">
+                    <div class="week-number">Week 4</div>
+                    <div class="week-title">函數設計</div>
+                    <div class="week-desc">
+                        函數定義與呼叫、參數傳遞、返回值、變數作用域、遞迴函數設計
+                    </div>
+                </a>
+            </div>
+
+            <h3>第二階段：核心進階 (Week 5-8)</h3>
+            <p>深入學習C語言的核心特性，包含指標操作、動態記憶體管理、結構體設計與檔案處理等進階主題。</p>
+            
+            <div class="course-grid">
+                <a href="week5.html" class="week-card">
+                    <div class="week-number">Week 5</div>
+                    <div class="week-title">指標基礎</div>
+                    <div class="week-desc">
+                        指標概念、指標宣告與使用、指標與陣列、指標運算、函數指標參數
+                    </div>
+                </a>
+                
+                <a href="week6.html" class="week-card">
+                    <div class="week-number">Week 6</div>
+                    <div class="week-title">動態記憶體管理</div>
+                    <div class="week-desc">
+                        malloc/calloc/realloc、記憶體釋放、動態陣列、記憶體洩漏偵測與預防
+                    </div>
+                </a>
+                
+                <a href="week7.html" class="week-card">
+                    <div class="week-number">Week 7</div>
+                    <div class="week-title">結構體與自定義型態</div>
+                    <div class="week-desc">
+                        結構體定義、結構體陣列與指標、聯合體 (union)、typedef、巢狀結構體
+                    </div>
+                </a>
+                
+                <a href="week8.html" class="week-card">
+                    <div class="week-number">Week 8</div>
+                    <div class="week-title">檔案輸入輸出</div>
+                    <div class="week-desc">
+                        檔案操作基礎、文字檔讀寫、二進位檔案、檔案定位、錯誤處理
+                    </div>
+                </a>
+            </div>
+
+            <h3>第三階段：高階特性 (Week 9-12)</h3>
+            <p>探索C語言的高階特性與應用，包含預處理器、進階指標技巧、以及常用資料結構的實作。</p>
+            
+            <div class="course-grid">
+                <a href="week9.html" class="week-card">
+                    <div class="week-number">Week 9</div>
+                    <div class="week-title">預處理器與巨集</div>
+                    <div class="week-desc">
+                        #define 巨集、條件編譯、檔案包含、標頭檔管理、巨集函數設計
+                    </div>
+                </a>
+                
+                <a href="week10.html" class="week-card">
+                    <div class="week-number">Week 10</div>
+                    <div class="week-title">進階指標應用</div>
+                    <div class="week-desc">
+                        函數指標、回呼函數、多層指標、指標陣列、複雜指標型態解析
+                    </div>
+                </a>
+                
+                <a href="week11.html" class="week-card">
+                    <div class="week-number">Week 11</div>
+                    <div class="week-title">進階字串處理</div>
+                    <div class="week-desc">
+                        字串解析、字串轉換、正規表示法基礎、字串搜尋演算法、多位元組字串
+                    </div>
+                </a>
+                
+                <a href="week12.html" class="week-card">
+                    <div class="week-number">Week 12</div>
+                    <div class="week-title">資料結構實作</div>
+                    <div class="week-desc">
+                        鏈結串列 (Linked List)、堆疊 (Stack)、佇列 (Queue)、二元樹基礎
+                    </div>
+                </a>
+            </div>
+
+            <h3>第四階段：實踐應用 (Week 13-16)</h3>
+            <p>將所學知識應用於實際開發，包含演算法實作、工具程式開發、以及完整的專案實作。</p>
+            
+            <div class="course-grid">
+                <a href="week13.html" class="week-card">
+                    <div class="week-number">Week 13</div>
+                    <div class="week-title">演算法設計與分析</div>
+                    <div class="week-desc">
+                        排序演算法 (氣泡、選擇、插入、快速)、搜尋演算法、時間複雜度分析
+                    </div>
+                </a>
+                
+                <a href="week14.html" class="week-card">
+                    <div class="week-number">Week 14</div>
+                    <div class="week-title">實用工具開發</div>
+                    <div class="week-desc">
+                        命令列參數處理、文字處理工具、檔案管理工具、資料轉換程式
+                    </div>
+                </a>
+                
+                <a href="week15.html" class="week-card">
+                    <div class="week-number">Week 15</div>
+                    <div class="week-title">綜合專案開發 (一)</div>
+                    <div class="week-desc">
+                        學生管理系統開發：需求分析、資料結構設計、功能模組實作、資料持久化
+                    </div>
+                </a>
+                
+                <a href="week16.html" class="week-card">
+                    <div class="week-number">Week 16</div>
+                    <div class="week-title">綜合專案開發 (二)</div>
+                    <div class="week-desc">
+                        遊戲程式開發、程式碼重構與優化、除錯技巧、最佳實務總結
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>開發環境需求</h2>
+            
+            <h3>Windows 平台</h3>
+            <ul>
+                <li><strong>Visual Studio Community</strong> - 功能完整的整合開發環境</li>
+                <li><strong>Code::Blocks</strong> - 輕量級IDE，內建MinGW編譯器</li>
+                <li><strong>MinGW + VS Code</strong> - 靈活的組合配置</li>
+            </ul>
+
+            <h3>Linux / macOS 平台</h3>
+            <div class="note-box">
+                <strong>安裝GCC編譯器</strong>
+                <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 4px; margin-top: 10px; overflow-x: auto;">
+# Ubuntu / Debian
+sudo apt update
+sudo apt install build-essential
+
+# macOS (安裝Xcode Command Line Tools)
+xcode-select --install
+
+# 驗證安裝
+gcc --version
+make --version</pre>
+            </div>
+
+            <h3>基本編譯流程</h3>
+            <div class="note-box">
+                <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 4px; margin-top: 10px; overflow-x: auto;">
+# 編譯單一檔案
+gcc program.c -o program
+
+# 編譯多個檔案
+gcc main.c module1.c module2.c -o program
+
+# 啟用警告訊息
+gcc -Wall -Wextra program.c -o program
+
+# 偵錯模式編譯
+gcc -g program.c -o program
+
+# 執行程式
+./program          # Linux / macOS
+program.exe        # Windows</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>學習建議</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>學習方法</h4>
+                    <ul>
+                        <li>理解概念後實際撰寫程式碼</li>
+                        <li>每週完成所有練習題</li>
+                        <li>嘗試修改範例程式碼</li>
+                        <li>遇到錯誤要學會除錯</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>重要觀念</h4>
+                    <ul>
+                        <li>指標是C語言的核心特性</li>
+                        <li>記憶體管理需要特別注意</li>
+                        <li>資料結構要紮實理解</li>
+                        <li>程式碼風格要保持一致</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>實作建議</h4>
+                    <ul>
+                        <li>從小程式開始練習</li>
+                        <li>逐步增加程式複雜度</li>
+                        <li>建立個人程式碼庫</li>
+                        <li>參與開源專案</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>進階學習</h4>
+                    <ul>
+                        <li>閱讀優秀的開源程式碼</li>
+                        <li>學習設計模式</li>
+                        <li>了解作業系統概念</li>
+                        <li>探索系統程式設計</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>開始學習</h2>
+            <p style="font-size: 1.1em; margin: 20px 0;">
+                準備好開始你的C語言學習之旅了嗎？從 Week 1 開始，循序漸進地掌握程式設計的核心技能。
+            </p>
+            <a href="week1.html" class="btn">進入 Week 1 課程</a>
+        </div>
+
+        <footer>
+            <p style="font-size: 1.1em; margin-bottom: 10px;">C語言程式設計課程</p>
+            <p style="opacity: 0.8;">© 2025 版權所有</p>
+        </footer>
+    </div>
+</body>
+</html>
