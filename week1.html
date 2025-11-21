@@ -105,7 +105,9 @@
             font-size: 0.95em;
             overflow-x: auto;
             margin: 20px 0;
-            line-height: 1.6;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         .code-block .comment {
@@ -114,6 +116,7 @@
 
         .code-block .keyword {
             color: #3498db;
+            font-weight: bold;
         }
 
         .code-block .string {
@@ -236,49 +239,75 @@
 <body>
     <div class="container">
         <div class="nav">
-            <a href="index.html">← 返回首頁</a>
+            <a href="index.html">← 回首頁</a>
             <span style="color: #7f8c8d; font-weight: 600;">Week 1 / 16</span>
-            <a href="week2.html">下一週 →</a>
+            <a href="week2.html">Week 2 →</a>
         </div>
 
         <header>
             <h1>Week 1 - 開發環境與基礎語法</h1>
-            <div class="subtitle">學習目標：建置開發環境、理解C程式結構、掌握基本語法與輸入輸出</div>
+            <div class="subtitle">學習目標：建立C語言開發環境，理解基本語法與資料型態</div>
         </header>
 
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>C語言簡介與開發環境建置</li>
+                <li>C語言簡介與應用領域</li>
+                <li>開發環境建置（Windows/Linux/macOS）</li>
                 <li>第一個C程式：Hello World</li>
-                <li>基本資料型態與變數宣告</li>
-                <li>運算符號與運算式</li>
-                <li>標準輸入輸出函數</li>
+                <li>基本資料型態與變數</li>
+                <li>運算符與表達式</li>
+                <li>輸入輸出函數</li>
                 <li>程式註解與編碼風格</li>
+                <li>常見錯誤與除錯技巧</li>
             </ul>
         </div>
 
         <div class="content">
             <h2>1. C語言簡介</h2>
             
+            <h3>C語言的歷史</h3>
+            <p>C語言由 Dennis Ritchie 於 1972 年在貝爾實驗室開發，最初是為了開發 UNIX 作業系統。經過50多年的發展，C語言依然是最重要的程式語言之一。</p>
+
             <h3>為什麼學習C語言？</h3>
-            <p>C語言是一門通用的程式語言，由Dennis Ritchie於1972年在貝爾實驗室開發。它具有以下特點：</p>
             <ul>
-                <li><strong>效能優異</strong>：編譯後的程式執行效率高，接近組合語言</li>
-                <li><strong>可移植性強</strong>：只要有C編譯器，程式可以在不同平台上執行</li>
-                <li><strong>底層控制</strong>：可以直接操作記憶體與硬體</li>
-                <li><strong>基礎語言</strong>：許多現代語言（C++、Java、C#）都源自於C</li>
-                <li><strong>系統程式</strong>：作業系統、編譯器、驅動程式多用C開發</li>
+                <li><strong>效能優秀</strong>：直接操作記憶體，執行速度快，適合開發需要高效能的應用</li>
+                <li><strong>系統程式設計</strong>：作業系統、驅動程式、編譯器的主要開發語言</li>
+                <li><strong>嵌入式系統</strong>：廣泛應用於硬體控制、IoT裝置、單晶片開發</li>
+                <li><strong>基礎語言</strong>：許多現代語言（C++、Java、C#、JavaScript）都受到C語言影響</li>
+                <li><strong>跨平台</strong>：可在各種作業系統和硬體平台上編譯執行</li>
+                <li><strong>豐富的函式庫</strong>：有大量成熟的開源函式庫可使用</li>
+                <li><strong>深入理解電腦</strong>：學習C語言能更了解電腦底層運作原理</li>
             </ul>
 
             <h3>C語言的應用領域</h3>
             <ul>
-                <li>作業系統開發（Linux、Unix）</li>
-                <li>嵌入式系統與物聯網</li>
-                <li>系統程式與工具程式</li>
-                <li>遊戲引擎與圖形處理</li>
-                <li>資料庫系統</li>
-                <li>網路協定與伺服器</li>
+                <li><strong>作業系統</strong>：Linux、Unix、Windows核心部分</li>
+                <li><strong>嵌入式系統</strong>：單晶片、感測器、物聯網裝置</li>
+                <li><strong>資料庫系統</strong>：MySQL、PostgreSQL、SQLite</li>
+                <li><strong>編譯器與直譯器</strong>：GCC、Python直譯器</li>
+                <li><strong>遊戲引擎</strong>：Unreal Engine、Unity底層</li>
+                <li><strong>網路協定</strong>：TCP/IP協定堆疊實作</li>
+                <li><strong>科學計算</strong>：數值分析、模擬計算</li>
+                <li><strong>圖形處理</strong>：OpenGL、圖像處理函式庫</li>
+            </ul>
+
+            <h3>C語言的特點</h3>
+            <h4>優點：</h4>
+            <ul>
+                <li>執行效率高，接近組合語言的效能</li>
+                <li>語法簡潔，核心語法不複雜</li>
+                <li>可移植性強，標準化程度高</li>
+                <li>能直接操作記憶體和硬體</li>
+                <li>豐富的運算符和資料型態</li>
+            </ul>
+
+            <h4>需要注意：</h4>
+            <ul>
+                <li>記憶體管理需要手動處理</li>
+                <li>沒有內建的安全檢查機制</li>
+                <li>指標概念需要時間理解</li>
+                <li>除錯相對困難</li>
             </ul>
         </div>
 
@@ -287,78 +316,281 @@
 
             <h3>Windows 環境</h3>
             
-            <h4>方案一：Visual Studio Community（推薦初學者）</h4>
+            <h4>方法一：使用 MinGW-w64</h4>
             <ol>
-                <li>前往 Visual Studio 官網下載 Community 版本（免費）</li>
-                <li>安裝時選擇「使用C++的桌面開發」工作負載</li>
-                <li>建立新專案時選擇「空專案」或「主控台應用程式」</li>
-                <li>新增 .c 檔案即可開始撰寫C程式</li>
+                <li><strong>下載 MinGW-w64</strong>
+                    <ul>
+                        <li>訪問 MinGW-w64官網</li>
+                        <li>或從 SourceForge 下載</li>
+                    </ul>
+                </li>
+                <li><strong>安裝步驟</strong>
+                    <ul>
+                        <li>執行安裝程式</li>
+                        <li>選擇 Architecture: x86_64（64位元系統）</li>
+                        <li>選擇 Threads: posix</li>
+                        <li>選擇 Exception: seh</li>
+                        <li>記住安裝路徑（例如：C:\mingw64）</li>
+                    </ul>
+                </li>
+                <li><strong>設定環境變數</strong>
+                    <ul>
+                        <li>右鍵點擊「本機」→「內容」→「進階系統設定」</li>
+                        <li>點擊「環境變數」</li>
+                        <li>在「系統變數」中找到「Path」，點擊「編輯」</li>
+                        <li>新增：C:\mingw64\bin（根據你的安裝路徑）</li>
+                        <li>按「確定」儲存</li>
+                    </ul>
+                </li>
+                <li><strong>驗證安裝</strong>
+                    <ul>
+                        <li>開啟命令提示字元（Win + R，輸入 cmd）</li>
+                        <li>輸入：<code>gcc --version</code></li>
+                        <li>輸入：<code>g++ --version</code></li>
+                        <li>如果顯示版本資訊，表示安裝成功</li>
+                    </ul>
+                </li>
             </ol>
 
-            <h4>方案二：Code::Blocks + MinGW</h4>
+            <h4>方法二：使用 Dev-C++</h4>
             <ol>
-                <li>下載 Code::Blocks with MinGW 安裝包</li>
-                <li>執行安裝程式，選擇完整安裝</li>
-                <li>開啟 Code::Blocks，建立新專案（Console Application）</li>
-                <li>選擇 C 語言專案即可開始開發</li>
+                <li><strong>下載 Dev-C++</strong>
+                    <ul>
+                        <li>訪問 Dev-C++ 官網</li>
+                        <li>下載最新版本的安裝程式</li>
+                    </ul>
+                </li>
+                <li><strong>安裝</strong>
+                    <ul>
+                        <li>執行安裝程式，選擇繁體中文</li>
+                        <li>完整安裝（包含編譯器）</li>
+                        <li>安裝完成後啟動 Dev-C++</li>
+                    </ul>
+                </li>
+                <li><strong>優點</strong>
+                    <ul>
+                        <li>整合開發環境（IDE），介面友善</li>
+                        <li>內建編譯器，安裝簡單</li>
+                        <li>適合初學者使用</li>
+                        <li>支援專案管理</li>
+                    </ul>
+                </li>
             </ol>
 
-            <h4>方案三：VS Code + MinGW（進階使用者）</h4>
+            <h4>方法三：使用 Visual Studio Code</h4>
             <ol>
-                <li>安裝 Visual Studio Code</li>
-                <li>安裝 MinGW-w64 編譯器</li>
-                <li>在 VS Code 中安裝 C/C++ 擴充套件</li>
-                <li>設定編譯與偵錯環境</li>
+                <li><strong>安裝 VS Code</strong>
+                    <ul>
+                        <li>從官網下載安裝</li>
+                    </ul>
+                </li>
+                <li><strong>安裝 C/C++ 擴充套件</strong>
+                    <ul>
+                        <li>開啟 VS Code</li>
+                        <li>點擊左側擴充功能圖示</li>
+                        <li>搜尋「C/C++」，安裝 Microsoft 官方套件</li>
+                        <li>搜尋「Code Runner」安裝（方便執行程式）</li>
+                    </ul>
+                </li>
+                <li><strong>搭配 MinGW</strong>
+                    <ul>
+                        <li>需要先安裝 MinGW-w64（方法一）</li>
+                        <li>VS Code 會自動偵測編譯器</li>
+                    </ul>
+                </li>
             </ol>
 
             <h3>Linux 環境</h3>
-            <div class="code-block">
-<span class="comment"># Ubuntu / Debian 系統</span>
-sudo apt update
-sudo apt install build-essential
+            
+            <h4>Ubuntu / Debian 系統</h4>
+            <div class="code-block"><span class="comment"># 更新套件清單</span>
+<span class="keyword">sudo</span> apt update
 
-<span class="comment"># Fedora / CentOS 系統</span>
-sudo dnf install gcc gcc-c++ make
+<span class="comment"># 安裝 build-essential（包含 gcc、g++、make 等工具）</span>
+<span class="keyword">sudo</span> apt install build-essential
+
+<span class="comment"># 驗證安裝</span>
+gcc --version
+g++ --version
+make --version
+
+<span class="comment"># 安裝 GDB 除錯器（可選）</span>
+<span class="keyword">sudo</span> apt install gdb
+
+<span class="comment"># 安裝 man-pages（查看函數文件）</span>
+<span class="keyword">sudo</span> apt install manpages-dev</div>
+
+            <h4>Fedora / CentOS / RHEL 系統</h4>
+            <div class="code-block"><span class="comment"># Fedora 22+ / RHEL 8+</span>
+<span class="keyword">sudo</span> dnf groupinstall <span class="string">"Development Tools"</span>
+<span class="keyword">sudo</span> dnf install gcc gcc-c++ make
+
+<span class="comment"># CentOS 7 / RHEL 7</span>
+<span class="keyword">sudo</span> yum groupinstall <span class="string">"Development Tools"</span>
+<span class="keyword">sudo</span> yum install gcc gcc-c++ make
 
 <span class="comment"># 驗證安裝</span>
 gcc --version
 make --version</div>
 
+            <h4>Arch Linux</h4>
+            <div class="code-block"><span class="comment"># 安裝 base-devel 套件群組</span>
+<span class="keyword">sudo</span> pacman -S base-devel
+
+<span class="comment"># 驗證</span>
+gcc --version</div>
+
             <h3>macOS 環境</h3>
-            <div class="code-block">
-<span class="comment"># 安裝 Xcode Command Line Tools</span>
+            
+            <h4>方法一：安裝 Xcode Command Line Tools（推薦）</h4>
+            <div class="code-block"><span class="comment"># 開啟終端機（Terminal）</span>
+<span class="comment"># 執行以下命令安裝開發工具</span>
 xcode-select --install
 
-<span class="comment"># 或安裝完整的 Xcode（從 App Store）</span>
+<span class="comment"># 會彈出安裝視窗，點擊「安裝」</span>
+<span class="comment"># 等待安裝完成（約需下載數百 MB）</span>
 
 <span class="comment"># 驗證安裝</span>
-gcc --version
-clang --version</div>
+gcc --version     <span class="comment"># 實際上是 Apple Clang</span>
+clang --version
+make --version
+
+<span class="comment"># 檢查是否安裝成功</span>
+which gcc
+which clang</div>
+
+            <h4>方法二：安裝完整的 Xcode</h4>
+            <ol>
+                <li>從 App Store 下載 Xcode（需要 Apple ID）</li>
+                <li>安裝完成後，開啟 Xcode</li>
+                <li>同意授權條款</li>
+                <li>等待安裝額外元件</li>
+                <li>優點：包含完整的 IDE 和除錯工具</li>
+                <li>缺點：檔案較大（10+ GB）</li>
+            </ol>
+
+            <h4>方法三：使用 Homebrew 安裝 GCC</h4>
+            <div class="code-block"><span class="comment"># 先安裝 Homebrew（如果還沒安裝）</span>
+/bin/bash -c <span class="string">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</span>
+
+<span class="comment"># 使用 Homebrew 安裝 GCC</span>
+brew install gcc
+
+<span class="comment"># 驗證（會是 gcc-13 或類似版本）</span>
+gcc-13 --version</div>
+
+            <div class="tip-box">
+                <strong>編輯器選擇建議：</strong>
+                <ul>
+                    <li><strong>初學者</strong>：Dev-C++（Windows）或 Geany（跨平台）</li>
+                    <li><strong>進階使用者</strong>：Visual Studio Code、Sublime Text、Vim</li>
+                    <li><strong>完整 IDE</strong>：Code::Blocks、CLion（付費）</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>學習階段建議：</strong>
+                <p>建議初學者從簡單的文字編輯器加上命令列編譯開始，這樣可以：</p>
+                <ul>
+                    <li>更深入了解編譯流程</li>
+                    <li>理解編譯器選項的作用</li>
+                    <li>培養除錯能力</li>
+                    <li>待熟悉後再使用完整的 IDE</li>
+                </ul>
+            </div>
 
             <h3>基本編譯流程</h3>
-            <div class="code-block">
+            <div class="code-block"><span class="comment"># ========== 基本編譯 ==========</span>
+
 <span class="comment"># 1. 撰寫程式碼（例如：hello.c）</span>
+<span class="comment">#    使用任何文字編輯器撰寫 C 程式</span>
 
 <span class="comment"># 2. 編譯程式</span>
 gcc hello.c -o hello
 
 <span class="comment"># 3. 執行程式</span>
-./hello          <span class="comment"># Linux / macOS</span>
-hello.exe        <span class="comment"># Windows</span>
+./hello           <span class="comment"># Linux / macOS</span>
+hello.exe         <span class="comment"># Windows（或直接輸入 hello）</span>
 
-<span class="comment"># 編譯選項說明：</span>
-<span class="comment"># -o : 指定輸出檔案名稱</span>
-<span class="comment"># -Wall : 啟用所有警告訊息</span>
-<span class="comment"># -g : 產生除錯資訊</span>
-<span class="comment"># -O2 : 最佳化等級 2</span>
 
-<span class="comment"># 完整編譯範例</span>
-gcc -Wall -Wextra -g hello.c -o hello</div>
+<span class="comment"># ========== 編譯選項說明 ==========</span>
+
+<span class="comment"># -o filename : 指定輸出檔案名稱</span>
+gcc hello.c -o myprogram
+
+<span class="comment"># -Wall : 啟用所有常見警告訊息</span>
+gcc -Wall hello.c -o hello
+
+<span class="comment"># -Wextra : 啟用額外的警告</span>
+gcc -Wall -Wextra hello.c -o hello
+
+<span class="comment"># -g : 產生除錯資訊（用於 GDB）</span>
+gcc -g hello.c -o hello
+
+<span class="comment"># -O2 : 最佳化等級 2（提升執行效能）</span>
+<span class="comment"># -O0 : 不最佳化（預設，適合除錯）</span>
+<span class="comment"># -O1, -O2, -O3 : 不同等級的最佳化</span>
+gcc -O2 hello.c -o hello
+
+<span class="comment"># -std=c11 : 指定C語言標準版本</span>
+<span class="comment">#            c89, c99, c11, c17 等</span>
+gcc -std=c11 hello.c -o hello
+
+
+<span class="comment"># ========== 完整編譯範例 ==========</span>
+
+<span class="comment"># 開發階段：啟用所有警告、產生除錯資訊</span>
+gcc -Wall -Wextra -g hello.c -o hello
+
+<span class="comment"># 發布階段：最佳化、移除除錯資訊</span>
+gcc -Wall -O2 hello.c -o hello
+
+
+<span class="comment"># ========== 編譯多個檔案 ==========</span>
+
+<span class="comment"># 方法一：一次編譯所有檔案</span>
+gcc -Wall main.c utils.c -o myprogram
+
+<span class="comment"># 方法二：分別編譯成目標檔，再連結</span>
+gcc -c main.c     <span class="comment"># 產生 main.o</span>
+gcc -c utils.c    <span class="comment"># 產生 utils.o</span>
+gcc main.o utils.o -o myprogram  <span class="comment"># 連結</span>
+
+
+<span class="comment"># ========== 常見編譯問題 ==========</span>
+
+<span class="comment"># 如果出現「command not found」錯誤：</span>
+<span class="comment"># 檢查是否已安裝 GCC</span>
+which gcc
+gcc --version
+
+<span class="comment"># 如果編譯成功但無法執行（Permission denied）：</span>
+<span class="comment"># 加入執行權限（Linux/macOS）</span>
+chmod +x hello
+
+<span class="comment"># 如果出現「undefined reference」錯誤：</span>
+<span class="comment"># 可能需要連結數學函式庫</span>
+gcc -Wall hello.c -o hello -lm</div>
+
+            <div class="warning-box">
+                <strong>編譯時常見錯誤：</strong>
+                <ul>
+                    <li><strong>語法錯誤（Syntax Error）</strong>：檢查是否漏了分號、括號不匹配等</li>
+                    <li><strong>未宣告的識別字</strong>：檢查變數或函數是否已宣告</li>
+                    <li><strong>型態不符</strong>：檢查資料型態是否正確</li>
+                    <li><strong>找不到標頭檔</strong>：檢查 #include 是否正確</li>
+                    <li><strong>連結錯誤</strong>：檢查是否所有函數都有實作</li>
+                </ul>
+            </div>
 
             <div class="tip-box">
-                <strong>學習建議：</strong>
-                建議初學者從簡單的文字編輯器（如 Notepad++、Sublime Text）加上命令列編譯開始，
-                這樣可以更深入了解編譯流程。待熟悉後再使用完整的 IDE。
+                <strong>除錯建議：</strong>
+                <ul>
+                    <li>仔細閱讀錯誤訊息，通常會指出問題所在的行號</li>
+                    <li>使用 -Wall -Wextra 編譯選項，查看所有警告</li>
+                    <li>一次修改一個問題，重新編譯確認</li>
+                    <li>善用 printf 輸出中間結果進行除錯</li>
+                </ul>
             </div>
         </div>
 
@@ -366,323 +598,347 @@ gcc -Wall -Wextra -g hello.c -o hello</div>
             <h2>3. 第一個C程式</h2>
 
             <h3>Hello World 程式</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="function">printf</span>(<span class="string">"Hello, World!\n"</span>);
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
 
-            <h3>程式結構解析</h3>
-            <table>
-                <tr>
-                    <th>程式碼</th>
-                    <th>說明</th>
-                </tr>
-                <tr>
-                    <td>#include &lt;stdio.h&gt;</td>
-                    <td>引入標準輸入輸出標頭檔，提供 printf、scanf 等函數</td>
-                </tr>
-                <tr>
-                    <td>int main()</td>
-                    <td>主函數，程式執行的入口點。int 表示函數返回整數</td>
-                </tr>
-                <tr>
-                    <td>{ ... }</td>
-                    <td>大括號定義函數或程式區塊的範圍</td>
-                </tr>
-                <tr>
-                    <td>printf(...)</td>
-                    <td>輸出函數，將文字顯示到標準輸出（通常是螢幕）</td>
-                </tr>
-                <tr>
-                    <td>\n</td>
-                    <td>跳脫字元，代表換行</td>
-                </tr>
-                <tr>
-                    <td>return 0;</td>
-                    <td>返回 0 給作業系統，表示程式正常結束</td>
-                </tr>
-                <tr>
-                    <td>;</td>
-                    <td>分號表示敘述結束（每個敘述都要加分號）</td>
-                </tr>
-            </table>
+            <h3>程式詳細解析</h3>
+            <div class="code-block"><span class="comment">// ========== 第一行：預處理指令 ==========</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
-            <h3>編譯與執行</h3>
-            <div class="code-block">
-<span class="comment"># 將程式存成 hello.c</span>
+<span class="comment">// #include：預處理器指令，告訴編譯器引入標頭檔</span>
+<span class="comment">// &lt;stdio.h&gt;：Standard Input Output Header</span>
+<span class="comment">//           標準輸入輸出標頭檔</span>
+<span class="comment">//           包含 printf、scanf 等函數的宣告</span>
+<span class="comment">//           必須寫在程式開頭</span>
 
-<span class="comment"># 編譯</span>
-gcc hello.c -o hello
 
-<span class="comment"># 執行</span>
-./hello
+<span class="comment">// ========== 主函數 ==========</span>
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// int：函數的返回型態為整數</span>
+    <span class="comment">// main：主函數，程式的進入點</span>
+    <span class="comment">// ()：參數列表（這裡沒有參數）</span>
+    <span class="comment">// {：函數主體開始</span>
+    
+    
+    <span class="comment">// ========== 輸出敘述 ==========</span>
+    <span class="function">printf</span>(<span class="string">"Hello, World!\n"</span>);
+    <span class="comment">// printf：輸出函數，定義在 stdio.h</span>
+    <span class="comment">// "Hello, World!"：要輸出的字串</span>
+    <span class="comment">// \n：跳脫字元，代表換行</span>
+    <span class="comment">// ;：敘述結尾的分號（必須）</span>
+    
+    
+    <span class="comment">// ========== 返回敘述 ==========</span>
+    <span class="keyword">return</span> <span class="number">0</span>;
+    <span class="comment">// return：返回值給作業系統</span>
+    <span class="comment">// 0：表示程式正常結束</span>
+    <span class="comment">// 非零值：表示程式異常結束</span>
+    
+    <span class="comment">// }：函數主體結束</span>
+}</div>
 
-<span class="comment"># 輸出結果：</span>
-Hello, World!</div>
+            <h3>程式執行流程</h3>
+            <ol>
+                <li><strong>預處理階段</strong>：處理 #include 指令，將 stdio.h 的內容插入程式</li>
+                <li><strong>編譯階段</strong>：將C程式碼轉換成組合語言，再轉換成機器碼</li>
+                <li><strong>連結階段</strong>：將程式碼與所需的函式庫連結在一起</li>
+                <li><strong>執行階段</strong>：
+                    <ul>
+                        <li>作業系統載入程式到記憶體</li>
+                        <li>找到 main 函數並開始執行</li>
+                        <li>執行 printf 輸出文字到螢幕</li>
+                        <li>執行 return 0 返回給作業系統</li>
+                        <li>程式結束</li>
+                    </ul>
+                </li>
+            </ol>
 
             <div class="note-box">
                 <strong>重要觀念：</strong>
                 <ul>
-                    <li>C語言區分大小寫：main 和 Main 是不同的</li>
-                    <li>每個敘述必須以分號結束</li>
-                    <li>縮排不是必需的，但能增加程式可讀性</li>
-                    <li>標頭檔包含要放在程式最前面</li>
+                    <li><code>#include &lt;stdio.h&gt;</code> 必須在程式開頭</li>
+                    <li><code>main()</code> 是程式的起點，每個C程式都需要一個 main 函數</li>
+                    <li>每個敘述結尾要加分號 <code>;</code></li>
+                    <li>大括號 <code>{ }</code> 包含函數的主體，標記程式碼區塊</li>
+                    <li><code>return 0</code> 表示程式正常執行完畢（慣例）</li>
+                    <li>C語言對大小寫敏感：Main 和 main 是不同的</li>
+                    <li>縮排不是強制的，但為了可讀性應該適當縮排</li>
                 </ul>
             </div>
-        </div>
 
-        <div class="content">
-            <h2>4. 基本資料型態與變數</h2>
-
-            <h3>基本資料型態</h3>
+            <h3>常見的跳脫字元</h3>
             <table>
                 <tr>
-                    <th>型態</th>
-                    <th>大小</th>
-                    <th>範圍</th>
-                    <th>用途</th>
+                    <th>跳脫字元</th>
+                    <th>意義</th>
+                    <th>範例</th>
                 </tr>
                 <tr>
-                    <td>char</td>
-                    <td>1 byte</td>
-                    <td>-128 ~ 127</td>
-                    <td>字元或小整數</td>
+                    <td>\n</td>
+                    <td>換行（New Line）</td>
+                    <td>printf("Hello\nWorld");</td>
                 </tr>
                 <tr>
-                    <td>unsigned char</td>
-                    <td>1 byte</td>
-                    <td>0 ~ 255</td>
-                    <td>無號字元</td>
+                    <td>\t</td>
+                    <td>水平定位（Tab）</td>
+                    <td>printf("Name:\tJohn");</td>
                 </tr>
                 <tr>
-                    <td>short</td>
-                    <td>2 bytes</td>
-                    <td>-32,768 ~ 32,767</td>
-                    <td>短整數</td>
+                    <td>\\</td>
+                    <td>反斜線</td>
+                    <td>printf("C:\\Program Files");</td>
                 </tr>
                 <tr>
-                    <td>int</td>
-                    <td>4 bytes</td>
-                    <td>-2,147,483,648 ~ 2,147,483,647</td>
-                    <td>整數</td>
+                    <td>\"</td>
+                    <td>雙引號</td>
+                    <td>printf("He said \"Hi\"");</td>
                 </tr>
                 <tr>
-                    <td>long</td>
-                    <td>4/8 bytes</td>
-                    <td>依平台而定</td>
-                    <td>長整數</td>
+                    <td>\'</td>
+                    <td>單引號</td>
+                    <td>printf("It\'s OK");</td>
                 </tr>
                 <tr>
-                    <td>float</td>
-                    <td>4 bytes</td>
-                    <td>約 7 位有效數字</td>
-                    <td>單精度浮點數</td>
+                    <td>\r</td>
+                    <td>歸位（Carriage Return）</td>
+                    <td>printf("Loading...\r");</td>
                 </tr>
                 <tr>
-                    <td>double</td>
-                    <td>8 bytes</td>
-                    <td>約 15 位有效數字</td>
-                    <td>雙精度浮點數</td>
+                    <td>\b</td>
+                    <td>退回一格（Backspace）</td>
+                    <td>printf("ABC\bD");</td>
+                </tr>
+                <tr>
+                    <td>\0</td>
+                    <td>空字元（Null）</td>
+                    <td>字串結束標記</td>
                 </tr>
             </table>
 
-            <h3>變數宣告與初始化</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <h3>更多 Hello World 變化</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="comment">// 變數宣告</span>
-    <span class="keyword">int</span> age;
-    <span class="keyword">float</span> height;
-    <span class="keyword">char</span> grade;
+    <span class="comment">// 基本輸出</span>
+    <span class="function">printf</span>(<span class="string">"Hello, World!\n"</span>);
     
-    <span class="comment">// 變數賦值</span>
+    <span class="comment">// 多行輸出</span>
+    <span class="function">printf</span>(<span class="string">"Hello,\n"</span>);
+    <span class="function">printf</span>(<span class="string">"World!\n"</span>);
+    
+    <span class="comment">// 一次輸出多行</span>
+    <span class="function">printf</span>(<span class="string">"Line 1\nLine 2\nLine 3\n"</span>);
+    
+    <span class="comment">// 使用 Tab 對齊</span>
+    <span class="function">printf</span>(<span class="string">"Name:\tJohn\n"</span>);
+    <span class="function">printf</span>(<span class="string">"Age:\t20\n"</span>);
+    
+    <span class="comment">// 輸出特殊字元</span>
+    <span class="function">printf</span>(<span class="string">"Path: C:\\Program Files\\App\n"</span>);
+    <span class="function">printf</span>(<span class="string">"He said, \"Hello!\"\n"</span>);
+    
+    <span class="comment">// 裝飾性輸出</span>
+    <span class="function">printf</span>(<span class="string">"***********************\n"</span>);
+    <span class="function">printf</span>(<span class="string">"*   Hello, World!     *\n"</span>);
+    <span class="function">printf</span>(<span class="string">"***********************\n"</span>);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+        </div>
+
+        <div class="content">
+            <h2>4. 基本資料型態</h2>
+
+            <h3>為什麼需要資料型態？</h3>
+            <p>資料型態告訴編譯器：</p>
+            <ul>
+                <li>需要多少記憶體空間</li>
+                <li>如何解釋這段記憶體的內容</li>
+                <li>可以對這個資料進行哪些操作</li>
+            </ul>
+
+            <h3>整數型態</h3>
+            <table>
+                <tr>
+                    <th>型態</th>
+                    <th>大小（位元組）</th>
+                    <th>範圍（有符號）</th>
+                    <th>範圍（無符號）</th>
+                </tr>
+                <tr>
+                    <td>char</td>
+                    <td>1</td>
+                    <td>-128 ~ 127</td>
+                    <td>0 ~ 255</td>
+                </tr>
+                <tr>
+                    <td>short (short int)</td>
+                    <td>2</td>
+                    <td>-32,768 ~ 32,767</td>
+                    <td>0 ~ 65,535</td>
+                </tr>
+                <tr>
+                    <td>int</td>
+                    <td>4</td>
+                    <td>-2,147,483,648 ~ 2,147,483,647</td>
+                    <td>0 ~ 4,294,967,295</td>
+                </tr>
+                <tr>
+                    <td>long (long int)</td>
+                    <td>4 或 8</td>
+                    <td>依平台而定</td>
+                    <td>依平台而定</td>
+                </tr>
+                <tr>
+                    <td>long long</td>
+                    <td>8</td>
+                    <td>-9,223,372,036,854,775,808 ~<br>9,223,372,036,854,775,807</td>
+                    <td>0 ~ 18,446,744,073,709,551,615</td>
+                </tr>
+            </table>
+
+            <h3>浮點數型態</h3>
+            <table>
+                <tr>
+                    <th>型態</th>
+                    <th>大小（位元組）</th>
+                    <th>有效位數</th>
+                    <th>範圍（約）</th>
+                </tr>
+                <tr>
+                    <td>float</td>
+                    <td>4</td>
+                    <td>6-7 位</td>
+                    <td>±3.4E±38</td>
+                </tr>
+                <tr>
+                    <td>double</td>
+                    <td>8</td>
+                    <td>15-16 位</td>
+                    <td>±1.7E±308</td>
+                </tr>
+                <tr>
+                    <td>long double</td>
+                    <td>10-16</td>
+                    <td>19 位以上</td>
+                    <td>依平台而定</td>
+                </tr>
+            </table>
+
+            <h3>型態修飾詞</h3>
+            <div class="code-block"><span class="comment">// signed（有符號，預設）：可以表示正負數</span>
+<span class="keyword">signed int</span> x = <span class="number">-100</span>;
+
+<span class="comment">// unsigned（無符號）：只能表示非負數，但範圍加倍</span>
+<span class="keyword">unsigned int</span> y = <span class="number">100</span>;
+
+<span class="comment">// short（短整數）：節省記憶體</span>
+<span class="keyword">short int</span> age = <span class="number">20</span>;
+
+<span class="comment">// long（長整數）：更大的範圍</span>
+<span class="keyword">long int</span> population = <span class="number">7000000000</span>;
+
+<span class="comment">// 可以省略 int</span>
+<span class="keyword">unsigned</span> num1 = <span class="number">100</span>;
+<span class="keyword">short</span> num2 = <span class="number">20</span>;
+<span class="keyword">long</span> num3 = <span class="number">1000000</span>;</div>
+
+            <h3>變數宣告與初始化</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== 變數宣告 ==========</span>
+    <span class="keyword">int</span> age;           <span class="comment">// 宣告整數變數</span>
+    <span class="keyword">float</span> height;       <span class="comment">// 宣告浮點數變數</span>
+    <span class="keyword">char</span> grade;         <span class="comment">// 宣告字元變數</span>
+    
+    <span class="comment">// ========== 變數賦值 ==========</span>
     age = <span class="number">20</span>;
     height = <span class="number">175.5</span>;
     grade = <span class="string">'A'</span>;
     
-    <span class="comment">// 宣告時初始化（推薦）</span>
+    <span class="comment">// ========== 宣告時初始化（推薦做法）==========</span>
     <span class="keyword">int</span> score = <span class="number">95</span>;
     <span class="keyword">double</span> pi = <span class="number">3.14159</span>;
     <span class="keyword">char</span> initial = <span class="string">'J'</span>;
     
-    <span class="comment">// 同時宣告多個變數</span>
-    <span class="keyword">int</span> x, y, z;
-    <span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">2</span>, c = <span class="number">3</span>;
+    <span class="comment">// ========== 同時宣告多個變數 ==========</span>
+    <span class="keyword">int</span> x, y, z;                  <span class="comment">// 宣告但未初始化</span>
+    <span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">2</span>, c = <span class="number">3</span>;      <span class="comment">// 宣告並初始化</span>
     
-    <span class="comment">// 輸出變數值</span>
+    <span class="comment">// ========== 不同型態的變數 ==========</span>
+    <span class="keyword">unsigned int</span> count = <span class="number">100</span>;
+    <span class="keyword">long long</span> bigNumber = <span class="number">9223372036854775807</span>;
+    <span class="keyword">float</span> temperature = <span class="number">36.5f</span>;  <span class="comment">// f 表示 float 字面值</span>
+    <span class="keyword">double</span> precise = <span class="number">3.141592653589793</span>;
+    
+    <span class="comment">// ========== 輸出變數值 ==========</span>
     <span class="function">printf</span>(<span class="string">"Age: %d\n"</span>, age);
     <span class="function">printf</span>(<span class="string">"Height: %.1f cm\n"</span>, height);
     <span class="function">printf</span>(<span class="string">"Grade: %c\n"</span>, grade);
+    <span class="function">printf</span>(<span class="string">"Score: %d\n"</span>, score);
+    <span class="function">printf</span>(<span class="string">"Pi: %.5f\n"</span>, pi);
     
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
 
             <h3>變數命名規則</h3>
+            
+            <h4>必須遵守的規則：</h4>
             <ul>
-                <li>只能包含英文字母、數字和底線 (_)</li>
+                <li>只能包含字母、數字、底線（_）</li>
                 <li>不能以數字開頭</li>
-                <li>不能使用C語言的保留字（如 int, float, if, while 等）</li>
+                <li>不能使用C語言保留字</li>
                 <li>區分大小寫（age 和 Age 是不同的變數）</li>
-                <li>建議使用有意義的變數名稱（如 student_count 而非 sc）</li>
             </ul>
 
-            <div class="tip-box">
-                <strong>命名慣例：</strong>
-                <ul>
-                    <li><strong>駝峰式命名</strong>：studentCount, firstName</li>
-                    <li><strong>底線命名</strong>：student_count, first_name（C語言較常用）</li>
-                    <li><strong>常數</strong>：全大寫，如 MAX_SIZE, PI</li>
-                </ul>
-            </div>
+            <h4>建議的命名慣例：</h4>
+            <ul>
+                <li>使用有意義的名稱：score 比 s 好</li>
+                <li>變數名稱用小寫開頭：studentAge</li>
+                <li>常數用全大寫：MAX_SIZE</li>
+                <li>多個單字可用：駝峰式（studentName）或底線（student_name）</li>
+                <li>避免使用單一字母（除非在迴圈中：i, j, k）</li>
+            </ul>
 
-            <h3>變數作用域</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="comment">// ========== 有效的變數名稱 ==========</span>
+<span class="keyword">int</span> age;
+<span class="keyword">int</span> studentAge;
+<span class="keyword">int</span> student_age;
+<span class="keyword">int</span> age2;
+<span class="keyword">int</span> _private;
+<span class="keyword">int</span> MAX_VALUE;
 
-<span class="comment">// 全域變數（在所有函數外宣告）</span>
-<span class="keyword">int</span> global_var = <span class="number">100</span>;
+<span class="comment">// ========== 無效的變數名稱 ==========</span>
+<span class="comment">// int 2age;         // 不能以數字開頭</span>
+<span class="comment">// int student-age;  // 不能包含 -</span>
+<span class="comment">// int int;          // 不能使用保留字</span>
+<span class="comment">// int my age;       // 不能包含空格</span></div>
 
-<span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="comment">// 區域變數（在函數內宣告）</span>
-    <span class="keyword">int</span> local_var = <span class="number">50</span>;
-    
-    <span class="function">printf</span>(<span class="string">"Global: %d\n"</span>, global_var);  <span class="comment">// 可以存取</span>
-    <span class="function">printf</span>(<span class="string">"Local: %d\n"</span>, local_var);    <span class="comment">// 可以存取</span>
-    
-    {
-        <span class="comment">// 區塊內的變數</span>
-        <span class="keyword">int</span> block_var = <span class="number">25</span>;
-        <span class="function">printf</span>(<span class="string">"Block: %d\n"</span>, block_var);
-    }
-    
-    <span class="comment">// printf("%d", block_var);  // 錯誤！block_var 超出作用域</span>
-    
-    <span class="keyword">return</span> <span class="number">0</span>;
-}</div>
-        </div>
+            <h3>常數定義</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
-        <div class="content">
-            <h2>5. 運算符號</h2>
-
-            <h3>算術運算符</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="comment">// 方法一：使用 #define（預處理器宏）</span>
+<span class="keyword">#define</span> PI <span class="number">3.14159</span>
+<span class="keyword">#define</span> MAX_STUDENTS <span class="number">100</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">3</span>;
+    <span class="comment">// 方法二：使用 const 關鍵字</span>
+    <span class="keyword">const int</span> MAX_AGE = <span class="number">120</span>;
+    <span class="keyword">const float</span> GRAVITY = <span class="number">9.8</span>;
     
-    <span class="function">printf</span>(<span class="string">"a + b = %d\n"</span>, a + b);  <span class="comment">// 加法：13</span>
-    <span class="function">printf</span>(<span class="string">"a - b = %d\n"</span>, a - b);  <span class="comment">// 減法：7</span>
-    <span class="function">printf</span>(<span class="string">"a * b = %d\n"</span>, a * b);  <span class="comment">// 乘法：30</span>
-    <span class="function">printf</span>(<span class="string">"a / b = %d\n"</span>, a / b);  <span class="comment">// 除法：3（整數除法）</span>
-    <span class="function">printf</span>(<span class="string">"a %% b = %d\n"</span>, a % b); <span class="comment">// 餘數：1</span>
+    <span class="comment">// 使用常數</span>
+    <span class="keyword">double</span> circumference = <span class="number">2</span> * PI * <span class="number">10</span>;
     
-    <span class="comment">// 浮點數除法</span>
-    <span class="keyword">float</span> c = <span class="number">10.0</span>, d = <span class="number">3.0</span>;
-    <span class="function">printf</span>(<span class="string">"c / d = %.2f\n"</span>, c / d);  <span class="comment">// 3.33</span>
+    <span class="function">printf</span>(<span class="string">"Pi = %.5f\n"</span>, PI);
+    <span class="function">printf</span>(<span class="string">"Max students = %d\n"</span>, MAX_STUDENTS);
+    <span class="function">printf</span>(<span class="string">"Circumference = %.2f\n"</span>, circumference);
     
-    <span class="keyword">return</span> <span class="number">0</span>;
-}</div>
-
-            <h3>賦值運算符</h3>
-            <div class="code-block">
-<span class="keyword">int</span> x = <span class="number">10</span>;
-
-x += <span class="number">5</span>;   <span class="comment">// x = x + 5;  結果：15</span>
-x -= <span class="number">3</span>;   <span class="comment">// x = x - 3;  結果：12</span>
-x *= <span class="number">2</span>;   <span class="comment">// x = x * 2;  結果：24</span>
-x /= <span class="number">4</span>;   <span class="comment">// x = x / 4;  結果：6</span>
-x %= <span class="number">5</span>;   <span class="comment">// x = x % 5;  結果：1</span></div>
-
-            <h3>遞增與遞減運算符</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
-
-<span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">int</span> a = <span class="number">5</span>;
-    
-    <span class="comment">// 後遞增：先使用再加 1</span>
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, a++);  <span class="comment">// 輸出 5，然後 a 變成 6</span>
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, a);    <span class="comment">// 輸出 6</span>
-    
-    <span class="comment">// 前遞增：先加 1 再使用</span>
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, ++a);  <span class="comment">// a 先變成 7，然後輸出 7</span>
-    
-    <span class="comment">// 遞減運算符類似</span>
-    a--;    <span class="comment">// a 變成 6</span>
-    --a;    <span class="comment">// a 變成 5</span>
-    
-    <span class="keyword">return</span> <span class="number">0</span>;
-}</div>
-
-            <h3>關係運算符</h3>
-            <table>
-                <tr>
-                    <th>運算符</th>
-                    <th>說明</th>
-                    <th>範例</th>
-                    <th>結果</th>
-                </tr>
-                <tr>
-                    <td>==</td>
-                    <td>等於</td>
-                    <td>5 == 5</td>
-                    <td>1 (真)</td>
-                </tr>
-                <tr>
-                    <td>!=</td>
-                    <td>不等於</td>
-                    <td>5 != 3</td>
-                    <td>1 (真)</td>
-                </tr>
-                <tr>
-                    <td>&gt;</td>
-                    <td>大於</td>
-                    <td>5 &gt; 3</td>
-                    <td>1 (真)</td>
-                </tr>
-                <tr>
-                    <td>&lt;</td>
-                    <td>小於</td>
-                    <td>5 &lt; 3</td>
-                    <td>0 (假)</td>
-                </tr>
-                <tr>
-                    <td>&gt;=</td>
-                    <td>大於等於</td>
-                    <td>5 &gt;= 5</td>
-                    <td>1 (真)</td>
-                </tr>
-                <tr>
-                    <td>&lt;=</td>
-                    <td>小於等於</td>
-                    <td>5 &lt;= 3</td>
-                    <td>0 (假)</td>
-                </tr>
-            </table>
-
-            <h3>邏輯運算符</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
-
-<span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">0</span>;
-    
-    <span class="comment">// && (AND)：兩邊都為真時才是真</span>
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, a && b);     <span class="comment">// 0 (假)</span>
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, a && a);     <span class="comment">// 1 (真)</span>
-    
-    <span class="comment">// || (OR)：至少一邊為真就是真</span>
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, a || b);     <span class="comment">// 1 (真)</span>
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, b || b);     <span class="comment">// 0 (假)</span>
-    
-    <span class="comment">// ! (NOT)：反轉真假值</span>
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, !a);         <span class="comment">// 0 (假)</span>
-    <span class="function">printf</span>(<span class="string">"%d\n"</span>, !b);         <span class="comment">// 1 (真)</span>
+    <span class="comment">// MAX_AGE = 130;  // 錯誤！常數不能修改</span>
     
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
@@ -690,70 +946,332 @@ x %= <span class="number">5</span>;   <span class="comment">// x = x % 5;  結�
             <div class="warning-box">
                 <strong>常見錯誤：</strong>
                 <ul>
-                    <li>使用 = 而非 == 做比較：if (x = 5) 是賦值，不是比較！</li>
-                    <li>整數除法會捨棄小數部分：10 / 3 結果是 3，不是 3.333</li>
-                    <li>除數為零會導致程式崩潰</li>
+                    <li><strong>使用未初始化的變數</strong>：會得到不確定的值（垃圾值）</li>
+                    <li><strong>變數名稱拼錯</strong>：C語言區分大小寫</li>
+                    <li><strong>型態不符</strong>：將浮點數賦值給整數會截斷小數部分</li>
+                    <li><strong>超出範圍</strong>：數值超過該型態能表示的範圍</li>
+                    <li><strong>重複宣告</strong>：在同一作用域內不能宣告同名變數</li>
                 </ul>
             </div>
+
+            <h3>型態轉換</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== 隱式轉換（自動轉換）==========</span>
+    <span class="keyword">int</span> a = <span class="number">10</span>;
+    <span class="keyword">double</span> b = a;  <span class="comment">// int 自動轉為 double</span>
+    <span class="function">printf</span>(<span class="string">"b = %.1f\n"</span>, b);  <span class="comment">// 輸出 10.0</span>
+    
+    <span class="comment">// ========== 顯式轉換（強制轉換）==========</span>
+    <span class="keyword">double</span> x = <span class="number">3.7</span>;
+    <span class="keyword">int</span> y = (<span class="keyword">int</span>)x;  <span class="comment">// 強制轉為 int，小數部分被截斷</span>
+    <span class="function">printf</span>(<span class="string">"x = %.1f, y = %d\n"</span>, x, y);  <span class="comment">// x=3.7, y=3</span>
+    
+    <span class="comment">// ========== 整數除法問題 ==========</span>
+    <span class="keyword">int</span> m = <span class="number">5</span>, n = <span class="number">2</span>;
+    <span class="function">printf</span>(<span class="string">"%d / %d = %d\n"</span>, m, n, m / n);  <span class="comment">// 2（整數除法）</span>
+    
+    <span class="comment">// 解決方案：將其中一個轉為浮點數</span>
+    <span class="function">printf</span>(<span class="string">"%d / %d = %.2f\n"</span>, m, n, (<span class="keyword">double</span>)m / n);  <span class="comment">// 2.50</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
         </div>
 
         <div class="content">
-            <h2>6. 標準輸入輸出</h2>
+            <h2>5. 運算符</h2>
 
-            <h3>printf() - 格式化輸出</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <h3>算術運算符</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">int</span> age = <span class="number">25</span>;
-    <span class="keyword">float</span> height = <span class="number">175.5</span>;
-    <span class="keyword">char</span> grade = <span class="string">'A'</span>;
-    <span class="keyword">char</span> name[] = <span class="string">"張三"</span>;
+    <span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">3</span>;
     
-    <span class="comment">// 基本輸出</span>
-    <span class="function">printf</span>(<span class="string">"年齡：%d\n"</span>, age);
-    <span class="function">printf</span>(<span class="string">"身高：%.1f cm\n"</span>, height);
-    <span class="function">printf</span>(<span class="string">"等級：%c\n"</span>, grade);
-    <span class="function">printf</span>(<span class="string">"姓名：%s\n"</span>, name);
+    <span class="comment">// 基本算術運算</span>
+    <span class="function">printf</span>(<span class="string">"加法: %d + %d = %d\n"</span>, a, b, a + b);  <span class="comment">// 13</span>
+    <span class="function">printf</span>(<span class="string">"減法: %d - %d = %d\n"</span>, a, b, a - b);  <span class="comment">// 7</span>
+    <span class="function">printf</span>(<span class="string">"乘法: %d * %d = %d\n"</span>, a, b, a * b);  <span class="comment">// 30</span>
+    <span class="function">printf</span>(<span class="string">"除法: %d / %d = %d\n"</span>, a, b, a / b);  <span class="comment">// 3（整數除法）</span>
+    <span class="function">printf</span>(<span class="string">"餘數: %d %% %d = %d\n"</span>, a, b, a % b);  <span class="comment">// 1</span>
     
-    <span class="comment">// 多個變數輸出</span>
-    <span class="function">printf</span>(<span class="string">"%s 今年 %d 歲，身高 %.1f 公分\n"</span>, name, age, height);
+    <span class="comment">// 浮點數除法</span>
+    <span class="keyword">double</span> x = <span class="number">10.0</span>, y = <span class="number">3.0</span>;
+    <span class="function">printf</span>(<span class="string">"\n浮點除法: %.2f / %.2f = %.2f\n"</span>, x, y, x / y);  <span class="comment">// 3.33</span>
     
-    <span class="comment">// 格式控制</span>
-    <span class="function">printf</span>(<span class="string">"%5d\n"</span>, <span class="number">123</span>);      <span class="comment">// 右對齊，寬度5：  123</span>
-    <span class="function">printf</span>(<span class="string">"%-5d\n"</span>, <span class="number">123</span>);     <span class="comment">// 左對齊，寬度5：123  </span>
-    <span class="function">printf</span>(<span class="string">"%05d\n"</span>, <span class="number">123</span>);     <span class="comment">// 補零：00123</span>
-    <span class="function">printf</span>(<span class="string">"%8.2f\n"</span>, <span class="number">3.14</span>);  <span class="comment">// 寬度8，2位小數：    3.14</span>
+    <span class="comment">// 混合運算</span>
+    <span class="keyword">int</span> result = a + b * <span class="number">2</span>;  <span class="comment">// 先乘後加：10 + 6 = 16</span>
+    <span class="function">printf</span>(<span class="string">"\n混合運算: %d + %d * 2 = %d\n"</span>, a, b, result);
+    
+    <span class="comment">// 使用括號改變優先級</span>
+    <span class="keyword">int</span> result2 = (a + b) * <span class="number">2</span>;  <span class="comment">// 先加後乘：13 * 2 = 26</span>
+    <span class="function">printf</span>(<span class="string">"使用括號: (%d + %d) * 2 = %d\n"</span>, a, b, result2);
     
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
 
-            <h3>printf() 格式符號</h3>
+            <h3>遞增與遞減運算符</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== 後置遞增（x++）==========</span>
+    <span class="keyword">int</span> x = <span class="number">5</span>;
+    <span class="function">printf</span>(<span class="string">"x 初始值 = %d\n"</span>, x);        <span class="comment">// 5</span>
+    <span class="function">printf</span>(<span class="string">"x++ 返回值 = %d\n"</span>, x++);    <span class="comment">// 5（先使用再遞增）</span>
+    <span class="function">printf</span>(<span class="string">"x 遞增後 = %d\n\n"</span>, x);      <span class="comment">// 6</span>
+    
+    <span class="comment">// ========== 前置遞增（++x）==========</span>
+    <span class="keyword">int</span> y = <span class="number">5</span>;
+    <span class="function">printf</span>(<span class="string">"y 初始值 = %d\n"</span>, y);        <span class="comment">// 5</span>
+    <span class="function">printf</span>(<span class="string">"++y 返回值 = %d\n"</span>, ++y);    <span class="comment">// 6（先遞增再使用）</span>
+    <span class="function">printf</span>(<span class="string">"y 遞增後 = %d\n\n"</span>, y);      <span class="comment">// 6</span>
+    
+    <span class="comment">// ========== 後置遞減（x--）==========</span>
+    <span class="keyword">int</span> m = <span class="number">10</span>;
+    <span class="function">printf</span>(<span class="string">"m-- = %d, m = %d\n"</span>, m--, m);  <span class="comment">// 10, 9</span>
+    
+    <span class="comment">// ========== 前置遞減（--x）==========</span>
+    <span class="keyword">int</span> n = <span class="number">10</span>;
+    <span class="function">printf</span>(<span class="string">"--n = %d, n = %d\n"</span>, --n, n);  <span class="comment">// 9, 9</span>
+    
+    <span class="comment">// ========== 實際應用範例 ==========</span>
+    <span class="keyword">int</span> count = <span class="number">0</span>;
+    count++;  <span class="comment">// count = 1</span>
+    count++;  <span class="comment">// count = 2</span>
+    count++;  <span class="comment">// count = 3</span>
+    <span class="function">printf</span>(<span class="string">"\n計數器最終值: %d\n"</span>, count);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>賦值運算符</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> x = <span class="number">10</span>;
+    <span class="function">printf</span>(<span class="string">"初始值: x = %d\n\n"</span>, x);
+    
+    <span class="comment">// x += 5; 等同於 x = x + 5;</span>
+    x += <span class="number">5</span>;
+    <span class="function">printf</span>(<span class="string">"x += 5; 結果: %d\n"</span>, x);  <span class="comment">// 15</span>
+    
+    <span class="comment">// x -= 3; 等同於 x = x - 3;</span>
+    x -= <span class="number">3</span>;
+    <span class="function">printf</span>(<span class="string">"x -= 3; 結果: %d\n"</span>, x);  <span class="comment">// 12</span>
+    
+    <span class="comment">// x *= 2; 等同於 x = x * 2;</span>
+    x *= <span class="number">2</span>;
+    <span class="function">printf</span>(<span class="string">"x *= 2; 結果: %d\n"</span>, x);  <span class="comment">// 24</span>
+    
+    <span class="comment">// x /= 4; 等同於 x = x / 4;</span>
+    x /= <span class="number">4</span>;
+    <span class="function">printf</span>(<span class="string">"x /= 4; 結果: %d\n"</span>, x);  <span class="comment">// 6</span>
+    
+    <span class="comment">// x %= 5; 等同於 x = x % 5;</span>
+    x %= <span class="number">5</span>;
+    <span class="function">printf</span>(<span class="string">"x %%= 5; 結果: %d\n"</span>, x);  <span class="comment">// 1</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>關係運算符</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> a = <span class="number">5</span>, b = <span class="number">3</span>;
+    <span class="function">printf</span>(<span class="string">"a = %d, b = %d\n\n"</span>, a, b);
+    
+    <span class="comment">// 在C語言中：真（true）= 非0值（通常是1），假（false）= 0</span>
+    <span class="function">printf</span>(<span class="string">"a == b: %d\n"</span>, a == b);  <span class="comment">// 0（假）</span>
+    <span class="function">printf</span>(<span class="string">"a != b: %d\n"</span>, a != b);  <span class="comment">// 1（真）</span>
+    <span class="function">printf</span>(<span class="string">"a > b: %d\n"</span>, a > b);    <span class="comment">// 1（真）</span>
+    <span class="function">printf</span>(<span class="string">"a < b: %d\n"</span>, a < b);    <span class="comment">// 0（假）</span>
+    <span class="function">printf</span>(<span class="string">"a >= b: %d\n"</span>, a >= b);  <span class="comment">// 1（真）</span>
+    <span class="function">printf</span>(<span class="string">"a <= b: %d\n"</span>, a <= b);  <span class="comment">// 0（假）</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>邏輯運算符</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">0</span>;  <span class="comment">// 1代表真，0代表假</span>
+    
+    <span class="comment">// && (AND) - 兩個都要為真</span>
+    <span class="function">printf</span>(<span class="string">"1 && 1 = %d\n"</span>, <span class="number">1</span> && <span class="number">1</span>);  <span class="comment">// 1（真）</span>
+    <span class="function">printf</span>(<span class="string">"1 && 0 = %d\n"</span>, <span class="number">1</span> && <span class="number">0</span>);  <span class="comment">// 0（假）</span>
+    <span class="function">printf</span>(<span class="string">"0 && 0 = %d\n\n"</span>, <span class="number">0</span> && <span class="number">0</span>);  <span class="comment">// 0（假）</span>
+    
+    <span class="comment">// || (OR) - 至少一個為真</span>
+    <span class="function">printf</span>(<span class="string">"1 || 1 = %d\n"</span>, <span class="number">1</span> || <span class="number">1</span>);  <span class="comment">// 1（真）</span>
+    <span class="function">printf</span>(<span class="string">"1 || 0 = %d\n"</span>, <span class="number">1</span> || <span class="number">0</span>);  <span class="comment">// 1（真）</span>
+    <span class="function">printf</span>(<span class="string">"0 || 0 = %d\n\n"</span>, <span class="number">0</span> || <span class="number">0</span>);  <span class="comment">// 0（假）</span>
+    
+    <span class="comment">// ! (NOT) - 反轉條件</span>
+    <span class="function">printf</span>(<span class="string">"!1 = %d\n"</span>, !<span class="number">1</span>);  <span class="comment">// 0（假）</span>
+    <span class="function">printf</span>(<span class="string">"!0 = %d\n\n"</span>, !<span class="number">0</span>);  <span class="comment">// 1（真）</span>
+    
+    <span class="comment">// 實際應用範例</span>
+    <span class="keyword">int</span> age = <span class="number">20</span>;
+    <span class="keyword">int</span> hasLicense = <span class="number">1</span>;
+    
+    <span class="comment">// 檢查是否可以開車：年齡>=18 且 有駕照</span>
+    <span class="keyword">int</span> canDrive = (age >= <span class="number">18</span>) && hasLicense;
+    <span class="function">printf</span>(<span class="string">"可以開車: %d\n"</span>, canDrive);  <span class="comment">// 1（真）</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>運算符優先級</h3>
             <table>
                 <tr>
-                    <th>符號</th>
+                    <th>優先級</th>
+                    <th>運算符</th>
+                    <th>說明</th>
+                    <th>結合性</th>
+                </tr>
+                <tr>
+                    <td>1（最高）</td>
+                    <td>() [] -></td>
+                    <td>括號、陣列、指標</td>
+                    <td>左到右</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>! ++ -- + - * &</td>
+                    <td>單元運算符</td>
+                    <td>右到左</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>* / %</td>
+                    <td>乘除餘</td>
+                    <td>左到右</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>+ -</td>
+                    <td>加減</td>
+                    <td>左到右</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>&lt; &lt;= &gt; &gt;=</td>
+                    <td>關係運算符</td>
+                    <td>左到右</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>== !=</td>
+                    <td>相等運算符</td>
+                    <td>左到右</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>&&</td>
+                    <td>邏輯AND</td>
+                    <td>左到右</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>||</td>
+                    <td>邏輯OR</td>
+                    <td>左到右</td>
+                </tr>
+                <tr>
+                    <td>9（最低）</td>
+                    <td>= += -= *= /= %=</td>
+                    <td>賦值運算符</td>
+                    <td>右到左</td>
+                </tr>
+            </table>
+
+            <div class="code-block"><span class="comment">// 運算符優先級範例</span>
+<span class="keyword">int</span> result;
+
+result = <span class="number">2</span> + <span class="number">3</span> * <span class="number">4</span>;        <span class="comment">// 14（先乘後加）</span>
+result = (<span class="number">2</span> + <span class="number">3</span>) * <span class="number">4</span>;      <span class="comment">// 20（括號優先）</span>
+result = <span class="number">10</span> - <span class="number">4</span> + <span class="number">2</span>;       <span class="comment">// 8（從左到右）</span>
+result = <span class="number">10</span> / <span class="number">2</span> * <span class="number">3</span>;       <span class="comment">// 15（從左到右）</span>
+
+<span class="comment">// 建議：不確定時使用括號</span>
+result = (<span class="number">10</span> / <span class="number">2</span>) * <span class="number">3</span>;     <span class="comment">// 清楚表達意圖</span></div>
+        </div>
+
+        <div class="content">
+            <h2>6. 輸入輸出</h2>
+
+            <h3>printf 格式化輸出</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> age = <span class="number">20</span>;
+    <span class="keyword">float</span> height = <span class="number">175.5</span>;
+    <span class="keyword">double</span> pi = <span class="number">3.14159265359</span>;
+    <span class="keyword">char</span> grade = <span class="string">'A'</span>;
+    <span class="keyword">char</span> name[] = <span class="string">"John"</span>;
+    
+    <span class="comment">// ========== 基本格式符 ==========</span>
+    <span class="function">printf</span>(<span class="string">"整數: %d\n"</span>, age);
+    <span class="function">printf</span>(<span class="string">"浮點數: %f\n"</span>, height);
+    <span class="function">printf</span>(<span class="string">"字元: %c\n"</span>, grade);
+    <span class="function">printf</span>(<span class="string">"字串: %s\n\n"</span>, name);
+    
+    <span class="comment">// ========== 控制小數位數 ==========</span>
+    <span class="function">printf</span>(<span class="string">"%.0f\n"</span>, height);     <span class="comment">// 176（四捨五入）</span>
+    <span class="function">printf</span>(<span class="string">"%.1f\n"</span>, height);     <span class="comment">// 175.5</span>
+    <span class="function">printf</span>(<span class="string">"%.2f\n"</span>, height);     <span class="comment">// 175.50</span>
+    <span class="function">printf</span>(<span class="string">"%.5f\n\n"</span>, pi);       <span class="comment">// 3.14159</span>
+    
+    <span class="comment">// ========== 控制輸出寬度 ==========</span>
+    <span class="function">printf</span>(<span class="string">"|%5d|\n"</span>, age);      <span class="comment">// |   20|（右對齊，寬度5）</span>
+    <span class="function">printf</span>(<span class="string">"|%-5d|\n"</span>, age);     <span class="comment">// |20   |（左對齊，寬度5）</span>
+    <span class="function">printf</span>(<span class="string">"|%05d|\n\n"</span>, age);   <span class="comment">// |00020|（補零）</span>
+    
+    <span class="comment">// ========== 組合使用 ==========</span>
+    <span class="function">printf</span>(<span class="string">"|%8.2f|\n"</span>, height);   <span class="comment">// |  175.50|（寬度8，2位小數）</span>
+    <span class="function">printf</span>(<span class="string">"|%-8.2f|\n\n"</span>, height); <span class="comment">// |175.50  |（左對齊）</span>
+    
+    <span class="comment">// ========== 多個變數輸出 ==========</span>
+    <span class="function">printf</span>(<span class="string">"姓名: %s, 年齡: %d, 等級: %c\n"</span>, name, age, grade);
+    
+    <span class="comment">// ========== 不同進制輸出 ==========</span>
+    <span class="keyword">int</span> num = <span class="number">255</span>;
+    <span class="function">printf</span>(<span class="string">"十進制: %d\n"</span>, num);    <span class="comment">// 255</span>
+    <span class="function">printf</span>(<span class="string">"八進制: %o\n"</span>, num);    <span class="comment">// 377</span>
+    <span class="function">printf</span>(<span class="string">"十六進制: %x\n"</span>, num);  <span class="comment">// ff</span>
+    <span class="function">printf</span>(<span class="string">"十六進制: %X\n"</span>, num);  <span class="comment">// FF</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>printf 格式符號總整理</h3>
+            <table>
+                <tr>
+                    <th>格式符</th>
                     <th>說明</th>
                     <th>範例</th>
                 </tr>
                 <tr>
                     <td>%d, %i</td>
-                    <td>帶符號十進位整數</td>
+                    <td>有符號十進制整數</td>
                     <td>printf("%d", 123);</td>
                 </tr>
                 <tr>
                     <td>%u</td>
-                    <td>無符號十進位整數</td>
+                    <td>無符號十進制整數</td>
                     <td>printf("%u", 123);</td>
                 </tr>
                 <tr>
                     <td>%f</td>
-                    <td>浮點數</td>
-                    <td>printf("%.2f", 3.14);</td>
+                    <td>浮點數（預設6位小數）</td>
+                    <td>printf("%f", 3.14);</td>
                 </tr>
                 <tr>
                     <td>%e, %E</td>
                     <td>科學記號</td>
-                    <td>printf("%e", 1234.5);</td>
+                    <td>printf("%e", 1000.0);</td>
                 </tr>
                 <tr>
                     <td>%c</td>
@@ -766,19 +1284,19 @@ x %= <span class="number">5</span>;   <span class="comment">// x = x % 5;  結�
                     <td>printf("%s", "Hello");</td>
                 </tr>
                 <tr>
-                    <td>%p</td>
-                    <td>指標位址</td>
-                    <td>printf("%p", &var);</td>
+                    <td>%o</td>
+                    <td>八進制整數</td>
+                    <td>printf("%o", 8);</td>
                 </tr>
                 <tr>
                     <td>%x, %X</td>
-                    <td>十六進位</td>
+                    <td>十六進制整數</td>
                     <td>printf("%x", 255);</td>
                 </tr>
                 <tr>
-                    <td>%o</td>
-                    <td>八進位</td>
-                    <td>printf("%o", 64);</td>
+                    <td>%p</td>
+                    <td>指標位址</td>
+                    <td>printf("%p", &var);</td>
                 </tr>
                 <tr>
                     <td>%%</td>
@@ -787,169 +1305,141 @@ x %= <span class="number">5</span>;   <span class="comment">// x = x % 5;  結�
                 </tr>
             </table>
 
-            <h3>scanf() - 格式化輸入</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <h3>scanf 格式化輸入</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">int</span> age;
     <span class="keyword">float</span> height;
+    <span class="keyword">char</span> grade;
     <span class="keyword">char</span> name[<span class="number">50</span>];
     
-    <span class="comment">// 讀取整數</span>
-    <span class="function">printf</span>(<span class="string">"請輸入年齡："</span>);
+    <span class="comment">// ========== 讀取整數 ==========</span>
+    <span class="function">printf</span>(<span class="string">"請輸入年齡: "</span>);
     <span class="function">scanf</span>(<span class="string">"%d"</span>, &age);
     
-    <span class="comment">// 讀取浮點數</span>
-    <span class="function">printf</span>(<span class="string">"請輸入身高："</span>);
+    <span class="comment">// ========== 讀取浮點數 ==========</span>
+    <span class="function">printf</span>(<span class="string">"請輸入身高: "</span>);
     <span class="function">scanf</span>(<span class="string">"%f"</span>, &height);
     
-    <span class="comment">// 讀取字串（遇到空白會停止）</span>
-    <span class="function">printf</span>(<span class="string">"請輸入姓名："</span>);
-    <span class="function">scanf</span>(<span class="string">"%s"</span>, name);  <span class="comment">// 注意：字串不用加 &</span>
+    <span class="comment">// ========== 讀取字元 ==========</span>
+    <span class="function">printf</span>(<span class="string">"請輸入等級: "</span>);
+    <span class="function">scanf</span>(<span class="string">" %c"</span>, &grade);  <span class="comment">// 注意 %c 前有空格</span>
     
-    <span class="comment">// 輸出結果</span>
-    <span class="function">printf</span>(<span class="string">"\n您的資料：\n"</span>);
-    <span class="function">printf</span>(<span class="string">"姓名：%s\n"</span>, name);
-    <span class="function">printf</span>(<span class="string">"年齡：%d 歲\n"</span>, age);
-    <span class="function">printf</span>(<span class="string">"身高：%.1f 公分\n"</span>, height);
+    <span class="comment">// ========== 讀取字串 ==========</span>
+    <span class="function">printf</span>(<span class="string">"請輸入姓名: "</span>);
+    <span class="function">scanf</span>(<span class="string">"%s"</span>, name);  <span class="comment">// 注意：name 前不加 &</span>
+    
+    <span class="comment">// ========== 一次讀取多個值 ==========</span>
+    <span class="keyword">int</span> day, month, year;
+    <span class="function">printf</span>(<span class="string">"請輸入日期 (日 月 年): "</span>);
+    <span class="function">scanf</span>(<span class="string">"%d %d %d"</span>, &day, &month, &year);
+    
+    <span class="comment">// ========== 輸出結果 ==========</span>
+    <span class="function">printf</span>(<span class="string">"\n===== 輸入資料 =====\n"</span>);
+    <span class="function">printf</span>(<span class="string">"姓名: %s\n"</span>, name);
+    <span class="function">printf</span>(<span class="string">"年齡: %d 歲\n"</span>, age);
+    <span class="function">printf</span>(<span class="string">"身高: %.1f cm\n"</span>, height);
+    <span class="function">printf</span>(<span class="string">"等級: %c\n"</span>, grade);
+    <span class="function">printf</span>(<span class="string">"日期: %d/%d/%d\n"</span>, day, month, year);
     
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
 
-            <h3>scanf() 使用注意事項</h3>
             <div class="warning-box">
-                <strong>重要提醒：</strong>
+                <strong>scanf 注意事項：</strong>
                 <ul>
-                    <li>一般變數前要加 & 符號（取址運算符），但陣列名稱本身就是位址，不用加 &</li>
-                    <li>格式符號要與變數型態對應，否則會產生錯誤</li>
-                    <li>%s 讀取字串時遇到空白、Tab 或換行就會停止</li>
-                    <li>要讀取含空格的字串，使用 fgets() 函數較佳</li>
-                    <li>輸入前清除緩衝區可避免一些問題</li>
+                    <li><strong>必須加 & 符號</strong>：除了字串陣列外，變數前要加 &（位址運算符）</li>
+                    <li><strong>格式符號要對應</strong>：整數用 %d，浮點數用 %f 或 %lf</li>
+                    <li><strong>字元輸入問題</strong>：%c 會讀取包括換行符在內的所有字元，建議前面加空格 " %c"</li>
+                    <li><strong>字串不會讀取空格</strong>：scanf("%s") 遇到空格就停止</li>
+                    <li><strong>輸入緩衝區問題</strong>：多次輸入時可能需要清空緩衝區</li>
                 </ul>
             </div>
 
-            <h3>其他輸入輸出函數</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="warning-box">
+                <strong>常見錯誤：</strong>
+                <ul>
+                    <li><strong>忘記加 & 符號</strong>：scanf("%d", age); ❌ 應為 scanf("%d", &age); ✓</li>
+                    <li><strong>格式不符</strong>：輸入 "abc" 給整數變數會導致錯誤</li>
+                    <li><strong>輸入超過陣列大小</strong>：字串會導致緩衝區溢位</li>
+                </ul>
+            </div>
+
+            <h3>getchar() 和 putchar()</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">char</span> ch;
     
-    <span class="comment">// getchar() - 讀取單一字元</span>
-    <span class="function">printf</span>(<span class="string">"請輸入一個字元："</span>);
-    ch = <span class="function">getchar</span>();
+    <span class="function">printf</span>(<span class="string">"請輸入一個字元: "</span>);
+    ch = <span class="function">getchar</span>();  <span class="comment">// 讀取單一字元</span>
     
-    <span class="comment">// putchar() - 輸出單一字元</span>
-    <span class="function">printf</span>(<span class="string">"你輸入的字元是："</span>);
-    <span class="function">putchar</span>(ch);
-    <span class="function">putchar</span>(<span class="string">'\n'</span>);
-    
-    <span class="comment">// puts() - 輸出字串（自動加換行）</span>
-    <span class="function">puts</span>(<span class="string">"這是一行文字"</span>);
-    
-    <span class="comment">// gets() - 讀取一行（已不建議使用，有安全問題）</span>
-    <span class="comment">// 建議使用 fgets() 取代</span>
+    <span class="function">printf</span>(<span class="string">"你輸入的是: "</span>);
+    <span class="function">putchar</span>(ch);  <span class="comment">// 輸出單一字元</span>
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
     
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
         </div>
 
         <div class="content">
-            <h2>7. 程式註解與編碼風格</h2>
+            <h2>7. 註解與編碼風格</h2>
 
-            <h3>註解方式</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <h3>程式註解</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
-<span class="comment">// 單行註解：用於簡短說明</span>
-<span class="comment">// 這種註解只影響到該行結束</span>
+<span class="comment">// 這是單行註解</span>
+<span class="comment">// 可以多行使用</span>
 
 <span class="comment">/*
- * 多行註解：用於較長的說明
+ * 這是多行註解
  * 可以跨越多行
- * 常用於函數或模組的說明
+ * 適合寫長篇說明
  */</span>
 
+<span class="comment">/**
+ * 函數說明註解（文件註解）
+ * 功能：計算兩數之和
+ * 參數：a, b - 要相加的兩個整數
+ * 返回：兩數的和
+ */</span>
+<span class="keyword">int</span> <span class="function">add</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {
+    <span class="keyword">return</span> a + b;  <span class="comment">// 返回計算結果</span>
+}
+
 <span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">int</span> x = <span class="number">10</span>;  <span class="comment">// 行尾註解</span>
+    <span class="keyword">int</span> x = <span class="number">10</span>;  <span class="comment">// 宣告並初始化變數</span>
     
-    <span class="comment">/*
-     * 這是一段較複雜的運算
-     * 需要詳細說明
-     */</span>
-    <span class="keyword">int</span> result = x * <span class="number">2</span> + <span class="number">5</span>;
+    <span class="comment">// TODO: 需要加入輸入驗證</span>
+    <span class="comment">// FIXME: 這裡有潛在的溢位問題</span>
     
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
 
             <h3>良好的編碼風格</h3>
-            
-            <h4>1. 有意義的變數命名</h4>
-            <div class="code-block">
-<span class="comment">// 不好的命名</span>
-<span class="keyword">int</span> a, b, c;
-<span class="keyword">float</span> x;
-
-<span class="comment">// 好的命名</span>
-<span class="keyword">int</span> student_count, total_score, average;
-<span class="keyword">float</span> temperature_celsius;</div>
-
-            <h4>2. 適當的縮排</h4>
-            <div class="code-block">
-<span class="comment">// 不好的風格</span>
-<span class="keyword">int</span> <span class="function">main</span>() {
-<span class="keyword">int</span> x=<span class="number">10</span>;
-<span class="keyword">if</span>(x><span class="number">5</span>){
-<span class="function">printf</span>(<span class="string">"大於5"</span>);
-}
+            <div class="code-block"><span class="comment">// ========== 不好的風格 ==========</span>
+<span class="keyword">int</span> <span class="function">main</span>(){
+<span class="keyword">int</span> a=<span class="number">5</span>,b=<span class="number">3</span>;
+<span class="keyword">int</span> c=a+b;
+<span class="function">printf</span>(<span class="string">"%d"</span>,c);
 <span class="keyword">return</span> <span class="number">0</span>;
 }
 
-<span class="comment">// 好的風格（建議使用 4 個空格縮排）</span>
-<span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">int</span> x = <span class="number">10</span>;
-    
-    <span class="keyword">if</span> (x > <span class="number">5</span>) {
-        <span class="function">printf</span>(<span class="string">"大於5\n"</span>);
-    }
-    
-    <span class="keyword">return</span> <span class="number">0</span>;
-}</div>
 
-            <h4>3. 適當的空白與換行</h4>
-            <div class="code-block">
-<span class="comment">// 運算符兩側加空格</span>
-<span class="keyword">int</span> sum = a + b;        <span class="comment">// 好</span>
-<span class="keyword">int</span> sum=a+b;            <span class="comment">// 不好</span>
-
-<span class="comment">// 逗號後面加空格</span>
-<span class="function">printf</span>(<span class="string">"%d, %d"</span>, x, y);  <span class="comment">// 好</span>
-<span class="function">printf</span>(<span class="string">"%d,%d"</span>,x,y);     <span class="comment">// 不好</span>
-
-<span class="comment">// 函數間加空行</span>
-<span class="keyword">void</span> <span class="function">func1</span>() {
-    <span class="comment">// ...</span>
-}
-
-<span class="keyword">void</span> <span class="function">func2</span>() {
-    <span class="comment">// ...</span>
-}</div>
-
-            <h4>4. 常數使用 #define</h4>
-            <div class="code-block">
+<span class="comment">// ========== 好的風格 ==========</span>
 <span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
-<span class="comment">// 定義常數（全大寫命名）</span>
-<span class="keyword">#define</span> PI <span class="number">3.14159</span>
-<span class="keyword">#define</span> MAX_SIZE <span class="number">100</span>
-<span class="keyword">#define</span> BUFFER_LENGTH <span class="number">256</span>
-
 <span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">double</span> radius = <span class="number">5.0</span>;
-    <span class="keyword">double</span> area = PI * radius * radius;
+    <span class="comment">// 宣告變數</span>
+    <span class="keyword">int</span> a = <span class="number">5</span>;
+    <span class="keyword">int</span> b = <span class="number">3</span>;
     
-    <span class="function">printf</span>(<span class="string">"圓面積：%.2f\n"</span>, area);
+    <span class="comment">// 計算總和</span>
+    <span class="keyword">int</span> sum = a + b;
+    
+    <span class="comment">// 輸出結果</span>
+    <span class="function">printf</span>(<span class="string">"總和: %d\n"</span>, sum);
     
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
@@ -957,81 +1447,224 @@ x %= <span class="number">5</span>;   <span class="comment">// x = x % 5;  結�
             <div class="tip-box">
                 <strong>編碼風格建議：</strong>
                 <ul>
-                    <li>保持一致的縮排方式（建議 4 個空格）</li>
-                    <li>每行程式碼不要太長（建議不超過 80-100 字元）</li>
-                    <li>適當使用空行分隔邏輯區塊</li>
-                    <li>函數和變數命名要有意義</li>
-                    <li>重要的邏輯要加註解說明</li>
-                    <li>避免過度註解明顯的程式碼</li>
+                    <li><strong>縮排</strong>：使用4個空格或1個Tab（統一使用）</li>
+                    <li><strong>命名</strong>：使用有意義的變數名稱</li>
+                    <li><strong>空格</strong>：運算符兩側加空格</li>
+                    <li><strong>括號</strong>：大括號獨立一行或與語句同行（保持一致）</li>
+                    <li><strong>註解</strong>：適當添加註解說明複雜邏輯</li>
+                    <li><strong>空行</strong>：邏輯區塊之間加空行分隔</li>
+                    <li><strong>行長度</strong>：每行不超過80個字元</li>
                 </ul>
             </div>
         </div>
 
         <div class="content">
-            <h2>8. 完整範例程式</h2>
+            <h2>8. 常見錯誤與除錯</h2>
 
-            <h3>範例：簡易計算機</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <h3>編譯時錯誤</h3>
+            <div class="code-block"><span class="comment">// 錯誤 1：忘記分號</span>
+<span class="keyword">int</span> x = <span class="number">10</span>  <span class="comment">// ❌ 缺少分號</span>
+<span class="keyword">int</span> x = <span class="number">10</span>;  <span class="comment">// ✓ 正確</span>
+
+
+<span class="comment">// 錯誤 2：括號不匹配</span>
+<span class="keyword">if</span> (x > <span class="number">5</span> {  <span class="comment">// ❌ 缺少右括號</span>
+<span class="keyword">if</span> (x > <span class="number">5</span>) {  <span class="comment">// ✓ 正確</span>
+
+
+<span class="comment">// 錯誤 3：未宣告變數</span>
+y = <span class="number">10</span>;         <span class="comment">// ❌ y 未宣告</span>
+<span class="keyword">int</span> y = <span class="number">10</span>;    <span class="comment">// ✓ 正確</span>
+
+
+<span class="comment">// 錯誤 4：型態不符</span>
+<span class="keyword">int</span> num = <span class="string">"123"</span>;  <span class="comment">// ❌ 字串不能直接賦值給int</span>
+<span class="keyword">int</span> num = <span class="number">123</span>;    <span class="comment">// ✓ 正確</span></div>
+
+            <h3>執行時錯誤</h3>
+            <div class="code-block"><span class="comment">// 錯誤 1：除以零</span>
+<span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">0</span>;
+<span class="keyword">int</span> c = a / b;  <span class="comment">// ❌ 除數為零</span>
+
+<span class="comment">// 正確做法：檢查除數</span>
+<span class="keyword">if</span> (b != <span class="number">0</span>) {
+    <span class="keyword">int</span> c = a / b;
+}
+
+<span class="keyword">else</span> {
+    <span class="function">printf</span>(<span class="string">"錯誤：除數不能為零！\n"</span>);
+}
+
+
+<span class="comment">// 錯誤 2：陣列越界</span>
+<span class="keyword">int</span> arr[<span class="number">5</span>];
+arr[<span class="number">10</span>] = <span class="number">100</span>;  <span class="comment">// ❌ 陣列索引超出範圍</span>
+
+<span class="comment">// 正確做法：確保索引在範圍內</span>
+<span class="keyword">if</span> (<span class="number">10</span> < <span class="number">5</span>) {
+    arr[<span class="number">10</span>] = <span class="number">100</span>;
+}
+
+
+<span class="comment">// 錯誤 3：使用未初始化的變數</span>
+<span class="keyword">int</span> x;
+<span class="function">printf</span>(<span class="string">"%d"</span>, x);  <span class="comment">// ❌ x 未初始化，會得到垃圾值</span>
+
+<span class="comment">// 正確做法：先初始化</span>
+<span class="keyword">int</span> x = <span class="number">0</span>;
+<span class="function">printf</span>(<span class="string">"%d"</span>, x);  <span class="comment">// ✓ 正確</span></div>
+
+            <h3>邏輯錯誤</h3>
+            <div class="code-block"><span class="comment">// 錯誤 1：使用 = 而非 ==</span>
+<span class="keyword">if</span> (x = <span class="number">5</span>) {  <span class="comment">// ❌ 這是賦值，不是比較！</span>
+    <span class="comment">// ...</span>
+}
+
+<span class="keyword">if</span> (x == <span class="number">5</span>) {  <span class="comment">// ✓ 正確的比較</span>
+    <span class="comment">// ...</span>
+}
+
+
+<span class="comment">// 錯誤 2：整數除法</span>
+<span class="keyword">int</span> a = <span class="number">5</span>, b = <span class="number">2</span>;
+<span class="keyword">double</span> result = a / b;  <span class="comment">// ❌ 結果是 2.0，不是 2.5</span>
+
+<span class="comment">// 正確做法：先轉換為浮點數</span>
+<span class="keyword">double</span> result = (<span class="keyword">double</span>)a / b;  <span class="comment">// ✓ 結果是 2.5</span>
+
+
+<span class="comment">// 錯誤 3：分號錯誤位置</span>
+<span class="keyword">if</span> (x > <span class="number">5</span>);  <span class="comment">// ❌ 這裡的分號會讓 if 無效</span>
+{
+    <span class="function">printf</span>(<span class="string">"x 大於 5"</span>);  <span class="comment">// 這行永遠會執行</span>
+}
+
+<span class="keyword">if</span> (x > <span class="number">5</span>) {  <span class="comment">// ✓ 正確</span>
+    <span class="function">printf</span>(<span class="string">"x 大於 5"</span>);
+}</div>
+
+            <div class="tip-box">
+                <strong>除錯技巧：</strong>
+                <ul>
+                    <li><strong>仔細閱讀錯誤訊息</strong>：編譯器會告訴你問題在哪一行</li>
+                    <li><strong>使用 printf 除錯</strong>：在關鍵位置輸出變數值</li>
+                    <li><strong>分段測試</strong>：將程式分成小部分逐一測試</li>
+                    <li><strong>使用除錯器</strong>：GDB 等工具可以逐步執行程式</li>
+                    <li><strong>檢查邊界條件</strong>：測試極端值（0、負數、最大值）</li>
+                    <li><strong>保持程式簡潔</strong>：複雜的程式碼容易出錯</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>9. 完整範例程式</h2>
+
+            <h3>範例一：簡易計算機</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">float</span> num1, num2, result;
+    <span class="keyword">double</span> num1, num2, result;
     <span class="keyword">char</span> operator;
     
-    <span class="comment">// 顯示標題</span>
-    <span class="function">printf</span>(<span class="string">"===== 簡易計算機 =====\n\n"</span>);
+    <span class="function">printf</span>(<span class="string">"===== 簡易計算機 =====\n"</span>);
     
     <span class="comment">// 輸入第一個數字</span>
-    <span class="function">printf</span>(<span class="string">"請輸入第一個數字："</span>);
-    <span class="function">scanf</span>(<span class="string">"%f"</span>, &num1);
+    <span class="function">printf</span>(<span class="string">"請輸入第一個數字: "</span>);
+    <span class="function">scanf</span>(<span class="string">"%lf"</span>, &num1);
     
     <span class="comment">// 輸入運算符號</span>
-    <span class="function">printf</span>(<span class="string">"請輸入運算符號 (+, -, *, /)："</span>);
-    <span class="function">scanf</span>(<span class="string">" %c"</span>, &operator);  <span class="comment">// 注意：%c 前面的空格</span>
+    <span class="function">printf</span>(<span class="string">"請輸入運算符號 (+, -, *, /): "</span>);
+    <span class="function">scanf</span>(<span class="string">" %c"</span>, &operator);
     
     <span class="comment">// 輸入第二個數字</span>
-    <span class="function">printf</span>(<span class="string">"請輸入第二個數字："</span>);
-    <span class="function">scanf</span>(<span class="string">"%f"</span>, &num2);
+    <span class="function">printf</span>(<span class="string">"請輸入第二個數字: "</span>);
+    <span class="function">scanf</span>(<span class="string">"%lf"</span>, &num2);
     
-    <span class="comment">// 執行運算</span>
+    <span class="comment">// 計算結果</span>
     <span class="keyword">if</span> (operator == <span class="string">'+'</span>) {
         result = num1 + num2;
-        <span class="function">printf</span>(<span class="string">"\n%.2f + %.2f = %.2f\n"</span>, num1, num2, result);
     } <span class="keyword">else if</span> (operator == <span class="string">'-'</span>) {
         result = num1 - num2;
-        <span class="function">printf</span>(<span class="string">"\n%.2f - %.2f = %.2f\n"</span>, num1, num2, result);
     } <span class="keyword">else if</span> (operator == <span class="string">'*'</span>) {
         result = num1 * num2;
-        <span class="function">printf</span>(<span class="string">"\n%.2f * %.2f = %.2f\n"</span>, num1, num2, result);
     } <span class="keyword">else if</span> (operator == <span class="string">'/'</span>) {
         <span class="keyword">if</span> (num2 != <span class="number">0</span>) {
             result = num1 / num2;
-            <span class="function">printf</span>(<span class="string">"\n%.2f / %.2f = %.2f\n"</span>, num1, num2, result);
         } <span class="keyword">else</span> {
-            <span class="function">printf</span>(<span class="string">"\n錯誤：除數不能為零！\n"</span>);
+            <span class="function">printf</span>(<span class="string">"錯誤：除數不能為零！\n"</span>);
+            <span class="keyword">return</span> <span class="number">1</span>;
         }
     } <span class="keyword">else</span> {
-        <span class="function">printf</span>(<span class="string">"\n錯誤：無效的運算符號！\n"</span>);
+        <span class="function">printf</span>(<span class="string">"錯誤：無效的運算符號！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="comment">// 輸出結果</span>
+    <span class="function">printf</span>(<span class="string">"\n結果: %.2f %c %.2f = %.2f\n"</span>, num1, operator, num2, result);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>範例二：溫度轉換</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">double</span> celsius, fahrenheit;
+    <span class="keyword">int</span> choice;
+    
+    <span class="function">printf</span>(<span class="string">"===== 溫度轉換程式 =====\n"</span>);
+    <span class="function">printf</span>(<span class="string">"1. 攝氏轉華氏\n"</span>);
+    <span class="function">printf</span>(<span class="string">"2. 華氏轉攝氏\n"</span>);
+    <span class="function">printf</span>(<span class="string">"請選擇 (1 或 2): "</span>);
+    <span class="function">scanf</span>(<span class="string">"%d"</span>, &choice);
+    
+    <span class="keyword">if</span> (choice == <span class="number">1</span>) {
+        <span class="function">printf</span>(<span class="string">"請輸入攝氏溫度: "</span>);
+        <span class="function">scanf</span>(<span class="string">"%lf"</span>, &celsius);
+        fahrenheit = (celsius * <span class="number">9.0</span> / <span class="number">5.0</span>) + <span class="number">32.0</span>;
+        <span class="function">printf</span>(<span class="string">"%.2f°C = %.2f°F\n"</span>, celsius, fahrenheit);
+    } 
+    <span class="keyword">else if</span> (choice == <span class="number">2</span>) {
+        <span class="function">printf</span>(<span class="string">"請輸入華氏溫度: "</span>);
+        <span class="function">scanf</span>(<span class="string">"%lf"</span>, &fahrenheit);
+        celsius = (fahrenheit - <span class="number">32.0</span>) * <span class="number">5.0</span> / <span class="number">9.0</span>;
+        <span class="function">printf</span>(<span class="string">"%.2f°F = %.2f°C\n"</span>, fahrenheit, celsius);
+    } 
+    <span class="keyword">else</span> {
+        <span class="function">printf</span>(<span class="string">"無效的選擇！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
     }
     
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
 
-            <h3>範例：溫度轉換程式</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <h3>範例三：BMI 計算器</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">float</span> celsius, fahrenheit;
+    <span class="keyword">double</span> height_cm, weight_kg, height_m, bmi;
     
-    <span class="function">printf</span>(<span class="string">"===== 溫度轉換程式 =====\n\n"</span>);
-    <span class="function">printf</span>(<span class="string">"請輸入攝氏溫度："</span>);
-    <span class="function">scanf</span>(<span class="string">"%f"</span>, &celsius);
+    <span class="function">printf</span>(<span class="string">"===== BMI 計算器 =====\n"</span>);
     
-    <span class="comment">// 轉換公式：F = C × 9/5 + 32</span>
-    fahrenheit = celsius * <span class="number">9.0</span> / <span class="number">5.0</span> + <span class="number">32.0</span>;
+    <span class="comment">// 輸入身高（公分）</span>
+    <span class="function">printf</span>(<span class="string">"請輸入身高（公分）: "</span>);
+    <span class="function">scanf</span>(<span class="string">"%lf"</span>, &height_cm);
     
-    <span class="function">printf</span>(<span class="string">"\n攝氏 %.2f 度 = 華氏 %.2f 度\n"</span>, celsius, fahrenheit);
+    <span class="comment">// 輸入體重（公斤）</span>
+    <span class="function">printf</span>(<span class="string">"請輸入體重（公斤）: "</span>);
+    <span class="function">scanf</span>(<span class="string">"%lf"</span>, &weight_kg);
+    
+    <span class="comment">// 將身高轉換為公尺</span>
+    height_m = height_cm / <span class="number">100.0</span>;
+    
+    <span class="comment">// 計算 BMI = 體重(kg) / 身高(m)²</span>
+    bmi = weight_kg / (height_m * height_m);
+    
+    <span class="comment">// 輸出結果</span>
+    <span class="function">printf</span>(<span class="string">"\n===== 計算結果 =====\n"</span>);
+    <span class="function">printf</span>(<span class="string">"身高: %.1f 公分 (%.2f 公尺)\n"</span>, height_cm, height_m);
+    <span class="function">printf</span>(<span class="string">"體重: %.1f 公斤\n"</span>, weight_kg);
+    <span class="function">printf</span>(<span class="string">"BMI: %.2f\n"</span>, bmi);
     
     <span class="keyword">return</span> <span class="number">0</span>;
 }</div>
@@ -1041,60 +1674,71 @@ x %= <span class="number">5</span>;   <span class="comment">// x = x % 5;  結�
             <div class="exercise-section">
                 <h3>本週練習題</h3>
                 
-                <h4>基礎練習</h4>
+                <h4>基礎練習（必做）</h4>
                 <ol>
                     <li>
-                        <strong>個人資料輸出</strong><br>
-                        撰寫程式輸出你的姓名、學號、年齡、身高、體重等資訊，使用適當的格式化輸出。
+                        <strong>個人資訊輸出</strong><br>
+                        撰寫程式，宣告並初始化你的姓名、年齡、身高、體重等變數，然後以格式化方式輸出。
                     </li>
                     <li>
-                        <strong>變數交換</strong><br>
-                        撰寫程式，讀取兩個整數 a 和 b，然後交換它們的值並輸出。<br>
-                        提示：需要使用第三個變數作為暫存。
+                        <strong>圓面積計算</strong><br>
+                        讀取圓的半徑，計算並輸出圓的面積和周長。（π = 3.14159）<br>
+                        公式：面積 = πr²，周長 = 2πr
                     </li>
                     <li>
-                        <strong>圓形計算</strong><br>
-                        讀取圓的半徑，計算並輸出圓周長和圓面積。<br>
-                        公式：周長 = 2πr，面積 = πr²
+                        <strong>平均分數計算</strong><br>
+                        讀取三科成績，計算並輸出平均分數。
                     </li>
                 </ol>
 
                 <h4>進階練習</h4>
                 <ol start="4">
                     <li>
-                        <strong>購物結帳</strong><br>
-                        撰寫程式讀取商品單價和數量，計算小計，然後讀取折扣率（如 0.9 表示九折），
-                        計算折扣後金額，最後讀取顧客付款金額，計算找零。
-                    </li>
-                    <li>
-                        <strong>時間轉換</strong><br>
-                        讀取秒數，將其轉換為「小時:分鐘:秒」的格式輸出。<br>
-                        例如：輸入 3665，輸出「1 小時 1 分鐘 5 秒」
-                    </li>
-                    <li>
                         <strong>BMI 計算器</strong><br>
-                        讀取身高（公分）和體重（公斤），計算並輸出 BMI 值。<br>
+                        讀取身高（公分）和體重（公斤），計算 BMI 值。<br>
                         公式：BMI = 體重(kg) / (身高(m))²
+                    </li>
+                    <li>
+                        <strong>時間換算</strong><br>
+                        讀取總秒數，轉換成「小時:分鐘:秒數」格式輸出。<br>
+                        例如：3665 秒 → 1 小時 1 分鐘 5 秒
+                    </li>
+                    <li>
+                        <strong>複利計算</strong><br>
+                        讀取本金、年利率、存款年數，計算本利和。<br>
+                        公式：本利和 = 本金 × (1 + 年利率)^年數<br>
+                        提示：可以使用 pow() 函數，需要 #include &lt;math.h&gt;
                     </li>
                 </ol>
 
                 <h4>挑戰練習</h4>
                 <ol start="7">
                     <li>
-                        <strong>單位換算程式</strong><br>
-                        撰寫一個程式，讓使用者選擇要進行的換算類型（長度、重量、溫度等），
-                        然後輸入數值進行換算。例如：公分轉公尺、公斤轉磅、攝氏轉華氏等。
+                        <strong>單位轉換程式</strong><br>
+                        製作一個選單式程式，可以進行以下轉換：
+                        <ul>
+                            <li>公里 ↔ 英里（1 英里 = 1.60934 公里）</li>
+                            <li>公斤 ↔ 磅（1 磅 = 0.453592 公斤）</li>
+                            <li>攝氏 ↔ 華氏</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>購物結帳系統</strong><br>
+                        讀取商品單價和數量，計算小計。<br>
+                        然後讀取折扣率（如 0.9 表示九折），計算折扣後金額。<br>
+                        最後讀取顧客付款金額，計算找零。
                     </li>
                 </ol>
 
                 <div class="tip-box">
                     <strong>練習提示：</strong>
                     <ul>
-                        <li>先在紙上規劃程式流程和需要的變數</li>
-                        <li>確保變數型態選擇正確（整數 vs 浮點數）</li>
-                        <li>注意整數除法與浮點數除法的差異</li>
-                        <li>適當使用括號確保運算順序正確</li>
-                        <li>測試時使用不同的輸入值驗證程式正確性</li>
+                        <li>先在紙上規劃好輸入、處理、輸出的流程</li>
+                        <li>選擇適當的資料型態</li>
+                        <li>注意整數除法和浮點數除法的差異</li>
+                        <li>使用有意義的變數名稱</li>
+                        <li>測試各種輸入情況（正常值、邊界值、異常值）</li>
+                        <li>適當添加註解說明程式邏輯</li>
                     </ul>
                 </div>
             </div>
@@ -1105,39 +1749,56 @@ x %= <span class="number">5</span>;   <span class="comment">// x = x % 5;  結�
             
             <h3>重點回顧</h3>
             <ul>
-                <li>成功建置 C 語言開發環境並能編譯執行程式</li>
-                <li>理解 C 程式的基本結構和執行流程</li>
-                <li>掌握基本資料型態的使用和差異</li>
-                <li>能夠正確宣告和使用變數</li>
-                <li>熟悉各種運算符號的使用方式</li>
-                <li>能夠使用 printf 和 scanf 進行輸入輸出</li>
-                <li>養成良好的程式註解和編碼風格習慣</li>
+                <li>✓ 成功建立C語言開發環境並能編譯執行程式</li>
+                <li>✓ 理解C程式的基本結構（#include、main函數、return）</li>
+                <li>✓ 掌握基本資料型態的使用（int、float、double、char）</li>
+                <li>✓ 熟悉常用運算符（算術、賦值、關係、邏輯）</li>
+                <li>✓ 能夠使用 printf 和 scanf 進行輸入輸出</li>
+                <li>✓ 撰寫簡單的C程式解決問題</li>
+                <li>✓ 養成良好的編碼風格和註解習慣</li>
+                <li>✓ 了解常見錯誤和基本除錯技巧</li>
             </ul>
 
-            <h3>自我檢核</h3>
+            <h3>知識檢核清單</h3>
             <div class="note-box">
                 <strong>請確認你能夠：</strong>
                 <ul>
-                    <li>獨立撰寫、編譯並執行簡單的 C 程式</li>
-                    <li>根據需求選擇適當的資料型態</li>
-                    <li>正確使用變數進行運算</li>
-                    <li>使用 printf 輸出格式化的資料</li>
-                    <li>使用 scanf 讀取使用者輸入</li>
-                    <li>撰寫清楚易讀的程式碼</li>
+                    <li>□ 獨立編寫、編譯、執行一個完整的C程式</li>
+                    <li>□ 正確宣告和使用各種資料型態的變數</li>
+                    <li>□ 使用運算符進行數學計算和邏輯判斷</li>
+                    <li>□ 格式化輸入輸出資料（printf、scanf）</li>
+                    <li>□ 理解型態轉換的概念和使用時機</li>
+                    <li>□ 撰寫具有良好風格和註解的程式碼</li>
+                    <li>□ 識別和修正基本的編譯錯誤</li>
+                    <li>□ 使用 printf 進行簡單的除錯</li>
                 </ul>
             </div>
 
             <h3>下週預告</h3>
             <div class="note-box">
-                Week 2 將學習流程控制，包括條件判斷（if-else、switch）和迴圈結構（for、while、do-while），
-                這些是程式設計中最基本也最重要的控制結構。
+                <h4>Week 2 - 流程控制</h4>
+                <p>下週將學習程式設計中最重要的控制結構：</p>
+                <ul>
+                    <li><strong>條件判斷</strong>：if、if-else、if-else if-else、switch</li>
+                    <li><strong>迴圈結構</strong>：for、while、do-while</li>
+                    <li><strong>巢狀結構</strong>：多層條件判斷和迴圈</li>
+                    <li><strong>break 與 continue</strong>：控制迴圈執行</li>
+                    <li><strong>實用範例</strong>：選單系統、九九乘法表、質數判斷等</li>
+                </ul>
+                <p>這些概念將讓你的程式更加靈活強大，能夠處理更複雜的邏輯！</p>
             </div>
         </div>
 
         <div class="nav-buttons">
-            <a href="index.html" class="btn btn-secondary">返回首頁</a>
-            <a href="week2.html" class="btn">下一週：流程控制</a>
+            <a href="index.html" class="btn btn-secondary">← 回首頁</a>
+            <a href="week2.html" class="btn">Week 2：流程控制 →</a>
         </div>
+
+        <footer style="text-align: center; padding: 30px 0; color: #7f8c8d; margin-top: 50px; border-top: 1px solid #ddd;">
+            <p style="margin: 10px 0;">C語言程式設計 Week 1 完整教材</p>
+            <p style="margin: 10px 0; font-size: 0.9em;">建立開發環境 · 基礎語法 · 資料型態 · 運算符 · 輸入輸出</p>
+            <p style="margin: 10px 0; font-size: 0.85em; color: #95a5a6;">© 2024 All Rights Reserved</p>
+        </footer>
     </div>
 </body>
 </html>

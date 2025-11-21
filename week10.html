@@ -61,6 +61,11 @@
             font-size: 1.5em;
             margin: 30px 0 15px 0;
         }
+        .content h4 {
+            color: #546e7a;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
         .code-block {
             background: #2c3e50;
             color: #ecf0f1;
@@ -82,6 +87,20 @@
         .tip-box {
             background: #e8f5e9;
             border-left: 4px solid #66bb6a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .danger-box {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
             padding: 20px;
             margin: 20px 0;
             border-radius: 4px;
@@ -117,6 +136,29 @@
         }
         .btn-secondary { background: #95a5a6; }
         .btn-secondary:hover { background: #7f8c8d; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .memory-diagram {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
     </style>
 </head>
 <body>
@@ -129,52 +171,1296 @@
 
         <header>
             <h1>Week 10 - 進階指標應用</h1>
-            <div class="subtitle">學習目標：深入理解函數指標與多層指標</div>
+            <div class="subtitle">學習目標：深入理解函數指標、回呼函數與多層指標</div>
         </header>
 
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>核心概念與理論基礎</li>
-                <li>程式碼範例與詳細說明</li>
-                <li>實作練習與應用</li>
-                <li>常見問題與解決方案</li>
-                <li>最佳實務與開發技巧</li>
+                <li>函數指標的定義與使用</li>
+                <li>回呼函數（Callback）機制</li>
+                <li>函數指標陣列與應用</li>
+                <li>多層指標與指標陣列</li>
+                <li>複雜指標型態解析</li>
+                <li>指標在資料結構中的進階應用</li>
+                <li>實務範例與設計模式</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>核心內容</h2>
-            <p>本週將深入學習 進階指標應用，這是 C 語言程式設計中的重要主題。</p>
+            <h2>1. 函數指標基礎</h2>
+            
+            <h3>1.1 什麼是函數指標？</h3>
+            <p>函數指標是指向函數的指標變數，可以用來儲存函數的位址，並透過指標呼叫函數。</p>
             
             <div class="note-box">
-                <strong>學習重點：</strong>
-                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
+                <strong>函數指標的特性：</strong>
+                <ul>
+                    <li>函數名稱本身就代表函數的位址</li>
+                    <li>可以將函數作為參數傳遞</li>
+                    <li>可以建立函數指標陣列</li>
+                    <li>實現動態函數呼叫</li>
+                </ul>
             </div>
+
+            <h3>1.2 函數指標的宣告與使用</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 普通函數
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int main() {
+    // 宣告函數指標
+    // 語法：返回型態 (*指標名稱)(參數型態列表)
+    int (*operation)(int, int);
+    
+    // 將函數位址指派給指標
+    operation = add;
+    printf("10 + 5 = %d\n", operation(10, 5));
+    
+    operation = subtract;
+    printf("10 - 5 = %d\n", operation(10, 5));
+    
+    operation = multiply;
+    printf("10 * 5 = %d\n", operation(10, 5));
+    
+    // 也可以使用 & 運算子（效果相同）
+    operation = &add;
+    printf("10 + 5 = %d\n", (*operation)(10, 5));
+    
+    return 0;
+}</pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>函數指標宣告解析：</strong>
+                <p><code>int (*ptr)(int, int)</code></p>
+                <ul>
+                    <li><code>int</code>：函數的返回型態</li>
+                    <li><code>(*ptr)</code>：ptr 是一個指標</li>
+                    <li><code>(int, int)</code>：函數接受兩個 int 參數</li>
+                </ul>
+            </div>
+
+            <h3>1.3 使用 typedef 簡化函數指標</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 定義函數指標型態
+typedef int (*BinaryOperation)(int, int);
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+// 使用函數指標作為參數
+int calculate(int x, int y, BinaryOperation op) {
+    return op(x, y);
+}
+
+int main() {
+    // 使用 typedef 後的宣告更簡潔
+    BinaryOperation op1 = add;
+    BinaryOperation op2 = multiply;
+    
+    printf("20 + 10 = %d\n", op1(20, 10));
+    printf("20 * 10 = %d\n", op2(20, 10));
+    
+    // 將函數指標作為參數傳遞
+    printf("使用 add: %d\n", calculate(15, 5, add));
+    printf("使用 multiply: %d\n", calculate(15, 5, multiply));
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>2. 回呼函數（Callback）</h2>
             
-            <h3>詳細說明</h3>
-            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
+            <h3>2.1 回呼函數概念</h3>
+            <p>回呼函數是一種透過函數指標傳遞的函數，讓被呼叫的函數可以「回呼」傳入的函數，實現更靈活的程式設計。</p>
             
-            <h3>實作建議</h3>
-            <ul>
-                <li>從基本概念開始，逐步進階</li>
-                <li>每個範例都要實際撰寫並執行</li>
-                <li>遇到問題要積極查找資料</li>
-                <li>完成練習題以驗證理解程度</li>
-            </ul>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 回呼函數型態
+typedef void (*Callback)(int);
+
+// 通知函數
+void onSuccess(int value) {
+    printf("成功！結果：%d\n", value);
+}
+
+void onError(int code) {
+    printf("錯誤！代碼：%d\n", code);
+}
+
+// 執行操作並根據結果呼叫回呼函數
+void performOperation(int x, int y, Callback success, Callback error) {
+    if (y == 0) {
+        error(-1);  // 除數為零，呼叫錯誤回呼
+    } else {
+        int result = x / y;
+        success(result);  // 成功，呼叫成功回呼
+    }
+}
+
+int main() {
+    printf("執行 10 / 2：\n");
+    performOperation(10, 2, onSuccess, onError);
+    
+    printf("\n執行 10 / 0：\n");
+    performOperation(10, 0, onSuccess, onError);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.2 陣列排序的自定義比較函數</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 比較函數型態
+typedef int (*CompareFunc)(const void*, const void*);
+
+// 遞增比較
+int compareAscending(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
+// 遞減比較
+int compareDescending(const void *a, const void *b) {
+    return (*(int*)b - *(int*)a);
+}
+
+// 自定義排序函數（簡化版的 qsort）
+void bubbleSort(int arr[], int size, CompareFunc compare) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (compare(&arr[j], &arr[j + 1]) > 0) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int numbers[] = {64, 34, 25, 12, 22, 11, 90};
+    int size = sizeof(numbers) / sizeof(numbers[0]);
+    
+    printf("原始陣列：");
+    printArray(numbers, size);
+    
+    // 遞增排序
+    bubbleSort(numbers, size, compareAscending);
+    printf("遞增排序：");
+    printArray(numbers, size);
+    
+    // 遞減排序
+    bubbleSort(numbers, size, compareDescending);
+    printf("遞減排序：");
+    printArray(numbers, size);
+    
+    // 使用標準函式庫的 qsort
+    qsort(numbers, size, sizeof(int), compareAscending);
+    printf("qsort 遞增：");
+    printArray(numbers, size);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.3 事件處理系統</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX_HANDLERS 10
+
+// 事件處理函數型態
+typedef void (*EventHandler)(const char *event, void *data);
+
+// 事件系統結構
+typedef struct {
+    char eventName[50];
+    EventHandler handler;
+} EventListener;
+
+EventListener listeners[MAX_HANDLERS];
+int listenerCount = 0;
+
+// 註冊事件處理器
+void addEventListener(const char *eventName, EventHandler handler) {
+    if (listenerCount < MAX_HANDLERS) {
+        strcpy(listeners[listenerCount].eventName, eventName);
+        listeners[listenerCount].handler = handler;
+        listenerCount++;
+        printf("已註冊事件：%s\n", eventName);
+    }
+}
+
+// 觸發事件
+void triggerEvent(const char *eventName, void *data) {
+    printf("\n觸發事件：%s\n", eventName);
+    for (int i = 0; i < listenerCount; i++) {
+        if (strcmp(listeners[i].eventName, eventName) == 0) {
+            listeners[i].handler(eventName, data);
+        }
+    }
+}
+
+// 事件處理函數範例
+void onUserLogin(const char *event, void *data) {
+    char *username = (char*)data;
+    printf("  [處理器1] 使用者登入：%s\n", username);
+}
+
+void onUserLogout(const char *event, void *data) {
+    char *username = (char*)data;
+    printf("  [處理器2] 使用者登出：%s\n", username);
+}
+
+void onDataSaved(const char *event, void *data) {
+    int *recordCount = (int*)data;
+    printf("  [處理器3] 資料已儲存，共 %d 筆記錄\n", *recordCount);
+}
+
+int main() {
+    // 註冊事件處理器
+    addEventListener("user_login", onUserLogin);
+    addEventListener("user_logout", onUserLogout);
+    addEventListener("data_saved", onDataSaved);
+    
+    // 觸發事件
+    char username1[] = "Alice";
+    triggerEvent("user_login", username1);
+    
+    int recordCount = 100;
+    triggerEvent("data_saved", &recordCount);
+    
+    char username2[] = "Bob";
+    triggerEvent("user_logout", username2);
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>3. 函數指標陣列</h2>
+            
+            <h3>3.1 基本使用</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 定義運算函數
+int add(int a, int b) { return a + b; }
+int subtract(int a, int b) { return a - b; }
+int multiply(int a, int b) { return a * b; }
+int divide(int a, int b) { return b != 0 ? a / b : 0; }
+
+int main() {
+    // 宣告函數指標陣列
+    int (*operations[4])(int, int) = {add, subtract, multiply, divide};
+    char *opNames[] = {"加法", "減法", "乘法", "除法"};
+    
+    int x = 20, y = 5;
+    
+    printf("對 %d 和 %d 進行運算：\n", x, y);
+    for (int i = 0; i < 4; i++) {
+        int result = operations[i](x, y);
+        printf("%s：%d\n", opNames[i], result);
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.2 選單系統實作</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 選單項目處理函數
+void newFile() {
+    printf("\n執行：建立新檔案\n");
+}
+
+void openFile() {
+    printf("\n執行：開啟檔案\n");
+}
+
+void saveFile() {
+    printf("\n執行：儲存檔案\n");
+}
+
+void exitProgram() {
+    printf("\n程式結束\n");
+    exit(0);
+}
+
+// 選單項目結構
+typedef struct {
+    char *name;
+    void (*handler)();
+} MenuItem;
+
+int main() {
+    // 定義選單
+    MenuItem menu[] = {
+        {"建立新檔案", newFile},
+        {"開啟檔案", openFile},
+        {"儲存檔案", saveFile},
+        {"離開", exitProgram}
+    };
+    
+    int menuSize = sizeof(menu) / sizeof(MenuItem);
+    int choice;
+    
+    while (1) {
+        printf("\n========== 選單 ==========\n");
+        for (int i = 0; i < menuSize; i++) {
+            printf("%d. %s\n", i + 1, menu[i].name);
+        }
+        printf("==========================\n");
+        printf("請選擇 (1-%d)：", menuSize);
+        
+        scanf("%d", &choice);
+        
+        if (choice >= 1 && choice <= menuSize) {
+            menu[choice - 1].handler();
+        } else {
+            printf("無效的選擇！\n");
+        }
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.3 命令模式實作</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+// 命令處理函數
+void cmdHelp() {
+    printf("可用命令：help, list, add, delete, exit\n");
+}
+
+void cmdList() {
+    printf("列出所有項目...\n");
+}
+
+void cmdAdd() {
+    printf("新增項目...\n");
+}
+
+void cmdDelete() {
+    printf("刪除項目...\n");
+}
+
+void cmdExit() {
+    printf("再見！\n");
+}
+
+// 命令對應表
+typedef struct {
+    char *command;
+    void (*function)();
+    char *description;
+} Command;
+
+int main() {
+    Command commands[] = {
+        {"help", cmdHelp, "顯示說明"},
+        {"list", cmdList, "列出項目"},
+        {"add", cmdAdd, "新增項目"},
+        {"delete", cmdDelete, "刪除項目"},
+        {"exit", cmdExit, "離開程式"}
+    };
+    
+    int cmdCount = sizeof(commands) / sizeof(Command);
+    char input[50];
+    
+    printf("簡易命令列介面（輸入 help 查看可用命令）\n");
+    
+    while (1) {
+        printf("\n> ");
+        scanf("%s", input);
+        
+        int found = 0;
+        for (int i = 0; i < cmdCount; i++) {
+            if (strcmp(input, commands[i].command) == 0) {
+                commands[i].function();
+                found = 1;
+                
+                if (strcmp(input, "exit") == 0) {
+                    return 0;
+                }
+                break;
+            }
+        }
+        
+        if (!found) {
+            printf("未知命令：%s（輸入 help 查看可用命令）\n", input);
+        }
+    }
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>4. 多層指標</h2>
+            
+            <h3>4.1 二層指標基礎</h3>
+            <p>二層指標（指標的指標）儲存的是另一個指標的位址。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int value = 100;
+    int *ptr = &value;      // ptr 指向 value
+    int **pptr = &ptr;      // pptr 指向 ptr（二層指標）
+    
+    printf("value 的值：%d\n", value);
+    printf("value 的位址：%p\n", (void*)&value);
+    
+    printf("\nptr 的值（value 的位址）：%p\n", (void*)ptr);
+    printf("ptr 指向的值：%d\n", *ptr);
+    printf("ptr 本身的位址：%p\n", (void*)&ptr);
+    
+    printf("\npptr 的值（ptr 的位址）：%p\n", (void*)pptr);
+    printf("pptr 指向的值（ptr）：%p\n", (void*)*pptr);
+    printf("pptr 指向的指標所指向的值：%d\n", **pptr);
+    
+    // 透過二層指標修改值
+    **pptr = 200;
+    printf("\n修改後 value 的值：%d\n", value);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <div class="memory-diagram">
+記憶體示意圖：
+
+value:     [100]         位址: 0x1000
+             ↑
+ptr:       [0x1000]      位址: 0x2000
+             ↑
+pptr:      [0x2000]      位址: 0x3000
+
+存取方式：
+- value      → 100
+- *ptr       → 100
+- **pptr     → 100
+            </div>
+
+            <h3>4.2 二層指標的常見應用</h3>
+            
+            <h4>應用 1：動態二維陣列</h4>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 建立動態二維陣列
+int** createMatrix(int rows, int cols) {
+    int **matrix = (int**)malloc(rows * sizeof(int*));
+    
+    for (int i = 0; i < rows; i++) {
+        matrix[i] = (int*)malloc(cols * sizeof(int));
+    }
+    
+    return matrix;
+}
+
+// 填充矩陣
+void fillMatrix(int **matrix, int rows, int cols) {
+    int value = 1;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matrix[i][j] = value++;
+        }
+    }
+}
+
+// 印出矩陣
+void printMatrix(int **matrix, int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%4d", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// 釋放矩陣記憶體
+void freeMatrix(int **matrix, int rows) {
+    for (int i = 0; i < rows; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+}
+
+int main() {
+    int rows = 4, cols = 5;
+    
+    // 建立矩陣
+    int **matrix = createMatrix(rows, cols);
+    
+    // 填充並印出
+    fillMatrix(matrix, rows, cols);
+    printf("矩陣內容：\n");
+    printMatrix(matrix, rows, cols);
+    
+    // 釋放記憶體
+    freeMatrix(matrix, rows);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h4>應用 2：函數內修改指標</h4>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+// 錯誤的方式：無法修改外部指標
+void allocateMemoryWrong(char *str, int size) {
+    str = (char*)malloc(size);
+    strcpy(str, "Hello");
+}
+
+// 正確的方式：使用二層指標
+void allocateMemoryCorrect(char **str, int size) {
+    *str = (char*)malloc(size);
+    strcpy(*str, "Hello");
+}
+
+int main() {
+    char *str1 = NULL;
+    char *str2 = NULL;
+    
+    // 錯誤方式
+    allocateMemoryWrong(str1, 20);
+    if (str1 == NULL) {
+        printf("str1 仍然是 NULL（錯誤）\n");
+    }
+    
+    // 正確方式
+    allocateMemoryCorrect(&str2, 20);
+    if (str2 != NULL) {
+        printf("str2 已分配記憶體：%s\n", str2);
+        free(str2);
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>4.3 三層指標及以上</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int value = 42;
+    int *p1 = &value;
+    int **p2 = &p1;
+    int ***p3 = &p2;
+    
+    printf("value = %d\n", value);
+    printf("*p1 = %d\n", *p1);
+    printf("**p2 = %d\n", **p2);
+    printf("***p3 = %d\n", ***p3);
+    
+    // 透過三層指標修改值
+    ***p3 = 100;
+    printf("\n修改後 value = %d\n", value);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <div class="warning-box">
+                <strong>注意事項：</strong>
+                <p>雖然 C 語言支援多層指標，但實務上很少使用超過三層的指標。過多的指標層級會：</p>
+                <ul>
+                    <li>降低程式可讀性</li>
+                    <li>增加出錯機會</li>
+                    <li>難以除錯和維護</li>
+                </ul>
+                <p>建議：如果需要三層以上的指標，考慮重新設計資料結構。</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>5. 指標陣列 vs 陣列指標</h2>
+            
+            <h3>5.1 概念區分</h3>
+            <table>
+                <tr>
+                    <th>名稱</th>
+                    <th>宣告</th>
+                    <th>說明</th>
+                </tr>
+                <tr>
+                    <td>指標陣列</td>
+                    <td>int *arr[10]</td>
+                    <td>陣列的每個元素都是指標</td>
+                </tr>
+                <tr>
+                    <td>陣列指標</td>
+                    <td>int (*ptr)[10]</td>
+                    <td>指向整個陣列的指標</td>
+                </tr>
+            </table>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 10, b = 20, c = 30;
+    
+    // 指標陣列：陣列的每個元素是指標
+    int *ptrArray[3];
+    ptrArray[0] = &a;
+    ptrArray[1] = &b;
+    ptrArray[2] = &c;
+    
+    printf("指標陣列：\n");
+    for (int i = 0; i < 3; i++) {
+        printf("ptrArray[%d] = %d\n", i, *ptrArray[i]);
+    }
+    
+    // 陣列指標：指向整個陣列的指標
+    int arr[3] = {100, 200, 300};
+    int (*arrayPtr)[3] = &arr;
+    
+    printf("\n陣列指標：\n");
+    for (int i = 0; i < 3; i++) {
+        printf("(*arrayPtr)[%d] = %d\n", i, (*arrayPtr)[i]);
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>5.2 指標陣列的應用：字串陣列</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    // 字串陣列（指標陣列）
+    char *weekdays[] = {
+        "星期一",
+        "星期二",
+        "星期三",
+        "星期四",
+        "星期五",
+        "星期六",
+        "星期日"
+    };
+    
+    int count = sizeof(weekdays) / sizeof(weekdays[0]);
+    
+    printf("一週的日子：\n");
+    for (int i = 0; i < count; i++) {
+        printf("%d. %s\n", i + 1, weekdays[i]);
+    }
+    
+    // 排序字串陣列
+    printf("\n按字母排序後：\n");
+    for (int i = 0; i < count - 1; i++) {
+        for (int j = i + 1; j < count; j++) {
+            if (strcmp(weekdays[i], weekdays[j]) > 0) {
+                char *temp = weekdays[i];
+                weekdays[i] = weekdays[j];
+                weekdays[j] = temp;
+            }
+        }
+    }
+    
+    for (int i = 0; i < count; i++) {
+        printf("%d. %s\n", i + 1, weekdays[i]);
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>5.3 main 函數的參數</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main(int argc, char *argv[]) {
+    // argc: 參數數量（argument count）
+    // argv: 參數陣列（argument vector）- 字串指標陣列
+    
+    printf("程式名稱：%s\n", argv[0]);
+    printf("參數數量：%d\n", argc);
+    
+    if (argc > 1) {
+        printf("\n命令列參數：\n");
+        for (int i = 1; i < argc; i++) {
+            printf("  argv[%d] = %s\n", i, argv[i]);
+        }
+    } else {
+        printf("\n沒有提供命令列參數\n");
+        printf("使用方式：%s <參數1> <參數2> ...\n", argv[0]);
+    }
+    
+    return 0;
+}
+
+// 執行範例：
+// ./program hello world 123
+// 輸出：
+// 程式名稱：./program
+// 參數數量：4
+// 命令列參數：
+//   argv[1] = hello
+//   argv[2] = world
+//   argv[3] = 123</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>6. 複雜指標型態解析</h2>
+            
+            <h3>6.1 指標宣告的解讀技巧</h3>
+            <div class="note-box">
+                <strong>右左法則（Right-Left Rule）：</strong>
+                <ol>
+                    <li>從變數名稱開始</li>
+                    <li>向右看，直到遇到右括號或結束</li>
+                    <li>向左看，直到遇到左括號或開始</li>
+                    <li>重複步驟 2-3，直到完全解讀</li>
+                </ol>
+            </div>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    // 1. 基本指標
+    int *p;
+    // p 是指向 int 的指標
+    
+    // 2. 指標陣列
+    int *arr[10];
+    // arr 是包含 10 個元素的陣列，每個元素是指向 int 的指標
+    
+    // 3. 陣列指標
+    int (*ptr)[10];
+    // ptr 是指標，指向包含 10 個 int 元素的陣列
+    
+    // 4. 函數指標
+    int (*func)(int, int);
+    // func 是指標，指向一個函數，該函數接受兩個 int 參數，返回 int
+    
+    // 5. 函數指標陣列
+    int (*funcArr[5])(int, int);
+    // funcArr 是包含 5 個元素的陣列，每個元素是函數指標
+    
+    // 6. 指向函數指標陣列的指標
+    int (*(*ptrToFuncArr)[5])(int, int);
+    // ptrToFuncArr 是指標，指向包含 5 個函數指標的陣列
+    
+    // 7. 返回指標的函數
+    int* returnPtr(int x);
+    // returnPtr 是函數，接受 int 參數，返回指向 int 的指標
+    
+    // 8. 返回函數指標的函數
+    int (*returnFunc(int x))(int, int);
+    // returnFunc 是函數，接受 int 參數，返回函數指標
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>6.2 實際範例</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 簡單函數
+int add(int a, int b) {
+    return a + b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+// 返回函數指標的函數
+int (*getOperation(char op))(int, int) {
+    if (op == '+') {
+        return add;
+    } else if (op == '*') {
+        return multiply;
+    }
+    return NULL;
+}
+
+int main() {
+    // 取得函數指標
+    int (*operation)(int, int);
+    
+    operation = getOperation('+');
+    printf("10 + 5 = %d\n", operation(10, 5));
+    
+    operation = getOperation('*');
+    printf("10 * 5 = %d\n", operation(10, 5));
+    
+    // 函數指標陣列
+    int (*operations[2])(int, int) = {add, multiply};
+    char *names[] = {"加法", "乘法"};
+    
+    printf("\n使用函數指標陣列：\n");
+    for (int i = 0; i < 2; i++) {
+        printf("%s：%d\n", names[i], operations[i](8, 4));
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>6.3 使用 typedef 簡化複雜宣告</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 定義型別別名
+typedef int (*BinaryOp)(int, int);
+typedef BinaryOp (*OpGetter)(char);
+typedef BinaryOp FuncArray[5];
+typedef FuncArray* FuncArrayPtr;
+
+int add(int a, int b) { return a + b; }
+int subtract(int a, int b) { return a - b; }
+
+BinaryOp getOp(char c) {
+    return (c == '+') ? add : subtract;
+}
+
+int main() {
+    // 使用 typedef 後的程式碼更易讀
+    BinaryOp op = add;
+    printf("結果：%d\n", op(10, 5));
+    
+    OpGetter getter = getOp;
+    BinaryOp selectedOp = getter('+');
+    printf("結果：%d\n", selectedOp(20, 8));
+    
+    FuncArray funcs = {add, subtract, add, subtract, add};
+    printf("陣列運算：%d\n", funcs[0](15, 3));
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>7. 實務應用範例</h2>
+            
+            <h3>7.1 計算機程式</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef double (*Operation)(double, double);
+
+double add(double a, double b) { return a + b; }
+double subtract(double a, double b) { return a - b; }
+double multiply(double a, double b) { return a * b; }
+double divide(double a, double b) {
+    if (b == 0) {
+        printf("錯誤：除數不可為零\n");
+        return 0;
+    }
+    return a / b;
+}
+
+typedef struct {
+    char symbol;
+    char *name;
+    Operation func;
+} Calculator;
+
+int main() {
+    Calculator calc[] = {
+        {'+', "加法", add},
+        {'-', "減法", subtract},
+        {'*', "乘法", multiply},
+        {'/', "除法", divide}
+    };
+    
+    int calcSize = sizeof(calc) / sizeof(Calculator);
+    double num1, num2;
+    char op;
+    
+    printf("簡易計算機\n");
+    printf("支援的運算：+ - * /\n");
+    
+    while (1) {
+        printf("\n請輸入運算式（例如：10 + 5）或輸入 q 離開：");
+        
+        char input[10];
+        scanf("%s", input);
+        
+        if (input[0] == 'q' || input[0] == 'Q') {
+            break;
+        }
+        
+        num1 = atof(input);
+        scanf(" %c %lf", &op, &num2);
+        
+        int found = 0;
+        for (int i = 0; i < calcSize; i++) {
+            if (calc[i].symbol == op) {
+                double result = calc[i].func(num1, num2);
+                printf("%.2f %c %.2f = %.2f\n", num1, op, num2, result);
+                found = 1;
+                break;
+            }
+        }
+        
+        if (!found) {
+            printf("不支援的運算子：%c\n", op);
+        }
+    }
+    
+    printf("謝謝使用！\n");
+    return 0;
+}</pre>
+            </div>
+
+            <h3>7.2 插件系統</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX_PLUGINS 10
+
+// 插件介面
+typedef struct {
+    char name[50];
+    void (*init)();
+    void (*execute)();
+    void (*cleanup)();
+} Plugin;
+
+Plugin plugins[MAX_PLUGINS];
+int pluginCount = 0;
+
+// 插件實作範例
+void loggerInit() {
+    printf("[Logger] 初始化\n");
+}
+
+void loggerExecute() {
+    printf("[Logger] 記錄日誌...\n");
+}
+
+void loggerCleanup() {
+    printf("[Logger] 清理資源\n");
+}
+
+void backupInit() {
+    printf("[Backup] 初始化\n");
+}
+
+void backupExecute() {
+    printf("[Backup] 執行備份...\n");
+}
+
+void backupCleanup() {
+    printf("[Backup] 清理資源\n");
+}
+
+// 註冊插件
+void registerPlugin(const char *name, 
+                   void (*init)(), 
+                   void (*execute)(), 
+                   void (*cleanup)()) {
+    if (pluginCount < MAX_PLUGINS) {
+        strcpy(plugins[pluginCount].name, name);
+        plugins[pluginCount].init = init;
+        plugins[pluginCount].execute = execute;
+        plugins[pluginCount].cleanup = cleanup;
+        pluginCount++;
+        printf("已註冊插件：%s\n", name);
+    }
+}
+
+// 執行所有插件
+void runAllPlugins() {
+    printf("\n初始化所有插件：\n");
+    for (int i = 0; i < pluginCount; i++) {
+        plugins[i].init();
+    }
+    
+    printf("\n執行所有插件：\n");
+    for (int i = 0; i < pluginCount; i++) {
+        printf("\n執行插件：%s\n", plugins[i].name);
+        plugins[i].execute();
+    }
+    
+    printf("\n清理所有插件：\n");
+    for (int i = 0; i < pluginCount; i++) {
+        plugins[i].cleanup();
+    }
+}
+
+int main() {
+    printf("=== 插件系統 ===\n\n");
+    
+    // 註冊插件
+    registerPlugin("Logger", loggerInit, loggerExecute, loggerCleanup);
+    registerPlugin("Backup", backupInit, backupExecute, backupCleanup);
+    
+    // 執行插件
+    runAllPlugins();
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>7.3 狀態機實作</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+// 狀態列舉
+typedef enum {
+    STATE_IDLE,
+    STATE_RUNNING,
+    STATE_PAUSED,
+    STATE_STOPPED
+} State;
+
+// 事件列舉
+typedef enum {
+    EVENT_START,
+    EVENT_PAUSE,
+    EVENT_RESUME,
+    EVENT_STOP
+} Event;
+
+// 狀態處理函數型態
+typedef void (*StateHandler)(Event);
+
+// 狀態處理函數
+void handleIdle(Event event) {
+    printf("[閒置狀態] 收到事件：");
+    if (event == EVENT_START) {
+        printf("開始 -> 切換到執行中\n");
+    }
+}
+
+void handleRunning(Event event) {
+    printf("[執行中] 收到事件：");
+    if (event == EVENT_PAUSE) {
+        printf("暫停 -> 切換到暫停\n");
+    } else if (event == EVENT_STOP) {
+        printf("停止 -> 切換到停止\n");
+    }
+}
+
+void handlePaused(Event event) {
+    printf("[暫停] 收到事件：");
+    if (event == EVENT_RESUME) {
+        printf("繼續 -> 切換到執行中\n");
+    } else if (event == EVENT_STOP) {
+        printf("停止 -> 切換到停止\n");
+    }
+}
+
+void handleStopped(Event event) {
+    printf("[停止] 收到事件：");
+    if (event == EVENT_START) {
+        printf("開始 -> 切換到執行中\n");
+    }
+}
+
+// 狀態機結構
+typedef struct {
+    State currentState;
+    StateHandler handlers[4];
+} StateMachine;
+
+// 初始化狀態機
+void initStateMachine(StateMachine *sm) {
+    sm->currentState = STATE_IDLE;
+    sm->handlers[STATE_IDLE] = handleIdle;
+    sm->handlers[STATE_RUNNING] = handleRunning;
+    sm->handlers[STATE_PAUSED] = handlePaused;
+    sm->handlers[STATE_STOPPED] = handleStopped;
+}
+
+// 處理事件
+void processEvent(StateMachine *sm, Event event) {
+    State oldState = sm->currentState;
+    sm->handlers[sm->currentState](event);
+    
+    // 狀態轉換邏輯
+    switch (sm->currentState) {
+        case STATE_IDLE:
+            if (event == EVENT_START) sm->currentState = STATE_RUNNING;
+            break;
+        case STATE_RUNNING:
+            if (event == EVENT_PAUSE) sm->currentState = STATE_PAUSED;
+            else if (event == EVENT_STOP) sm->currentState = STATE_STOPPED;
+            break;
+        case STATE_PAUSED:
+            if (event == EVENT_RESUME) sm->currentState = STATE_RUNNING;
+            else if (event == EVENT_STOP) sm->currentState = STATE_STOPPED;
+            break;
+        case STATE_STOPPED:
+            if (event == EVENT_START) sm->currentState = STATE_RUNNING;
+            break;
+    }
+}
+
+int main() {
+    StateMachine sm;
+    initStateMachine(&sm);
+    
+    printf("=== 狀態機範例 ===\n\n");
+    
+    processEvent(&sm, EVENT_START);
+    processEvent(&sm, EVENT_PAUSE);
+    processEvent(&sm, EVENT_RESUME);
+    processEvent(&sm, EVENT_STOP);
+    processEvent(&sm, EVENT_START);
+    
+    return 0;
+}</pre>
+            </div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li><strong>函數指標基礎</strong>
+                        <br>實作一個數學運算庫：
+                        <ul>
+                            <li>定義多個數學函數（sin, cos, sqrt, pow等）</li>
+                            <li>使用函數指標陣列管理</li>
+                            <li>實作選單讓使用者選擇運算</li>
+                        </ul>
+                    </li>
+                    <li><strong>回呼函數應用</strong>
+                        <br>實作一個通用的陣列處理函數：
+                        <ul>
+                            <li>可對陣列每個元素執行自訂操作</li>
+                            <li>使用回呼函數處理元素</li>
+                            <li>支援過濾、轉換等操作</li>
+                        </ul>
+                    </li>
+                    <li><strong>指標陣列練習</strong>
+                        <br>字串處理程式：
+                        <ul>
+                            <li>儲存多個字串</li>
+                            <li>實作排序功能</li>
+                            <li>實作搜尋功能</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>進階練習</h4>
+                <ol start="4">
+                    <li><strong>動態二維陣列</strong>
+                        <br>矩陣運算程式：
+                        <ul>
+                            <li>動態建立任意大小矩陣</li>
+                            <li>實作矩陣加法、乘法</li>
+                            <li>實作轉置矩陣</li>
+                            <li>正確釋放記憶體</li>
+                        </ul>
+                    </li>
+                    <li><strong>命令解析器</strong>
+                        <br>建立支援多命令的解析系統：
+                        <ul>
+                            <li>使用函數指標對應表</li>
+                            <li>支援命令參數傳遞</li>
+                            <li>實作說明文件功能</li>
+                            <li>錯誤處理機制</li>
+                        </ul>
+                    </li>
+                    <li><strong>排序算法比較</strong>
+                        <br>實作多種排序算法：
+                        <ul>
+                            <li>使用函數指標切換算法</li>
+                            <li>測量執行時間</li>
+                            <li>支援自訂比較函數</li>
+                            <li>產生效能報告</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>挑戰題</h4>
+                <ol start="7">
+                    <li><strong>插件架構</strong>
+                        <br>設計可擴充的插件系統：
+                        <ul>
+                            <li>定義插件介面</li>
+                            <li>動態載入/卸載插件</li>
+                            <li>插件間通訊機制</li>
+                            <li>插件生命週期管理</li>
+                        </ul>
+                    </li>
+                    <li><strong>事件驅動系統</strong>
+                        <br>實作完整的事件系統：
+                        <ul>
+                            <li>事件註冊與觸發</li>
+                            <li>支援多個監聽器</li>
+                            <li>事件優先級處理</li>
+                            <li>事件過濾機制</li>
+                        </ul>
+                    </li>
+                    <li><strong>表達式計算器</strong>
+                        <br>實作支援函數的計算器：
+                        <ul>
+                            <li>解析數學表達式</li>
+                            <li>使用函數指標實作函數</li>
+                            <li>支援變數定義</li>
+                            <li>錯誤檢測與報告</li>
+                        </ul>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -184,10 +1470,36 @@
             <div class="tip-box">
                 <strong>重點回顧：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li>理解函數指標的宣告與使用方式</li>
+                    <li>掌握回呼函數的概念與應用</li>
+                    <li>熟悉函數指標陣列的使用技巧</li>
+                    <li>了解多層指標的記憶體配置</li>
+                    <li>區分指標陣列與陣列指標</li>
+                    <li>能夠解讀複雜的指標宣告</li>
+                    <li>應用指標實作實務設計模式</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>重要提醒：</strong>
+                <ul>
+                    <li>函數指標宣告記得加括號：<code>int (*ptr)(int)</code></li>
+                    <li>使用 typedef 簡化複雜的指標型態</li>
+                    <li>多層指標要注意記憶體管理</li>
+                    <li>回呼函數要檢查指標是否為 NULL</li>
+                    <li>避免過度使用複雜的指標結構</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>下週預告：</strong>
+                <p>Week 11 將學習「進階字串處理」，包含：</p>
+                <ul>
+                    <li>字串解析與分割技巧</li>
+                    <li>字串格式化與驗證</li>
+                    <li>正規表示法基礎應用</li>
+                    <li>字串搜尋演算法</li>
+                    <li>多位元組字串處理</li>
                 </ul>
             </div>
         </div>

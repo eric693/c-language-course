@@ -61,6 +61,11 @@
             font-size: 1.5em;
             margin: 30px 0 15px 0;
         }
+        .content h4 {
+            color: #546e7a;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
         .code-block {
             background: #2c3e50;
             color: #ecf0f1;
@@ -82,6 +87,20 @@
         .tip-box {
             background: #e8f5e9;
             border-left: 4px solid #66bb6a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .danger-box {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
             padding: 20px;
             margin: 20px 0;
             border-radius: 4px;
@@ -117,6 +136,39 @@
         }
         .btn-secondary { background: #95a5a6; }
         .btn-secondary:hover { background: #7f8c8d; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .compare-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .compare-item {
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .compare-good {
+            background: #e8f5e9;
+            border-left: 4px solid #66bb6a;
+        }
+        .compare-bad {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+        }
     </style>
 </head>
 <body>
@@ -129,52 +181,1153 @@
 
         <header>
             <h1>Week 9 - 預處理器與巨集</h1>
-            <div class="subtitle">學習目標：掌握編譯前處理與巨集定義</div>
+            <div class="subtitle">學習目標：掌握編譯前處理、巨集定義與模組化設計</div>
         </header>
 
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>核心概念與理論基礎</li>
-                <li>程式碼範例與詳細說明</li>
-                <li>實作練習與應用</li>
-                <li>常見問題與解決方案</li>
-                <li>最佳實務與開發技巧</li>
+                <li>預處理器基礎概念與執行流程</li>
+                <li>#define 巨集定義與使用技巧</li>
+                <li>條件編譯與跨平台開發</li>
+                <li>檔案包含與標頭檔管理</li>
+                <li>巨集函數設計與常見陷阱</li>
+                <li>預定義巨集與偵錯技巧</li>
+                <li>最佳實踐與模組化設計</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>核心內容</h2>
-            <p>本週將深入學習 預處理器與巨集，這是 C 語言程式設計中的重要主題。</p>
+            <h2>1. 預處理器基礎</h2>
+            
+            <h3>1.1 什麼是預處理器？</h3>
+            <p>預處理器（Preprocessor）是編譯過程的第一個階段，在實際編譯之前處理原始碼。所有預處理指令都以 <code>#</code> 開頭。</p>
             
             <div class="note-box">
-                <strong>學習重點：</strong>
-                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
+                <strong>編譯流程：</strong>
+                <ol>
+                    <li><strong>預處理</strong>：處理 # 開頭的指令（巨集展開、檔案包含等）</li>
+                    <li><strong>編譯</strong>：將預處理後的程式碼編譯成組合語言</li>
+                    <li><strong>組譯</strong>：將組合語言轉換成機器碼（目的檔）</li>
+                    <li><strong>連結</strong>：將多個目的檔連結成可執行檔</li>
+                </ol>
             </div>
+
+            <h3>1.2 主要預處理指令</h3>
+            <table>
+                <tr>
+                    <th>指令</th>
+                    <th>功能</th>
+                    <th>範例</th>
+                </tr>
+                <tr>
+                    <td>#define</td>
+                    <td>定義巨集</td>
+                    <td>#define PI 3.14159</td>
+                </tr>
+                <tr>
+                    <td>#undef</td>
+                    <td>取消巨集定義</td>
+                    <td>#undef PI</td>
+                </tr>
+                <tr>
+                    <td>#include</td>
+                    <td>包含檔案</td>
+                    <td>#include &lt;stdio.h&gt;</td>
+                </tr>
+                <tr>
+                    <td>#if, #ifdef, #ifndef</td>
+                    <td>條件編譯</td>
+                    <td>#ifdef DEBUG</td>
+                </tr>
+                <tr>
+                    <td>#else, #elif, #endif</td>
+                    <td>條件分支與結束</td>
+                    <td>#else ... #endif</td>
+                </tr>
+                <tr>
+                    <td>#error</td>
+                    <td>產生編譯錯誤</td>
+                    <td>#error "不支援的平台"</td>
+                </tr>
+                <tr>
+                    <td>#pragma</td>
+                    <td>編譯器特定指令</td>
+                    <td>#pragma once</td>
+                </tr>
+            </table>
+
+            <h3>1.3 查看預處理結果</h3>
+            <div class="code-block">
+<pre>// 使用 gcc 查看預處理後的程式碼
+gcc -E program.c -o program.i
+
+// -E 參數會停在預處理階段
+// program.i 包含完整展開後的程式碼</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>2. #define 巨集定義</h2>
             
-            <h3>詳細說明</h3>
-            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
+            <h3>2.1 基本常數定義</h3>
+            <p>使用 #define 定義常數，可提升程式可讀性與維護性。</p>
             
-            <h3>實作建議</h3>
-            <ul>
-                <li>從基本概念開始，逐步進階</li>
-                <li>每個範例都要實際撰寫並執行</li>
-                <li>遇到問題要積極查找資料</li>
-                <li>完成練習題以驗證理解程度</li>
-            </ul>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 數值常數
+#define PI 3.14159265359
+#define MAX_SIZE 100
+#define BUFFER_SIZE 1024
+
+// 字串常數
+#define PROGRAM_NAME "學生管理系統"
+#define VERSION "v1.0.0"
+
+// 字元常數
+#define TAB '\t'
+#define NEWLINE '\n'
+
+int main() {
+    double radius = 5.0;
+    double area = PI * radius * radius;
+    
+    printf("%s %s\n", PROGRAM_NAME, VERSION);
+    printf("半徑 %.2f 的圓面積：%.2f\n", radius, area);
+    
+    int numbers[MAX_SIZE];
+    printf("陣列大小：%d\n", MAX_SIZE);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 命名慣例：</strong>
+                <ul>
+                    <li>巨集名稱通常使用全大寫字母</li>
+                    <li>多個單字用底線分隔：MAX_BUFFER_SIZE</li>
+                    <li>讓巨集容易與一般變數區分</li>
+                </ul>
+            </div>
+
+            <h3>2.2 運算式巨集</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+#define SQUARE(x) ((x) * (x))
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#define ABS(x) ((x) < 0 ? -(x) : (x))
+#define IS_EVEN(n) ((n) % 2 == 0)
+#define IS_LEAP_YEAR(y) (((y) % 4 == 0 && (y) % 100 != 0) || ((y) % 400 == 0))
+
+int main() {
+    printf("5 的平方：%d\n", SQUARE(5));
+    printf("MAX(10, 20)：%d\n", MAX(10, 20));
+    printf("MIN(10, 20)：%d\n", MIN(10, 20));
+    printf("ABS(-15)：%d\n", ABS(-15));
+    printf("8 是偶數？%s\n", IS_EVEN(8) ? "是" : "否");
+    printf("2024 是閏年？%s\n", IS_LEAP_YEAR(2024) ? "是" : "否");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 巨集參數必須加括號！</strong>
+                <p>看看沒加括號會發生什麼：</p>
+                <div class="code-block">
+<pre>// ❌ 錯誤：沒加括號
+#define SQUARE_BAD(x) x * x
+
+int result = SQUARE_BAD(3 + 2);
+// 展開為：3 + 2 * 3 + 2 = 3 + 6 + 2 = 11（錯誤！）
+
+// ✅ 正確：加上括號
+#define SQUARE_GOOD(x) ((x) * (x))
+
+int result = SQUARE_GOOD(3 + 2);
+// 展開為：((3 + 2) * (3 + 2)) = 25（正確！）</pre>
+                </div>
+            </div>
+
+            <h3>2.3 多行巨集定義</h3>
+            <p>使用反斜線 <code>\</code> 延續到下一行。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 多行巨集定義
+#define PRINT_ARRAY(arr, size) \
+    do { \
+        printf("["); \
+        for (int i = 0; i < (size); i++) { \
+            printf("%d", (arr)[i]); \
+            if (i < (size) - 1) printf(", "); \
+        } \
+        printf("]\n"); \
+    } while(0)
+
+// 交換兩個變數
+#define SWAP(a, b, type) \
+    do { \
+        type temp = (a); \
+        (a) = (b); \
+        (b) = temp; \
+    } while(0)
+
+int main() {
+    int numbers[] = {1, 2, 3, 4, 5};
+    PRINT_ARRAY(numbers, 5);
+    
+    int x = 10, y = 20;
+    printf("交換前：x = %d, y = %d\n", x, y);
+    SWAP(x, y, int);
+    printf("交換後：x = %d, y = %d\n", x, y);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <div class="note-box">
+                <strong>do-while(0) 技巧：</strong>
+                <p>包裝多行巨集時使用 <code>do { ... } while(0)</code> 可以：</p>
+                <ul>
+                    <li>確保巨集像單一敘述一樣運作</li>
+                    <li>在 if-else 等結構中正常使用</li>
+                    <li>允許在巨集後面加分號</li>
+                </ul>
+            </div>
+
+            <h3>2.4 字串化運算子 #</h3>
+            <p>將巨集參數轉換為字串。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+#define STRINGIZE(x) #x
+#define PRINT_VAR(var) printf(#var " = %d\n", var)
+#define PRINT_EXPR(expr) printf(#expr " = %d\n", (expr))
+
+int main() {
+    // 字串化
+    printf("%s\n", STRINGIZE(Hello World));  // 輸出：Hello World
+    
+    // 列印變數名稱和值
+    int age = 25;
+    PRINT_VAR(age);  // 輸出：age = 25
+    
+    // 列印運算式和結果
+    PRINT_EXPR(10 + 20);  // 輸出：10 + 20 = 30
+    PRINT_EXPR(5 * 6);    // 輸出：5 * 6 = 30
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.5 符號連接運算子 ##</h3>
+            <p>連接兩個符號形成新的符號。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+#define CONCAT(a, b) a##b
+#define MAKE_FUNCTION(type) void print_##type(type value) { \
+    printf("Value: %d\n", value); \
+}
+
+// 產生不同類型的函數
+MAKE_FUNCTION(int)
+MAKE_FUNCTION(short)
+
+int main() {
+    // 符號連接
+    int xy = 100;
+    printf("%d\n", CONCAT(x, y));  // 連接成 xy，輸出：100
+    
+    // 使用產生的函數
+    print_int(42);
+    print_short(10);
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>3. 條件編譯</h2>
+            
+            <h3>3.1 基本條件編譯</h3>
+            <p>根據條件選擇性地編譯程式碼。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 定義除錯模式
+#define DEBUG 1
+
+int main() {
+    int x = 10;
+    int y = 20;
+    int result = x + y;
+    
+#if DEBUG
+    printf("[DEBUG] x = %d\n", x);
+    printf("[DEBUG] y = %d\n", y);
+    printf("[DEBUG] result = %d\n", result);
+#endif
+    
+    printf("Result: %d\n", result);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.2 #ifdef 與 #ifndef</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// #ifdef：如果已定義
+#ifdef DEBUG
+    #define LOG(msg) printf("[LOG] %s\n", msg)
+#else
+    #define LOG(msg)  // 定義為空，不執行任何動作
+#endif
+
+// #ifndef：如果未定義
+#ifndef VERSION
+    #define VERSION "1.0.0"
+#endif
+
+int main() {
+    LOG("程式開始執行");
+    
+    printf("Version: %s\n", VERSION);
+    
+    LOG("程式結束");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.3 多重條件編譯</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 定義平台
+#define PLATFORM_WINDOWS 1
+#define PLATFORM_LINUX 2
+#define PLATFORM_MAC 3
+
+// 設定目前平台
+#define CURRENT_PLATFORM PLATFORM_LINUX
+
+int main() {
+#if CURRENT_PLATFORM == PLATFORM_WINDOWS
+    printf("編譯環境：Windows\n");
+    printf("路徑分隔符：\\\n");
+#elif CURRENT_PLATFORM == PLATFORM_LINUX
+    printf("編譯環境：Linux\n");
+    printf("路徑分隔符：/\n");
+#elif CURRENT_PLATFORM == PLATFORM_MAC
+    printf("編譯環境：macOS\n");
+    printf("路徑分隔符：/\n");
+#else
+    #error "未知的平台！"
+#endif
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.4 實用範例：跨平台開發</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 偵測作業系統
+#if defined(_WIN32) || defined(_WIN64)
+    #define OS_WINDOWS
+    #define CLEAR_SCREEN "cls"
+    #define PATH_SEPARATOR "\\"
+#elif defined(__linux__)
+    #define OS_LINUX
+    #define CLEAR_SCREEN "clear"
+    #define PATH_SEPARATOR "/"
+#elif defined(__APPLE__)
+    #define OS_MAC
+    #define CLEAR_SCREEN "clear"
+    #define PATH_SEPARATOR "/"
+#else
+    #error "不支援的作業系統"
+#endif
+
+// 根據平台選擇不同實作
+void clearScreen() {
+#ifdef OS_WINDOWS
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
+void printSystemInfo() {
+#ifdef OS_WINDOWS
+    printf("作業系統：Windows\n");
+#elif defined(OS_LINUX)
+    printf("作業系統：Linux\n");
+#elif defined(OS_MAC)
+    printf("作業系統：macOS\n");
+#endif
+    
+    printf("路徑分隔符：%s\n", PATH_SEPARATOR);
+}
+
+int main() {
+    printSystemInfo();
+    
+    printf("\n按 Enter 清除畫面...");
+    getchar();
+    clearScreen();
+    
+    printf("畫面已清除！\n");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.5 除錯與發行版本</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+// 除錯巨集
+#ifdef DEBUG
+    #define DEBUG_PRINT(fmt, ...) \
+        fprintf(stderr, "[DEBUG] %s:%d - " fmt "\n", \
+                __FILE__, __LINE__, ##__VA_ARGS__)
+#else
+    #define DEBUG_PRINT(fmt, ...)
+#endif
+
+// 效能測量巨集（僅在除錯模式）
+#ifdef DEBUG
+    #define BENCHMARK_START() clock_t _start = clock()
+    #define BENCHMARK_END(name) \
+        printf("[BENCHMARK] %s 耗時：%.3f 秒\n", \
+               name, (double)(clock() - _start) / CLOCKS_PER_SEC)
+#else
+    #define BENCHMARK_START()
+    #define BENCHMARK_END(name)
+#endif
+
+int fibonacci(int n) {
+    DEBUG_PRINT("計算 fibonacci(%d)", n);
+    
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    DEBUG_PRINT("程式開始");
+    
+    BENCHMARK_START();
+    
+    int result = fibonacci(10);
+    printf("fibonacci(10) = %d\n", result);
+    
+    BENCHMARK_END("fibonacci 計算");
+    
+    DEBUG_PRINT("程式結束");
+    
+    return 0;
+}
+
+// 編譯方式：
+// 除錯版本：gcc -DDEBUG program.c -o program_debug
+// 發行版本：gcc program.c -o program_release</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>4. 檔案包含與標頭檔管理</h2>
+            
+            <h3>4.1 #include 的兩種形式</h3>
+            <div class="code-block">
+<pre>// 系統標頭檔：使用角括號
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+// 自定義標頭檔：使用雙引號
+#include "myheader.h"
+#include "utils.h"
+#include "config.h"</pre>
+            </div>
+
+            <div class="note-box">
+                <strong>搜尋順序差異：</strong>
+                <ul>
+                    <li><code>&lt; &gt;</code>：只在系統標頭檔目錄搜尋</li>
+                    <li><code>" "</code>：先在目前目錄搜尋，再搜尋系統目錄</li>
+                </ul>
+            </div>
+
+            <h3>4.2 防止重複包含</h3>
+            <p>使用標頭檔保護（Header Guard）防止重複定義。</p>
+            
+            <h4>方法一：傳統方式（#ifndef）</h4>
+            <div class="code-block">
+<pre>// student.h
+#ifndef STUDENT_H
+#define STUDENT_H
+
+#include &lt;stdio.h&gt;
+
+typedef struct {
+    int id;
+    char name[50];
+    float score;
+} Student;
+
+void printStudent(Student *s);
+void inputStudent(Student *s);
+
+#endif  // STUDENT_H</pre>
+            </div>
+
+            <h4>方法二：#pragma once（現代方式）</h4>
+            <div class="code-block">
+<pre>// student.h
+#pragma once
+
+#include &lt;stdio.h&gt;
+
+typedef struct {
+    int id;
+    char name[50];
+    float score;
+} Student;
+
+void printStudent(Student *s);
+void inputStudent(Student *s);</pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 選擇建議：</strong>
+                <ul>
+                    <li><code>#ifndef</code>：標準方式，所有編譯器都支援</li>
+                    <li><code>#pragma once</code>：簡潔，但某些老舊編譯器可能不支援</li>
+                    <li>建議：大型專案使用 #ifndef 確保相容性</li>
+                </ul>
+            </div>
+
+            <h3>4.3 完整模組化範例</h3>
+            
+            <h4>mathutils.h - 標頭檔</h4>
+            <div class="code-block">
+<pre>#ifndef MATHUTILS_H
+#define MATHUTILS_H
+
+// 常數定義
+#define PI 3.14159265359
+#define E 2.71828182846
+
+// 函數宣告
+double circleArea(double radius);
+double circleCircumference(double radius);
+int factorial(int n);
+int gcd(int a, int b);
+int isPrime(int n);
+
+#endif</pre>
+            </div>
+
+            <h4>mathutils.c - 實作檔</h4>
+            <div class="code-block">
+<pre>#include "mathutils.h"
+
+double circleArea(double radius) {
+    return PI * radius * radius;
+}
+
+double circleCircumference(double radius) {
+    return 2 * PI * radius;
+}
+
+int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+}
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int isPrime(int n) {
+    if (n < 2) return 0;
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) return 0;
+    }
+    return 1;
+}</pre>
+            </div>
+
+            <h4>main.c - 主程式</h4>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include "mathutils.h"
+
+int main() {
+    double r = 5.0;
+    printf("半徑 %.2f 的圓：\n", r);
+    printf("面積：%.2f\n", circleArea(r));
+    printf("周長：%.2f\n", circleCircumference(r));
+    
+    int n = 5;
+    printf("\n%d! = %d\n", n, factorial(n));
+    
+    printf("\ngcd(48, 18) = %d\n", gcd(48, 18));
+    
+    printf("\n質數檢測：\n");
+    for (int i = 1; i <= 20; i++) {
+        if (isPrime(i)) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+    
+    return 0;
+}
+
+// 編譯：gcc main.c mathutils.c -o program</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>5. 巨集的陷阱與最佳實踐</h2>
+            
+            <h3>5.1 常見陷阱</h3>
+            
+            <h4>陷阱 1：副作用問題</h4>
+            <div class="compare-box">
+                <div class="compare-bad">
+                    <strong>❌ 錯誤範例</strong>
+                    <div class="code-block">
+<pre>#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
+int x = 5;
+int result = MAX(x++, 10);
+// x++ 會被執行兩次！
+// 展開為：((x++) > (10) ? (x++) : (10))</pre>
+                    </div>
+                </div>
+                <div class="compare-good">
+                    <strong>✅ 正確作法</strong>
+                    <div class="code-block">
+<pre>// 使用 inline 函數
+inline int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int x = 5;
+int result = max(x++, 10);
+// x 只會遞增一次</pre>
+                    </div>
+                </div>
+            </div>
+
+            <h4>陷阱 2：型別不安全</h4>
+            <div class="code-block">
+<pre>// 巨集沒有型別檢查
+#define MULTIPLY(a, b) ((a) * (b))
+
+int x = 5;
+char *str = "hello";
+
+// 編譯會過，但語意錯誤
+int result = MULTIPLY(x, str);  // ？？？
+
+// inline 函數有型別檢查
+inline int multiply(int a, int b) {
+    return a * b;
+}
+
+int result = multiply(x, str);  // 編譯錯誤！</pre>
+            </div>
+
+            <h4>陷阱 3：優先順序問題</h4>
+            <div class="code-block">
+<pre>// ❌ 沒有足夠的括號
+#define DOUBLE(x) x + x
+
+int result = DOUBLE(3) * 4;
+// 展開為：3 + 3 * 4 = 15（錯誤！）
+
+// ✅ 加上括號
+#define DOUBLE(x) ((x) + (x))
+
+int result = DOUBLE(3) * 4;
+// 展開為：((3) + (3)) * 4 = 24（正確！）</pre>
+            </div>
+
+            <h3>5.2 巨集 vs 函數</h3>
+            <table>
+                <tr>
+                    <th>特性</th>
+                    <th>巨集</th>
+                    <th>函數</th>
+                </tr>
+                <tr>
+                    <td>執行時期</td>
+                    <td>編譯時展開</td>
+                    <td>執行時呼叫</td>
+                </tr>
+                <tr>
+                    <td>型別檢查</td>
+                    <td>無</td>
+                    <td>有</td>
+                </tr>
+                <tr>
+                    <td>副作用</td>
+                    <td>可能重複執行參數</td>
+                    <td>參數只執行一次</td>
+                </tr>
+                <tr>
+                    <td>除錯</td>
+                    <td>較困難</td>
+                    <td>較容易</td>
+                </tr>
+                <tr>
+                    <td>程式碼大小</td>
+                    <td>可能變大（重複展開）</td>
+                    <td>較小</td>
+                </tr>
+                <tr>
+                    <td>執行速度</td>
+                    <td>快（無函數呼叫開銷）</td>
+                    <td>稍慢（有呼叫開銷）</td>
+                </tr>
+                <tr>
+                    <td>適用情境</td>
+                    <td>簡單常數、條件編譯</td>
+                    <td>複雜邏輯、需要型別檢查</td>
+                </tr>
+            </table>
+
+            <h3>5.3 最佳實踐</h3>
+            <div class="tip-box">
+                <strong>✅ 建議使用巨集的情況：</strong>
+                <ul>
+                    <li>定義常數：<code>#define MAX_SIZE 100</code></li>
+                    <li>條件編譯：<code>#ifdef DEBUG</code></li>
+                    <li>簡單的型別無關運算</li>
+                    <li>標頭檔保護</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 建議使用函數的情況：</strong>
+                <ul>
+                    <li>複雜的邏輯運算</li>
+                    <li>需要型別檢查的場合</li>
+                    <li>有副作用的操作</li>
+                    <li>需要除錯的程式碼</li>
+                </ul>
+            </div>
+
+            <div class="code-block">
+<pre>// ✅ 好的巨集使用
+#define MAX_BUFFER 256
+#define IS_DIGIT(c) ((c) >= '0' && (c) <= '9')
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+
+// ❌ 不好的巨集使用（應該用函數）
+#define COMPLEX_CALC(a, b, c) /* 複雜計算 */
+#define SORT_ARRAY(arr, size) /* 排序陣列 */</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>6. 預定義巨集</h2>
+            
+            <h3>6.1 標準預定義巨集</h3>
+            <table>
+                <tr>
+                    <th>巨集</th>
+                    <th>說明</th>
+                    <th>範例值</th>
+                </tr>
+                <tr>
+                    <td>__FILE__</td>
+                    <td>目前檔案名稱</td>
+                    <td>"program.c"</td>
+                </tr>
+                <tr>
+                    <td>__LINE__</td>
+                    <td>目前行號</td>
+                    <td>42</td>
+                </tr>
+                <tr>
+                    <td>__DATE__</td>
+                    <td>編譯日期</td>
+                    <td>"Nov 22 2025"</td>
+                </tr>
+                <tr>
+                    <td>__TIME__</td>
+                    <td>編譯時間</td>
+                    <td>"14:30:45"</td>
+                </tr>
+                <tr>
+                    <td>__func__</td>
+                    <td>目前函數名稱（C99）</td>
+                    <td>"main"</td>
+                </tr>
+                <tr>
+                    <td>__STDC__</td>
+                    <td>符合標準C</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>__STDC_VERSION__</td>
+                    <td>C標準版本</td>
+                    <td>199901L (C99)</td>
+                </tr>
+            </table>
+
+            <h3>6.2 實用範例</h3>
+            
+            <h4>除錯資訊</h4>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+#define DEBUG_LOG(msg) \
+    printf("[%s:%d in %s()] %s\n", __FILE__, __LINE__, __func__, msg)
+
+#define ASSERT(condition, msg) \
+    do { \
+        if (!(condition)) { \
+            fprintf(stderr, "Assertion failed: %s\n", msg); \
+            fprintf(stderr, "File: %s, Line: %d\n", __FILE__, __LINE__); \
+            fprintf(stderr, "Function: %s\n", __func__); \
+            exit(1); \
+        } \
+    } while(0)
+
+void processData(int *data, int size) {
+    DEBUG_LOG("開始處理資料");
+    
+    ASSERT(data != NULL, "data 不可為 NULL");
+    ASSERT(size > 0, "size 必須大於 0");
+    
+    for (int i = 0; i < size; i++) {
+        data[i] *= 2;
+    }
+    
+    DEBUG_LOG("資料處理完成");
+}
+
+int main() {
+    printf("程式編譯於：%s %s\n", __DATE__, __TIME__);
+    printf("檔案：%s\n", __FILE__);
+    
+    int numbers[] = {1, 2, 3, 4, 5};
+    processData(numbers, 5);
+    
+    // 測試斷言
+    // processData(NULL, 5);  // 會觸發斷言
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h4>版本資訊</h4>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+#define VERSION_MAJOR 1
+#define VERSION_MINOR 2
+#define VERSION_PATCH 3
+
+#define STRINGIZE(x) #x
+#define TOSTRING(x) STRINGIZE(x)
+
+#define VERSION_STRING \
+    TOSTRING(VERSION_MAJOR) "." \
+    TOSTRING(VERSION_MINOR) "." \
+    TOSTRING(VERSION_PATCH)
+
+void printVersionInfo() {
+    printf("========================================\n");
+    printf("程式版本：%s\n", VERSION_STRING);
+    printf("編譯日期：%s\n", __DATE__);
+    printf("編譯時間：%s\n", __TIME__);
+    
+#ifdef __STDC_VERSION__
+    printf("C 標準：");
+    #if __STDC_VERSION__ >= 201710L
+        printf("C17\n");
+    #elif __STDC_VERSION__ >= 201112L
+        printf("C11\n");
+    #elif __STDC_VERSION__ >= 199901L
+        printf("C99\n");
+    #else
+        printf("C90\n");
+    #endif
+#endif
+    
+    printf("========================================\n");
+}
+
+int main() {
+    printVersionInfo();
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>7. 進階技巧與應用</h2>
+            
+            <h3>7.1 變長參數巨集（C99）</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 變長參數巨集
+#define LOG(level, fmt, ...) \
+    printf("[%s] " fmt "\n", level, ##__VA_ARGS__)
+
+#define INFO(fmt, ...) LOG("INFO", fmt, ##__VA_ARGS__)
+#define WARNING(fmt, ...) LOG("WARNING", fmt, ##__VA_ARGS__)
+#define ERROR(fmt, ...) LOG("ERROR", fmt, ##__VA_ARGS__)
+
+int main() {
+    INFO("程式啟動");
+    INFO("載入設定檔：%s", "config.ini");
+    WARNING("記憶體使用：%d%%", 85);
+    ERROR("檔案不存在：%s", "data.txt");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>7.2 X-Macro 技巧</h3>
+            <p>用於減少重複程式碼，特別適合處理相似的資料。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 定義狀態列表
+#define STATUS_LIST \
+    X(STATUS_OK, "成功") \
+    X(STATUS_ERROR, "錯誤") \
+    X(STATUS_PENDING, "處理中") \
+    X(STATUS_TIMEOUT, "逾時") \
+    X(STATUS_CANCELLED, "已取消")
+
+// 生成列舉
+typedef enum {
+#define X(name, desc) name,
+    STATUS_LIST
+#undef X
+    STATUS_COUNT
+} Status;
+
+// 生成字串陣列
+const char* statusDescriptions[] = {
+#define X(name, desc) desc,
+    STATUS_LIST
+#undef X
+};
+
+// 生成名稱陣列
+const char* statusNames[] = {
+#define X(name, desc) #name,
+    STATUS_LIST
+#undef X
+};
+
+void printStatus(Status s) {
+    if (s >= 0 && s < STATUS_COUNT) {
+        printf("狀態：%s (%s)\n", statusNames[s], statusDescriptions[s]);
+    }
+}
+
+int main() {
+    printStatus(STATUS_OK);
+    printStatus(STATUS_ERROR);
+    printStatus(STATUS_PENDING);
+    
+    printf("\n所有狀態：\n");
+    for (int i = 0; i < STATUS_COUNT; i++) {
+        printf("%d: %s - %s\n", i, statusNames[i], statusDescriptions[i]);
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>7.3 設定檔管理</h3>
+            
+            <h4>config.h</h4>
+            <div class="code-block">
+<pre>#ifndef CONFIG_H
+#define CONFIG_H
+
+// 功能開關
+#define FEATURE_LOGGING 1
+#define FEATURE_DATABASE 1
+#define FEATURE_NETWORK 0
+
+// 系統設定
+#define MAX_CONNECTIONS 100
+#define TIMEOUT_SECONDS 30
+#define BUFFER_SIZE 4096
+
+// 除錯設定
+#ifdef DEBUG
+    #define LOG_LEVEL 3  // Verbose
+#else
+    #define LOG_LEVEL 1  // Error only
+#endif
+
+// 根據功能開關定義巨集
+#if FEATURE_LOGGING
+    #define LOG(msg) printf("[LOG] %s\n", msg)
+#else
+    #define LOG(msg)
+#endif
+
+#if FEATURE_DATABASE
+    #define DB_CONNECT() connectDatabase()
+    #define DB_DISCONNECT() disconnectDatabase()
+#else
+    #define DB_CONNECT()
+    #define DB_DISCONNECT()
+#endif
+
+#endif</pre>
+            </div>
+
+            <h4>main.c</h4>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include "config.h"
+
+void connectDatabase() {
+    printf("資料庫已連接\n");
+}
+
+void disconnectDatabase() {
+    printf("資料庫已斷線\n");
+}
+
+int main() {
+    LOG("程式啟動");
+    
+    printf("最大連線數：%d\n", MAX_CONNECTIONS);
+    printf("逾時時間：%d 秒\n", TIMEOUT_SECONDS);
+    
+    DB_CONNECT();
+    
+    // 主程式邏輯
+    
+    DB_DISCONNECT();
+    
+    LOG("程式結束");
+    
+    return 0;
+}</pre>
+            </div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li><strong>常數定義練習</strong>
+                        <br>定義一組常用的數學常數和單位轉換巨集：
+                        <ul>
+                            <li>圓周率、自然對數底</li>
+                            <li>單位轉換（公里轉英里、攝氏轉華氏等）</li>
+                            <li>測試所有巨集的正確性</li>
+                        </ul>
+                    </li>
+                    <li><strong>安全巨集設計</strong>
+                        <br>設計以下巨集並測試：
+                        <ul>
+                            <li>CLAMP(x, min, max)：限制數值範圍</li>
+                            <li>IN_RANGE(x, min, max)：檢查是否在範圍內</li>
+                            <li>ARRAY_SIZE(arr)：取得陣列大小</li>
+                        </ul>
+                    </li>
+                    <li><strong>條件編譯</strong>
+                        <br>建立支援除錯/發行模式的程式，包含：
+                        <ul>
+                            <li>除錯訊息輸出</li>
+                            <li>效能測量</li>
+                            <li>斷言檢查</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>進階練習</h4>
+                <ol start="4">
+                    <li><strong>模組化專案</strong>
+                        <br>建立完整的模組化專案：
+                        <ul>
+                            <li>設計 utils.h/utils.c（工具函數）</li>
+                            <li>設計 config.h（設定檔）</li>
+                            <li>設計 logger.h/logger.c（日誌系統）</li>
+                            <li>使用標頭檔保護</li>
+                            <li>編寫 Makefile</li>
+                        </ul>
+                    </li>
+                    <li><strong>跨平台程式</strong>
+                        <br>開發可在 Windows/Linux/macOS 運行的程式：
+                        <ul>
+                            <li>自動偵測作業系統</li>
+                            <li>使用平台特定功能</li>
+                            <li>處理路徑分隔符差異</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>挑戰題</h4>
+                <ol start="6">
+                    <li><strong>X-Macro 應用</strong>
+                        <br>使用 X-Macro 技巧實作：
+                        <ul>
+                            <li>錯誤代碼系統（代碼、名稱、說明）</li>
+                            <li>命令列表（命令、處理函數、說明）</li>
+                            <li>自動生成對應的函數和陣列</li>
+                        </ul>
+                    </li>
+                    <li><strong>泛型資料結構</strong>
+                        <br>使用巨集實作泛型：
+                        <ul>
+                            <li>泛型堆疊（支援不同型別）</li>
+                            <li>泛型佇列</li>
+                            <li>提供型別安全檢查</li>
+                        </ul>
+                    </li>
+                    <li><strong>建置系統</strong>
+                        <br>設計完整的建置系統：
+                        <ul>
+                            <li>支援多種建置模式（除錯/發行/測試）</li>
+                            <li>自動產生版本資訊</li>
+                            <li>條件編譯不同功能</li>
+                            <li>產生建置報告</li>
+                        </ul>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -184,10 +1337,36 @@
             <div class="tip-box">
                 <strong>重點回顧：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li>✅ 理解預處理器的執行流程與時機</li>
+                    <li>✅ 掌握 #define 巨集的定義與使用</li>
+                    <li>✅ 熟悉條件編譯技巧（#if, #ifdef, #ifndef）</li>
+                    <li>✅ 學會檔案包含與標頭檔管理</li>
+                    <li>✅ 了解巨集的陷阱與最佳實踐</li>
+                    <li>✅ 能夠設計模組化的程式架構</li>
+                    <li>✅ 掌握跨平台開發技巧</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>重要提醒：</strong>
+                <ul>
+                    <li>巨集參數一定要加括號</li>
+                    <li>優先使用函數而非複雜巨集</li>
+                    <li>注意巨集的副作用問題</li>
+                    <li>標頭檔要使用保護機制</li>
+                    <li>合理使用條件編譯</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>下週預告：</strong>
+                <p>Week 10 將學習「進階指標應用」，包含：</p>
+                <ul>
+                    <li>函數指標的定義與使用</li>
+                    <li>回呼函數（Callback）機制</li>
+                    <li>多層指標與指標陣列</li>
+                    <li>複雜指標型態的解析</li>
+                    <li>指標在資料結構中的應用</li>
                 </ul>
             </div>
         </div>
