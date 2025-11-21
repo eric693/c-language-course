@@ -86,6 +86,13 @@
             margin: 20px 0;
             border-radius: 4px;
         }
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
         .exercise-section {
             background: #f8f9fa;
             border: 2px solid #3498db;
@@ -117,6 +124,21 @@
         }
         .btn-secondary { background: #95a5a6; }
         .btn-secondary:hover { background: #7f8c8d; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f2f2f2; }
     </style>
 </head>
 <body>
@@ -129,52 +151,1097 @@
 
         <header>
             <h1>Week 8 - 檔案輸入輸出</h1>
-            <div class="subtitle">學習目標：實現檔案讀寫與資料持久化</div>
+            <div class="subtitle">學習目標：掌握檔案讀寫操作，實現資料持久化</div>
         </header>
 
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>核心概念與理論基礎</li>
-                <li>程式碼範例與詳細說明</li>
-                <li>實作練習與應用</li>
-                <li>常見問題與解決方案</li>
-                <li>最佳實務與開發技巧</li>
+                <li>檔案操作基礎概念與理論</li>
+                <li>文字檔案的讀寫操作</li>
+                <li>二進位檔案處理</li>
+                <li>檔案定位與隨機存取</li>
+                <li>錯誤處理與資源管理</li>
+                <li>實務應用與最佳實踐</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>核心內容</h2>
-            <p>本週將深入學習 檔案輸入輸出，這是 C 語言程式設計中的重要主題。</p>
+            <h2>1. 檔案操作基礎</h2>
             
-            <div class="note-box">
-                <strong>學習重點：</strong>
-                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
+            <h3>1.1 檔案指標 (FILE Pointer)</h3>
+            <p>在C語言中，所有檔案操作都需要透過 FILE 指標來進行。FILE 是在 stdio.h 中定義的結構體類型。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+FILE *fp;  // 宣告檔案指標</pre>
             </div>
+
+            <h3>1.2 開啟檔案 - fopen()</h3>
+            <p>使用 fopen() 函數開啟檔案，需要指定檔案名稱和開啟模式。</p>
             
-            <h3>詳細說明</h3>
-            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
+            <div class="code-block">
+<pre>FILE *fopen(const char *filename, const char *mode);</pre>
+            </div>
+
+            <p><strong>檔案開啟模式：</strong></p>
+            <table>
+                <tr>
+                    <th>模式</th>
+                    <th>說明</th>
+                    <th>檔案不存在</th>
+                    <th>檔案存在</th>
+                </tr>
+                <tr>
+                    <td>"r"</td>
+                    <td>讀取模式（文字）</td>
+                    <td>錯誤</td>
+                    <td>從頭開始讀取</td>
+                </tr>
+                <tr>
+                    <td>"w"</td>
+                    <td>寫入模式（文字）</td>
+                    <td>建立新檔</td>
+                    <td>清空內容重寫</td>
+                </tr>
+                <tr>
+                    <td>"a"</td>
+                    <td>附加模式（文字）</td>
+                    <td>建立新檔</td>
+                    <td>從末端附加</td>
+                </tr>
+                <tr>
+                    <td>"r+"</td>
+                    <td>讀寫模式</td>
+                    <td>錯誤</td>
+                    <td>從頭開始</td>
+                </tr>
+                <tr>
+                    <td>"w+"</td>
+                    <td>讀寫模式</td>
+                    <td>建立新檔</td>
+                    <td>清空內容</td>
+                </tr>
+                <tr>
+                    <td>"a+"</td>
+                    <td>讀取/附加模式</td>
+                    <td>建立新檔</td>
+                    <td>從末端附加</td>
+                </tr>
+                <tr>
+                    <td>"rb", "wb", "ab"</td>
+                    <td>二進位模式</td>
+                    <td colspan="2">加上 'b' 表示二進位模式</td>
+                </tr>
+            </table>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *fp;
+    
+    // 開啟檔案進行寫入
+    fp = fopen("output.txt", "w");
+    
+    // 檢查檔案是否成功開啟
+    if (fp == NULL) {
+        printf("無法開啟檔案！\n");
+        return 1;
+    }
+    
+    printf("檔案開啟成功！\n");
+    
+    // 使用完畢後關閉檔案
+    fclose(fp);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>1.3 關閉檔案 - fclose()</h3>
+            <p>使用完檔案後，必須使用 fclose() 關閉檔案，釋放系統資源。</p>
             
-            <h3>實作建議</h3>
-            <ul>
-                <li>從基本概念開始，逐步進階</li>
-                <li>每個範例都要實際撰寫並執行</li>
-                <li>遇到問題要積極查找資料</li>
-                <li>完成練習題以驗證理解程度</li>
-            </ul>
+            <div class="code-block">
+<pre>int fclose(FILE *fp);
+
+// 成功返回 0，失敗返回 EOF</pre>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 重要提醒：</strong>
+                <ul>
+                    <li>開啟檔案後一定要記得關閉，否則可能造成資料遺失或資源洩漏</li>
+                    <li>程式結束前務必關閉所有開啟的檔案</li>
+                    <li>開啟檔案失敗時，fp 會是 NULL，必須檢查</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>2. 文字檔案讀寫</h2>
+            
+            <h3>2.1 字元讀寫 - fgetc() 與 fputc()</h3>
+            
+            <div class="code-block">
+<pre>// 讀取一個字元
+int fgetc(FILE *fp);
+
+// 寫入一個字元
+int fputc(int ch, FILE *fp);</pre>
+            </div>
+
+            <p><strong>範例：複製檔案內容</strong></p>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *source, *dest;
+    int ch;
+    
+    // 開啟來源檔案（讀取）
+    source = fopen("source.txt", "r");
+    if (source == NULL) {
+        printf("無法開啟來源檔案！\n");
+        return 1;
+    }
+    
+    // 開啟目標檔案（寫入）
+    dest = fopen("dest.txt", "w");
+    if (dest == NULL) {
+        printf("無法建立目標檔案！\n");
+        fclose(source);
+        return 1;
+    }
+    
+    // 逐字元複製
+    while ((ch = fgetc(source)) != EOF) {
+        fputc(ch, dest);
+    }
+    
+    printf("檔案複製完成！\n");
+    
+    fclose(source);
+    fclose(dest);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.2 字串讀寫 - fgets() 與 fputs()</h3>
+            
+            <div class="code-block">
+<pre>// 讀取一行字串
+char *fgets(char *str, int n, FILE *fp);
+
+// 寫入字串
+int fputs(const char *str, FILE *fp);</pre>
+            </div>
+
+            <p><strong>範例：讀寫文字行</strong></p>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *fp;
+    char buffer[256];
+    
+    // 寫入檔案
+    fp = fopen("data.txt", "w");
+    if (fp == NULL) {
+        printf("無法開啟檔案！\n");
+        return 1;
+    }
+    
+    fputs("第一行文字\n", fp);
+    fputs("第二行文字\n", fp);
+    fputs("第三行文字\n", fp);
+    
+    fclose(fp);
+    
+    // 讀取檔案
+    fp = fopen("data.txt", "r");
+    if (fp == NULL) {
+        printf("無法開啟檔案！\n");
+        return 1;
+    }
+    
+    printf("檔案內容：\n");
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        printf("%s", buffer);
+    }
+    
+    fclose(fp);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.3 格式化讀寫 - fscanf() 與 fprintf()</h3>
+            
+            <div class="code-block">
+<pre>// 格式化讀取
+int fscanf(FILE *fp, const char *format, ...);
+
+// 格式化寫入
+int fprintf(FILE *fp, const char *format, ...);</pre>
+            </div>
+
+            <p><strong>範例：學生成績管理</strong></p>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+typedef struct {
+    int id;
+    char name[50];
+    float score;
+} Student;
+
+int main() {
+    FILE *fp;
+    Student students[3] = {
+        {1, "張三", 85.5},
+        {2, "李四", 92.0},
+        {3, "王五", 78.5}
+    };
+    Student temp;
+    
+    // 寫入學生資料
+    fp = fopen("students.txt", "w");
+    if (fp == NULL) {
+        printf("無法開啟檔案！\n");
+        return 1;
+    }
+    
+    fprintf(fp, "學號\t姓名\t成績\n");
+    for (int i = 0; i < 3; i++) {
+        fprintf(fp, "%d\t%s\t%.1f\n", 
+                students[i].id, 
+                students[i].name, 
+                students[i].score);
+    }
+    
+    fclose(fp);
+    
+    // 讀取學生資料
+    fp = fopen("students.txt", "r");
+    if (fp == NULL) {
+        printf("無法開啟檔案！\n");
+        return 1;
+    }
+    
+    char header[100];
+    fgets(header, sizeof(header), fp);  // 跳過標題行
+    
+    printf("讀取的學生資料：\n");
+    printf("%s", header);
+    
+    while (fscanf(fp, "%d%s%f", &temp.id, temp.name, &temp.score) == 3) {
+        printf("%d\t%s\t%.1f\n", temp.id, temp.name, temp.score);
+    }
+    
+    fclose(fp);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 使用建議：</strong>
+                <ul>
+                    <li><strong>fgetc/fputc</strong>：適合逐字元處理，如字元統計、檔案複製</li>
+                    <li><strong>fgets/fputs</strong>：適合逐行處理，如讀取設定檔、日誌檔</li>
+                    <li><strong>fscanf/fprintf</strong>：適合結構化資料，如成績表、記錄檔</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>3. 二進位檔案處理</h2>
+            
+            <h3>3.1 fread() 與 fwrite()</h3>
+            <p>二進位檔案以位元組為單位直接讀寫資料，適合儲存結構體等複雜資料。</p>
+            
+            <div class="code-block">
+<pre>// 讀取資料
+size_t fread(void *ptr, size_t size, size_t count, FILE *fp);
+
+// 寫入資料
+size_t fwrite(const void *ptr, size_t size, size_t count, FILE *fp);
+
+// 參數說明：
+// ptr   - 資料緩衝區指標
+// size  - 每個元素的大小（bytes）
+// count - 要讀寫的元素數量
+// fp    - 檔案指標
+// 返回值 - 實際讀寫的元素數量</pre>
+            </div>
+
+            <p><strong>範例：儲存與讀取結構體陣列</strong></p>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {
+    int id;
+    char name[50];
+    int age;
+    float salary;
+} Employee;
+
+void writeEmployees() {
+    FILE *fp;
+    Employee employees[3] = {
+        {101, "張三", 28, 45000.0},
+        {102, "李四", 32, 52000.0},
+        {103, "王五", 25, 38000.0}
+    };
+    
+    fp = fopen("employees.dat", "wb");
+    if (fp == NULL) {
+        printf("無法建立檔案！\n");
+        return;
+    }
+    
+    // 寫入員工數量
+    int count = 3;
+    fwrite(&count, sizeof(int), 1, fp);
+    
+    // 寫入所有員工資料
+    fwrite(employees, sizeof(Employee), 3, fp);
+    
+    fclose(fp);
+    printf("員工資料已儲存！\n");
+}
+
+void readEmployees() {
+    FILE *fp;
+    Employee emp;
+    int count;
+    
+    fp = fopen("employees.dat", "rb");
+    if (fp == NULL) {
+        printf("無法開啟檔案！\n");
+        return;
+    }
+    
+    // 讀取員工數量
+    fread(&count, sizeof(int), 1, fp);
+    
+    printf("\n讀取的員工資料：\n");
+    printf("編號\t姓名\t\t年齡\t薪資\n");
+    printf("============================================\n");
+    
+    // 讀取並顯示所有員工
+    for (int i = 0; i < count; i++) {
+        fread(&emp, sizeof(Employee), 1, fp);
+        printf("%d\t%s\t\t%d\t%.2f\n", 
+               emp.id, emp.name, emp.age, emp.salary);
+    }
+    
+    fclose(fp);
+}
+
+int main() {
+    writeEmployees();
+    readEmployees();
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.2 二進位檔案的優勢</h3>
+            <div class="note-box">
+                <strong>二進位檔案 vs 文字檔案：</strong>
+                <ul>
+                    <li><strong>儲存效率</strong>：二進位檔案更省空間，不需格式轉換</li>
+                    <li><strong>讀寫速度</strong>：直接記憶體對映，速度更快</li>
+                    <li><strong>資料精確度</strong>：浮點數不會因文字轉換而失真</li>
+                    <li><strong>可讀性</strong>：文字檔可用編輯器查看，二進位檔不行</li>
+                    <li><strong>跨平台</strong>：文字檔較佳，二進位檔需考慮位元組順序</li>
+                </ul>
+            </div>
+
+            <p><strong>範例：比較檔案大小</strong></p>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+typedef struct {
+    int value;
+    double price;
+} Data;
+
+int main() {
+    Data d = {12345, 99.99};
+    FILE *fp;
+    
+    // 文字檔案
+    fp = fopen("text.txt", "w");
+    fprintf(fp, "%d %.2f", d.value, d.price);
+    fclose(fp);
+    
+    // 二進位檔案
+    fp = fopen("binary.dat", "wb");
+    fwrite(&d, sizeof(Data), 1, fp);
+    fclose(fp);
+    
+    // 文字檔：約 11 bytes ("12345 99.99")
+    // 二進位檔：12 bytes (4 + 8)
+    // 但二進位保留完整精確度
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>4. 檔案定位</h2>
+            
+            <h3>4.1 檔案定位函數</h3>
+            
+            <table>
+                <tr>
+                    <th>函數</th>
+                    <th>功能</th>
+                    <th>說明</th>
+                </tr>
+                <tr>
+                    <td>ftell()</td>
+                    <td>取得目前位置</td>
+                    <td>返回距離檔案開頭的位元組數</td>
+                </tr>
+                <tr>
+                    <td>fseek()</td>
+                    <td>移動檔案位置</td>
+                    <td>設定讀寫位置</td>
+                </tr>
+                <tr>
+                    <td>rewind()</td>
+                    <td>回到檔案開頭</td>
+                    <td>等同於 fseek(fp, 0, SEEK_SET)</td>
+                </tr>
+                <tr>
+                    <td>feof()</td>
+                    <td>檢查檔案結尾</td>
+                    <td>判斷是否到達 EOF</td>
+                </tr>
+            </table>
+
+            <h3>4.2 fseek() 詳解</h3>
+            <div class="code-block">
+<pre>int fseek(FILE *fp, long offset, int whence);
+
+// whence 參數：
+// SEEK_SET (0) - 從檔案開頭計算
+// SEEK_CUR (1) - 從目前位置計算
+// SEEK_END (2) - 從檔案結尾計算
+
+// 返回值：成功返回 0，失敗返回 -1</pre>
+            </div>
+
+            <p><strong>範例：隨機存取檔案</strong></p>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {
+    int id;
+    char name[30];
+    float score;
+} Student;
+
+void writeStudents() {
+    FILE *fp = fopen("students.dat", "wb");
+    Student students[] = {
+        {1, "Alice", 85.5},
+        {2, "Bob", 92.0},
+        {3, "Charlie", 78.5},
+        {4, "David", 88.0},
+        {5, "Eve", 95.5}
+    };
+    
+    fwrite(students, sizeof(Student), 5, fp);
+    fclose(fp);
+}
+
+void readStudent(int index) {
+    FILE *fp = fopen("students.dat", "rb");
+    Student s;
+    
+    // 移動到指定學生的位置
+    fseek(fp, (index - 1) * sizeof(Student), SEEK_SET);
+    
+    // 讀取該學生資料
+    fread(&s, sizeof(Student), 1, fp);
+    
+    printf("學生 %d：%s, 成績：%.1f\n", s.id, s.name, s.score);
+    
+    fclose(fp);
+}
+
+void updateStudent(int index, float newScore) {
+    FILE *fp = fopen("students.dat", "r+b");  // 讀寫模式
+    Student s;
+    
+    // 移動到指定位置
+    fseek(fp, (index - 1) * sizeof(Student), SEEK_SET);
+    
+    // 讀取
+    fread(&s, sizeof(Student), 1, fp);
+    
+    // 修改成績
+    s.score = newScore;
+    
+    // 移回該位置
+    fseek(fp, (index - 1) * sizeof(Student), SEEK_SET);
+    
+    // 寫回
+    fwrite(&s, sizeof(Student), 1, fp);
+    
+    fclose(fp);
+    printf("學生 %d 的成績已更新為 %.1f\n", index, newScore);
+}
+
+int main() {
+    // 建立檔案
+    writeStudents();
+    
+    // 隨機讀取第3個學生
+    printf("讀取第3個學生：\n");
+    readStudent(3);
+    
+    // 更新第2個學生的成績
+    updateStudent(2, 96.5);
+    
+    // 驗證更新
+    printf("\n更新後的資料：\n");
+    readStudent(2);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>4.3 取得檔案大小</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+long getFileSize(const char *filename) {
+    FILE *fp = fopen(filename, "rb");
+    long size;
+    
+    if (fp == NULL) {
+        return -1;
+    }
+    
+    // 移動到檔案末端
+    fseek(fp, 0, SEEK_END);
+    
+    // 取得目前位置（即檔案大小）
+    size = ftell(fp);
+    
+    fclose(fp);
+    return size;
+}
+
+int main() {
+    long size = getFileSize("students.dat");
+    
+    if (size >= 0) {
+        printf("檔案大小：%ld bytes\n", size);
+    } else {
+        printf("無法取得檔案大小\n");
+    }
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>5. 錯誤處理</h2>
+            
+            <h3>5.1 錯誤檢測函數</h3>
+            
+            <div class="code-block">
+<pre>// 檢查錯誤
+int ferror(FILE *fp);
+
+// 檢查檔案結尾
+int feof(FILE *fp);
+
+// 清除錯誤標記
+void clearerr(FILE *fp);</pre>
+            </div>
+
+            <p><strong>範例：完整的錯誤處理</strong></p>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;string.h&gt;
+
+int safeFileRead(const char *filename) {
+    FILE *fp;
+    char buffer[256];
+    
+    // 開啟檔案
+    fp = fopen(filename, "r");
+    if (fp == NULL) {
+        fprintf(stderr, "錯誤：無法開啟檔案 '%s'\n", filename);
+        fprintf(stderr, "原因：%s\n", strerror(errno));
+        return -1;
+    }
+    
+    printf("檔案內容：\n");
+    
+    // 讀取檔案
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        printf("%s", buffer);
+    }
+    
+    // 檢查是否因錯誤而結束
+    if (ferror(fp)) {
+        fprintf(stderr, "錯誤：讀取檔案時發生錯誤\n");
+        fclose(fp);
+        return -1;
+    }
+    
+    // 檢查是否正常到達檔案結尾
+    if (feof(fp)) {
+        printf("\n檔案讀取完成\n");
+    }
+    
+    fclose(fp);
+    return 0;
+}
+
+int main() {
+    if (safeFileRead("test.txt") == -1) {
+        printf("檔案讀取失敗！\n");
+        return 1;
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>5.2 常見錯誤代碼</h3>
+            <div class="note-box">
+                <strong>errno 常見值：</strong>
+                <ul>
+                    <li><strong>ENOENT</strong>：檔案不存在</li>
+                    <li><strong>EACCES</strong>：權限不足</li>
+                    <li><strong>EISDIR</strong>：是目錄而非檔案</li>
+                    <li><strong>ENOMEM</strong>：記憶體不足</li>
+                    <li><strong>ENOSPC</strong>：磁碟空間不足</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>6. 實務應用範例</h2>
+            
+            <h3>6.1 學生成績管理系統</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX_STUDENTS 100
+#define FILENAME "students.dat"
+
+typedef struct {
+    int id;
+    char name[50];
+    float chinese;
+    float english;
+    float math;
+    float average;
+} Student;
+
+// 新增學生
+void addStudent() {
+    FILE *fp;
+    Student s;
+    
+    printf("\n=== 新增學生 ===\n");
+    printf("學號：");
+    scanf("%d", &s.id);
+    printf("姓名：");
+    scanf("%s", s.name);
+    printf("國文成績：");
+    scanf("%f", &s.chinese);
+    printf("英文成績：");
+    scanf("%f", &s.english);
+    printf("數學成績：");
+    scanf("%f", &s.math);
+    
+    s.average = (s.chinese + s.english + s.math) / 3.0;
+    
+    fp = fopen(FILENAME, "ab");
+    if (fp == NULL) {
+        printf("無法開啟檔案！\n");
+        return;
+    }
+    
+    fwrite(&s, sizeof(Student), 1, fp);
+    fclose(fp);
+    
+    printf("學生資料新增成功！平均成績：%.2f\n", s.average);
+}
+
+// 顯示所有學生
+void displayAllStudents() {
+    FILE *fp;
+    Student s;
+    
+    fp = fopen(FILENAME, "rb");
+    if (fp == NULL) {
+        printf("無法開啟檔案或檔案不存在！\n");
+        return;
+    }
+    
+    printf("\n=== 所有學生資料 ===\n");
+    printf("%-6s %-12s %6s %6s %6s %6s\n", 
+           "學號", "姓名", "國文", "英文", "數學", "平均");
+    printf("=================================================\n");
+    
+    while (fread(&s, sizeof(Student), 1, fp) == 1) {
+        printf("%-6d %-12s %6.1f %6.1f %6.1f %6.2f\n",
+               s.id, s.name, s.chinese, s.english, s.math, s.average);
+    }
+    
+    fclose(fp);
+}
+
+// 搜尋學生
+void searchStudent() {
+    FILE *fp;
+    Student s;
+    int id;
+    int found = 0;
+    
+    printf("\n請輸入要搜尋的學號：");
+    scanf("%d", &id);
+    
+    fp = fopen(FILENAME, "rb");
+    if (fp == NULL) {
+        printf("無法開啟檔案！\n");
+        return;
+    }
+    
+    while (fread(&s, sizeof(Student), 1, fp) == 1) {
+        if (s.id == id) {
+            printf("\n找到學生資料：\n");
+            printf("學號：%d\n", s.id);
+            printf("姓名：%s\n", s.name);
+            printf("國文：%.1f\n", s.chinese);
+            printf("英文：%.1f\n", s.english);
+            printf("數學：%.1f\n", s.math);
+            printf("平均：%.2f\n", s.average);
+            found = 1;
+            break;
+        }
+    }
+    
+    if (!found) {
+        printf("找不到學號 %d 的學生！\n", id);
+    }
+    
+    fclose(fp);
+}
+
+// 計算統計資料
+void calculateStatistics() {
+    FILE *fp;
+    Student s;
+    int count = 0;
+    float totalAvg = 0;
+    float maxAvg = 0;
+    float minAvg = 100;
+    char topStudent[50];
+    
+    fp = fopen(FILENAME, "rb");
+    if (fp == NULL) {
+        printf("無法開啟檔案！\n");
+        return;
+    }
+    
+    while (fread(&s, sizeof(Student), 1, fp) == 1) {
+        count++;
+        totalAvg += s.average;
+        
+        if (s.average > maxAvg) {
+            maxAvg = s.average;
+            strcpy(topStudent, s.name);
+        }
+        
+        if (s.average < minAvg) {
+            minAvg = s.average;
+        }
+    }
+    
+    fclose(fp);
+    
+    if (count == 0) {
+        printf("沒有學生資料！\n");
+        return;
+    }
+    
+    printf("\n=== 統計資料 ===\n");
+    printf("學生總數：%d\n", count);
+    printf("平均成績：%.2f\n", totalAvg / count);
+    printf("最高平均：%.2f (%s)\n", maxAvg, topStudent);
+    printf("最低平均：%.2f\n", minAvg);
+}
+
+int main() {
+    int choice;
+    
+    while (1) {
+        printf("\n==============================\n");
+        printf("   學生成績管理系統\n");
+        printf("==============================\n");
+        printf("1. 新增學生\n");
+        printf("2. 顯示所有學生\n");
+        printf("3. 搜尋學生\n");
+        printf("4. 統計資料\n");
+        printf("0. 離開\n");
+        printf("==============================\n");
+        printf("請選擇功能：");
+        scanf("%d", &choice);
+        
+        switch (choice) {
+            case 1:
+                addStudent();
+                break;
+            case 2:
+                displayAllStudents();
+                break;
+            case 3:
+                searchStudent();
+                break;
+            case 4:
+                calculateStatistics();
+                break;
+            case 0:
+                printf("謝謝使用！\n");
+                return 0;
+            default:
+                printf("無效的選擇！\n");
+        }
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>6.2 日誌檔案系統</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdarg.h&gt;
+
+typedef enum {
+    LOG_INFO,
+    LOG_WARNING,
+    LOG_ERROR
+} LogLevel;
+
+const char* getLevelString(LogLevel level) {
+    switch (level) {
+        case LOG_INFO:    return "INFO";
+        case LOG_WARNING: return "WARNING";
+        case LOG_ERROR:   return "ERROR";
+        default:          return "UNKNOWN";
+    }
+}
+
+void writeLog(LogLevel level, const char *format, ...) {
+    FILE *fp;
+    time_t now;
+    char timeStr[64];
+    va_list args;
+    
+    // 開啟日誌檔（附加模式）
+    fp = fopen("app.log", "a");
+    if (fp == NULL) {
+        fprintf(stderr, "無法開啟日誌檔！\n");
+        return;
+    }
+    
+    // 取得當前時間
+    time(&now);
+    strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", 
+             localtime(&now));
+    
+    // 寫入時間戳記和級別
+    fprintf(fp, "[%s] [%s] ", timeStr, getLevelString(level));
+    
+    // 寫入訊息
+    va_start(args, format);
+    vfprintf(fp, format, args);
+    va_end(args);
+    
+    fprintf(fp, "\n");
+    
+    fclose(fp);
+}
+
+int main() {
+    writeLog(LOG_INFO, "程式啟動");
+    writeLog(LOG_INFO, "連接到資料庫");
+    writeLog(LOG_WARNING, "記憶體使用率達到 80%%");
+    writeLog(LOG_ERROR, "無法連接到伺服器 192.168.1.100");
+    writeLog(LOG_INFO, "程式正常結束");
+    
+    printf("日誌已寫入 app.log\n");
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>7. 最佳實踐與注意事項</h2>
+            
+            <h3>7.1 檔案操作最佳實踐</h3>
+            <div class="tip-box">
+                <strong>💡 重要提醒：</strong>
+                <ol>
+                    <li><strong>永遠檢查返回值</strong>
+                        <ul>
+                            <li>fopen() 是否返回 NULL</li>
+                            <li>fread/fwrite 的返回值是否符合預期</li>
+                        </ul>
+                    </li>
+                    <li><strong>及時關閉檔案</strong>
+                        <ul>
+                            <li>開啟後務必在適當時機關閉</li>
+                            <li>錯誤處理路徑也要記得關閉</li>
+                        </ul>
+                    </li>
+                    <li><strong>使用緩衝區</strong>
+                        <ul>
+                            <li>避免頻繁的小量讀寫</li>
+                            <li>批次處理可提升效能</li>
+                        </ul>
+                    </li>
+                    <li><strong>注意檔案權限</strong>
+                        <ul>
+                            <li>檢查是否有足夠權限</li>
+                            <li>處理權限不足的情況</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <h3>7.2 常見錯誤與解決方案</h3>
+            <div class="warning-box">
+                <strong>⚠️ 常見問題：</strong>
+                <ul>
+                    <li><strong>忘記關閉檔案</strong>
+                        <br>→ 可能造成資料遺失或資源洩漏
+                        <br>→ 使用 fclose() 關閉所有開啟的檔案
+                    </li>
+                    <li><strong>未檢查 fopen() 返回值</strong>
+                        <br>→ 檔案不存在時程式會崩潰
+                        <br>→ 必須檢查 fp != NULL
+                    </li>
+                    <li><strong>混用文字和二進位模式</strong>
+                        <br>→ Windows 上可能造成資料錯誤
+                        <br>→ 明確指定 "b" 或不加 "b"
+                    </li>
+                    <li><strong>緩衝區溢位</strong>
+                        <br>→ fgets() 要指定正確的緩衝區大小
+                        <br>→ 使用 sizeof() 確保安全
+                    </li>
+                </ul>
+            </div>
+
+            <h3>7.3 效能優化技巧</h3>
+            <div class="code-block">
+<pre>// ❌ 低效率：逐字元讀寫
+while ((ch = fgetc(fp)) != EOF) {
+    // 處理每個字元
+}
+
+// ✅ 高效率：批次讀寫
+char buffer[4096];
+while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+    // 處理整行
+}
+
+// ✅ 更高效率：使用 fread 大量讀取
+size_t bytesRead;
+char buffer[8192];
+while ((bytesRead = fread(buffer, 1, sizeof(buffer), fp)) > 0) {
+    // 處理資料
+}</pre>
+            </div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li><strong>檔案複製程式</strong>
+                        <br>撰寫程式複製文字檔案，要求：
+                        <ul>
+                            <li>能處理任意大小的檔案</li>
+                            <li>完整的錯誤處理</li>
+                            <li>顯示複製進度</li>
+                        </ul>
+                    </li>
+                    <li><strong>字數統計工具</strong>
+                        <br>讀取文字檔，統計：
+                        <ul>
+                            <li>總字元數（含空白）</li>
+                            <li>總行數</li>
+                            <li>總字數（以空白分隔）</li>
+                        </ul>
+                    </li>
+                    <li><strong>CSV 檔案讀取</strong>
+                        <br>讀取 CSV 格式的檔案並顯示為表格
+                    </li>
+                </ol>
+
+                <h4>進階練習</h4>
+                <ol start="4">
+                    <li><strong>通訊錄系統</strong>
+                        <br>實作包含以下功能：
+                        <ul>
+                            <li>新增、修改、刪除聯絡人</li>
+                            <li>搜尋聯絡人（姓名、電話）</li>
+                            <li>匯出為 CSV 格式</li>
+                            <li>資料持久化儲存</li>
+                        </ul>
+                    </li>
+                    <li><strong>簡易資料庫</strong>
+                        <br>實作可新增、查詢、更新、刪除記錄的簡易資料庫系統
+                    </li>
+                </ol>
+
+                <h4>挑戰題</h4>
+                <ol start="6">
+                    <li><strong>文字編輯器</strong>
+                        <br>開發具有基本功能的文字編輯器：
+                        <ul>
+                            <li>開啟、儲存檔案</li>
+                            <li>插入、刪除文字</li>
+                            <li>搜尋與取代</li>
+                            <li>行號顯示</li>
+                        </ul>
+                    </li>
+                    <li><strong>日誌分析工具</strong>
+                        <br>分析日誌檔案，提供：
+                        <ul>
+                            <li>錯誤訊息統計</li>
+                            <li>時間區間過濾</li>
+                            <li>關鍵字搜尋</li>
+                            <li>生成分析報告</li>
+                        </ul>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -184,10 +1251,23 @@
             <div class="tip-box">
                 <strong>重點回顧：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li>✅ 理解檔案指標與檔案操作模式</li>
+                    <li>✅ 掌握文字檔案的讀寫方法（字元、字串、格式化）</li>
+                    <li>✅ 熟悉二進位檔案處理與 fread/fwrite</li>
+                    <li>✅ 學會檔案定位與隨機存取技巧</li>
+                    <li>✅ 建立完整的錯誤處理機制</li>
+                    <li>✅ 能夠開發實用的檔案管理程式</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>下週預告：</strong>
+                <p>Week 9 將學習「預處理器與巨集」，包含：</p>
+                <ul>
+                    <li>#define 巨集定義與使用</li>
+                    <li>條件編譯技巧</li>
+                    <li>標頭檔管理與模組化設計</li>
+                    <li>巨集函數的設計與陷阱</li>
                 </ul>
             </div>
         </div>

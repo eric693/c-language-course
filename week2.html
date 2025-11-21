@@ -14,105 +14,73 @@
         }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .nav {
-            background: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: white; padding: 15px 25px; border-radius: 8px; margin-bottom: 30px;
+            display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .nav a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            color: #3498db; text-decoration: none; font-weight: 600;
+            padding: 8px 16px; border-radius: 4px; transition: all 0.3s ease;
         }
         .nav a:hover { background: #3498db; color: white; }
         header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 30px;
+            color: white; padding: 50px 40px; border-radius: 8px; margin-bottom: 30px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         header h1 { font-size: 2.5em; margin-bottom: 10px; }
         header .subtitle { font-size: 1.1em; opacity: 0.9; }
         .content {
-            background: white;
-            border-radius: 8px;
-            padding: 40px;
-            margin-bottom: 30px;
+            background: white; border-radius: 8px; padding: 40px; margin-bottom: 30px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .content h2 {
-            color: #2c3e50;
-            font-size: 2em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3498db;
+            color: #2c3e50; font-size: 2em; margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 3px solid #3498db;
         }
-        .content h3 {
-            color: #34495e;
-            font-size: 1.5em;
-            margin: 30px 0 15px 0;
-        }
+        .content h3 { color: #34495e; font-size: 1.5em; margin: 30px 0 15px 0; }
+        .content h4 { color: #34495e; font-size: 1.2em; margin: 20px 0 10px 0; }
         .code-block {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            border-radius: 4px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 0.95em;
-            overflow-x: auto;
-            margin: 20px 0;
-            line-height: 1.6;
+            background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95em;
+            overflow-x: auto; margin: 20px 0; line-height: 1.6;
         }
+        .code-block .comment { color: #95a5a6; }
+        .code-block .keyword { color: #3498db; }
+        .code-block .string { color: #2ecc71; }
+        .code-block .function { color: #f39c12; }
+        .code-block .number { color: #e74c3c; }
         .note-box {
-            background: #e8f4f8;
-            border-left: 4px solid #3498db;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f4f8; border-left: 4px solid #3498db;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff8e1; border-left: 4px solid #ffa726;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .tip-box {
-            background: #e8f5e9;
-            border-left: 4px solid #66bb6a;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f5e9; border-left: 4px solid #66bb6a;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .exercise-section {
-            background: #f8f9fa;
-            border: 2px solid #3498db;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
+            background: #f8f9fa; border: 2px solid #3498db;
+            padding: 30px; margin: 30px 0; border-radius: 8px;
         }
+        .exercise-section h3 { color: #2c3e50; margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table th, table td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+        table th { background: #34495e; color: white; font-weight: 600; }
+        table tr:nth-child(even) { background: #f8f9fa; }
         ul, ol { margin-left: 30px; margin-top: 10px; }
         li { margin: 8px 0; }
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-        }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 40px; }
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
+            display: inline-block; padding: 12px 30px; background: #3498db;
+            color: white; text-decoration: none; border-radius: 4px; font-weight: 600;
             transition: all 0.3s ease;
         }
         .btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+            background: #2980b9; transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .btn-secondary { background: #95a5a6; }
@@ -135,172 +103,414 @@
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li><strong>條件判斷</strong></li>
-                <li><strong>關係與邏輯運算</strong></li>
-                <li><strong>多重選擇</strong></li>
-                <li><strong>for 迴圈</strong></li>
-                <li><strong>while 迴圈</strong></li>
-                <li><strong>迴圈控制</strong></li>
+                <li>條件判斷：if、else if、else</li>
+                <li>關係運算符與邏輯運算符</li>
+                <li>多重選擇：switch-case</li>
+                <li>for 迴圈</li>
+                <li>while 與 do-while 迴圈</li>
+                <li>break 與 continue 敘述</li>
+                <li>巢狀迴圈應用</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>1. 條件判斷</h2>
-            <ul>
-                <li>if 敘述基本用法</li>
-                <li>if-else 雙向分支</li>
-                <li>if-else if-else 多向分支</li>
-                <li>巢狀 if 敘述</li>
-                <li>三元運算符 (? :)</li>
-            </ul>
+            <h2>1. 條件判斷（if-else）</h2>
             
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
+            <h3>基本 if 敘述</h3>
             <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
-int main() {
-    printf("Week 2 - 條件判斷\n");
-    return 0;
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> score = <span class="number">85</span>;
+    
+    <span class="comment">// 單一條件判斷</span>
+    <span class="keyword">if</span> (score >= <span class="number">60</span>) {
+        <span class="function">printf</span>(<span class="string">"及格！\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
 }
+            </div>
+
+            <h3>if-else 雙向判斷</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> age;
+    
+    <span class="function">printf</span>(<span class="string">"請輸入年齡："</span>);
+    <span class="function">scanf</span>(<span class="string">"%d"</span>, &age);
+    
+    <span class="keyword">if</span> (age >= <span class="number">18</span>) {
+        <span class="function">printf</span>(<span class="string">"已成年，可以投票\n"</span>);
+    } <span class="keyword">else</span> {
+        <span class="function">printf</span>(<span class="string">"未成年，尚不能投票\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+            </div>
+
+            <h3>多重條件判斷（else if）</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> score;
+    
+    <span class="function">printf</span>(<span class="string">"請輸入分數："</span>);
+    <span class="function">scanf</span>(<span class="string">"%d"</span>, &score);
+    
+    <span class="keyword">if</span> (score >= <span class="number">90</span>) {
+        <span class="function">printf</span>(<span class="string">"等級：A（優秀）\n"</span>);
+    } <span class="keyword">else if</span> (score >= <span class="number">80</span>) {
+        <span class="function">printf</span>(<span class="string">"等級：B（良好）\n"</span>);
+    } <span class="keyword">else if</span> (score >= <span class="number">70</span>) {
+        <span class="function">printf</span>(<span class="string">"等級：C（中等）\n"</span>);
+    } <span class="keyword">else if</span> (score >= <span class="number">60</span>) {
+        <span class="function">printf</span>(<span class="string">"等級：D（及格）\n"</span>);
+    } <span class="keyword">else</span> {
+        <span class="function">printf</span>(<span class="string">"等級：F（不及格）\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+            </div>
+
+            <div class="tip-box">
+                <strong>重要觀念：</strong>
+                <ul>
+                    <li>條件判斷從上到下依序檢查</li>
+                    <li>找到第一個為真的條件就執行，然後跳出</li>
+                    <li>如果只有一行敘述，可以省略大括號，但建議保留</li>
+                    <li>else 必須跟在 if 或 else if 後面</li>
+                </ul>
             </div>
         </div>
 
         <div class="content">
-            <h2>2. 關係與邏輯運算</h2>
-            <ul>
-                <li>關係運算符（==, !=, >, <, >=, <=）</li>
-                <li>邏輯運算符（&&, ||, !）</li>
-                <li>短路求值特性</li>
-                <li>運算符優先順序</li>
-            </ul>
-            
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h2>2. 關係與邏輯運算符</h2>
 
-int main() {
-    printf("Week 2 - 關係與邏輯運算\n");
-    return 0;
+            <h3>關係運算符</h3>
+            <table>
+                <tr>
+                    <th>運算符</th>
+                    <th>說明</th>
+                    <th>範例</th>
+                    <th>結果</th>
+                </tr>
+                <tr>
+                    <td>==</td>
+                    <td>等於</td>
+                    <td>5 == 5</td>
+                    <td>1 (真)</td>
+                </tr>
+                <tr>
+                    <td>!=</td>
+                    <td>不等於</td>
+                    <td>5 != 3</td>
+                    <td>1 (真)</td>
+                </tr>
+                <tr>
+                    <td>&gt;</td>
+                    <td>大於</td>
+                    <td>5 &gt; 3</td>
+                    <td>1 (真)</td>
+                </tr>
+                <tr>
+                    <td>&lt;</td>
+                    <td>小於</td>
+                    <td>5 &lt; 3</td>
+                    <td>0 (假)</td>
+                </tr>
+                <tr>
+                    <td>&gt;=</td>
+                    <td>大於等於</td>
+                    <td>5 &gt;= 5</td>
+                    <td>1 (真)</td>
+                </tr>
+                <tr>
+                    <td>&lt;=</td>
+                    <td>小於等於</td>
+                    <td>5 &lt;= 3</td>
+                    <td>0 (假)</td>
+                </tr>
+            </table>
+
+            <h3>邏輯運算符</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> age = <span class="number">20</span>;
+    <span class="keyword">int</span> score = <span class="number">85</span>;
+    
+    <span class="comment">// && (AND)：兩個條件都要為真</span>
+    <span class="keyword">if</span> (age >= <span class="number">18</span> && score >= <span class="number">60</span>) {
+        <span class="function">printf</span>(<span class="string">"成年且及格\n"</span>);
+    }
+    
+    <span class="comment">// || (OR)：至少一個條件為真</span>
+    <span class="keyword">if</span> (score >= <span class="number">90</span> || age >= <span class="number">18</span>) {
+        <span class="function">printf</span>(<span class="string">"成績優秀或已成年\n"</span>);
+    }
+    
+    <span class="comment">// ! (NOT)：反轉條件</span>
+    <span class="keyword">if</span> (!(score < <span class="number">60</span>)) {
+        <span class="function">printf</span>(<span class="string">"不是不及格（即及格）\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
 }
+            </div>
+
+            <h3>短路求值</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> x = <span class="number">5</span>, y = <span class="number">10</span>;
+    
+    <span class="comment">// && 短路：第一個為假，就不檢查第二個</span>
+    <span class="keyword">if</span> (x > <span class="number">10</span> && y++ > <span class="number">5</span>) {
+        <span class="function">printf</span>(<span class="string">"這不會執行\n"</span>);
+    }
+    <span class="function">printf</span>(<span class="string">"y = %d\n"</span>, y);  <span class="comment">// y 還是 10，沒有遞增</span>
+    
+    <span class="comment">// || 短路：第一個為真，就不檢查第二個</span>
+    <span class="keyword">if</span> (x < <span class="number">10</span> || y++ > <span class="number">5</span>) {
+        <span class="function">printf</span>(<span class="string">"這會執行\n"</span>);
+    }
+    <span class="function">printf</span>(<span class="string">"y = %d\n"</span>, y);  <span class="comment">// y 還是 10</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+            </div>
+
+            <div class="warning-box">
+                <strong>常見錯誤：</strong>
+                <ul>
+                    <li>使用 = 而非 == 進行比較</li>
+                    <li>條件表達式中不小心產生副作用（如 x++）</li>
+                    <li>複雜條件沒有適當使用括號</li>
+                </ul>
             </div>
         </div>
 
         <div class="content">
-            <h2>3. 多重選擇</h2>
-            <ul>
-                <li>switch-case 基本語法</li>
-                <li>break 敘述的作用</li>
-                <li>default 分支</li>
-                <li>fall-through 現象</li>
-                <li>switch vs if-else 選擇</li>
-            </ul>
-            
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h2>3. switch-case 多重選擇</h2>
 
-int main() {
-    printf("Week 2 - 多重選擇\n");
-    return 0;
+            <h3>基本語法</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> choice;
+    
+    <span class="function">printf</span>(<span class="string">"==== 選單 ====\n"</span>);
+    <span class="function">printf</span>(<span class="string">"1. 新增\n"</span>);
+    <span class="function">printf</span>(<span class="string">"2. 刪除\n"</span>);
+    <span class="function">printf</span>(<span class="string">"3. 修改\n"</span>);
+    <span class="function">printf</span>(<span class="string">"4. 查詢\n"</span>);
+    <span class="function">printf</span>(<span class="string">"請選擇："</span>);
+    <span class="function">scanf</span>(<span class="string">"%d"</span>, &choice);
+    
+    <span class="keyword">switch</span> (choice) {
+        <span class="keyword">case</span> <span class="number">1</span>:
+            <span class="function">printf</span>(<span class="string">"執行新增操作\n"</span>);
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> <span class="number">2</span>:
+            <span class="function">printf</span>(<span class="string">"執行刪除操作\n"</span>);
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> <span class="number">3</span>:
+            <span class="function">printf</span>(<span class="string">"執行修改操作\n"</span>);
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> <span class="number">4</span>:
+            <span class="function">printf</span>(<span class="string">"執行查詢操作\n"</span>);
+            <span class="keyword">break</span>;
+        <span class="keyword">default</span>:
+            <span class="function">printf</span>(<span class="string">"無效的選擇！\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
 }
+            </div>
+
+            <h3>Fall-through 特性</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> grade;
+    
+    <span class="function">printf</span>(<span class="string">"請輸入等級 (A-F)："</span>);
+    <span class="function">scanf</span>(<span class="string">" %c"</span>, &grade);
+    
+    <span class="keyword">switch</span> (grade) {
+        <span class="keyword">case</span> <span class="string">'A'</span>:
+        <span class="keyword">case</span> <span class="string">'a'</span>:
+            <span class="function">printf</span>(<span class="string">"優秀\n"</span>);
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> <span class="string">'B'</span>:
+        <span class="keyword">case</span> <span class="string">'b'</span>:
+            <span class="function">printf</span>(<span class="string">"良好\n"</span>);
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> <span class="string">'C'</span>:
+        <span class="keyword">case</span> <span class="string">'c'</span>:
+            <span class="function">printf</span>(<span class="string">"中等\n"</span>);
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> <span class="string">'D'</span>:
+        <span class="keyword">case</span> <span class="string">'d'</span>:
+            <span class="function">printf</span>(<span class="string">"及格\n"</span>);
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> <span class="string">'F'</span>:
+        <span class="keyword">case</span> <span class="string">'f'</span>:
+            <span class="function">printf</span>(<span class="string">"不及格\n"</span>);
+            <span class="keyword">break</span>;
+        <span class="keyword">default</span>:
+            <span class="function">printf</span>(<span class="string">"無效的等級\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+            </div>
+
+            <div class="note-box">
+                <strong>switch-case 要點：</strong>
+                <ul>
+                    <li>每個 case 後面通常要加 break，否則會繼續執行下一個 case</li>
+                    <li>case 的值必須是常數或字面值</li>
+                    <li>default 是可選的，處理其他情況</li>
+                    <li>多個 case 可以共用同一段程式碼（fall-through）</li>
+                </ul>
             </div>
         </div>
 
         <div class="content">
             <h2>4. for 迴圈</h2>
-            <ul>
-                <li>for 迴圈基本語法</li>
-                <li>迴圈控制變數</li>
-                <li>多重計數器</li>
-                <li>無窮迴圈</li>
-                <li>巢狀 for 迴圈</li>
-            </ul>
-            
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
 
-int main() {
-    printf("Week 2 - for 迴圈\n");
-    return 0;
+            <h3>基本語法</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// 輸出 1 到 10</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <= <span class="number">10</span>; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, i);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="comment">// 計算 1 到 100 的總和</span>
+    <span class="keyword">int</span> sum = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <= <span class="number">100</span>; i++) {
+        sum += i;
+    }
+    <span class="function">printf</span>(<span class="string">"1到100的總和：%d\n"</span>, sum);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+            </div>
+
+            <h3>巢狀迴圈 - 九九乘法表</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="function">printf</span>(<span class="string">"==== 九九乘法表 ====\n"</span>);
+    
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <= <span class="number">9</span>; i++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j <= <span class="number">9</span>; j++) {
+            <span class="function">printf</span>(<span class="string">"%d*%d=%2d  "</span>, i, j, i*j);
+        }
+        <span class="function">printf</span>(<span class="string">"\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
 }
             </div>
         </div>
 
         <div class="content">
-            <h2>5. while 迴圈</h2>
-            <ul>
-                <li>while 迴圈基本語法</li>
-                <li>迴圈條件設計</li>
-                <li>do-while 迴圈</li>
-                <li>while vs do-while 差異</li>
-                <li>迴圈的選擇原則</li>
-            </ul>
-            
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h2>5. while 與 do-while 迴圈</h2>
 
-int main() {
-    printf("Week 2 - while 迴圈\n");
-    return 0;
+            <h3>while 迴圈</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> i = <span class="number">1</span>;
+    <span class="keyword">int</span> sum = <span class="number">0</span>;
+    
+    <span class="keyword">while</span> (i <= <span class="number">10</span>) {
+        sum += i;
+        i++;
+    }
+    
+    <span class="function">printf</span>(<span class="string">"總和：%d\n"</span>, sum);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+            </div>
+
+            <h3>do-while 迴圈</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> number;
+    
+    <span class="keyword">do</span> {
+        <span class="function">printf</span>(<span class="string">"請輸入1-10之間的數字："</span>);
+        <span class="function">scanf</span>(<span class="string">"%d"</span>, &number);
+        
+        <span class="keyword">if</span> (number < <span class="number">1</span> || number > <span class="number">10</span>) {
+            <span class="function">printf</span>(<span class="string">"輸入錯誤，請重新輸入！\n"</span>);
+        }
+    } <span class="keyword">while</span> (number < <span class="number">1</span> || number > <span class="number">10</span>);
+    
+    <span class="function">printf</span>(<span class="string">"你輸入的是：%d\n"</span>, number);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
 }
             </div>
         </div>
 
         <div class="content">
-            <h2>6. 迴圈控制</h2>
-            <ul>
-                <li>break - 跳出迴圈</li>
-                <li>continue - 跳過迭代</li>
-                <li>多層迴圈的 break/continue</li>
-                <li>goto 敘述（不建議使用）</li>
-            </ul>
-            
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h2>6. break 與 continue</h2>
 
-int main() {
-    printf("Week 2 - 迴圈控制\n");
-    return 0;
+            <h3>break - 跳出迴圈</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// 找到第一個能被7整除的數</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <= <span class="number">100</span>; i++) {
+        <span class="keyword">if</span> (i % <span class="number">7</span> == <span class="number">0</span>) {
+            <span class="function">printf</span>(<span class="string">"找到了：%d\n"</span>, i);
+            <span class="keyword">break</span>;
+        }
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+            </div>
+
+            <h3>continue - 跳過本次迭代</h3>
+            <div class="code-block">
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// 輸出1到10中的奇數</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <= <span class="number">10</span>; i++) {
+        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) {
+            <span class="keyword">continue</span>;  <span class="comment">// 跳過偶數</span>
+        }
+        <span class="function">printf</span>(<span class="string">"%d "</span>, i);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
 }
             </div>
         </div>
@@ -308,33 +518,122 @@ int main() {
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li>
+                        <strong>奇偶數判斷</strong><br>
+                        撰寫程式，讀取一個整數，判斷並輸出它是奇數還是偶數。
+                    </li>
+                    <li>
+                        <strong>最大值與最小值</strong><br>
+                        讀取三個整數，找出並輸出其中的最大值和最小值。
+                    </li>
+                    <li>
+                        <strong>閏年判斷</strong><br>
+                        讀取年份，判斷是否為閏年。<br>
+                        提示：能被4整除但不能被100整除，或能被400整除的年份是閏年。
+                    </li>
                 </ol>
+
+                <h4>迴圈練習</h4>
+                <ol start="4">
+                    <li>
+                        <strong>階乘計算</strong><br>
+                        讀取一個正整數 n，計算並輸出 n! 的值。
+                    </li>
+                    <li>
+                        <strong>質數判斷</strong><br>
+                        撰寫程式，輸出 1 到 100 之間的所有質數。
+                    </li>
+                    <li>
+                        <strong>費氏數列</strong><br>
+                        輸出費氏數列的前 20 項（1, 1, 2, 3, 5, 8, 13...）
+                    </li>
+                </ol>
+
+                <h4>進階練習</h4>
+                <ol start="7">
+                    <li>
+                        <strong>猜數字遊戲</strong><br>
+                        程式產生一個 1-100 的隨機數，使用者猜數字，<br>
+                        程式提示「太大」或「太小」，直到猜中為止，並顯示猜測次數。
+                    </li>
+                    <li>
+                        <strong>圖案列印</strong><br>
+                        使用巢狀迴圈列印以下圖案：<br>
+                        <pre>
+*
+**
+***
+****
+*****
+                        </pre>
+                    </li>
+                    <li>
+                        <strong>數字金字塔</strong><br>
+                        列印數字金字塔：<br>
+                        <pre>
+    1
+   121
+  12321
+ 1234321
+123454321
+                        </pre>
+                    </li>
+                    <li>
+                        <strong>計算機選單</strong><br>
+                        使用 switch-case 製作一個選單式計算機，<br>
+                        讓使用者選擇運算類型後輸入兩個數字進行計算。
+                    </li>
+                </ol>
+
+                <div class="tip-box">
+                    <strong>練習提示：</strong>
+                    <ul>
+                        <li>先在紙上畫出流程圖</li>
+                        <li>從簡單的測試資料開始驗證</li>
+                        <li>注意迴圈的終止條件</li>
+                        <li>巢狀迴圈要仔細思考內外層的關係</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="content">
             <h2>本週總結</h2>
-            <div class="tip-box">
-                <strong>重點回顧：</strong>
+            
+            <h3>重點回顧</h3>
+            <ul>
+                <li>掌握 if-else 條件判斷的各種形式</li>
+                <li>理解關係運算符與邏輯運算符的使用</li>
+                <li>熟悉 switch-case 的語法和應用時機</li>
+                <li>能夠使用 for、while、do-while 三種迴圈</li>
+                <li>理解 break 和 continue 的作用</li>
+                <li>能夠設計和實作巢狀迴圈</li>
+            </ul>
+
+            <h3>自我檢核</h3>
+            <div class="note-box">
+                <strong>請確認你能夠：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li>根據需求選擇適當的條件判斷結構</li>
+                    <li>正確使用邏輯運算符組合多個條件</li>
+                    <li>選擇合適的迴圈結構解決問題</li>
+                    <li>使用巢狀迴圈處理二維問題</li>
+                    <li>適時使用 break 和 continue 控制迴圈</li>
                 </ul>
+            </div>
+
+            <h3>下週預告</h3>
+            <div class="note-box">
+                Week 3 將學習陣列與字串，這是處理大量資料的基礎工具。
             </div>
         </div>
 
         <div class="nav-buttons">
             <a href="week1.html" class="btn btn-secondary">← Week 1</a>
-            <a href="week3.html" class="btn">Week 3 →</a>
+            <a href="week3.html" class="btn">Week 3：陣列與字串 →</a>
         </div>
     </div>
 </body>
