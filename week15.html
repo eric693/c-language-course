@@ -61,6 +61,11 @@
             font-size: 1.5em;
             margin: 30px 0 15px 0;
         }
+        .content h4 {
+            color: #546e7a;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
         .code-block {
             background: #2c3e50;
             color: #ecf0f1;
@@ -82,6 +87,13 @@
         .tip-box {
             background: #e8f5e9;
             border-left: 4px solid #66bb6a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
             padding: 20px;
             margin: 20px 0;
             border-radius: 4px;
@@ -117,6 +129,20 @@
         }
         .btn-secondary { background: #95a5a6; }
         .btn-secondary:hover { background: #7f8c8d; }
+        .feature-box {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #3498db;
+        }
+        .structure-box {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
     </style>
 </head>
 <body>
@@ -135,46 +161,828 @@
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>核心概念與理論基礎</li>
-                <li>程式碼範例與詳細說明</li>
-                <li>實作練習與應用</li>
-                <li>常見問題與解決方案</li>
-                <li>最佳實務與開發技巧</li>
+                <li>專案需求分析與規劃</li>
+                <li>系統架構設計</li>
+                <li>資料結構設計</li>
+                <li>核心功能模組實作</li>
+                <li>檔案資料持久化</li>
+                <li>使用者介面設計</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>核心內容</h2>
-            <p>本週將深入學習 綜合專案開發 (一)，這是 C 語言程式設計中的重要主題。</p>
+            <h2>1. 專案需求分析</h2>
             
-            <div class="note-box">
-                <strong>學習重點：</strong>
-                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
+            <h3>1.1 系統功能需求</h3>
+            <p>學生管理系統是一個整合前面所學知識的綜合專案，包含以下核心功能：</p>
+            
+            <div class="feature-box">
+                <strong>基本功能：</strong>
+                <ul>
+                    <li>新增學生資料</li>
+                    <li>查詢學生資料（學號、姓名）</li>
+                    <li>修改學生資料</li>
+                    <li>刪除學生資料</li>
+                    <li>顯示所有學生</li>
+                </ul>
             </div>
+
+            <div class="feature-box">
+                <strong>進階功能：</strong>
+                <ul>
+                    <li>成績管理（多科目）</li>
+                    <li>統計分析（平均分、排名）</li>
+                    <li>資料排序（學號、成績）</li>
+                    <li>資料匯出（CSV、文字報表）</li>
+                    <li>資料持久化（檔案儲存）</li>
+                </ul>
+            </div>
+
+            <h3>1.2 系統架構設計</h3>
+            <div class="structure-box">
+專案結構：
+student-management/
+├── main.c           # 主程式
+├── student.h        # 學生資料結構定義
+├── student.c        # 學生操作函數
+├── file_io.h        # 檔案 I/O 介面
+├── file_io.c        # 檔案 I/O 實作
+├── ui.h             # 使用者介面
+├── ui.c             # 使用者介面實作
+├── utils.h          # 工具函數
+├── utils.c          # 工具函數實作
+└── students.dat     # 資料檔案
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>2. 資料結構設計</h2>
             
-            <h3>詳細說明</h3>
-            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
+            <h3>2.1 學生結構定義（student.h）</h3>
+            <div class="code-block">
+<pre>#ifndef STUDENT_H
+#define STUDENT_H
+
+#define MAX_NAME 50
+#define MAX_SUBJECTS 5
+
+// 學生結構
+typedef struct {
+    int id;                          // 學號
+    char name[MAX_NAME];             // 姓名
+    int age;                         // 年齡
+    char gender;                     // 性別 ('M' or 'F')
+    float scores[MAX_SUBJECTS];      // 各科成績
+    float average;                   // 平均成績
+} Student;
+
+// 學生列表節點
+typedef struct StudentNode {
+    Student data;
+    struct StudentNode *next;
+} StudentNode;
+
+// 學生管理系統
+typedef struct {
+    StudentNode *head;
+    int count;
+} StudentSystem;
+
+// 函數宣告
+void initSystem(StudentSystem *sys);
+int addStudent(StudentSystem *sys, Student *student);
+StudentNode* findStudentById(StudentSystem *sys, int id);
+StudentNode* findStudentByName(StudentSystem *sys, const char *name);
+int updateStudent(StudentSystem *sys, int id, Student *newData);
+int deleteStudent(StudentSystem *sys, int id);
+void displayStudent(Student *student);
+void displayAllStudents(StudentSystem *sys);
+void calculateAverage(Student *student);
+void sortStudentsByScore(StudentSystem *sys);
+void generateReport(StudentSystem *sys);
+void freeSystem(StudentSystem *sys);
+
+#endif</pre>
+            </div>
+
+            <h3>2.2 學生操作函數實作（student.c）</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include "student.h"
+
+// 初始化系統
+void initSystem(StudentSystem *sys) {
+    sys->head = NULL;
+    sys->count = 0;
+}
+
+// 計算平均成績
+void calculateAverage(Student *student) {
+    float sum = 0;
+    for (int i = 0; i < MAX_SUBJECTS; i++) {
+        sum += student->scores[i];
+    }
+    student->average = sum / MAX_SUBJECTS;
+}
+
+// 新增學生
+int addStudent(StudentSystem *sys, Student *student) {
+    // 檢查學號是否重複
+    if (findStudentById(sys, student->id) != NULL) {
+        printf("錯誤：學號 %d 已存在！\n", student->id);
+        return 0;
+    }
+    
+    // 計算平均成績
+    calculateAverage(student);
+    
+    // 建立新節點
+    StudentNode *newNode = (StudentNode*)malloc(sizeof(StudentNode));
+    if (newNode == NULL) {
+        printf("錯誤：記憶體配置失敗！\n");
+        return 0;
+    }
+    
+    newNode->data = *student;
+    newNode->next = sys->head;
+    sys->head = newNode;
+    sys->count++;
+    
+    return 1;
+}
+
+// 根據學號查詢學生
+StudentNode* findStudentById(StudentSystem *sys, int id) {
+    StudentNode *current = sys->head;
+    while (current != NULL) {
+        if (current->data.id == id) {
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
+}
+
+// 根據姓名查詢學生
+StudentNode* findStudentByName(StudentSystem *sys, const char *name) {
+    StudentNode *current = sys->head;
+    while (current != NULL) {
+        if (strcmp(current->data.name, name) == 0) {
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
+}
+
+// 更新學生資料
+int updateStudent(StudentSystem *sys, int id, Student *newData) {
+    StudentNode *node = findStudentById(sys, id);
+    if (node == NULL) {
+        printf("錯誤：找不到學號 %d 的學生！\n", id);
+        return 0;
+    }
+    
+    // 保留原學號
+    newData->id = id;
+    calculateAverage(newData);
+    node->data = *newData;
+    
+    return 1;
+}
+
+// 刪除學生
+int deleteStudent(StudentSystem *sys, int id) {
+    StudentNode *current = sys->head;
+    StudentNode *prev = NULL;
+    
+    while (current != NULL) {
+        if (current->data.id == id) {
+            if (prev == NULL) {
+                sys->head = current->next;
+            } else {
+                prev->next = current->next;
+            }
+            free(current);
+            sys->count--;
+            return 1;
+        }
+        prev = current;
+        current = current->next;
+    }
+    
+    printf("錯誤：找不到學號 %d 的學生！\n", id);
+    return 0;
+}
+
+// 顯示單一學生資料
+void displayStudent(Student *student) {
+    printf("\n========================================\n");
+    printf("學號：%d\n", student->id);
+    printf("姓名：%s\n", student->name);
+    printf("年齡：%d\n", student->age);
+    printf("性別：%c\n", student->gender);
+    printf("科目成績：\n");
+    const char *subjects[] = {"國文", "英文", "數學", "自然", "社會"};
+    for (int i = 0; i < MAX_SUBJECTS; i++) {
+        printf("  %s：%.1f\n", subjects[i], student->scores[i]);
+    }
+    printf("平均成績：%.2f\n", student->average);
+    printf("========================================\n");
+}
+
+// 顯示所有學生
+void displayAllStudents(StudentSystem *sys) {
+    if (sys->head == NULL) {
+        printf("\n目前沒有學生資料。\n");
+        return;
+    }
+    
+    printf("\n共有 %d 位學生：\n", sys->count);
+    printf("%-8s %-12s %-6s %-6s %-8s\n", 
+           "學號", "姓名", "年齡", "性別", "平均");
+    printf("================================================\n");
+    
+    StudentNode *current = sys->head;
+    while (current != NULL) {
+        printf("%-8d %-12s %-6d %-6c %-8.2f\n",
+               current->data.id,
+               current->data.name,
+               current->data.age,
+               current->data.gender,
+               current->data.average);
+        current = current->next;
+    }
+}
+
+// 成績排序（氣泡排序）
+void sortStudentsByScore(StudentSystem *sys) {
+    if (sys->head == NULL || sys->head->next == NULL) {
+        return;
+    }
+    
+    int swapped;
+    StudentNode *ptr1;
+    StudentNode *lptr = NULL;
+    
+    do {
+        swapped = 0;
+        ptr1 = sys->head;
+        
+        while (ptr1->next != lptr) {
+            if (ptr1->data.average < ptr1->next->data.average) {
+                Student temp = ptr1->data;
+                ptr1->data = ptr1->next->data;
+                ptr1->next->data = temp;
+                swapped = 1;
+            }
+            ptr1 = ptr1->next;
+        }
+        lptr = ptr1;
+    } while (swapped);
+}
+
+// 產生報表
+void generateReport(StudentSystem *sys) {
+    if (sys->head == NULL) {
+        printf("沒有資料可以產生報表。\n");
+        return;
+    }
+    
+    float totalAvg = 0;
+    float maxAvg = sys->head->data.average;
+    float minAvg = sys->head->data.average;
+    Student *topStudent = &sys->head->data;
+    
+    StudentNode *current = sys->head;
+    while (current != NULL) {
+        totalAvg += current->data.average;
+        
+        if (current->data.average > maxAvg) {
+            maxAvg = current->data.average;
+            topStudent = &current->data;
+        }
+        
+        if (current->data.average < minAvg) {
+            minAvg = current->data.average;
+        }
+        
+        current = current->next;
+    }
+    
+    printf("\n========== 統計報表 ==========\n");
+    printf("學生總數：%d\n", sys->count);
+    printf("全班平均：%.2f\n", totalAvg / sys->count);
+    printf("最高平均：%.2f（%s）\n", maxAvg, topStudent->name);
+    printf("最低平均：%.2f\n", minAvg);
+    printf("==============================\n");
+}
+
+// 釋放系統資源
+void freeSystem(StudentSystem *sys) {
+    StudentNode *current = sys->head;
+    while (current != NULL) {
+        StudentNode *temp = current;
+        current = current->next;
+        free(temp);
+    }
+    sys->head = NULL;
+    sys->count = 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>3. 檔案持久化</h2>
             
-            <h3>實作建議</h3>
-            <ul>
-                <li>從基本概念開始，逐步進階</li>
-                <li>每個範例都要實際撰寫並執行</li>
-                <li>遇到問題要積極查找資料</li>
-                <li>完成練習題以驗證理解程度</li>
-            </ul>
+            <h3>3.1 檔案 I/O 介面（file_io.h）</h3>
+            <div class="code-block">
+<pre>#ifndef FILE_IO_H
+#define FILE_IO_H
+
+#include "student.h"
+
+#define DATA_FILE "students.dat"
+
+int saveToFile(StudentSystem *sys, const char *filename);
+int loadFromFile(StudentSystem *sys, const char *filename);
+int exportToCSV(StudentSystem *sys, const char *filename);
+
+#endif</pre>
+            </div>
+
+            <h3>3.2 檔案 I/O 實作（file_io.c）</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include "file_io.h"
+
+// 儲存到二進位檔案
+int saveToFile(StudentSystem *sys, const char *filename) {
+    FILE *fp = fopen(filename, "wb");
+    if (fp == NULL) {
+        printf("錯誤：無法開啟檔案 '%s'\n", filename);
+        return 0;
+    }
+    
+    // 寫入學生數量
+    fwrite(&sys->count, sizeof(int), 1, fp);
+    
+    // 寫入所有學生資料
+    StudentNode *current = sys->head;
+    while (current != NULL) {
+        fwrite(&current->data, sizeof(Student), 1, fp);
+        current = current->next;
+    }
+    
+    fclose(fp);
+    printf("資料已儲存到 %s（共 %d 筆）\n", filename, sys->count);
+    return 1;
+}
+
+// 從二進位檔案載入
+int loadFromFile(StudentSystem *sys, const char *filename) {
+    FILE *fp = fopen(filename, "rb");
+    if (fp == NULL) {
+        printf("提示：找不到資料檔案 '%s'，將建立新檔案。\n", filename);
+        return 0;
+    }
+    
+    // 讀取學生數量
+    int count;
+    fread(&count, sizeof(int), 1, fp);
+    
+    // 讀取所有學生資料
+    for (int i = 0; i < count; i++) {
+        Student student;
+        if (fread(&student, sizeof(Student), 1, fp) == 1) {
+            addStudent(sys, &student);
+        }
+    }
+    
+    fclose(fp);
+    printf("已載入 %d 筆學生資料\n", sys->count);
+    return 1;
+}
+
+// 匯出為 CSV
+int exportToCSV(StudentSystem *sys, const char *filename) {
+    FILE *fp = fopen(filename, "w");
+    if (fp == NULL) {
+        printf("錯誤：無法建立檔案 '%s'\n", filename);
+        return 0;
+    }
+    
+    // 寫入標題行
+    fprintf(fp, "學號,姓名,年齡,性別,國文,英文,數學,自然,社會,平均\n");
+    
+    // 寫入資料
+    StudentNode *current = sys->head;
+    while (current != NULL) {
+        fprintf(fp, "%d,%s,%d,%c,%.1f,%.1f,%.1f,%.1f,%.1f,%.2f\n",
+                current->data.id,
+                current->data.name,
+                current->data.age,
+                current->data.gender,
+                current->data.scores[0],
+                current->data.scores[1],
+                current->data.scores[2],
+                current->data.scores[3],
+                current->data.scores[4],
+                current->data.average);
+        current = current->next;
+    }
+    
+    fclose(fp);
+    printf("資料已匯出到 %s\n", filename);
+    return 1;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>4. 使用者介面</h2>
+            
+            <h3>4.1 UI 介面（ui.h）</h3>
+            <div class="code-block">
+<pre>#ifndef UI_H
+#define UI_H
+
+#include "student.h"
+
+void showMenu();
+void handleAddStudent(StudentSystem *sys);
+void handleSearchStudent(StudentSystem *sys);
+void handleUpdateStudent(StudentSystem *sys);
+void handleDeleteStudent(StudentSystem *sys);
+void clearInputBuffer();
+
+#endif</pre>
+            </div>
+
+            <h3>4.2 UI 實作（ui.c）</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "ui.h"
+
+void showMenu() {
+    printf("\n");
+    printf("╔════════════════════════════════════╗\n");
+    printf("║      學生管理系統 v1.0            ║\n");
+    printf("╠════════════════════════════════════╣\n");
+    printf("║  1. 新增學生                      ║\n");
+    printf("║  2. 查詢學生                      ║\n");
+    printf("║  3. 修改學生                      ║\n");
+    printf("║  4. 刪除學生                      ║\n");
+    printf("║  5. 顯示所有學生                  ║\n");
+    printf("║  6. 成績排序                      ║\n");
+    printf("║  7. 統計報表                      ║\n");
+    printf("║  8. 匯出 CSV                      ║\n");
+    printf("║  0. 離開系統                      ║\n");
+    printf("╚════════════════════════════════════╝\n");
+    printf("請選擇功能：");
+}
+
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+void handleAddStudent(StudentSystem *sys) {
+    Student student;
+    
+    printf("\n========== 新增學生 ==========\n");
+    
+    printf("學號：");
+    scanf("%d", &student.id);
+    clearInputBuffer();
+    
+    printf("姓名：");
+    fgets(student.name, MAX_NAME, stdin);
+    student.name[strcspn(student.name, "\n")] = 0;
+    
+    printf("年齡：");
+    scanf("%d", &student.age);
+    
+    printf("性別 (M/F)：");
+    scanf(" %c", &student.gender);
+    
+    printf("請輸入各科成績：\n");
+    const char *subjects[] = {"國文", "英文", "數學", "自然", "社會"};
+    for (int i = 0; i < MAX_SUBJECTS; i++) {
+        printf("%s：", subjects[i]);
+        scanf("%f", &student.scores[i]);
+    }
+    
+    if (addStudent(sys, &student)) {
+        printf("\n學生新增成功！\n");
+    }
+}
+
+void handleSearchStudent(StudentSystem *sys) {
+    int choice;
+    printf("\n========== 查詢學生 ==========\n");
+    printf("1. 依學號查詢\n");
+    printf("2. 依姓名查詢\n");
+    printf("請選擇：");
+    scanf("%d", &choice);
+    clearInputBuffer();
+    
+    if (choice == 1) {
+        int id;
+        printf("請輸入學號：");
+        scanf("%d", &id);
+        
+        StudentNode *node = findStudentById(sys, id);
+        if (node != NULL) {
+            displayStudent(&node->data);
+        } else {
+            printf("找不到學號 %d 的學生。\n", id);
+        }
+    } else if (choice == 2) {
+        char name[MAX_NAME];
+        printf("請輸入姓名：");
+        fgets(name, MAX_NAME, stdin);
+        name[strcspn(name, "\n")] = 0;
+        
+        StudentNode *node = findStudentByName(sys, name);
+        if (node != NULL) {
+            displayStudent(&node->data);
+        } else {
+            printf("找不到姓名為 %s 的學生。\n", name);
+        }
+    }
+}
+
+void handleUpdateStudent(StudentSystem *sys) {
+    int id;
+    printf("\n========== 修改學生 ==========\n");
+    printf("請輸入要修改的學號：");
+    scanf("%d", &id);
+    clearInputBuffer();
+    
+    StudentNode *node = findStudentById(sys, id);
+    if (node == NULL) {
+        printf("找不到學號 %d 的學生。\n", id);
+        return;
+    }
+    
+    printf("目前資料：\n");
+    displayStudent(&node->data);
+    
+    Student newData = node->data;
+    
+    printf("\n請輸入新資料（直接按 Enter 保留原值）：\n");
+    
+    printf("姓名 [%s]：", newData.name);
+    char input[MAX_NAME];
+    fgets(input, MAX_NAME, stdin);
+    if (input[0] != '\n') {
+        input[strcspn(input, "\n")] = 0;
+        strcpy(newData.name, input);
+    }
+    
+    printf("年齡 [%d]：", newData.age);
+    if (fgets(input, MAX_NAME, stdin) != NULL && input[0] != '\n') {
+        newData.age = atoi(input);
+    }
+    
+    const char *subjects[] = {"國文", "英文", "數學", "自然", "社會"};
+    for (int i = 0; i < MAX_SUBJECTS; i++) {
+        printf("%s [%.1f]：", subjects[i], newData.scores[i]);
+        if (fgets(input, MAX_NAME, stdin) != NULL && input[0] != '\n') {
+            newData.scores[i] = atof(input);
+        }
+    }
+    
+    if (updateStudent(sys, id, &newData)) {
+        printf("\n學生資料已更新！\n");
+    }
+}
+
+void handleDeleteStudent(StudentSystem *sys) {
+    int id;
+    printf("\n========== 刪除學生 ==========\n");
+    printf("請輸入要刪除的學號：");
+    scanf("%d", &id);
+    
+    StudentNode *node = findStudentById(sys, id);
+    if (node == NULL) {
+        printf("找不到學號 %d 的學生。\n", id);
+        return;
+    }
+    
+    printf("確定要刪除以下學生嗎？(Y/N)：\n");
+    displayStudent(&node->data);
+    
+    char confirm;
+    scanf(" %c", &confirm);
+    
+    if (confirm == 'Y' || confirm == 'y') {
+        if (deleteStudent(sys, id)) {
+            printf("學生已刪除。\n");
+        }
+    } else {
+        printf("取消刪除。\n");
+    }
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>5. 主程式整合</h2>
+            
+            <h3>5.1 主程式（main.c）</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "student.h"
+#include "file_io.h"
+#include "ui.h"
+
+int main() {
+    StudentSystem sys;
+    initSystem(&sys);
+    
+    // 載入資料
+    loadFromFile(&sys, DATA_FILE);
+    
+    int choice;
+    int running = 1;
+    
+    while (running) {
+        showMenu();
+        scanf("%d", &choice);
+        clearInputBuffer();
+        
+        switch (choice) {
+            case 1:
+                handleAddStudent(&sys);
+                break;
+            
+            case 2:
+                handleSearchStudent(&sys);
+                break;
+            
+            case 3:
+                handleUpdateStudent(&sys);
+                break;
+            
+            case 4:
+                handleDeleteStudent(&sys);
+                break;
+            
+            case 5:
+                displayAllStudents(&sys);
+                break;
+            
+            case 6:
+                sortStudentsByScore(&sys);
+                printf("已依成績排序（高到低）\n");
+                displayAllStudents(&sys);
+                break;
+            
+            case 7:
+                generateReport(&sys);
+                break;
+            
+            case 8: {
+                char filename[100];
+                printf("請輸入檔案名稱（例如：students.csv）：");
+                scanf("%s", filename);
+                exportToCSV(&sys, filename);
+                break;
+            }
+            
+            case 0:
+                printf("\n確定要離開嗎？(Y/N)：");
+                char confirm;
+                scanf(" %c", &confirm);
+                if (confirm == 'Y' || confirm == 'y') {
+                    saveToFile(&sys, DATA_FILE);
+                    running = 0;
+                }
+                break;
+            
+            default:
+                printf("無效的選擇，請重新輸入。\n");
+        }
+    }
+    
+    freeSystem(&sys);
+    printf("\n系統已關閉，感謝使用！\n");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>5.2 編譯與執行</h3>
+            <div class="code-block">
+<pre># 編譯專案
+gcc -o student_system main.c student.c file_io.c ui.c
+
+# 執行程式
+./student_system</pre>
+            </div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li><strong>功能擴充</strong>
+                        <br>為系統新增以下功能：
+                        <ul>
+                            <li>按姓名排序</li>
+                            <li>按學號排序</li>
+                            <li>成績等第計算（A/B/C/D/F）</li>
+                            <li>及格/不及格統計</li>
+                        </ul>
+                    </li>
+                    <li><strong>資料驗證</strong>
+                        <br>加強輸入驗證：
+                        <ul>
+                            <li>學號格式檢查</li>
+                            <li>成績範圍檢查（0-100）</li>
+                            <li>年齡合理性檢查</li>
+                            <li>姓名長度限制</li>
+                        </ul>
+                    </li>
+                    <li><strong>介面優化</strong>
+                        <br>改進使用者介面：
+                        <ul>
+                            <li>清除螢幕功能</li>
+                            <li>分頁顯示</li>
+                            <li>彩色輸出</li>
+                            <li>操作提示訊息</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>進階練習</h4>
+                <ol start="4">
+                    <li><strong>搜尋功能增強</strong>
+                        <br>實作進階搜尋：
+                        <ul>
+                            <li>模糊搜尋（姓名部分匹配）</li>
+                            <li>成績區間搜尋</li>
+                            <li>多條件組合搜尋</li>
+                            <li>搜尋結果排序</li>
+                        </ul>
+                    </li>
+                    <li><strong>備份與還原</strong>
+                        <br>資料管理功能：
+                        <ul>
+                            <li>自動備份機制</li>
+                            <li>多版本備份</li>
+                            <li>資料還原功能</li>
+                            <li>備份檔案管理</li>
+                        </ul>
+                    </li>
+                    <li><strong>報表功能</strong>
+                        <br>產生各類統計報表：
+                        <ul>
+                            <li>各科成績分佈圖</li>
+                            <li>班級成績趨勢</li>
+                            <li>個人成績單</li>
+                            <li>匯出 PDF 報表</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>挑戰題</h4>
+                <ol start="7">
+                    <li><strong>多使用者系統</strong>
+                        <br>實作權限管理：
+                        <ul>
+                            <li>使用者登入系統</li>
+                            <li>教師/學生不同權限</li>
+                            <li>操作日誌記錄</li>
+                            <li>密碼加密儲存</li>
+                        </ul>
+                    </li>
+                    <li><strong>資料庫整合</strong>
+                        <br>使用 SQLite 資料庫：
+                        <ul>
+                            <li>建立資料表結構</li>
+                            <li>SQL 查詢操作</li>
+                            <li>交易處理</li>
+                            <li>效能優化</li>
+                        </ul>
+                    </li>
+                    <li><strong>網路功能</strong>
+                        <br>加入網路通訊：
+                        <ul>
+                            <li>Client-Server 架構</li>
+                            <li>多人同時存取</li>
+                            <li>資料同步機制</li>
+                            <li>遠端管理功能</li>
+                        </ul>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -184,10 +992,35 @@
             <div class="tip-box">
                 <strong>重點回顧：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li>完成需求分析與系統設計</li>
+                    <li>實作完整的資料結構</li>
+                    <li>建立模組化的程式架構</li>
+                    <li>實現資料持久化機制</li>
+                    <li>設計友善的使用者介面</li>
+                    <li>整合所有功能模組</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>開發注意事項：</strong>
+                <ul>
+                    <li>程式碼要保持良好的結構與可讀性</li>
+                    <li>加入完整的錯誤處理</li>
+                    <li>注意記憶體管理，避免洩漏</li>
+                    <li>定期測試各項功能</li>
+                    <li>撰寫清楚的註解說明</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>下週預告：</strong>
+                <p>Week 16 將進行「綜合專案開發（二）」，包含：</p>
+                <ul>
+                    <li>遊戲程式開發實作</li>
+                    <li>圖形介面設計</li>
+                    <li>程式碼重構與優化</li>
+                    <li>除錯技巧與測試</li>
+                    <li>課程總複習與未來展望</li>
                 </ul>
             </div>
         </div>

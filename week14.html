@@ -61,6 +61,11 @@
             font-size: 1.5em;
             margin: 30px 0 15px 0;
         }
+        .content h4 {
+            color: #546e7a;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
         .code-block {
             background: #2c3e50;
             color: #ecf0f1;
@@ -82,6 +87,13 @@
         .tip-box {
             background: #e8f5e9;
             border-left: 4px solid #66bb6a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
             padding: 20px;
             margin: 20px 0;
             border-radius: 4px;
@@ -117,6 +129,28 @@
         }
         .btn-secondary { background: #95a5a6; }
         .btn-secondary:hover { background: #7f8c8d; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .command-box {
+            background: #f5f5f5;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-left: 3px solid #3498db;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
     </style>
 </head>
 <body>
@@ -129,52 +163,1018 @@
 
         <header>
             <h1>Week 14 - 實用工具開發</h1>
-            <div class="subtitle">學習目標：開發實用的命令列工具程式</div>
+            <div class="subtitle">學習目標：開發實用的命令列工具與系統程式</div>
         </header>
 
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>核心概念與理論基礎</li>
-                <li>程式碼範例與詳細說明</li>
-                <li>實作練習與應用</li>
-                <li>常見問題與解決方案</li>
-                <li>最佳實務與開發技巧</li>
+                <li>命令列參數處理</li>
+                <li>文字處理工具開發</li>
+                <li>檔案管理工具實作</li>
+                <li>資料轉換程式設計</li>
+                <li>系統工具程式開發</li>
+                <li>錯誤處理與使用者介面設計</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>核心內容</h2>
-            <p>本週將深入學習 實用工具開發，這是 C 語言程式設計中的重要主題。</p>
+            <h2>1. 命令列參數處理</h2>
+            
+            <h3>1.1 基本參數處理</h3>
+            <p>命令列參數透過 main 函數的 argc 和 argv 傳遞。</p>
             
             <div class="note-box">
-                <strong>學習重點：</strong>
-                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
+                <strong>main 函數參數：</strong>
+                <ul>
+                    <li><strong>argc</strong>（argument count）：參數數量（包含程式名稱）</li>
+                    <li><strong>argv</strong>（argument vector）：參數陣列（字串指標陣列）</li>
+                    <li><strong>argv[0]</strong>：程式名稱</li>
+                    <li><strong>argv[1]</strong> 到 <strong>argv[argc-1]</strong>：實際參數</li>
+                </ul>
             </div>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(int argc, char *argv[]) {
+    printf("程式名稱：%s\n", argv[0]);
+    printf("參數數量：%d\n", argc - 1);
+    
+    if (argc > 1) {
+        printf("\n接收到的參數：\n");
+        for (int i = 1; i < argc; i++) {
+            printf("  argv[%d] = %s\n", i, argv[i]);
+        }
+    } else {
+        printf("\n沒有接收到任何參數\n");
+        printf("使用方式：%s <參數1> <參數2> ...\n", argv[0]);
+    }
+    
+    return 0;
+}
+
+// 執行範例：
+// ./program hello world 123
+// 輸出：
+// 程式名稱：./program
+// 參數數量：3
+// 接收到的參數：
+//   argv[1] = hello
+//   argv[2] = world
+//   argv[3] = 123</pre>
+            </div>
+
+            <h3>1.2 進階參數解析</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct {
+    char *inputFile;
+    char *outputFile;
+    int verbose;
+    int help;
+} Options;
+
+void printHelp(const char *programName) {
+    printf("使用方式：%s [選項]\n", programName);
+    printf("\n選項：\n");
+    printf("  -i, --input <檔案>    指定輸入檔案\n");
+    printf("  -o, --output <檔案>   指定輸出檔案\n");
+    printf("  -v, --verbose         顯示詳細資訊\n");
+    printf("  -h, --help            顯示此說明\n");
+}
+
+int parseArguments(int argc, char *argv[], Options *opts) {
+    // 初始化選項
+    opts->inputFile = NULL;
+    opts->outputFile = NULL;
+    opts->verbose = 0;
+    opts->help = 0;
+    
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
+            opts->help = 1;
+        } else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--verbose") == 0) {
+            opts->verbose = 1;
+        } else if (strcmp(argv[i], "-i") == 0 || strcmp(argv[i], "--input") == 0) {
+            if (i + 1 < argc) {
+                opts->inputFile = argv[++i];
+            } else {
+                fprintf(stderr, "錯誤：-i 選項需要指定檔案名稱\n");
+                return 0;
+            }
+        } else if (strcmp(argv[i], "-o") == 0 || strcmp(argv[i], "--output") == 0) {
+            if (i + 1 < argc) {
+                opts->outputFile = argv[++i];
+            } else {
+                fprintf(stderr, "錯誤：-o 選項需要指定檔案名稱\n");
+                return 0;
+            }
+        } else {
+            fprintf(stderr, "錯誤：未知選項 '%s'\n", argv[i]);
+            return 0;
+        }
+    }
+    
+    return 1;
+}
+
+int main(int argc, char *argv[]) {
+    Options opts;
+    
+    if (!parseArguments(argc, argv, &opts)) {
+        printHelp(argv[0]);
+        return 1;
+    }
+    
+    if (opts.help) {
+        printHelp(argv[0]);
+        return 0;
+    }
+    
+    // 顯示解析結果
+    printf("解析的選項：\n");
+    printf("  輸入檔案：%s\n", opts.inputFile ? opts.inputFile : "（未指定）");
+    printf("  輸出檔案：%s\n", opts.outputFile ? opts.outputFile : "（未指定）");
+    printf("  詳細模式：%s\n", opts.verbose ? "是" : "否");
+    
+    // 執行程式邏輯
+    if (opts.inputFile) {
+        if (opts.verbose) {
+            printf("\n正在處理檔案：%s\n", opts.inputFile);
+        }
+        // 處理檔案...
+    }
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>2. 文字處理工具</h2>
             
-            <h3>詳細說明</h3>
-            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
+            <h3>2.1 字數統計工具（wc）</h3>
+            <p>類似 Unix 的 wc 指令，統計檔案的行數、字數、字元數。</p>
             
-            <h3>實作建議</h3>
-            <ul>
-                <li>從基本概念開始，逐步進階</li>
-                <li>每個範例都要實際撰寫並執行</li>
-                <li>遇到問題要積極查找資料</li>
-                <li>完成練習題以驗證理解程度</li>
-            </ul>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {
+    int lines;
+    int words;
+    int chars;
+    int bytes;
+} FileStats;
+
+void countFile(const char *filename, FileStats *stats) {
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL) {
+        fprintf(stderr, "錯誤：無法開啟檔案 '%s'\n", filename);
+        return;
+    }
+    
+    stats->lines = 0;
+    stats->words = 0;
+    stats->chars = 0;
+    stats->bytes = 0;
+    
+    int inWord = 0;
+    int ch;
+    
+    while ((ch = fgetc(fp)) != EOF) {
+        stats->bytes++;
+        stats->chars++;
+        
+        if (ch == '\n') {
+            stats->lines++;
+        }
+        
+        if (isspace(ch)) {
+            inWord = 0;
+        } else if (!inWord) {
+            inWord = 1;
+            stats->words++;
+        }
+    }
+    
+    fclose(fp);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        printf("使用方式：%s <檔案1> [檔案2] ...\n", argv[0]);
+        return 1;
+    }
+    
+    FileStats totalStats = {0, 0, 0, 0};
+    
+    for (int i = 1; i < argc; i++) {
+        FileStats stats = {0, 0, 0, 0};
+        countFile(argv[i], &stats);
+        
+        printf("%6d %6d %6d %s\n", 
+               stats.lines, stats.words, stats.chars, argv[i]);
+        
+        totalStats.lines += stats.lines;
+        totalStats.words += stats.words;
+        totalStats.chars += stats.chars;
+    }
+    
+    if (argc > 2) {
+        printf("%6d %6d %6d total\n", 
+               totalStats.lines, totalStats.words, totalStats.chars);
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.2 文字搜尋工具（grep）</h3>
+            <p>搜尋檔案中包含特定字串的行。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX_LINE 1024
+
+typedef struct {
+    int ignoreCase;
+    int lineNumber;
+    int count;
+    int invert;
+} GrepOptions;
+
+int matchString(const char *line, const char *pattern, int ignoreCase) {
+    if (ignoreCase) {
+        char lineLower[MAX_LINE];
+        char patternLower[MAX_LINE];
+        
+        strcpy(lineLower, line);
+        strcpy(patternLower, pattern);
+        
+        for (int i = 0; lineLower[i]; i++) {
+            lineLower[i] = tolower(lineLower[i]);
+        }
+        for (int i = 0; patternLower[i]; i++) {
+            patternLower[i] = tolower(patternLower[i]);
+        }
+        
+        return strstr(lineLower, patternLower) != NULL;
+    } else {
+        return strstr(line, pattern) != NULL;
+    }
+}
+
+void grepFile(const char *filename, const char *pattern, GrepOptions *opts) {
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL) {
+        fprintf(stderr, "錯誤：無法開啟檔案 '%s'\n", filename);
+        return;
+    }
+    
+    char line[MAX_LINE];
+    int lineNum = 0;
+    int matchCount = 0;
+    
+    while (fgets(line, sizeof(line), fp) != NULL) {
+        lineNum++;
+        int matched = matchString(line, pattern, opts->ignoreCase);
+        
+        if (opts->invert) {
+            matched = !matched;
+        }
+        
+        if (matched) {
+            matchCount++;
+            
+            if (!opts->count) {
+                if (opts->lineNumber) {
+                    printf("%s:%d:%s", filename, lineNum, line);
+                } else {
+                    printf("%s:%s", filename, line);
+                }
+            }
+        }
+    }
+    
+    if (opts->count) {
+        printf("%s:%d\n", filename, matchCount);
+    }
+    
+    fclose(fp);
+}
+
+int main(int argc, char *argv[]) {
+    GrepOptions opts = {0, 0, 0, 0};
+    char *pattern = NULL;
+    int fileStartIndex = 1;
+    
+    // 解析選項
+    for (int i = 1; i < argc && argv[i][0] == '-'; i++) {
+        if (strcmp(argv[i], "-i") == 0) {
+            opts.ignoreCase = 1;
+            fileStartIndex++;
+        } else if (strcmp(argv[i], "-n") == 0) {
+            opts.lineNumber = 1;
+            fileStartIndex++;
+        } else if (strcmp(argv[i], "-c") == 0) {
+            opts.count = 1;
+            fileStartIndex++;
+        } else if (strcmp(argv[i], "-v") == 0) {
+            opts.invert = 1;
+            fileStartIndex++;
+        }
+    }
+    
+    if (fileStartIndex >= argc) {
+        printf("使用方式：%s [選項] <模式> <檔案...>\n", argv[0]);
+        printf("選項：\n");
+        printf("  -i  忽略大小寫\n");
+        printf("  -n  顯示行號\n");
+        printf("  -c  只顯示匹配行數\n");
+        printf("  -v  反向匹配\n");
+        return 1;
+    }
+    
+    pattern = argv[fileStartIndex];
+    
+    for (int i = fileStartIndex + 1; i < argc; i++) {
+        grepFile(argv[i], pattern, &opts);
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.3 文字替換工具</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX_LINE 4096
+
+void replaceInFile(const char *inputFile, const char *outputFile,
+                   const char *searchStr, const char *replaceStr) {
+    FILE *in = fopen(inputFile, "r");
+    if (in == NULL) {
+        fprintf(stderr, "錯誤：無法開啟輸入檔案 '%s'\n", inputFile);
+        return;
+    }
+    
+    FILE *out = fopen(outputFile, "w");
+    if (out == NULL) {
+        fprintf(stderr, "錯誤：無法建立輸出檔案 '%s'\n", outputFile);
+        fclose(in);
+        return;
+    }
+    
+    char line[MAX_LINE];
+    char buffer[MAX_LINE];
+    int searchLen = strlen(searchStr);
+    int replaceLen = strlen(replaceStr);
+    int replaceCount = 0;
+    
+    while (fgets(line, sizeof(line), in) != NULL) {
+        char *pos = line;
+        buffer[0] = '\0';
+        
+        while ((pos = strstr(pos, searchStr)) != NULL) {
+            // 複製到找到的位置之前
+            strncat(buffer, line, pos - line);
+            // 加入替換字串
+            strcat(buffer, replaceStr);
+            
+            pos += searchLen;
+            strcpy(line, pos);
+            pos = line;
+            replaceCount++;
+        }
+        
+        // 加入剩餘部分
+        strcat(buffer, line);
+        fputs(buffer, out);
+    }
+    
+    fclose(in);
+    fclose(out);
+    
+    printf("替換完成：共替換 %d 處\n", replaceCount);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 5) {
+        printf("使用方式：%s <輸入檔> <輸出檔> <搜尋字串> <替換字串>\n", argv[0]);
+        return 1;
+    }
+    
+    replaceInFile(argv[1], argv[2], argv[3], argv[4]);
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>3. 檔案管理工具</h2>
+            
+            <h3>3.1 檔案複製工具</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;sys/stat.h&gt;
+
+#define BUFFER_SIZE 8192
+
+long getFileSize(const char *filename) {
+    struct stat st;
+    if (stat(filename, &st) == 0) {
+        return st.st_size;
+    }
+    return -1;
+}
+
+int copyFile(const char *source, const char *dest, int showProgress) {
+    FILE *src = fopen(source, "rb");
+    if (src == NULL) {
+        fprintf(stderr, "錯誤：無法開啟來源檔案 '%s'\n", source);
+        return 0;
+    }
+    
+    FILE *dst = fopen(dest, "wb");
+    if (dst == NULL) {
+        fprintf(stderr, "錯誤：無法建立目標檔案 '%s'\n", dest);
+        fclose(src);
+        return 0;
+    }
+    
+    unsigned char buffer[BUFFER_SIZE];
+    size_t bytesRead;
+    long totalBytes = 0;
+    long fileSize = getFileSize(source);
+    
+    while ((bytesRead = fread(buffer, 1, BUFFER_SIZE, src)) > 0) {
+        fwrite(buffer, 1, bytesRead, dst);
+        totalBytes += bytesRead;
+        
+        if (showProgress && fileSize > 0) {
+            int progress = (int)((totalBytes * 100) / fileSize);
+            printf("\r進度：%d%% (%ld / %ld bytes)", 
+                   progress, totalBytes, fileSize);
+            fflush(stdout);
+        }
+    }
+    
+    if (showProgress) {
+        printf("\n");
+    }
+    
+    fclose(src);
+    fclose(dst);
+    
+    printf("複製完成：%ld bytes\n", totalBytes);
+    return 1;
+}
+
+int main(int argc, char *argv[]) {
+    int showProgress = 0;
+    int sourceIndex = 1;
+    
+    if (argc > 1 && strcmp(argv[1], "-v") == 0) {
+        showProgress = 1;
+        sourceIndex = 2;
+    }
+    
+    if (argc < sourceIndex + 2) {
+        printf("使用方式：%s [-v] <來源檔> <目標檔>\n", argv[0]);
+        printf("  -v  顯示進度\n");
+        return 1;
+    }
+    
+    copyFile(argv[sourceIndex], argv[sourceIndex + 1], showProgress);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.2 檔案分割工具</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define BUFFER_SIZE 8192
+
+int splitFile(const char *filename, long chunkSize) {
+    FILE *input = fopen(filename, "rb");
+    if (input == NULL) {
+        fprintf(stderr, "錯誤：無法開啟檔案 '%s'\n", filename);
+        return 0;
+    }
+    
+    unsigned char buffer[BUFFER_SIZE];
+    int partNum = 1;
+    long currentSize = 0;
+    FILE *output = NULL;
+    
+    size_t bytesRead;
+    while ((bytesRead = fread(buffer, 1, BUFFER_SIZE, input)) > 0) {
+        if (output == NULL || currentSize >= chunkSize) {
+            if (output != NULL) {
+                fclose(output);
+                printf("已建立：%s.part%d (%ld bytes)\n", 
+                       filename, partNum - 1, currentSize);
+            }
+            
+            char outFilename[256];
+            sprintf(outFilename, "%s.part%d", filename, partNum);
+            output = fopen(outFilename, "wb");
+            
+            if (output == NULL) {
+                fprintf(stderr, "錯誤：無法建立輸出檔案\n");
+                fclose(input);
+                return 0;
+            }
+            
+            partNum++;
+            currentSize = 0;
+        }
+        
+        size_t toWrite = bytesRead;
+        if (currentSize + toWrite > chunkSize) {
+            toWrite = chunkSize - currentSize;
+        }
+        
+        fwrite(buffer, 1, toWrite, output);
+        currentSize += toWrite;
+        
+        // 處理剩餘資料
+        if (toWrite < bytesRead) {
+            fseek(input, -(bytesRead - toWrite), SEEK_CUR);
+        }
+    }
+    
+    if (output != NULL) {
+        fclose(output);
+        printf("已建立：%s.part%d (%ld bytes)\n", 
+               filename, partNum - 1, currentSize);
+    }
+    
+    fclose(input);
+    printf("\n分割完成：共 %d 個檔案\n", partNum - 1);
+    
+    return 1;
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("使用方式：%s <檔案> <區塊大小(bytes)>\n", argv[0]);
+        printf("範例：%s large.bin 1048576  (分割成 1MB 的區塊)\n", argv[0]);
+        return 1;
+    }
+    
+    long chunkSize = atol(argv[2]);
+    if (chunkSize <= 0) {
+        fprintf(stderr, "錯誤：區塊大小必須大於 0\n");
+        return 1;
+    }
+    
+    splitFile(argv[1], chunkSize);
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>4. 資料轉換工具</h2>
+            
+            <h3>4.1 CSV 轉 JSON</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX_LINE 1024
+#define MAX_FIELDS 50
+
+int parseCSVLine(char *line, char *fields[], int maxFields) {
+    int count = 0;
+    char *ptr = line;
+    char *start = ptr;
+    int inQuotes = 0;
+    
+    while (*ptr && count < maxFields) {
+        if (*ptr == '"') {
+            inQuotes = !inQuotes;
+        } else if (*ptr == ',' && !inQuotes) {
+            *ptr = '\0';
+            fields[count++] = start;
+            start = ptr + 1;
+        }
+        ptr++;
+    }
+    
+    if (*start && count < maxFields) {
+        // 移除行尾換行符號
+        char *newline = strchr(start, '\n');
+        if (newline) *newline = '\0';
+        fields[count++] = start;
+    }
+    
+    return count;
+}
+
+void csvToJson(const char *inputFile, const char *outputFile) {
+    FILE *in = fopen(inputFile, "r");
+    if (in == NULL) {
+        fprintf(stderr, "錯誤：無法開啟輸入檔案\n");
+        return;
+    }
+    
+    FILE *out = fopen(outputFile, "w");
+    if (out == NULL) {
+        fprintf(stderr, "錯誤：無法建立輸出檔案\n");
+        fclose(in);
+        return;
+    }
+    
+    char line[MAX_LINE];
+    char *headers[MAX_FIELDS];
+    char *fields[MAX_FIELDS];
+    int headerCount = 0;
+    int isFirst = 1;
+    
+    // 讀取標題行
+    if (fgets(line, sizeof(line), in) != NULL) {
+        headerCount = parseCSVLine(line, headers, MAX_FIELDS);
+    }
+    
+    fprintf(out, "[\n");
+    
+    // 處理資料行
+    while (fgets(line, sizeof(line), in) != NULL) {
+        int fieldCount = parseCSVLine(line, fields, MAX_FIELDS);
+        
+        if (!isFirst) {
+            fprintf(out, ",\n");
+        }
+        isFirst = 0;
+        
+        fprintf(out, "  {\n");
+        for (int i = 0; i < fieldCount && i < headerCount; i++) {
+            fprintf(out, "    \"%s\": \"%s\"", headers[i], fields[i]);
+            if (i < fieldCount - 1) {
+                fprintf(out, ",");
+            }
+            fprintf(out, "\n");
+        }
+        fprintf(out, "  }");
+    }
+    
+    fprintf(out, "\n]\n");
+    
+    fclose(in);
+    fclose(out);
+    
+    printf("轉換完成：%s -> %s\n", inputFile, outputFile);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("使用方式：%s <輸入CSV> <輸出JSON>\n", argv[0]);
+        return 1;
+    }
+    
+    csvToJson(argv[1], argv[2]);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>4.2 進制轉換工具</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;ctype.h&gt;
+
+void printBinary(unsigned long num) {
+    if (num == 0) {
+        printf("0");
+        return;
+    }
+    
+    char binary[65];
+    int i = 0;
+    
+    while (num > 0) {
+        binary[i++] = (num % 2) + '0';
+        num /= 2;
+    }
+    
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%c", binary[j]);
+    }
+}
+
+void printOctal(unsigned long num) {
+    printf("%lo", num);
+}
+
+void printDecimal(unsigned long num) {
+    printf("%lu", num);
+}
+
+void printHexadecimal(unsigned long num) {
+    printf("%lX", num);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("使用方式：%s <數字> <來源進制>\n", argv[0]);
+        printf("來源進制：2=二進制, 8=八進制, 10=十進制, 16=十六進制\n");
+        printf("範例：%s FF 16\n", argv[0]);
+        return 1;
+    }
+    
+    int base = atoi(argv[2]);
+    if (base != 2 && base != 8 && base != 10 && base != 16) {
+        fprintf(stderr, "錯誤：不支援的進制\n");
+        return 1;
+    }
+    
+    unsigned long num = strtoul(argv[1], NULL, base);
+    
+    printf("原始數字（%d進制）：%s\n\n", base, argv[1]);
+    printf("二進制  (2)  = ");
+    printBinary(num);
+    printf("\n");
+    
+    printf("八進制  (8)  = ");
+    printOctal(num);
+    printf("\n");
+    
+    printf("十進制  (10) = ");
+    printDecimal(num);
+    printf("\n");
+    
+    printf("十六進制(16) = ");
+    printHexadecimal(num);
+    printf("\n");
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>5. 系統資訊工具</h2>
+            
+            <h3>5.1 磁碟使用統計</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;dirent.h&gt;
+#include &lt;sys/stat.h&gt;
+
+long long getDirectorySize(const char *path) {
+    DIR *dir;
+    struct dirent *entry;
+    struct stat statbuf;
+    long long totalSize = 0;
+    char fullPath[1024];
+    
+    dir = opendir(path);
+    if (dir == NULL) {
+        return 0;
+    }
+    
+    while ((entry = readdir(dir)) != NULL) {
+        if (strcmp(entry->d_name, ".") == 0 || 
+            strcmp(entry->d_name, "..") == 0) {
+            continue;
+        }
+        
+        snprintf(fullPath, sizeof(fullPath), "%s/%s", path, entry->d_name);
+        
+        if (stat(fullPath, &statbuf) == 0) {
+            if (S_ISDIR(statbuf.st_mode)) {
+                totalSize += getDirectorySize(fullPath);
+            } else {
+                totalSize += statbuf.st_size;
+            }
+        }
+    }
+    
+    closedir(dir);
+    return totalSize;
+}
+
+void printSize(long long bytes) {
+    const char *units[] = {"B", "KB", "MB", "GB", "TB"};
+    int unitIndex = 0;
+    double size = bytes;
+    
+    while (size >= 1024 && unitIndex < 4) {
+        size /= 1024;
+        unitIndex++;
+    }
+    
+    printf("%.2f %s", size, units[unitIndex]);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("使用方式：%s <目錄路徑>\n", argv[0]);
+        return 1;
+    }
+    
+    long long size = getDirectorySize(argv[1]);
+    
+    printf("目錄：%s\n", argv[1]);
+    printf("大小：");
+    printSize(size);
+    printf(" (%lld bytes)\n", size);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>5.2 簡易計算機</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;math.h&gt;
+
+double calculate(const char *expr) {
+    double num1, num2;
+    char op;
+    
+    if (sscanf(expr, "%lf %c %lf", &num1, &op, &num2) != 3) {
+        fprintf(stderr, "錯誤：無效的運算式\n");
+        return 0;
+    }
+    
+    switch (op) {
+        case '+':
+            return num1 + num2;
+        case '-':
+            return num1 - num2;
+        case '*':
+        case 'x':
+            return num1 * num2;
+        case '/':
+            if (num2 == 0) {
+                fprintf(stderr, "錯誤：除數不可為零\n");
+                return 0;
+            }
+            return num1 / num2;
+        case '%':
+            return fmod(num1, num2);
+        case '^':
+            return pow(num1, num2);
+        default:
+            fprintf(stderr, "錯誤：不支援的運算子 '%c'\n", op);
+            return 0;
+    }
+}
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        printf("使用方式：%s \"<數字1> <運算子> <數字2>\"\n", argv[0]);
+        printf("支援的運算子：+ - * / %% ^\n");
+        printf("範例：\n");
+        printf("  %s \"10 + 5\"\n", argv[0]);
+        printf("  %s \"100 / 3\"\n", argv[0]);
+        printf("  %s \"2 ^ 10\"\n", argv[0]);
+        return 1;
+    }
+    
+    // 組合所有參數
+    char expr[256] = "";
+    for (int i = 1; i < argc; i++) {
+        strcat(expr, argv[i]);
+        if (i < argc - 1) {
+            strcat(expr, " ");
+        }
+    }
+    
+    double result = calculate(expr);
+    printf("結果：%.6g\n", result);
+    
+    return 0;
+}</pre>
+            </div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li><strong>命令列工具</strong>
+                        <br>開發基本命令列工具：
+                        <ul>
+                            <li>實作完整的參數解析</li>
+                            <li>支援長短選項</li>
+                            <li>提供詳細說明文件</li>
+                            <li>錯誤處理與驗證</li>
+                        </ul>
+                    </li>
+                    <li><strong>檔案處理工具</strong>
+                        <br>開發檔案操作工具：
+                        <ul>
+                            <li>檔案比較工具</li>
+                            <li>重複檔案偵測</li>
+                            <li>批次重新命名</li>
+                            <li>檔案加密/解密</li>
+                        </ul>
+                    </li>
+                    <li><strong>文字編輯工具</strong>
+                        <br>實作文字處理功能：
+                        <ul>
+                            <li>行號顯示</li>
+                            <li>語法高亮</li>
+                            <li>自動縮排</li>
+                            <li>尋找與取代</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>進階練習</h4>
+                <ol start="4">
+                    <li><strong>日誌分析器</strong>
+                        <br>開發日誌分析工具：
+                        <ul>
+                            <li>解析多種日誌格式</li>
+                            <li>統計錯誤與警告</li>
+                            <li>時間範圍過濾</li>
+                            <li>產生摘要報告</li>
+                        </ul>
+                    </li>
+                    <li><strong>資料轉換器</strong>
+                        <br>實作多格式轉換：
+                        <ul>
+                            <li>CSV、JSON、XML 互轉</li>
+                            <li>資料驗證</li>
+                            <li>格式化輸出</li>
+                            <li>批次處理</li>
+                        </ul>
+                    </li>
+                    <li><strong>檔案同步工具</strong>
+                        <br>開發檔案同步程式：
+                        <ul>
+                            <li>比較兩個目錄</li>
+                            <li>增量同步</li>
+                            <li>衝突處理</li>
+                            <li>同步紀錄</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>挑戰題</h4>
+                <ol start="7">
+                    <li><strong>壓縮工具</strong>
+                        <br>實作檔案壓縮程式：
+                        <ul>
+                            <li>實作 Huffman 編碼</li>
+                            <li>支援多檔案壓縮</li>
+                            <li>壓縮率統計</li>
+                            <li>解壓縮功能</li>
+                        </ul>
+                    </li>
+                    <li><strong>網路工具</strong>
+                        <br>開發網路相關工具：
+                        <ul>
+                            <li>簡易 HTTP 客戶端</li>
+                            <li>檔案下載器</li>
+                            <li>網路速度測試</li>
+                            <li>連線監控</li>
+                        </ul>
+                    </li>
+                    <li><strong>系統監控工具</strong>
+                        <br>開發系統監控程式：
+                        <ul>
+                            <li>CPU 使用率監控</li>
+                            <li>記憶體使用統計</li>
+                            <li>磁碟空間追蹤</li>
+                            <li>即時資訊顯示</li>
+                        </ul>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -184,10 +1184,35 @@
             <div class="tip-box">
                 <strong>重點回顧：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li>掌握命令列參數處理技巧</li>
+                    <li>能夠開發文字處理工具</li>
+                    <li>實作檔案管理功能</li>
+                    <li>設計資料轉換程式</li>
+                    <li>開發實用的系統工具</li>
+                    <li>建立良好的使用者介面</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>開發建議：</strong>
+                <ul>
+                    <li>提供清楚的使用說明與範例</li>
+                    <li>完整的錯誤處理與訊息</li>
+                    <li>支援常見的命令列慣例</li>
+                    <li>考慮跨平台相容性</li>
+                    <li>優化大檔案處理效能</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>下週預告：</strong>
+                <p>Week 15 將進行「綜合專案開發（一）」，包含：</p>
+                <ul>
+                    <li>專案需求分析與規劃</li>
+                    <li>資料結構設計</li>
+                    <li>模組化程式架構</li>
+                    <li>功能實作與整合</li>
+                    <li>測試與除錯</li>
                 </ul>
             </div>
         </div>
