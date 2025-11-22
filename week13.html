@@ -61,6 +61,11 @@
             font-size: 1.5em;
             margin: 30px 0 15px 0;
         }
+        .content h4 {
+            color: #546e7a;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
         .code-block {
             background: #2c3e50;
             color: #ecf0f1;
@@ -82,6 +87,13 @@
         .tip-box {
             background: #e8f5e9;
             border-left: 4px solid #66bb6a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
             padding: 20px;
             margin: 20px 0;
             border-radius: 4px;
@@ -117,6 +129,28 @@
         }
         .btn-secondary { background: #95a5a6; }
         .btn-secondary:hover { background: #7f8c8d; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .complexity-box {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -129,52 +163,1061 @@
 
         <header>
             <h1>Week 13 - 演算法設計與分析</h1>
-            <div class="subtitle">學習目標：實作與分析常用演算法</div>
+            <div class="subtitle">學習目標：掌握排序、搜尋演算法與複雜度分析</div>
         </header>
 
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>核心概念與理論基礎</li>
-                <li>程式碼範例與詳細說明</li>
-                <li>實作練習與應用</li>
-                <li>常見問題與解決方案</li>
-                <li>最佳實務與開發技巧</li>
+                <li>時間複雜度與空間複雜度分析</li>
+                <li>排序演算法實作與比較</li>
+                <li>搜尋演算法設計</li>
+                <li>遞迴與動態規劃基礎</li>
+                <li>演算法優化技巧</li>
+                <li>效能測試與分析</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>核心內容</h2>
-            <p>本週將深入學習 演算法設計與分析，這是 C 語言程式設計中的重要主題。</p>
+            <h2>1. 複雜度分析基礎</h2>
+            
+            <h3>1.1 時間複雜度（Time Complexity）</h3>
+            <p>時間複雜度描述演算法執行時間隨輸入大小增長的趨勢，使用大 O 表示法。</p>
             
             <div class="note-box">
-                <strong>學習重點：</strong>
-                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
+                <strong>常見時間複雜度（由快到慢）：</strong>
+                <ul>
+                    <li><strong>O(1)</strong> - 常數時間：不論輸入大小，執行時間固定</li>
+                    <li><strong>O(log n)</strong> - 對數時間：如二分搜尋</li>
+                    <li><strong>O(n)</strong> - 線性時間：如線性搜尋</li>
+                    <li><strong>O(n log n)</strong> - 線性對數時間：如合併排序、快速排序</li>
+                    <li><strong>O(n²)</strong> - 平方時間：如氣泡排序、插入排序</li>
+                    <li><strong>O(n³)</strong> - 立方時間：如三層迴圈</li>
+                    <li><strong>O(2ⁿ)</strong> - 指數時間：如費氏數列遞迴</li>
+                </ul>
             </div>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// O(1) - 常數時間
+int getFirst(int arr[], int size) {
+    return arr[0];  // 只執行一次
+}
+
+// O(n) - 線性時間
+int linearSearch(int arr[], int size, int target) {
+    for (int i = 0; i < size; i++) {  // 最多執行 n 次
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// O(n²) - 平方時間
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {        // n 次
+        for (int j = 0; j < size - i - 1; j++) { // n 次
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// O(log n) - 對數時間
+int binarySearch(int arr[], int size, int target) {
+    int left = 0, right = size - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    
+    return -1;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("O(1) 範例：第一個元素 = %d\n", getFirst(arr, size));
+    printf("O(n) 範例：搜尋 5 的位置 = %d\n", linearSearch(arr, size, 5));
+    printf("O(log n) 範例：二分搜尋 7 的位置 = %d\n", binarySearch(arr, size, 7));
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>1.2 空間複雜度（Space Complexity）</h3>
+            <p>空間複雜度描述演算法執行時所需的額外記憶體空間。</p>
             
-            <h3>詳細說明</h3>
-            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// O(1) 空間複雜度 - 只使用固定變數
+void swap(int *a, int *b) {
+    int temp = *a;  // 只使用一個額外變數
+    *a = *b;
+    *b = temp;
+}
+
+// O(n) 空間複雜度 - 建立新陣列
+int* doubleArray(int arr[], int size) {
+    int *result = (int*)malloc(size * sizeof(int));  // 需要 n 個空間
+    for (int i = 0; i < size; i++) {
+        result[i] = arr[i] * 2;
+    }
+    return result;
+}
+
+// O(n) 空間複雜度 - 遞迴呼叫堆疊
+int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);  // 遞迴深度為 n
+}
+
+int main() {
+    int a = 5, b = 10;
+    printf("交換前：a = %d, b = %d\n", a, b);
+    swap(&a, &b);
+    printf("交換後：a = %d, b = %d (O(1) 空間)\n", a, b);
+    
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int *doubled = doubleArray(arr, size);
+    printf("\n加倍陣列 (O(n) 空間)：");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", doubled[i]);
+    }
+    printf("\n");
+    free(doubled);
+    
+    printf("\n階乘 5! = %d (O(n) 空間 - 遞迴)\n", factorial(5));
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>2. 排序演算法</h2>
             
-            <h3>實作建議</h3>
-            <ul>
-                <li>從基本概念開始，逐步進階</li>
-                <li>每個範例都要實際撰寫並執行</li>
-                <li>遇到問題要積極查找資料</li>
-                <li>完成練習題以驗證理解程度</li>
-            </ul>
+            <h3>2.1 氣泡排序（Bubble Sort）</h3>
+            <p>重複比較相鄰元素，將較大的元素往後移動。</p>
+            
+            <div class="complexity-box">
+                <strong>時間複雜度：</strong>
+                <ul>
+                    <li>最佳情況：O(n) - 已排序</li>
+                    <li>平均情況：O(n²)</li>
+                    <li>最壞情況：O(n²)</li>
+                </ul>
+                <strong>空間複雜度：</strong> O(1)
+            </div>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int swapped = 0;
+        
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // 交換
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = 1;
+            }
+        }
+        
+        // 如果這輪沒有交換，表示已排序
+        if (!swapped) {
+            break;
+        }
+    }
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("排序前：");
+    printArray(arr, size);
+    
+    bubbleSort(arr, size);
+    
+    printf("排序後：");
+    printArray(arr, size);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.2 選擇排序（Selection Sort）</h3>
+            <p>每次找出未排序部分的最小值，放到已排序部分的末端。</p>
+            
+            <div class="complexity-box">
+                <strong>時間複雜度：</strong> O(n²) - 所有情況<br>
+                <strong>空間複雜度：</strong> O(1)
+            </div>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+void selectionSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int minIndex = i;
+        
+        // 找出未排序部分的最小值
+        for (int j = i + 1; j < size; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        
+        // 交換到正確位置
+        if (minIndex != i) {
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("排序前：");
+    for (int i = 0; i < size; i++) printf("%d ", arr[i]);
+    
+    selectionSort(arr, size);
+    
+    printf("\n排序後：");
+    for (int i = 0; i < size; i++) printf("%d ", arr[i]);
+    printf("\n");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.3 插入排序（Insertion Sort）</h3>
+            <p>將元素逐一插入到已排序部分的正確位置。</p>
+            
+            <div class="complexity-box">
+                <strong>時間複雜度：</strong>
+                <ul>
+                    <li>最佳情況：O(n) - 已排序</li>
+                    <li>平均情況：O(n²)</li>
+                    <li>最壞情況：O(n²)</li>
+                </ul>
+                <strong>空間複雜度：</strong> O(1)
+            </div>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+void insertionSort(int arr[], int size) {
+    for (int i = 1; i < size; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        
+        // 將大於 key 的元素向後移動
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    int arr[] = {12, 11, 13, 5, 6};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("排序前：");
+    for (int i = 0; i < size; i++) printf("%d ", arr[i]);
+    
+    insertionSort(arr, size);
+    
+    printf("\n排序後：");
+    for (int i = 0; i < size; i++) printf("%d ", arr[i]);
+    printf("\n");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.4 合併排序（Merge Sort）</h3>
+            <p>分治法：將陣列分成兩半，分別排序後再合併。</p>
+            
+            <div class="complexity-box">
+                <strong>時間複雜度：</strong> O(n log n) - 所有情況<br>
+                <strong>空間複雜度：</strong> O(n)
+            </div>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void merge(int arr[], int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+    
+    // 建立臨時陣列
+    int *L = (int*)malloc(n1 * sizeof(int));
+    int *R = (int*)malloc(n2 * sizeof(int));
+    
+    // 複製資料到臨時陣列
+    for (int i = 0; i < n1; i++) {
+        L[i] = arr[left + i];
+    }
+    for (int j = 0; j < n2; j++) {
+        R[j] = arr[mid + 1 + j];
+    }
+    
+    // 合併兩個臨時陣列
+    int i = 0, j = 0, k = left;
+    
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+    
+    // 複製剩餘元素
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+    
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+    
+    free(L);
+    free(R);
+}
+
+void mergeSort(int arr[], int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        
+        // 遞迴排序左右兩半
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        
+        // 合併
+        merge(arr, left, mid, right);
+    }
+}
+
+int main() {
+    int arr[] = {12, 11, 13, 5, 6, 7};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("排序前：");
+    for (int i = 0; i < size; i++) printf("%d ", arr[i]);
+    
+    mergeSort(arr, 0, size - 1);
+    
+    printf("\n排序後：");
+    for (int i = 0; i < size; i++) printf("%d ", arr[i]);
+    printf("\n");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.5 快速排序（Quick Sort）</h3>
+            <p>分治法：選擇基準元素，將陣列分為小於和大於基準的兩部分。</p>
+            
+            <div class="complexity-box">
+                <strong>時間複雜度：</strong>
+                <ul>
+                    <li>最佳情況：O(n log n)</li>
+                    <li>平均情況：O(n log n)</li>
+                    <li>最壞情況：O(n²) - 陣列已排序</li>
+                </ul>
+                <strong>空間複雜度：</strong> O(log n)
+            </div>
+
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];  // 選擇最後一個元素作為基準
+    int i = low - 1;
+    
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    
+    swap(&arr[i + 1], &arr[high]);
+    return i + 1;
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        
+        // 遞迴排序基準左右兩邊
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    int arr[] = {10, 7, 8, 9, 1, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("排序前：");
+    for (int i = 0; i < size; i++) printf("%d ", arr[i]);
+    
+    quickSort(arr, 0, size - 1);
+    
+    printf("\n排序後：");
+    for (int i = 0; i < size; i++) printf("%d ", arr[i]);
+    printf("\n");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.6 排序演算法比較</h3>
+            <table>
+                <tr>
+                    <th>演算法</th>
+                    <th>最佳</th>
+                    <th>平均</th>
+                    <th>最壞</th>
+                    <th>空間</th>
+                    <th>穩定</th>
+                </tr>
+                <tr>
+                    <td>氣泡排序</td>
+                    <td>O(n)</td>
+                    <td>O(n²)</td>
+                    <td>O(n²)</td>
+                    <td>O(1)</td>
+                    <td>是</td>
+                </tr>
+                <tr>
+                    <td>選擇排序</td>
+                    <td>O(n²)</td>
+                    <td>O(n²)</td>
+                    <td>O(n²)</td>
+                    <td>O(1)</td>
+                    <td>否</td>
+                </tr>
+                <tr>
+                    <td>插入排序</td>
+                    <td>O(n)</td>
+                    <td>O(n²)</td>
+                    <td>O(n²)</td>
+                    <td>O(1)</td>
+                    <td>是</td>
+                </tr>
+                <tr>
+                    <td>合併排序</td>
+                    <td>O(n log n)</td>
+                    <td>O(n log n)</td>
+                    <td>O(n log n)</td>
+                    <td>O(n)</td>
+                    <td>是</td>
+                </tr>
+                <tr>
+                    <td>快速排序</td>
+                    <td>O(n log n)</td>
+                    <td>O(n log n)</td>
+                    <td>O(n²)</td>
+                    <td>O(log n)</td>
+                    <td>否</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="content">
+            <h2>3. 搜尋演算法</h2>
+            
+            <h3>3.1 線性搜尋（Linear Search）</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int linearSearch(int arr[], int size, int target) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 22;
+    
+    int result = linearSearch(arr, size, target);
+    
+    if (result != -1) {
+        printf("找到 %d 在索引 %d\n", target, result);
+    } else {
+        printf("找不到 %d\n", target);
+    }
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.2 二分搜尋（Binary Search）</h3>
+            <p>適用於已排序的陣列，每次將搜尋範圍縮小一半。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 遞迴版本
+int binarySearchRecursive(int arr[], int left, int right, int target) {
+    if (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == target) {
+            return mid;
+        }
+        
+        if (arr[mid] > target) {
+            return binarySearchRecursive(arr, left, mid - 1, target);
+        }
+        
+        return binarySearchRecursive(arr, mid + 1, right, target);
+    }
+    
+    return -1;
+}
+
+// 迴圈版本
+int binarySearchIterative(int arr[], int size, int target) {
+    int left = 0, right = size - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == target) {
+            return mid;
+        }
+        
+        if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    
+    return -1;
+}
+
+int main() {
+    int arr[] = {2, 3, 4, 10, 40, 50, 60, 70, 80, 90};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 10;
+    
+    int result1 = binarySearchRecursive(arr, 0, size - 1, target);
+    printf("遞迴版本：找到 %d 在索引 %d\n", target, result1);
+    
+    int result2 = binarySearchIterative(arr, size, target);
+    printf("迴圈版本：找到 %d 在索引 %d\n", target, result2);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.3 跳躍搜尋（Jump Search）</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int jumpSearch(int arr[], int size, int target) {
+    int step = sqrt(size);
+    int prev = 0;
+    
+    // 找到目標可能在的區塊
+    while (arr[(step < size ? step : size) - 1] < target) {
+        prev = step;
+        step += sqrt(size);
+        if (prev >= size) {
+            return -1;
+        }
+    }
+    
+    // 在區塊內進行線性搜尋
+    while (arr[prev] < target) {
+        prev++;
+        if (prev == (step < size ? step : size)) {
+            return -1;
+        }
+    }
+    
+    if (arr[prev] == target) {
+        return prev;
+    }
+    
+    return -1;
+}
+
+int main() {
+    int arr[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 6;
+    
+    int result = jumpSearch(arr, size, target);
+    
+    if (result != -1) {
+        printf("找到 %d 在索引 %d\n", target, result);
+    } else {
+        printf("找不到 %d\n", target);
+    }
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>4. 遞迴與動態規劃</h2>
+            
+            <h3>4.1 遞迴基礎</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+// 階乘
+int factorial(int n) {
+    if (n <= 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+// 費氏數列（效率差）
+int fibonacciRecursive(int n) {
+    if (n <= 1) {
+        return n;
+    }
+    return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+}
+
+// 最大公因數
+int gcd(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}
+
+// 河內塔
+void hanoi(int n, char from, char to, char aux) {
+    if (n == 1) {
+        printf("移動圓盤 1 從 %c 到 %c\n", from, to);
+        return;
+    }
+    
+    hanoi(n - 1, from, aux, to);
+    printf("移動圓盤 %d 從 %c 到 %c\n", n, from, to);
+    hanoi(n - 1, aux, to, from);
+}
+
+int main() {
+    printf("5! = %d\n", factorial(5));
+    printf("費氏數列第 10 項 = %d\n", fibonacciRecursive(10));
+    printf("GCD(48, 18) = %d\n", gcd(48, 18));
+    
+    printf("\n河內塔（3 個圓盤）：\n");
+    hanoi(3, 'A', 'C', 'B');
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>4.2 動態規劃 - 費氏數列優化</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+// 遞迴版本（效率差）- O(2^n)
+int fibRecursive(int n) {
+    if (n <= 1) return n;
+    return fibRecursive(n - 1) + fibRecursive(n - 2);
+}
+
+// 動態規劃版本 - O(n)
+int fibDP(int n) {
+    if (n <= 1) return n;
+    
+    int *dp = (int*)malloc((n + 1) * sizeof(int));
+    dp[0] = 0;
+    dp[1] = 1;
+    
+    for (int i = 2; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    
+    int result = dp[n];
+    free(dp);
+    return result;
+}
+
+// 空間優化版本 - O(1) 空間
+int fibOptimized(int n) {
+    if (n <= 1) return n;
+    
+    int prev2 = 0, prev1 = 1;
+    int current;
+    
+    for (int i = 2; i <= n; i++) {
+        current = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = current;
+    }
+    
+    return current;
+}
+
+double measureTime(int (*func)(int), int n) {
+    clock_t start = clock();
+    int result = func(n);
+    clock_t end = clock();
+    
+    double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("結果：%d，耗時：%.6f 秒\n", result, time_spent);
+    return time_spent;
+}
+
+int main() {
+    int n = 35;
+    
+    printf("計算費氏數列第 %d 項：\n\n", n);
+    
+    printf("遞迴版本：\n");
+    measureTime(fibRecursive, n);
+    
+    printf("\n動態規劃版本：\n");
+    measureTime(fibDP, n);
+    
+    printf("\n空間優化版本：\n");
+    measureTime(fibOptimized, n);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>4.3 動態規劃 - 背包問題</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+// 0/1 背包問題
+int knapsack(int W, int wt[], int val[], int n) {
+    int **dp = (int**)malloc((n + 1) * sizeof(int*));
+    for (int i = 0; i <= n; i++) {
+        dp[i] = (int*)malloc((W + 1) * sizeof(int));
+    }
+    
+    // 建立 DP 表格
+    for (int i = 0; i <= n; i++) {
+        for (int w = 0; w <= W; w++) {
+            if (i == 0 || w == 0) {
+                dp[i][w] = 0;
+            } else if (wt[i - 1] <= w) {
+                dp[i][w] = max(val[i - 1] + dp[i - 1][w - wt[i - 1]], 
+                               dp[i - 1][w]);
+            } else {
+                dp[i][w] = dp[i - 1][w];
+            }
+        }
+    }
+    
+    int result = dp[n][W];
+    
+    // 釋放記憶體
+    for (int i = 0; i <= n; i++) {
+        free(dp[i]);
+    }
+    free(dp);
+    
+    return result;
+}
+
+int main() {
+    int val[] = {60, 100, 120};
+    int wt[] = {10, 20, 30};
+    int W = 50;
+    int n = sizeof(val) / sizeof(val[0]);
+    
+    printf("背包容量：%d\n", W);
+    printf("物品價值：");
+    for (int i = 0; i < n; i++) printf("%d ", val[i]);
+    printf("\n物品重量：");
+    for (int i = 0; i < n; i++) printf("%d ", wt[i]);
+    
+    int maxValue = knapsack(W, wt, val, n);
+    printf("\n\n最大價值：%d\n", maxValue);
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>5. 演算法效能測試</h2>
+            
+            <h3>5.1 排序演算法效能比較</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;string.h&gt;
+
+// 產生隨機陣列
+void generateRandomArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        arr[i] = rand() % 10000;
+    }
+}
+
+// 複製陣列
+void copyArray(int dest[], int src[], int size) {
+    for (int i = 0; i < size; i++) {
+        dest[i] = src[i];
+    }
+}
+
+// 氣泡排序
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// 快速排序
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pivot = arr[high];
+        int i = low - 1;
+        
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        
+        int pi = i + 1;
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+// 測試函數
+double testSort(void (*sortFunc)(int[], int), int arr[], int size, const char *name) {
+    int *temp = (int*)malloc(size * sizeof(int));
+    copyArray(temp, arr, size);
+    
+    clock_t start = clock();
+    sortFunc(temp, size);
+    clock_t end = clock();
+    
+    double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("%s：%.6f 秒\n", name, time_spent);
+    
+    free(temp);
+    return time_spent;
+}
+
+// 測試快速排序（需要特殊處理）
+double testQuickSort(int arr[], int size) {
+    int *temp = (int*)malloc(size * sizeof(int));
+    copyArray(temp, arr, size);
+    
+    clock_t start = clock();
+    quickSort(temp, 0, size - 1);
+    clock_t end = clock();
+    
+    double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("快速排序：%.6f 秒\n", time_spent);
+    
+    free(temp);
+    return time_spent;
+}
+
+int main() {
+    srand(time(NULL));
+    
+    int sizes[] = {1000, 5000, 10000};
+    int numSizes = sizeof(sizes) / sizeof(sizes[0]);
+    
+    for (int i = 0; i < numSizes; i++) {
+        int size = sizes[i];
+        int *arr = (int*)malloc(size * sizeof(int));
+        
+        generateRandomArray(arr, size);
+        
+        printf("\n========== 陣列大小：%d ==========\n", size);
+        
+        testSort(bubbleSort, arr, size, "氣泡排序");
+        testQuickSort(arr, size);
+        
+        free(arr);
+    }
+    
+    return 0;
+}</pre>
+            </div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li><strong>排序演算法實作</strong>
+                        <br>實作所有基本排序演算法：
+                        <ul>
+                            <li>氣泡、選擇、插入排序</li>
+                            <li>合併排序、快速排序</li>
+                            <li>比較各演算法效能</li>
+                            <li>分析不同資料分佈的影響</li>
+                        </ul>
+                    </li>
+                    <li><strong>搜尋演算法</strong>
+                        <br>實作並比較搜尋演算法：
+                        <ul>
+                            <li>線性搜尋、二分搜尋</li>
+                            <li>跳躍搜尋、插值搜尋</li>
+                            <li>測量不同資料量的效能</li>
+                        </ul>
+                    </li>
+                    <li><strong>遞迴練習</strong>
+                        <br>練習遞迴思維：
+                        <ul>
+                            <li>各種數學遞迴函數</li>
+                            <li>字串反轉、回文檢查</li>
+                            <li>陣列操作的遞迴實作</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>進階練習</h4>
+                <ol start="4">
+                    <li><strong>動態規劃問題</strong>
+                        <br>實作經典 DP 問題：
+                        <ul>
+                            <li>最長公共子序列（LCS）</li>
+                            <li>最長遞增子序列（LIS）</li>
+                            <li>編輯距離（Edit Distance）</li>
+                            <li>硬幣找零問題</li>
+                        </ul>
+                    </li>
+                    <li><strong>演算法優化</strong>
+                        <br>優化已有演算法：
+                        <ul>
+                            <li>改進快速排序的基準選擇</li>
+                            <li>實作三路快速排序</li>
+                            <li>優化遞迴的記憶體使用</li>
+                        </ul>
+                    </li>
+                    <li><strong>效能分析工具</strong>
+                        <br>建立效能測試框架：
+                        <ul>
+                            <li>自動化測試多種演算法</li>
+                            <li>產生效能報告</li>
+                            <li>視覺化結果比較</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>挑戰題</h4>
+                <ol start="7">
+                    <li><strong>混合排序演算法</strong>
+                        <br>設計適應性排序：
+                        <ul>
+                            <li>根據資料特性選擇演算法</li>
+                            <li>小陣列用插入排序</li>
+                            <li>大陣列用快速/合併排序</li>
+                            <li>處理重複元素多的情況</li>
+                        </ul>
+                    </li>
+                    <li><strong>平行排序</strong>
+                        <br>實作平行化排序演算法：
+                        <ul>
+                            <li>多執行緒快速排序</li>
+                            <li>平行合併排序</li>
+                            <li>效能比較與分析</li>
+                        </ul>
+                    </li>
+                    <li><strong>外部排序</strong>
+                        <br>處理大型檔案排序：
+                        <ul>
+                            <li>無法一次載入記憶體的資料</li>
+                            <li>多路合併排序</li>
+                            <li>優化 I/O 操作</li>
+                        </ul>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -184,10 +1227,35 @@
             <div class="tip-box">
                 <strong>重點回顧：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li>理解時間與空間複雜度分析</li>
+                    <li>掌握各種排序演算法的實作</li>
+                    <li>了解搜尋演算法的適用場景</li>
+                    <li>學會遞迴與動態規劃的應用</li>
+                    <li>能夠選擇適合的演算法解決問題</li>
+                    <li>進行演算法效能測試與分析</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>演算法選擇建議：</strong>
+                <ul>
+                    <li>小資料量（n &lt; 50）：插入排序效率高</li>
+                    <li>一般情況：快速排序平均表現最佳</li>
+                    <li>需要穩定排序：合併排序</li>
+                    <li>記憶體受限：堆積排序</li>
+                    <li>資料幾乎排序：插入排序或氣泡排序</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>下週預告：</strong>
+                <p>Week 14 將學習「實用工具開發」，包含：</p>
+                <ul>
+                    <li>命令列參數處理</li>
+                    <li>文字處理工具開發</li>
+                    <li>檔案管理工具實作</li>
+                    <li>資料轉換程式設計</li>
+                    <li>系統工具程式開發</li>
                 </ul>
             </div>
         </div>

@@ -14,105 +14,80 @@
         }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .nav {
-            background: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white; padding: 15px 25px; border-radius: 8px;
+            margin-bottom: 30px; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .nav a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            color: #3498db; text-decoration: none; font-weight: 600;
+            padding: 8px 16px; border-radius: 4px; transition: all 0.3s ease;
         }
         .nav a:hover { background: #3498db; color: white; }
         header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: white; padding: 50px 40px; border-radius: 8px;
+            margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         header h1 { font-size: 2.5em; margin-bottom: 10px; }
         header .subtitle { font-size: 1.1em; opacity: 0.9; }
         .content {
-            background: white;
-            border-radius: 8px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white; border-radius: 8px; padding: 40px;
+            margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .content h2 {
-            color: #2c3e50;
-            font-size: 2em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3498db;
+            color: #2c3e50; font-size: 2em; margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 3px solid #3498db;
         }
-        .content h3 {
-            color: #34495e;
-            font-size: 1.5em;
-            margin: 30px 0 15px 0;
-        }
+        .content h3 { color: #34495e; font-size: 1.5em; margin: 30px 0 15px 0; }
+        .content h4 { color: #34495e; font-size: 1.2em; margin: 20px 0 10px 0; }
         .code-block {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            border-radius: 4px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 0.95em;
-            overflow-x: auto;
-            margin: 20px 0;
-            line-height: 1.6;
+            background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95em;
+            overflow-x: auto; margin: 20px 0; line-height: 1.8; white-space: pre-wrap;
         }
+        .code-block .comment { color: #95a5a6; }
+        .code-block .keyword { color: #3498db; font-weight: bold; }
+        .code-block .string { color: #2ecc71; }
+        .code-block .function { color: #f39c12; }
+        .code-block .number { color: #e74c3c; }
         .note-box {
-            background: #e8f4f8;
-            border-left: 4px solid #3498db;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f4f8; border-left: 4px solid #3498db;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff8e1; border-left: 4px solid #ffa726;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .tip-box {
-            background: #e8f5e9;
-            border-left: 4px solid #66bb6a;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f5e9; border-left: 4px solid #66bb6a;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .exercise-section {
-            background: #f8f9fa;
-            border: 2px solid #3498db;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
+            background: #f8f9fa; border: 2px solid #3498db;
+            padding: 30px; margin: 30px 0; border-radius: 8px;
         }
+        table {
+            width: 100%; border-collapse: collapse; margin: 20px 0;
+        }
+        table th, table td {
+            padding: 12px; text-align: left; border: 1px solid #ddd;
+        }
+        table th {
+            background: #34495e; color: white; font-weight: 600;
+        }
+        table tr:nth-child(even) { background: #f8f9fa; }
         ul, ol { margin-left: 30px; margin-top: 10px; }
         li { margin: 8px 0; }
         .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
+            display: flex; justify-content: space-between; margin-top: 40px;
         }
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
+            display: inline-block; padding: 12px 30px; background: #3498db;
+            color: white; text-decoration: none; border-radius: 4px; font-weight: 600;
             transition: all 0.3s ease;
         }
         .btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+            background: #2980b9; transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .btn-secondary { background: #95a5a6; }
@@ -135,173 +110,732 @@
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li><strong>一維陣列</strong></li>
-                <li><strong>多維陣列</strong></li>
-                <li><strong>字串基礎</strong></li>
-                <li><strong>字串函數</strong></li>
-                <li><strong>字串處理</strong></li>
+                <li>一維陣列：宣告、初始化、存取與應用</li>
+                <li>多維陣列：二維陣列與矩陣運算</li>
+                <li>字串基礎：字元陣列與字串操作</li>
+                <li>字串函數：strlen、strcpy、strcat、strcmp</li>
+                <li>字串處理：輸入、格式化與字元處理</li>
+                <li>實用範例：陣列排序、字串比對、矩陣運算</li>
             </ul>
         </div>
 
-        
         <div class="content">
             <h2>1. 一維陣列</h2>
-            <ul>
-                <li>陣列的宣告與初始化</li>
-                <li>存取陣列元素</li>
-                <li>陣列大小與索引範圍</li>
-                <li>陣列的遍歷</li>
-                <li>陣列作為函數參數</li>
-            </ul>
             
+            <h3>什麼是陣列？</h3>
+            <p>陣列是一種資料結構，可以在記憶體中連續儲存多個相同型態的資料。想像陣列就像是一排有編號的置物櫃，每個櫃子可以存放相同類型的物品。</p>
+
+            <h3>陣列的宣告</h3>
+            <div class="code-block"><span class="comment">// 語法：資料型態 陣列名稱[陣列大小];</span>
+
+<span class="keyword">int</span> numbers[<span class="number">5</span>];        <span class="comment">// 宣告可存放 5 個整數的陣列</span>
+<span class="keyword">float</span> scores[<span class="number">10</span>];      <span class="comment">// 宣告可存放 10 個浮點數的陣列</span>
+<span class="keyword">char</span> letters[<span class="number">26</span>];      <span class="comment">// 宣告可存放 26 個字元的陣列</span></div>
+
+            <h3>陣列的初始化</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== 方法一：宣告時初始化 ==========</span>
+    <span class="keyword">int</span> arr1[<span class="number">5</span>] = {<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>};
+    
+    <span class="comment">// ========== 方法二：部分初始化 ==========</span>
+    <span class="keyword">int</span> arr2[<span class="number">5</span>] = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>};  <span class="comment">// 後面元素自動補 0</span>
+    <span class="comment">// arr2 = {1, 2, 3, 0, 0}</span>
+    
+    <span class="comment">// ========== 方法三：全部初始化為 0 ==========</span>
+    <span class="keyword">int</span> arr3[<span class="number">5</span>] = {<span class="number">0</span>};  <span class="comment">// 所有元素都是 0</span>
+    
+    <span class="comment">// ========== 方法四：省略陣列大小 ==========</span>
+    <span class="keyword">int</span> arr4[] = {<span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>};  <span class="comment">// 編譯器自動計算大小為 4</span>
+    
+    <span class="comment">// ========== 方法五：宣告後逐一賦值 ==========</span>
+    <span class="keyword">int</span> arr5[<span class="number">3</span>];
+    arr5[<span class="number">0</span>] = <span class="number">100</span>;
+    arr5[<span class="number">1</span>] = <span class="number">200</span>;
+    arr5[<span class="number">2</span>] = <span class="number">300</span>;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>存取陣列元素</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> numbers[<span class="number">5</span>] = {<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>};
+    
+    <span class="comment">// 陣列索引從 0 開始</span>
+    <span class="function">printf</span>(<span class="string">"第一個元素: %d\n"</span>, numbers[<span class="number">0</span>]);   <span class="comment">// 10</span>
+    <span class="function">printf</span>(<span class="string">"第二個元素: %d\n"</span>, numbers[<span class="number">1</span>]);   <span class="comment">// 20</span>
+    <span class="function">printf</span>(<span class="string">"第三個元素: %d\n"</span>, numbers[<span class="number">2</span>]);   <span class="comment">// 30</span>
+    <span class="function">printf</span>(<span class="string">"第四個元素: %d\n"</span>, numbers[<span class="number">3</span>]);   <span class="comment">// 40</span>
+    <span class="function">printf</span>(<span class="string">"第五個元素: %d\n"</span>, numbers[<span class="number">4</span>]);   <span class="comment">// 50</span>
+    
+    <span class="comment">// 修改陣列元素</span>
+    numbers[<span class="number">2</span>] = <span class="number">99</span>;
+    <span class="function">printf</span>(<span class="string">"修改後的第三個元素: %d\n"</span>, numbers[<span class="number">2</span>]);  <span class="comment">// 99</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
             <div class="note-box">
                 <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
+                <ul>
+                    <li><strong>索引從 0 開始</strong>：第一個元素的索引是 0，不是 1</li>
+                    <li><strong>索引範圍</strong>：大小為 n 的陣列，有效索引是 0 到 n-1</li>
+                    <li><strong>記憶體連續</strong>：陣列元素在記憶體中是連續存放的</li>
+                    <li><strong>固定大小</strong>：陣列大小在宣告時確定，無法動態改變</li>
+                </ul>
             </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
 
-int main() {
-    printf("Week 3 - 一維陣列\n");
-    return 0;
-}
+            <h3>陣列的遍歷</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> scores[<span class="number">5</span>] = {<span class="number">85</span>, <span class="number">92</span>, <span class="number">78</span>, <span class="number">95</span>, <span class="number">88</span>};
+    <span class="keyword">int</span> i;
+    
+    <span class="comment">// ========== 使用 for 迴圈遍歷陣列 ==========</span>
+    <span class="function">printf</span>(<span class="string">"所有分數：\n"</span>);
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+        <span class="function">printf</span>(<span class="string">"scores[%d] = %d\n"</span>, i, scores[i]);
+    }
+    
+    <span class="comment">// ========== 計算總分和平均 ==========</span>
+    <span class="keyword">int</span> sum = <span class="number">0</span>;
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+        sum += scores[i];
+    }
+    <span class="keyword">double</span> average = sum / <span class="number">5.0</span>;
+    
+    <span class="function">printf</span>(<span class="string">"\n總分: %d\n"</span>, sum);
+    <span class="function">printf</span>(<span class="string">"平均: %.2f\n"</span>, average);
+    
+    <span class="comment">// ========== 找出最大值 ==========</span>
+    <span class="keyword">int</span> max = scores[<span class="number">0</span>];
+    <span class="keyword">for</span> (i = <span class="number">1</span>; i < <span class="number">5</span>; i++) {
+        <span class="keyword">if</span> (scores[i] > max) {
+            max = scores[i];
+        }
+    }
+    <span class="function">printf</span>(<span class="string">"\n最高分: %d\n"</span>, max);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>陣列應用：氣泡排序</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> arr[] = {<span class="number">64</span>, <span class="number">34</span>, <span class="number">25</span>, <span class="number">12</span>, <span class="number">22</span>, <span class="number">11</span>, <span class="number">90</span>};
+    <span class="keyword">int</span> n = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>]);
+    <span class="keyword">int</span> i, j, temp;
+    
+    <span class="function">printf</span>(<span class="string">"排序前: "</span>);
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i < n; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="comment">// 氣泡排序演算法</span>
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i < n - <span class="number">1</span>; i++) {
+        <span class="keyword">for</span> (j = <span class="number">0</span>; j < n - i - <span class="number">1</span>; j++) {
+            <span class="keyword">if</span> (arr[j] > arr[j + <span class="number">1</span>]) {
+                <span class="comment">// 交換元素</span>
+                temp = arr[j];
+                arr[j] = arr[j + <span class="number">1</span>];
+                arr[j + <span class="number">1</span>] = temp;
+            }
+        }
+    }
+    
+    <span class="function">printf</span>(<span class="string">"排序後: "</span>);
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i < n; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="warning-box">
+                <strong>常見錯誤：</strong>
+                <ul>
+                    <li><strong>陣列越界</strong>：存取超出範圍的索引（如 arr[5] 在大小為 5 的陣列中）</li>
+                    <li><strong>未初始化</strong>：使用未初始化的陣列會得到不確定的值</li>
+                    <li><strong>索引錯誤</strong>：忘記陣列索引從 0 開始</li>
+                    <li><strong>大小固定</strong>：陣列大小必須是常數，不能使用變數</li>
+                </ul>
             </div>
         </div>
 
         <div class="content">
             <h2>2. 多維陣列</h2>
-            <ul>
-                <li>二維陣列宣告</li>
-                <li>二維陣列初始化</li>
-                <li>存取二維陣列元素</li>
-                <li>多維陣列應用（矩陣）</li>
-                <li>記憶體配置方式</li>
-            </ul>
             
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h3>二維陣列簡介</h3>
+            <p>二維陣列可以想像成一個表格或矩陣，有行（row）和列（column）。常用於表示矩陣、棋盤、座標系統等。</p>
 
-int main() {
-    printf("Week 3 - 多維陣列\n");
-    return 0;
-}
-            </div>
+            <h3>二維陣列的宣告與初始化</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== 宣告二維陣列 ==========</span>
+    <span class="comment">// 語法：資料型態 陣列名稱[行數][列數];</span>
+    <span class="keyword">int</span> matrix[<span class="number">3</span>][<span class="number">4</span>];  <span class="comment">// 3 行 4 列的陣列</span>
+    
+    <span class="comment">// ========== 初始化方法一：完整初始化 ==========</span>
+    <span class="keyword">int</span> arr1[<span class="number">2</span>][<span class="number">3</span>] = {
+        {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>},
+        {<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>}
+    };
+    
+    <span class="comment">// ========== 初始化方法二：不分組 ==========</span>
+    <span class="keyword">int</span> arr2[<span class="number">2</span>][<span class="number">3</span>] = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>};
+    
+    <span class="comment">// ========== 初始化方法三：部分初始化 ==========</span>
+    <span class="keyword">int</span> arr3[<span class="number">2</span>][<span class="number">3</span>] = {
+        {<span class="number">1</span>, <span class="number">2</span>},     <span class="comment">// 第一行，第三個元素自動補 0</span>
+        {<span class="number">4</span>}          <span class="comment">// 第二行，後兩個元素自動補 0</span>
+    };
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>遍歷二維陣列</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> matrix[<span class="number">3</span>][<span class="number">4</span>] = {
+        {<span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>},
+        {<span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>},
+        {<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>}
+    };
+    <span class="keyword">int</span> i, j;
+    
+    <span class="comment">// 使用巢狀迴圈遍歷</span>
+    <span class="function">printf</span>(<span class="string">"矩陣內容：\n"</span>);
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i < <span class="number">3</span>; i++) {
+        <span class="keyword">for</span> (j = <span class="number">0</span>; j < <span class="number">4</span>; j++) {
+            <span class="function">printf</span>(<span class="string">"%3d "</span>, matrix[i][j]);
+        }
+        <span class="function">printf</span>(<span class="string">"\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
         </div>
 
         <div class="content">
             <h2>3. 字串基礎</h2>
-            <ul>
-                <li>字串的本質（字元陣列）</li>
-                <li>字串的宣告與初始化</li>
-                <li>字串結尾字元 \0</li>
-                <li>字串 I/O 函數</li>
-                <li>字串與字元陣列的差異</li>
-            </ul>
             
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h3>什麼是字串？</h3>
+            <p>在 C 語言中，字串是以 null 字元 <code>'\0'</code> 結尾的字元陣列。</p>
 
-int main() {
-    printf("Week 3 - 字串基礎\n");
-    return 0;
-}
+            <h3>字串的宣告與初始化</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// 方法一：使用字串常量初始化</span>
+    <span class="keyword">char</span> str1[] = <span class="string">"Hello"</span>;
+    
+    <span class="comment">// 方法二：指定大小</span>
+    <span class="keyword">char</span> str2[<span class="number">20</span>] = <span class="string">"World"</span>;
+    
+    <span class="comment">// 方法三：逐字元初始化</span>
+    <span class="keyword">char</span> str3[] = {<span class="string">'H'</span>, <span class="string">'i'</span>, <span class="string">'\0'</span>};
+    
+    <span class="function">printf</span>(<span class="string">"str1: %s\n"</span>, str1);
+    <span class="function">printf</span>(<span class="string">"str2: %s\n"</span>, str2);
+    <span class="function">printf</span>(<span class="string">"str3: %s\n"</span>, str3);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="note-box">
+                <strong>字串結尾字元 '\0'：</strong>
+                <ul>
+                    <li><code>'\0'</code> 是 ASCII 碼為 0 的字元，稱為 null 字元</li>
+                    <li>C 語言用它來標記字串的結束</li>
+                    <li>字串函數會自動找到 <code>'\0'</code> 並停止</li>
+                </ul>
             </div>
         </div>
-
         <div class="content">
             <h2>4. 字串函數</h2>
-            <ul>
-                <li>strlen() - 計算長度</li>
-                <li>strcpy() - 複製字串</li>
-                <li>strcat() - 連接字串</li>
-                <li>strcmp() - 比較字串</li>
-                <li>strstr() - 搜尋子字串</li>
-            </ul>
             
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <p>C 語言標準函式庫 <code>&lt;string.h&gt;</code> 提供了許多實用的字串處理函數。</p>
 
-int main() {
-    printf("Week 3 - 字串函數\n");
-    return 0;
-}
+            <h3>strlen() - 計算字串長度</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> str1[] = <span class="string">"Hello"</span>;
+    <span class="keyword">char</span> str2[] = <span class="string">"C Programming"</span>;
+    
+    <span class="comment">// strlen() 返回字串長度（不包含 '\0'）</span>
+    <span class="keyword">int</span> len1 = <span class="function">strlen</span>(str1);
+    <span class="keyword">int</span> len2 = <span class="function">strlen</span>(str2);
+    
+    <span class="function">printf</span>(<span class="string">"'%s' 的長度: %d\n"</span>, str1, len1);  <span class="comment">// 5</span>
+    <span class="function">printf</span>(<span class="string">"'%s' 的長度: %d\n"</span>, str2, len2);  <span class="comment">// 13</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>strcpy() - 複製字串</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> source[] = <span class="string">"Hello World"</span>;
+    <span class="keyword">char</span> dest1[<span class="number">20</span>];
+    <span class="keyword">char</span> dest2[<span class="number">20</span>];
+    
+    <span class="comment">// strcpy：複製整個字串</span>
+    <span class="function">strcpy</span>(dest1, source);
+    <span class="function">printf</span>(<span class="string">"dest1: %s\n"</span>, dest1);
+    
+    <span class="comment">// strncpy：複製指定長度</span>
+    <span class="function">strncpy</span>(dest2, source, <span class="number">5</span>);
+    dest2[<span class="number">5</span>] = <span class="string">'\0'</span>;
+    <span class="function">printf</span>(<span class="string">"dest2: %s\n"</span>, dest2);  <span class="comment">// Hello</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>strcat() - 連接字串</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> str1[<span class="number">50</span>] = <span class="string">"Hello"</span>;
+    <span class="keyword">char</span> str2[] = <span class="string">" World"</span>;
+    
+    <span class="comment">// strcat：連接字串</span>
+    <span class="function">strcat</span>(str1, str2);
+    <span class="function">printf</span>(<span class="string">"str1: %s\n"</span>, str1);  <span class="comment">// Hello World</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>strcmp() - 比較字串</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> str1[] = <span class="string">"apple"</span>;
+    <span class="keyword">char</span> str2[] = <span class="string">"banana"</span>;
+    <span class="keyword">char</span> str3[] = <span class="string">"apple"</span>;
+    
+    <span class="comment">// strcmp：比較兩個字串</span>
+    <span class="comment">// 返回值：0=相等, <0=str1<str2, >0=str1>str2</span>
+    
+    <span class="keyword">int</span> result1 = <span class="function">strcmp</span>(str1, str2);
+    <span class="keyword">int</span> result2 = <span class="function">strcmp</span>(str1, str3);
+    
+    <span class="function">printf</span>(<span class="string">"strcmp('%s', '%s') = %d\n"</span>, str1, str2, result1);
+    <span class="function">printf</span>(<span class="string">"strcmp('%s', '%s') = %d\n"</span>, str1, str3, result2);
+    
+    <span class="keyword">if</span> (<span class="function">strcmp</span>(str1, str3) == <span class="number">0</span>) {
+        <span class="function">printf</span>(<span class="string">"'%s' 和 '%s' 相同\n"</span>, str1, str3);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="warning-box">
+                <strong>重要提醒：</strong>
+                <p>不能使用 <code>==</code> 直接比較兩個字串！</p>
+                <pre>// 錯誤！
+if (str1 == str2) { ... }
+
+// 正確！
+if (strcmp(str1, str2) == 0) { ... }</pre>
+            </div>
+
+            <h3>其他常用字串函數</h3>
+            <table>
+                <tr>
+                    <th>函數</th>
+                    <th>功能</th>
+                    <th>範例</th>
+                </tr>
+                <tr>
+                    <td>strstr()</td>
+                    <td>搜尋子字串</td>
+                    <td>strstr("hello", "ll")</td>
+                </tr>
+                <tr>
+                    <td>strchr()</td>
+                    <td>搜尋字元</td>
+                    <td>strchr("hello", 'e')</td>
+                </tr>
+                <tr>
+                    <td>strrchr()</td>
+                    <td>搜尋字元（從後）</td>
+                    <td>strrchr("hello", 'l')</td>
+                </tr>
+                <tr>
+                    <td>strtok()</td>
+                    <td>字串分割</td>
+                    <td>strtok("a,b,c", ",")</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="content">
+            <h2>5. 字串處理進階</h2>
+            
+            <h3>字元分類函數（需要 &lt;ctype.h&gt;）</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;ctype.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> ch;
+    
+    <span class="function">printf</span>(<span class="string">"請輸入一個字元: "</span>);
+    ch = <span class="function">getchar</span>();
+    
+    <span class="keyword">if</span> (<span class="function">isalpha</span>(ch)) {
+        <span class="function">printf</span>(<span class="string">"'%c' 是字母\n"</span>, ch);
+    }
+    
+    <span class="keyword">if</span> (<span class="function">isdigit</span>(ch)) {
+        <span class="function">printf</span>(<span class="string">"'%c' 是數字\n"</span>, ch);
+    }
+    
+    <span class="keyword">if</span> (<span class="function">isupper</span>(ch)) {
+        <span class="function">printf</span>(<span class="string">"'%c' 是大寫字母\n"</span>, ch);
+    }
+    
+    <span class="keyword">if</span> (<span class="function">islower</span>(ch)) {
+        <span class="function">printf</span>(<span class="string">"'%c' 是小寫字母\n"</span>, ch);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>大小寫轉換</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;ctype.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> str[] = <span class="string">"Hello World 123"</span>;
+    <span class="keyword">int</span> i;
+    
+    <span class="function">printf</span>(<span class="string">"原字串: %s\n"</span>, str);
+    
+    <span class="comment">// 轉換為大寫</span>
+    <span class="function">printf</span>(<span class="string">"大寫: "</span>);
+    <span class="keyword">for</span> (i = <span class="number">0</span>; str[i] != <span class="string">'\0'</span>; i++) {
+        <span class="function">putchar</span>(<span class="function">toupper</span>(str[i]));
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="comment">// 轉換為小寫</span>
+    <span class="function">printf</span>(<span class="string">"小寫: "</span>);
+    <span class="keyword">for</span> (i = <span class="number">0</span>; str[i] != <span class="string">'\0'</span>; i++) {
+        <span class="function">putchar</span>(<span class="function">tolower</span>(str[i]));
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>sprintf() 和 sscanf() - 字串格式化</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> buffer[<span class="number">100</span>];
+    <span class="keyword">int</span> age = <span class="number">25</span>;
+    <span class="keyword">float</span> height = <span class="number">175.5</span>;
+    
+    <span class="comment">// sprintf：格式化字串到緩衝區</span>
+    <span class="function">sprintf</span>(buffer, <span class="string">"年齡: %d, 身高: %.1f"</span>, age, height);
+    <span class="function">printf</span>(<span class="string">"buffer: %s\n"</span>, buffer);
+    
+    <span class="comment">// sscanf：從字串解析資料</span>
+    <span class="keyword">char</span> data[] = <span class="string">"25 175.5 John"</span>;
+    <span class="keyword">int</span> a;
+    <span class="keyword">float</span> h;
+    <span class="keyword">char</span> name[<span class="number">20</span>];
+    
+    <span class="function">sscanf</span>(data, <span class="string">"%d %f %s"</span>, &a, &h, name);
+    <span class="function">printf</span>(<span class="string">"解析: age=%d, height=%.1f, name=%s\n"</span>, a, h, name);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>字串陣列</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// 宣告字串陣列</span>
+    <span class="keyword">char</span> fruits[<span class="number">5</span>][<span class="number">20</span>] = {
+        <span class="string">"Apple"</span>,
+        <span class="string">"Banana"</span>,
+        <span class="string">"Cherry"</span>,
+        <span class="string">"Durian"</span>,
+        <span class="string">"Elderberry"</span>
+    };
+    
+    <span class="comment">// 遍歷字串陣列</span>
+    <span class="function">printf</span>(<span class="string">"水果清單：\n"</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+        <span class="function">printf</span>(<span class="string">"%d. %s\n"</span>, i + <span class="number">1</span>, fruits[i]);
+    }
+    
+    <span class="comment">// 搜尋特定字串</span>
+    <span class="keyword">char</span> target[] = <span class="string">"Cherry"</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+        <span class="keyword">if</span> (<span class="function">strcmp</span>(fruits[i], target) == <span class="number">0</span>) {
+            <span class="function">printf</span>(<span class="string">"\n找到 '%s' 在索引 %d\n"</span>, target, i);
+            <span class="keyword">break</span>;
+        }
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="tip-box">
+                <strong>字串處理技巧：</strong>
+                <ul>
+                    <li>始終確保陣列足夠大，能容納字串和 '\0'</li>
+                    <li>使用 fgets() 代替 gets() 避免緩衝區溢位</li>
+                    <li>處理字串前先用 strlen() 檢查長度</li>
+                    <li>字串比較使用 strcmp()，不要用 ==</li>
+                    <li>複製字串使用 strcpy() 或 strncpy()</li>
+                </ul>
             </div>
         </div>
 
         <div class="content">
-            <h2>5. 字串處理</h2>
-            <ul>
-                <li>字串輸入（scanf, gets, fgets）</li>
-                <li>字串格式化（sprintf, sscanf）</li>
-                <li>字元分類函數（isalpha, isdigit）</li>
-                <li>大小寫轉換（toupper, tolower）</li>
-                <li>字串陣列</li>
-            </ul>
+            <h2>6. 綜合範例</h2>
             
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h3>範例一：學生成績管理</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
-int main() {
-    printf("Week 3 - 字串處理\n");
-    return 0;
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> scores[<span class="number">5</span>];
+    <span class="keyword">int</span> i, sum = <span class="number">0</span>;
+    <span class="keyword">double</span> average;
+    <span class="keyword">int</span> max, min;
+    
+    <span class="comment">// 輸入成績</span>
+    <span class="function">printf</span>(<span class="string">"請輸入 5 位學生的成績：\n"</span>);
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+        <span class="function">printf</span>(<span class="string">"學生 %d: "</span>, i + <span class="number">1</span>);
+        <span class="function">scanf</span>(<span class="string">"%d"</span>, &scores[i]);
+        sum += scores[i];
+    }
+    
+    <span class="comment">// 計算平均</span>
+    average = sum / <span class="number">5.0</span>;
+    
+    <span class="comment">// 找最高分和最低分</span>
+    max = min = scores[<span class="number">0</span>];
+    <span class="keyword">for</span> (i = <span class="number">1</span>; i < <span class="number">5</span>; i++) {
+        <span class="keyword">if</span> (scores[i] > max) max = scores[i];
+        <span class="keyword">if</span> (scores[i] < min) min = scores[i];
+    }
+    
+    <span class="comment">// 顯示統計結果</span>
+    <span class="function">printf</span>(<span class="string">"\n===== 統計結果 =====\n"</span>);
+    <span class="function">printf</span>(<span class="string">"總分: %d\n"</span>, sum);
+    <span class="function">printf</span>(<span class="string">"平均: %.2f\n"</span>, average);
+    <span class="function">printf</span>(<span class="string">"最高分: %d\n"</span>, max);
+    <span class="function">printf</span>(<span class="string">"最低分: %d\n"</span>, min);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>範例二：文字處理器</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;ctype.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> text[<span class="number">200</span>];
+    <span class="keyword">int</span> i;
+    <span class="keyword">int</span> letters = <span class="number">0</span>, digits = <span class="number">0</span>, spaces = <span class="number">0</span>, others = <span class="number">0</span>;
+    
+    <span class="function">printf</span>(<span class="string">"請輸入一段文字：\n"</span>);
+    <span class="function">fgets</span>(text, <span class="keyword">sizeof</span>(text), stdin);
+    
+    <span class="comment">// 統計各類字元數量</span>
+    <span class="keyword">for</span> (i = <span class="number">0</span>; text[i] != <span class="string">'\0'</span>; i++) {
+        <span class="keyword">if</span> (<span class="function">isalpha</span>(text[i])) {
+            letters++;
+        } <span class="keyword">else if</span> (<span class="function">isdigit</span>(text[i])) {
+            digits++;
+        } <span class="keyword">else if</span> (<span class="function">isspace</span>(text[i])) {
+            spaces++;
+        } <span class="keyword">else</span> {
+            others++;
+        }
+    }
+    
+    <span class="function">printf</span>(<span class="string">"\n===== 統計結果 =====\n"</span>);
+    <span class="function">printf</span>(<span class="string">"字母數: %d\n"</span>, letters);
+    <span class="function">printf</span>(<span class="string">"數字數: %d\n"</span>, digits);
+    <span class="function">printf</span>(<span class="string">"空白數: %d\n"</span>, spaces);
+    <span class="function">printf</span>(<span class="string">"其他字元: %d\n"</span>, others);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>範例三：井字遊戲棋盤</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">void</span> <span class="function">printBoard</span>(<span class="keyword">char</span> board[<span class="number">3</span>][<span class="number">3</span>]) {
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">3</span>; i++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j < <span class="number">3</span>; j++) {
+            <span class="function">printf</span>(<span class="string">" %c "</span>, board[i][j]);
+            <span class="keyword">if</span> (j < <span class="number">2</span>) <span class="function">printf</span>(<span class="string">"|"</span>);
+        }
+        <span class="function">printf</span>(<span class="string">"\n"</span>);
+        <span class="keyword">if</span> (i < <span class="number">2</span>) <span class="function">printf</span>(<span class="string">"---+---+---\n"</span>);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
 }
-            </div>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> board[<span class="number">3</span>][<span class="number">3</span>] = {
+        {<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>},
+        {<span class="string">'4'</span>, <span class="string">'5'</span>, <span class="string">'6'</span>},
+        {<span class="string">'7'</span>, <span class="string">'8'</span>, <span class="string">'9'</span>}
+    };
+    
+    <span class="function">printf</span>(<span class="string">"井字遊戲棋盤："</span>);
+    <span class="function">printBoard</span>(board);
+    
+    <span class="comment">// 模擬下棋</span>
+    board[<span class="number">0</span>][<span class="number">0</span>] = <span class="string">'X'</span>;
+    board[<span class="number">1</span>][<span class="number">1</span>] = <span class="string">'O'</span>;
+    board[<span class="number">0</span>][<span class="number">2</span>] = <span class="string">'X'</span>;
+    
+    <span class="function">printf</span>(<span class="string">"下棋後："</span>);
+    <span class="function">printBoard</span>(board);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li>
+                        <strong>陣列反轉</strong><br>
+                        撰寫程式將陣列元素順序反轉。例如：{1,2,3,4,5} → {5,4,3,2,1}
+                    </li>
+                    <li>
+                        <strong>找出重複元素</strong><br>
+                        給定一個整數陣列，找出其中的重複元素並輸出。
+                    </li>
+                    <li>
+                        <strong>字串回文判斷</strong><br>
+                        判斷輸入的字串是否為回文（正讀反讀都一樣）。例如："level"、"noon"
+                    </li>
+                    <li>
+                        <strong>計算單字數量</strong><br>
+                        讀取一行文字，計算其中有多少個單字（以空格分隔）。
+                    </li>
                 </ol>
+
+                <h4>進階練習</h4>
+                <ol start="5">
+                    <li>
+                        <strong>矩陣乘法</strong><br>
+                        實作兩個矩陣相乘（3x2 矩陣乘以 2x3 矩陣）。
+                    </li>
+                    <li>
+                        <strong>選擇排序</strong><br>
+                        實作選擇排序演算法對陣列進行排序。
+                    </li>
+                    <li>
+                        <strong>字串加密</strong><br>
+                        實作凱撒密碼（Caesar Cipher），將字母位移 n 位。<br>
+                        例如：位移 3，'A' → 'D'，'B' → 'E'
+                    </li>
+                    <li>
+                        <strong>文字統計</strong><br>
+                        統計一段文字中每個字母出現的次數（不區分大小寫）。
+                    </li>
+                </ol>
+
+                <h4>挑戰練習</h4>
+                <ol start="9">
+                    <li>
+                        <strong>字串搜尋</strong><br>
+                        自己實作 strstr() 函數，在主字串中搜尋子字串。
+                    </li>
+                    <li>
+                        <strong>通訊錄系統</strong><br>
+                        建立簡單的通訊錄，可儲存 10 個聯絡人的姓名和電話號碼，<br>
+                        並提供新增、搜尋、顯示全部等功能。
+                    </li>
+                    <li>
+                        <strong>成績管理系統</strong><br>
+                        輸入多位學生的姓名和成績，計算平均分數，<br>
+                        並依成績高低排序後輸出。
+                    </li>
+                </ol>
+
+                <div class="tip-box">
+                    <strong>練習提示：</strong>
+                    <ul>
+                        <li>善用巢狀迴圈處理多維陣列</li>
+                        <li>字串操作時注意 '\0' 的處理</li>
+                        <li>使用 string.h 和 ctype.h 中的函數</li>
+                        <li>測試邊界條件（空字串、單一元素等）</li>
+                        <li>注意陣列越界問題</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="content">
             <h2>本週總結</h2>
-            <div class="tip-box">
-                <strong>重點回顧：</strong>
+            
+            <h3>重點回顧</h3>
+            <ul>
+                <li>✓ 理解陣列的概念和記憶體配置方式</li>
+                <li>✓ 掌握一維和二維陣列的宣告與使用</li>
+                <li>✓ 了解字串是以 '\0' 結尾的字元陣列</li>
+                <li>✓ 熟悉常用字串函數的使用方法</li>
+                <li>✓ 能夠處理字串輸入、比較、搜尋等操作</li>
+                <li>✓ 學會使用字元分類和轉換函數</li>
+            </ul>
+
+            <h3>常見錯誤整理</h3>
+            <div class="warning-box">
+                <strong>需要特別注意：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li><strong>陣列越界</strong>：存取超出陣列範圍的索引</li>
+                    <li><strong>忘記 '\0'</strong>：手動建立字串時忘記加結尾字元</li>
+                    <li><strong>使用 == 比較字串</strong>：應該使用 strcmp()</li>
+                    <li><strong>陣列大小不足</strong>：字串陣列無法容納字串和 '\0'</li>
+                    <li><strong>未初始化陣列</strong>：使用未初始化的陣列元素</li>
+                    <li><strong>scanf 讀取帶空格的字串</strong>：應該使用 fgets()</li>
+                </ul>
+            </div>
+
+            <h3>下週預告</h3>
+            <div class="note-box">
+                <h4>Week 4 - 函數與遞迴</h4>
+                <p>下週將學習：</p>
+                <ul>
+                    <li>函數的定義與呼叫</li>
+                    <li>參數傳遞（傳值 vs 傳址）</li>
+                    <li>函數的返回值</li>
+                    <li>遞迴函數的概念與應用</li>
+                    <li>變數的作用域</li>
+                    <li>函數設計原則</li>
                 </ul>
             </div>
         </div>
@@ -310,6 +844,12 @@ int main() {
             <a href="week2.html" class="btn btn-secondary">← Week 2</a>
             <a href="week4.html" class="btn">Week 4 →</a>
         </div>
+
+        <footer style="text-align: center; padding: 30px 0; color: #7f8c8d; margin-top: 50px; border-top: 1px solid #ddd;">
+            <p style="margin: 10px 0;">C語言程式設計 Week 3 完整教材</p>
+            <p style="margin: 10px 0; font-size: 0.9em;">陣列操作 · 字串處理 · 矩陣運算 · 字串函數</p>
+            <p style="margin: 10px 0; font-size: 0.85em; color: #95a5a6;">© 2024 All Rights Reserved</p>
+        </footer>
     </div>
 </body>
 </html>

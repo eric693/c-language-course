@@ -61,6 +61,11 @@
             font-size: 1.5em;
             margin: 30px 0 15px 0;
         }
+        .content h4 {
+            color: #546e7a;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
         .code-block {
             background: #2c3e50;
             color: #ecf0f1;
@@ -82,6 +87,13 @@
         .tip-box {
             background: #e8f5e9;
             border-left: 4px solid #66bb6a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
             padding: 20px;
             margin: 20px 0;
             border-radius: 4px;
@@ -117,6 +129,30 @@
         }
         .btn-secondary { background: #95a5a6; }
         .btn-secondary:hover { background: #7f8c8d; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .visual-diagram {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -129,52 +165,1548 @@
 
         <header>
             <h1>Week 12 - 資料結構實作</h1>
-            <div class="subtitle">學習目標：實作鏈結串列、堆疊與佇列</div>
+            <div class="subtitle">學習目標：實作鏈結串列、堆疊、佇列與二元樹</div>
         </header>
 
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>核心概念與理論基礎</li>
-                <li>程式碼範例與詳細說明</li>
-                <li>實作練習與應用</li>
-                <li>常見問題與解決方案</li>
-                <li>最佳實務與開發技巧</li>
+                <li>鏈結串列（Linked List）實作</li>
+                <li>堆疊（Stack）資料結構</li>
+                <li>佇列（Queue）資料結構</li>
+                <li>二元樹（Binary Tree）基礎</li>
+                <li>資料結構的應用與比較</li>
+                <li>記憶體管理與效能分析</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>核心內容</h2>
-            <p>本週將深入學習 資料結構實作，這是 C 語言程式設計中的重要主題。</p>
+            <h2>1. 鏈結串列（Linked List）</h2>
             
-            <div class="note-box">
-                <strong>學習重點：</strong>
-                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
+            <h3>1.1 單向鏈結串列基礎</h3>
+            <p>鏈結串列是由節點組成的線性資料結構，每個節點包含資料和指向下一個節點的指標。</p>
+            
+            <div class="visual-diagram">
+[頭] -> [10|*] -> [20|*] -> [30|*] -> [40|NULL]
+         節點1     節點2     節點3     節點4
             </div>
+
+            <div class="note-box">
+                <strong>鏈結串列的特性：</strong>
+                <ul>
+                    <li>動態大小：可以隨時新增或刪除節點</li>
+                    <li>記憶體效率：不需要連續記憶體空間</li>
+                    <li>插入/刪除快速：O(1) 時間（若已知位置）</li>
+                    <li>存取較慢：O(n) 時間（需循序存取）</li>
+                </ul>
+            </div>
+
+            <h3>1.2 單向鏈結串列實作</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 定義節點結構
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+// 建立新節點
+Node* createNode(int data) {
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        printf("記憶體配置失敗！\n");
+        exit(1);
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// 在開頭插入節點
+void insertAtBeginning(Node **head, int data) {
+    Node *newNode = createNode(data);
+    newNode->next = *head;
+    *head = newNode;
+}
+
+// 在結尾插入節點
+void insertAtEnd(Node **head, int data) {
+    Node *newNode = createNode(data);
+    
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    
+    Node *current = *head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = newNode;
+}
+
+// 在指定位置插入節點
+void insertAtPosition(Node **head, int data, int position) {
+    if (position == 0) {
+        insertAtBeginning(head, data);
+        return;
+    }
+    
+    Node *newNode = createNode(data);
+    Node *current = *head;
+    
+    for (int i = 0; i < position - 1 && current != NULL; i++) {
+        current = current->next;
+    }
+    
+    if (current == NULL) {
+        printf("位置超出範圍！\n");
+        free(newNode);
+        return;
+    }
+    
+    newNode->next = current->next;
+    current->next = newNode;
+}
+
+// 刪除開頭節點
+void deleteAtBeginning(Node **head) {
+    if (*head == NULL) {
+        printf("串列是空的！\n");
+        return;
+    }
+    
+    Node *temp = *head;
+    *head = (*head)->next;
+    free(temp);
+}
+
+// 刪除結尾節點
+void deleteAtEnd(Node **head) {
+    if (*head == NULL) {
+        printf("串列是空的！\n");
+        return;
+    }
+    
+    if ((*head)->next == NULL) {
+        free(*head);
+        *head = NULL;
+        return;
+    }
+    
+    Node *current = *head;
+    while (current->next->next != NULL) {
+        current = current->next;
+    }
+    
+    free(current->next);
+    current->next = NULL;
+}
+
+// 刪除指定值的節點
+void deleteByValue(Node **head, int value) {
+    if (*head == NULL) {
+        printf("串列是空的！\n");
+        return;
+    }
+    
+    // 如果要刪除的是頭節點
+    if ((*head)->data == value) {
+        Node *temp = *head;
+        *head = (*head)->next;
+        free(temp);
+        return;
+    }
+    
+    Node *current = *head;
+    while (current->next != NULL && current->next->data != value) {
+        current = current->next;
+    }
+    
+    if (current->next == NULL) {
+        printf("找不到值 %d\n", value);
+        return;
+    }
+    
+    Node *temp = current->next;
+    current->next = current->next->next;
+    free(temp);
+}
+
+// 搜尋節點
+Node* search(Node *head, int value) {
+    Node *current = head;
+    while (current != NULL) {
+        if (current->data == value) {
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
+}
+
+// 印出串列
+void printList(Node *head) {
+    if (head == NULL) {
+        printf("串列是空的\n");
+        return;
+    }
+    
+    Node *current = head;
+    printf("串列內容：");
+    while (current != NULL) {
+        printf("%d", current->data);
+        if (current->next != NULL) {
+            printf(" -> ");
+        }
+        current = current->next;
+    }
+    printf("\n");
+}
+
+// 取得串列長度
+int getLength(Node *head) {
+    int count = 0;
+    Node *current = head;
+    while (current != NULL) {
+        count++;
+        current = current->next;
+    }
+    return count;
+}
+
+// 反轉串列
+void reverse(Node **head) {
+    Node *prev = NULL;
+    Node *current = *head;
+    Node *next = NULL;
+    
+    while (current != NULL) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    
+    *head = prev;
+}
+
+// 釋放整個串列
+void freeList(Node **head) {
+    Node *current = *head;
+    Node *next;
+    
+    while (current != NULL) {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+    
+    *head = NULL;
+}
+
+int main() {
+    Node *head = NULL;
+    
+    // 測試插入操作
+    printf("=== 測試插入操作 ===\n");
+    insertAtEnd(&head, 10);
+    insertAtEnd(&head, 20);
+    insertAtEnd(&head, 30);
+    printList(head);
+    
+    insertAtBeginning(&head, 5);
+    printList(head);
+    
+    insertAtPosition(&head, 15, 2);
+    printList(head);
+    
+    // 測試搜尋
+    printf("\n=== 測試搜尋 ===\n");
+    int searchValue = 20;
+    Node *found = search(head, searchValue);
+    if (found != NULL) {
+        printf("找到值：%d\n", found->data);
+    } else {
+        printf("找不到值：%d\n", searchValue);
+    }
+    
+    // 測試長度
+    printf("\n串列長度：%d\n", getLength(head));
+    
+    // 測試刪除
+    printf("\n=== 測試刪除操作 ===\n");
+    deleteByValue(&head, 15);
+    printList(head);
+    
+    deleteAtBeginning(&head);
+    printList(head);
+    
+    deleteAtEnd(&head);
+    printList(head);
+    
+    // 測試反轉
+    printf("\n=== 測試反轉 ===\n");
+    reverse(&head);
+    printList(head);
+    
+    // 釋放記憶體
+    freeList(&head);
+    printf("\n串列已釋放\n");
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>1.3 雙向鏈結串列</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 雙向鏈結串列節點
+typedef struct DNode {
+    int data;
+    struct DNode *prev;
+    struct DNode *next;
+} DNode;
+
+// 建立新節點
+DNode* createDNode(int data) {
+    DNode *newNode = (DNode*)malloc(sizeof(DNode));
+    newNode->data = data;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// 在開頭插入
+void insertAtBeginning(DNode **head, int data) {
+    DNode *newNode = createDNode(data);
+    
+    if (*head != NULL) {
+        newNode->next = *head;
+        (*head)->prev = newNode;
+    }
+    *head = newNode;
+}
+
+// 在結尾插入
+void insertAtEnd(DNode **head, int data) {
+    DNode *newNode = createDNode(data);
+    
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    
+    DNode *current = *head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    
+    current->next = newNode;
+    newNode->prev = current;
+}
+
+// 刪除節點
+void deleteNode(DNode **head, DNode *node) {
+    if (*head == NULL || node == NULL) {
+        return;
+    }
+    
+    if (*head == node) {
+        *head = node->next;
+    }
+    
+    if (node->next != NULL) {
+        node->next->prev = node->prev;
+    }
+    
+    if (node->prev != NULL) {
+        node->prev->next = node->next;
+    }
+    
+    free(node);
+}
+
+// 正向印出串列
+void printForward(DNode *head) {
+    printf("正向：");
+    DNode *current = head;
+    while (current != NULL) {
+        printf("%d", current->data);
+        if (current->next != NULL) {
+            printf(" <-> ");
+        }
+        current = current->next;
+    }
+    printf("\n");
+}
+
+// 反向印出串列
+void printBackward(DNode *head) {
+    if (head == NULL) return;
+    
+    // 先移動到最後一個節點
+    DNode *current = head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    
+    // 反向印出
+    printf("反向：");
+    while (current != NULL) {
+        printf("%d", current->data);
+        if (current->prev != NULL) {
+            printf(" <-> ");
+        }
+        current = current->prev;
+    }
+    printf("\n");
+}
+
+int main() {
+    DNode *head = NULL;
+    
+    insertAtEnd(&head, 10);
+    insertAtEnd(&head, 20);
+    insertAtEnd(&head, 30);
+    insertAtBeginning(&head, 5);
+    
+    printForward(head);
+    printBackward(head);
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>2. 堆疊（Stack）</h2>
             
-            <h3>詳細說明</h3>
-            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
+            <h3>2.1 堆疊基礎概念</h3>
+            <p>堆疊是一種後進先出（LIFO - Last In First Out）的資料結構。</p>
             
-            <h3>實作建議</h3>
-            <ul>
-                <li>從基本概念開始，逐步進階</li>
-                <li>每個範例都要實際撰寫並執行</li>
-                <li>遇到問題要積極查找資料</li>
-                <li>完成練習題以驗證理解程度</li>
-            </ul>
+            <div class="visual-diagram">
+        Push(30)
+           ↓
+      |  30  |  ← Top
+      |  20  |
+      |  10  |
+      -------
+       Stack
+            </div>
+
+            <div class="note-box">
+                <strong>堆疊的主要操作：</strong>
+                <ul>
+                    <li><strong>Push</strong>：將元素推入堆疊頂端</li>
+                    <li><strong>Pop</strong>：移除並返回堆疊頂端元素</li>
+                    <li><strong>Peek/Top</strong>：查看堆疊頂端元素但不移除</li>
+                    <li><strong>isEmpty</strong>：檢查堆疊是否為空</li>
+                </ul>
+            </div>
+
+            <h3>2.2 陣列實作堆疊</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX_SIZE 100
+
+typedef struct {
+    int items[MAX_SIZE];
+    int top;
+} Stack;
+
+// 初始化堆疊
+void initStack(Stack *s) {
+    s->top = -1;
+}
+
+// 檢查是否為空
+int isEmpty(Stack *s) {
+    return s->top == -1;
+}
+
+// 檢查是否已滿
+int isFull(Stack *s) {
+    return s->top == MAX_SIZE - 1;
+}
+
+// 推入元素
+void push(Stack *s, int value) {
+    if (isFull(s)) {
+        printf("堆疊已滿！無法推入 %d\n", value);
+        return;
+    }
+    s->items[++(s->top)] = value;
+    printf("推入：%d\n", value);
+}
+
+// 彈出元素
+int pop(Stack *s) {
+    if (isEmpty(s)) {
+        printf("堆疊是空的！\n");
+        return -1;
+    }
+    return s->items[(s->top)--];
+}
+
+// 查看頂端元素
+int peek(Stack *s) {
+    if (isEmpty(s)) {
+        printf("堆疊是空的！\n");
+        return -1;
+    }
+    return s->items[s->top];
+}
+
+// 取得大小
+int size(Stack *s) {
+    return s->top + 1;
+}
+
+// 印出堆疊
+void printStack(Stack *s) {
+    if (isEmpty(s)) {
+        printf("堆疊是空的\n");
+        return;
+    }
+    
+    printf("堆疊內容（由頂端到底部）：");
+    for (int i = s->top; i >= 0; i--) {
+        printf("%d ", s->items[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    Stack s;
+    initStack(&s);
+    
+    printf("=== 測試堆疊操作 ===\n");
+    push(&s, 10);
+    push(&s, 20);
+    push(&s, 30);
+    push(&s, 40);
+    
+    printStack(&s);
+    printf("大小：%d\n", size(&s));
+    
+    printf("\n頂端元素：%d\n", peek(&s));
+    
+    printf("\n彈出：%d\n", pop(&s));
+    printf("彈出：%d\n", pop(&s));
+    
+    printStack(&s);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.3 鏈結串列實作堆疊</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct StackNode {
+    int data;
+    struct StackNode *next;
+} StackNode;
+
+typedef struct {
+    StackNode *top;
+    int size;
+} LinkedStack;
+
+// 初始化堆疊
+void initStack(LinkedStack *s) {
+    s->top = NULL;
+    s->size = 0;
+}
+
+// 檢查是否為空
+int isEmpty(LinkedStack *s) {
+    return s->top == NULL;
+}
+
+// 推入元素
+void push(LinkedStack *s, int value) {
+    StackNode *newNode = (StackNode*)malloc(sizeof(StackNode));
+    newNode->data = value;
+    newNode->next = s->top;
+    s->top = newNode;
+    s->size++;
+    printf("推入：%d\n", value);
+}
+
+// 彈出元素
+int pop(LinkedStack *s) {
+    if (isEmpty(s)) {
+        printf("堆疊是空的！\n");
+        return -1;
+    }
+    
+    StackNode *temp = s->top;
+    int value = temp->data;
+    s->top = s->top->next;
+    free(temp);
+    s->size--;
+    
+    return value;
+}
+
+// 查看頂端元素
+int peek(LinkedStack *s) {
+    if (isEmpty(s)) {
+        printf("堆疊是空的！\n");
+        return -1;
+    }
+    return s->top->data;
+}
+
+// 印出堆疊
+void printStack(LinkedStack *s) {
+    if (isEmpty(s)) {
+        printf("堆疊是空的\n");
+        return;
+    }
+    
+    printf("堆疊內容（由頂端到底部）：");
+    StackNode *current = s->top;
+    while (current != NULL) {
+        printf("%d ", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
+
+// 釋放堆疊
+void freeStack(LinkedStack *s) {
+    while (!isEmpty(s)) {
+        pop(s);
+    }
+}
+
+int main() {
+    LinkedStack s;
+    initStack(&s);
+    
+    push(&s, 10);
+    push(&s, 20);
+    push(&s, 30);
+    
+    printStack(&s);
+    
+    printf("彈出：%d\n", pop(&s));
+    printStack(&s);
+    
+    freeStack(&s);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>2.4 堆疊應用：括號匹配</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX_SIZE 100
+
+typedef struct {
+    char items[MAX_SIZE];
+    int top;
+} CharStack;
+
+void initStack(CharStack *s) {
+    s->top = -1;
+}
+
+int isEmpty(CharStack *s) {
+    return s->top == -1;
+}
+
+void push(CharStack *s, char c) {
+    if (s->top < MAX_SIZE - 1) {
+        s->items[++(s->top)] = c;
+    }
+}
+
+char pop(CharStack *s) {
+    if (!isEmpty(s)) {
+        return s->items[(s->top)--];
+    }
+    return '\0';
+}
+
+char peek(CharStack *s) {
+    if (!isEmpty(s)) {
+        return s->items[s->top];
+    }
+    return '\0';
+}
+
+// 檢查括號是否匹配
+int isMatchingPair(char open, char close) {
+    return (open == '(' && close == ')') ||
+           (open == '[' && close == ']') ||
+           (open == '{' && close == '}');
+}
+
+// 驗證括號平衡
+int isBalanced(const char *expr) {
+    CharStack s;
+    initStack(&s);
+    
+    for (int i = 0; expr[i] != '\0'; i++) {
+        char ch = expr[i];
+        
+        // 遇到左括號，推入堆疊
+        if (ch == '(' || ch == '[' || ch == '{') {
+            push(&s, ch);
+        }
+        // 遇到右括號
+        else if (ch == ')' || ch == ']' || ch == '}') {
+            if (isEmpty(&s)) {
+                return 0;  // 沒有對應的左括號
+            }
+            
+            char top = pop(&s);
+            if (!isMatchingPair(top, ch)) {
+                return 0;  // 括號不匹配
+            }
+        }
+    }
+    
+    return isEmpty(&s);  // 堆疊必須為空
+}
+
+int main() {
+    char *expressions[] = {
+        "{[()]}",
+        "{[(])}",
+        "{{[[(())]]}}",
+        "((())",
+        "{[}]"
+    };
+    
+    int count = sizeof(expressions) / sizeof(expressions[0]);
+    
+    printf("=== 括號匹配檢查 ===\n");
+    for (int i = 0; i < count; i++) {
+        printf("'%s' : %s\n", 
+               expressions[i], 
+               isBalanced(expressions[i]) ? "平衡" : "不平衡");
+    }
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>3. 佇列（Queue）</h2>
+            
+            <h3>3.1 佇列基礎概念</h3>
+            <p>佇列是一種先進先出（FIFO - First In First Out）的資料結構。</p>
+            
+            <div class="visual-diagram">
+Rear                                    Front
+  ↓                                       ↓
+[30] [20] [10] → Dequeue → [10]
+  ↑
+Enqueue(30)
+            </div>
+
+            <div class="note-box">
+                <strong>佇列的主要操作：</strong>
+                <ul>
+                    <li><strong>Enqueue</strong>：將元素加入佇列尾端</li>
+                    <li><strong>Dequeue</strong>：移除並返回佇列前端元素</li>
+                    <li><strong>Front</strong>：查看佇列前端元素但不移除</li>
+                    <li><strong>isEmpty</strong>：檢查佇列是否為空</li>
+                </ul>
+            </div>
+
+            <h3>3.2 陣列實作佇列（環狀佇列）</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX_SIZE 5
+
+typedef struct {
+    int items[MAX_SIZE];
+    int front;
+    int rear;
+    int count;
+} Queue;
+
+// 初始化佇列
+void initQueue(Queue *q) {
+    q->front = 0;
+    q->rear = -1;
+    q->count = 0;
+}
+
+// 檢查是否為空
+int isEmpty(Queue *q) {
+    return q->count == 0;
+}
+
+// 檢查是否已滿
+int isFull(Queue *q) {
+    return q->count == MAX_SIZE;
+}
+
+// 加入元素
+void enqueue(Queue *q, int value) {
+    if (isFull(q)) {
+        printf("佇列已滿！無法加入 %d\n", value);
+        return;
+    }
+    
+    q->rear = (q->rear + 1) % MAX_SIZE;
+    q->items[q->rear] = value;
+    q->count++;
+    printf("加入：%d\n", value);
+}
+
+// 移除元素
+int dequeue(Queue *q) {
+    if (isEmpty(q)) {
+        printf("佇列是空的！\n");
+        return -1;
+    }
+    
+    int value = q->items[q->front];
+    q->front = (q->front + 1) % MAX_SIZE;
+    q->count--;
+    
+    return value;
+}
+
+// 查看前端元素
+int front(Queue *q) {
+    if (isEmpty(q)) {
+        printf("佇列是空的！\n");
+        return -1;
+    }
+    return q->items[q->front];
+}
+
+// 取得大小
+int size(Queue *q) {
+    return q->count;
+}
+
+// 印出佇列
+void printQueue(Queue *q) {
+    if (isEmpty(q)) {
+        printf("佇列是空的\n");
+        return;
+    }
+    
+    printf("佇列內容（前端到尾端）：");
+    int index = q->front;
+    for (int i = 0; i < q->count; i++) {
+        printf("%d ", q->items[index]);
+        index = (index + 1) % MAX_SIZE;
+    }
+    printf("\n");
+}
+
+int main() {
+    Queue q;
+    initQueue(&q);
+    
+    printf("=== 測試佇列操作 ===\n");
+    enqueue(&q, 10);
+    enqueue(&q, 20);
+    enqueue(&q, 30);
+    enqueue(&q, 40);
+    
+    printQueue(&q);
+    printf("大小：%d\n", size(&q));
+    
+    printf("\n前端元素：%d\n", front(&q));
+    
+    printf("\n移除：%d\n", dequeue(&q));
+    printf("移除：%d\n", dequeue(&q));
+    
+    printQueue(&q);
+    
+    // 測試環狀特性
+    printf("\n=== 測試環狀佇列 ===\n");
+    enqueue(&q, 50);
+    enqueue(&q, 60);
+    enqueue(&q, 70);
+    
+    printQueue(&q);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>3.3 鏈結串列實作佇列</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct QueueNode {
+    int data;
+    struct QueueNode *next;
+} QueueNode;
+
+typedef struct {
+    QueueNode *front;
+    QueueNode *rear;
+    int size;
+} LinkedQueue;
+
+// 初始化佇列
+void initQueue(LinkedQueue *q) {
+    q->front = NULL;
+    q->rear = NULL;
+    q->size = 0;
+}
+
+// 檢查是否為空
+int isEmpty(LinkedQueue *q) {
+    return q->front == NULL;
+}
+
+// 加入元素
+void enqueue(LinkedQueue *q, int value) {
+    QueueNode *newNode = (QueueNode*)malloc(sizeof(QueueNode));
+    newNode->data = value;
+    newNode->next = NULL;
+    
+    if (isEmpty(q)) {
+        q->front = newNode;
+        q->rear = newNode;
+    } else {
+        q->rear->next = newNode;
+        q->rear = newNode;
+    }
+    
+    q->size++;
+    printf("加入：%d\n", value);
+}
+
+// 移除元素
+int dequeue(LinkedQueue *q) {
+    if (isEmpty(q)) {
+        printf("佇列是空的！\n");
+        return -1;
+    }
+    
+    QueueNode *temp = q->front;
+    int value = temp->data;
+    
+    q->front = q->front->next;
+    if (q->front == NULL) {
+        q->rear = NULL;
+    }
+    
+    free(temp);
+    q->size--;
+    
+    return value;
+}
+
+// 查看前端元素
+int front(LinkedQueue *q) {
+    if (isEmpty(q)) {
+        printf("佇列是空的！\n");
+        return -1;
+    }
+    return q->front->data;
+}
+
+// 印出佇列
+void printQueue(LinkedQueue *q) {
+    if (isEmpty(q)) {
+        printf("佇列是空的\n");
+        return;
+    }
+    
+    printf("佇列內容：");
+    QueueNode *current = q->front;
+    while (current != NULL) {
+        printf("%d ", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
+
+// 釋放佇列
+void freeQueue(LinkedQueue *q) {
+    while (!isEmpty(q)) {
+        dequeue(q);
+    }
+}
+
+int main() {
+    LinkedQueue q;
+    initQueue(&q);
+    
+    enqueue(&q, 10);
+    enqueue(&q, 20);
+    enqueue(&q, 30);
+    
+    printQueue(&q);
+    
+    printf("移除：%d\n", dequeue(&q));
+    printQueue(&q);
+    
+    freeQueue(&q);
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>4. 二元樹（Binary Tree）</h2>
+            
+            <h3>4.1 二元樹基礎概念</h3>
+            <p>二元樹是一種階層式資料結構，每個節點最多有兩個子節點（左子節點和右子節點）。</p>
+            
+            <div class="visual-diagram">
+        10
+       /  \
+      5    15
+     / \   / \
+    3   7 12  20
+            </div>
+
+            <div class="note-box">
+                <strong>二元樹的特性：</strong>
+                <ul>
+                    <li><strong>根節點（Root）</strong>：樹的最上層節點</li>
+                    <li><strong>葉節點（Leaf）</strong>：沒有子節點的節點</li>
+                    <li><strong>高度（Height）</strong>：從根到最遠葉節點的路徑長度</li>
+                    <li><strong>深度（Depth）</strong>：從根到該節點的路徑長度</li>
+                </ul>
+            </div>
+
+            <h3>4.2 二元搜尋樹（Binary Search Tree）</h3>
+            <p>二元搜尋樹是一種特殊的二元樹，左子樹的所有節點值小於根節點，右子樹的所有節點值大於根節點。</p>
+            
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct TreeNode {
+    int data;
+    struct TreeNode *left;
+    struct TreeNode *right;
+} TreeNode;
+
+// 建立新節點
+TreeNode* createNode(int data) {
+    TreeNode *newNode = (TreeNode*)malloc(sizeof(TreeNode));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+// 插入節點
+TreeNode* insert(TreeNode *root, int data) {
+    if (root == NULL) {
+        return createNode(data);
+    }
+    
+    if (data < root->data) {
+        root->left = insert(root->left, data);
+    } else if (data > root->data) {
+        root->right = insert(root->right, data);
+    }
+    
+    return root;
+}
+
+// 搜尋節點
+TreeNode* search(TreeNode *root, int data) {
+    if (root == NULL || root->data == data) {
+        return root;
+    }
+    
+    if (data < root->data) {
+        return search(root->left, data);
+    } else {
+        return search(root->right, data);
+    }
+}
+
+// 找最小值節點
+TreeNode* findMin(TreeNode *root) {
+    while (root->left != NULL) {
+        root = root->left;
+    }
+    return root;
+}
+
+// 刪除節點
+TreeNode* deleteNode(TreeNode *root, int data) {
+    if (root == NULL) {
+        return NULL;
+    }
+    
+    if (data < root->data) {
+        root->left = deleteNode(root->left, data);
+    } else if (data > root->data) {
+        root->right = deleteNode(root->right, data);
+    } else {
+        // 找到要刪除的節點
+        
+        // 情況1：沒有子節點或只有一個子節點
+        if (root->left == NULL) {
+            TreeNode *temp = root->right;
+            free(root);
+            return temp;
+        } else if (root->right == NULL) {
+            TreeNode *temp = root->left;
+            free(root);
+            return temp;
+        }
+        
+        // 情況2：有兩個子節點
+        TreeNode *temp = findMin(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+    
+    return root;
+}
+
+// 前序走訪（Pre-order）：根 -> 左 -> 右
+void preorder(TreeNode *root) {
+    if (root != NULL) {
+        printf("%d ", root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+
+// 中序走訪（In-order）：左 -> 根 -> 右
+void inorder(TreeNode *root) {
+    if (root != NULL) {
+        inorder(root->left);
+        printf("%d ", root->data);
+        inorder(root->right);
+    }
+}
+
+// 後序走訪（Post-order）：左 -> 右 -> 根
+void postorder(TreeNode *root) {
+    if (root != NULL) {
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d ", root->data);
+    }
+}
+
+// 計算樹的高度
+int height(TreeNode *root) {
+    if (root == NULL) {
+        return -1;
+    }
+    
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+    
+    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+}
+
+// 計算節點數量
+int countNodes(TreeNode *root) {
+    if (root == NULL) {
+        return 0;
+    }
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+
+// 釋放樹
+void freeTree(TreeNode *root) {
+    if (root != NULL) {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+
+int main() {
+    TreeNode *root = NULL;
+    
+    // 建立二元搜尋樹
+    printf("=== 建立二元搜尋樹 ===\n");
+    int values[] = {50, 30, 70, 20, 40, 60, 80};
+    int n = sizeof(values) / sizeof(values[0]);
+    
+    for (int i = 0; i < n; i++) {
+        root = insert(root, values[i]);
+        printf("插入：%d\n", values[i]);
+    }
+    
+    // 走訪
+    printf("\n=== 樹的走訪 ===\n");
+    printf("前序走訪：");
+    preorder(root);
+    printf("\n");
+    
+    printf("中序走訪：");
+    inorder(root);
+    printf("\n");
+    
+    printf("後序走訪：");
+    postorder(root);
+    printf("\n");
+    
+    // 樹的資訊
+    printf("\n=== 樹的資訊 ===\n");
+    printf("高度：%d\n", height(root));
+    printf("節點數量：%d\n", countNodes(root));
+    
+    // 搜尋
+    printf("\n=== 搜尋節點 ===\n");
+    int searchValue = 40;
+    TreeNode *found = search(root, searchValue);
+    if (found != NULL) {
+        printf("找到：%d\n", found->data);
+    } else {
+        printf("找不到：%d\n", searchValue);
+    }
+    
+    // 刪除
+    printf("\n=== 刪除節點 ===\n");
+    root = deleteNode(root, 30);
+    printf("刪除 30 後的中序走訪：");
+    inorder(root);
+    printf("\n");
+    
+    // 釋放記憶體
+    freeTree(root);
+    
+    return 0;
+}</pre>
+            </div>
+
+            <h3>4.3 層序走訪（Level-order Traversal）</h3>
+            <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct TreeNode {
+    int data;
+    struct TreeNode *left;
+    struct TreeNode *right;
+} TreeNode;
+
+// 佇列節點（用於層序走訪）
+typedef struct QueueNode {
+    TreeNode *treeNode;
+    struct QueueNode *next;
+} QueueNode;
+
+typedef struct {
+    QueueNode *front;
+    QueueNode *rear;
+} Queue;
+
+void initQueue(Queue *q) {
+    q->front = NULL;
+    q->rear = NULL;
+}
+
+int isEmptyQueue(Queue *q) {
+    return q->front == NULL;
+}
+
+void enqueue(Queue *q, TreeNode *node) {
+    QueueNode *newNode = (QueueNode*)malloc(sizeof(QueueNode));
+    newNode->treeNode = node;
+    newNode->next = NULL;
+    
+    if (isEmptyQueue(q)) {
+        q->front = newNode;
+        q->rear = newNode;
+    } else {
+        q->rear->next = newNode;
+        q->rear = newNode;
+    }
+}
+
+TreeNode* dequeue(Queue *q) {
+    if (isEmptyQueue(q)) {
+        return NULL;
+    }
+    
+    QueueNode *temp = q->front;
+    TreeNode *node = temp->treeNode;
+    
+    q->front = q->front->next;
+    if (q->front == NULL) {
+        q->rear = NULL;
+    }
+    
+    free(temp);
+    return node;
+}
+
+// 層序走訪
+void levelOrder(TreeNode *root) {
+    if (root == NULL) {
+        return;
+    }
+    
+    Queue q;
+    initQueue(&q);
+    enqueue(&q, root);
+    
+    printf("層序走訪：");
+    while (!isEmptyQueue(&q)) {
+        TreeNode *current = dequeue(&q);
+        printf("%d ", current->data);
+        
+        if (current->left != NULL) {
+            enqueue(&q, current->left);
+        }
+        if (current->right != NULL) {
+            enqueue(&q, current->right);
+        }
+    }
+    printf("\n");
+}
+
+// 建立節點（輔助函數）
+TreeNode* createNode(int data) {
+    TreeNode *newNode = (TreeNode*)malloc(sizeof(TreeNode));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+int main() {
+    // 建立範例樹
+    TreeNode *root = createNode(1);
+    root->left = createNode(2);
+    root->right = createNode(3);
+    root->left->left = createNode(4);
+    root->left->right = createNode(5);
+    root->right->left = createNode(6);
+    root->right->right = createNode(7);
+    
+    /*
+            1
+           / \
+          2   3
+         / \ / \
+        4  5 6  7
+    */
+    
+    levelOrder(root);
+    
+    return 0;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>5. 資料結構比較與應用</h2>
+            
+            <h3>5.1 時間複雜度比較</h3>
+            <table>
+                <tr>
+                    <th>資料結構</th>
+                    <th>存取</th>
+                    <th>搜尋</th>
+                    <th>插入</th>
+                    <th>刪除</th>
+                </tr>
+                <tr>
+                    <td>陣列</td>
+                    <td>O(1)</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>鏈結串列</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                    <td>O(1)*</td>
+                    <td>O(1)*</td>
+                </tr>
+                <tr>
+                    <td>堆疊</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>佇列</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>二元搜尋樹</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                    <td>O(log n)</td>
+                </tr>
+            </table>
+            <p style="font-size: 0.9em; margin-top: 10px;">* 若已知插入/刪除位置</p>
+
+            <h3>5.2 應用場景</h3>
+            <div class="note-box">
+                <strong>鏈結串列適用於：</strong>
+                <ul>
+                    <li>頻繁插入和刪除操作</li>
+                    <li>不需要隨機存取</li>
+                    <li>大小動態變化</li>
+                    <li>實作其他資料結構（堆疊、佇列）</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>堆疊適用於：</strong>
+                <ul>
+                    <li>函數呼叫管理（Call Stack）</li>
+                    <li>運算式求值</li>
+                    <li>括號匹配檢查</li>
+                    <li>瀏覽器的上一頁功能</li>
+                    <li>Undo/Redo 功能</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>佇列適用於：</strong>
+                <ul>
+                    <li>任務排程</li>
+                    <li>廣度優先搜尋（BFS）</li>
+                    <li>印表機列印佇列</li>
+                    <li>訊息處理系統</li>
+                    <li>非同步資料傳輸</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>二元搜尋樹適用於：</strong>
+                <ul>
+                    <li>需要快速搜尋、插入、刪除</li>
+                    <li>資料需要排序</li>
+                    <li>實作字典和集合</li>
+                    <li>資料庫索引</li>
+                </ul>
+            </div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li><strong>鏈結串列操作</strong>
+                        <br>實作完整的鏈結串列：
+                        <ul>
+                            <li>實作所有基本操作</li>
+                            <li>實作排序函數</li>
+                            <li>實作合併兩個有序串列</li>
+                            <li>偵測串列中的迴圈</li>
+                        </ul>
+                    </li>
+                    <li><strong>堆疊應用</strong>
+                        <br>使用堆疊解決問題：
+                        <ul>
+                            <li>中序轉後序表達式</li>
+                            <li>後序表達式求值</li>
+                            <li>檢查括號平衡（多種括號）</li>
+                            <li>迷宮求解</li>
+                        </ul>
+                    </li>
+                    <li><strong>佇列應用</strong>
+                        <br>佇列的實務應用：
+                        <ul>
+                            <li>實作優先佇列</li>
+                            <li>模擬銀行排隊系統</li>
+                            <li>生產者-消費者問題</li>
+                            <li>循環佇列實作</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>進階練習</h4>
+                <ol start="4">
+                    <li><strong>二元樹操作</strong>
+                        <br>完整的二元樹功能：
+                        <ul>
+                            <li>實作所有走訪方式</li>
+                            <li>判斷是否為平衡樹</li>
+                            <li>找出兩節點的最低共同祖先</li>
+                            <li>鏡像翻轉二元樹</li>
+                        </ul>
+                    </li>
+                    <li><strong>LRU Cache</strong>
+                        <br>實作 LRU（Least Recently Used）快取：
+                        <ul>
+                            <li>使用雙向鏈結串列和雜湊表</li>
+                            <li>O(1) 時間複雜度的 get 和 put</li>
+                            <li>固定容量限制</li>
+                            <li>自動淘汰最久未使用的項目</li>
+                        </ul>
+                    </li>
+                    <li><strong>表達式樹</strong>
+                        <br>建立數學表達式樹：
+                        <ul>
+                            <li>從中序表達式建立樹</li>
+                            <li>計算表達式值</li>
+                            <li>轉換為不同表示法</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>挑戰題</h4>
+                <ol start="7">
+                    <li><strong>多層快取系統</strong>
+                        <br>設計多層快取架構：
+                        <ul>
+                            <li>L1、L2、L3 快取</li>
+                            <li>不同的淘汰策略</li>
+                            <li>快取命中率統計</li>
+                            <li>效能分析</li>
+                        </ul>
+                    </li>
+                    <li><strong>檔案系統模擬</strong>
+                        <br>使用樹狀結構模擬檔案系統：
+                        <ul>
+                            <li>目錄樹結構</li>
+                            <li>檔案建立、刪除、移動</li>
+                            <li>路徑解析</li>
+                            <li>搜尋檔案</li>
+                        </ul>
+                    </li>
+                    <li><strong>記憶體配置器</strong>
+                        <br>實作簡單的記憶體配置器：
+                        <ul>
+                            <li>使用鏈結串列管理空閒區塊</li>
+                            <li>First Fit / Best Fit 策略</li>
+                            <li>記憶體碎片整理</li>
+                            <li>效能測試</li>
+                        </ul>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -184,10 +1716,36 @@
             <div class="tip-box">
                 <strong>重點回顧：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li>掌握鏈結串列的實作與操作</li>
+                    <li>理解堆疊的 LIFO 特性與應用</li>
+                    <li>理解佇列的 FIFO 特性與應用</li>
+                    <li>學會二元搜尋樹的實作與走訪</li>
+                    <li>了解各種資料結構的時間複雜度</li>
+                    <li>能夠選擇適合的資料結構解決問題</li>
+                    <li>注意記憶體管理與資源釋放</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>重要提醒：</strong>
+                <ul>
+                    <li>動態配置的記憶體一定要記得釋放</li>
+                    <li>操作前檢查指標是否為 NULL</li>
+                    <li>注意邊界條件（空串列、單一節點等）</li>
+                    <li>遞迴函數要有明確的終止條件</li>
+                    <li>選擇資料結構時考慮時間和空間複雜度</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <strong>下週預告：</strong>
+                <p>Week 13 將學習「演算法設計與分析」，包含：</p>
+                <ul>
+                    <li>常見排序演算法實作與分析</li>
+                    <li>搜尋演算法比較</li>
+                    <li>遞迴與動態規劃</li>
+                    <li>時間複雜度與空間複雜度分析</li>
+                    <li>演算法優化技巧</li>
                 </ul>
             </div>
         </div>
