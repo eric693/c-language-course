@@ -14,109 +14,89 @@
         }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .nav {
-            background: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white; padding: 15px 25px; border-radius: 8px;
+            margin-bottom: 30px; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .nav a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            color: #3498db; text-decoration: none; font-weight: 600;
+            padding: 8px 16px; border-radius: 4px; transition: all 0.3s ease;
         }
         .nav a:hover { background: #3498db; color: white; }
         header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: white; padding: 50px 40px; border-radius: 8px;
+            margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         header h1 { font-size: 2.5em; margin-bottom: 10px; }
         header .subtitle { font-size: 1.1em; opacity: 0.9; }
         .content {
-            background: white;
-            border-radius: 8px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white; border-radius: 8px; padding: 40px;
+            margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .content h2 {
-            color: #2c3e50;
-            font-size: 2em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3498db;
+            color: #2c3e50; font-size: 2em; margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 3px solid #3498db;
         }
-        .content h3 {
-            color: #34495e;
-            font-size: 1.5em;
-            margin: 30px 0 15px 0;
-        }
+        .content h3 { color: #34495e; font-size: 1.5em; margin: 30px 0 15px 0; }
+        .content h4 { color: #34495e; font-size: 1.2em; margin: 20px 0 10px 0; }
         .code-block {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            border-radius: 4px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 0.95em;
-            overflow-x: auto;
-            margin: 20px 0;
-            line-height: 1.6;
+            background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95em;
+            overflow-x: auto; margin: 20px 0; line-height: 1.8; white-space: pre-wrap;
         }
+        .code-block .comment { color: #95a5a6; }
+        .code-block .keyword { color: #3498db; font-weight: bold; }
+        .code-block .string { color: #2ecc71; }
+        .code-block .function { color: #f39c12; }
+        .code-block .number { color: #e74c3c; }
         .note-box {
-            background: #e8f4f8;
-            border-left: 4px solid #3498db;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f4f8; border-left: 4px solid #3498db;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff8e1; border-left: 4px solid #ffa726;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .tip-box {
-            background: #e8f5e9;
-            border-left: 4px solid #66bb6a;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f5e9; border-left: 4px solid #66bb6a;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .exercise-section {
-            background: #f8f9fa;
-            border: 2px solid #3498db;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
+            background: #f8f9fa; border: 2px solid #3498db;
+            padding: 30px; margin: 30px 0; border-radius: 8px;
         }
+        table {
+            width: 100%; border-collapse: collapse; margin: 20px 0;
+        }
+        table th, table td {
+            padding: 12px; text-align: left; border: 1px solid #ddd;
+        }
+        table th {
+            background: #34495e; color: white; font-weight: 600;
+        }
+        table tr:nth-child(even) { background: #f8f9fa; }
         ul, ol { margin-left: 30px; margin-top: 10px; }
         li { margin: 8px 0; }
         .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
+            display: flex; justify-content: space-between; margin-top: 40px;
         }
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
+            display: inline-block; padding: 12px 30px; background: #3498db;
+            color: white; text-decoration: none; border-radius: 4px; font-weight: 600;
             transition: all 0.3s ease;
         }
         .btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+            background: #2980b9; transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .btn-secondary { background: #95a5a6; }
         .btn-secondary:hover { background: #7f8c8d; }
+        .memory-diagram {
+            background: #f8f9fa; border: 2px solid #3498db;
+            padding: 15px; margin: 20px 0; border-radius: 4px;
+            font-family: monospace; text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -135,173 +115,1119 @@
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li><strong>指標概念</strong></li>
-                <li><strong>指標運算符</strong></li>
-                <li><strong>指標與陣列</strong></li>
-                <li><strong>指標作為參數</strong></li>
-                <li><strong>指標安全</strong></li>
+                <li>指標概念：記憶體位址、指標變數宣告</li>
+                <li>指標運算符：取址（&）、取值（*）</li>
+                <li>指標與陣列：指標算術、陣列遍歷</li>
+                <li>指標作為參數：傳址呼叫、swap 函數</li>
+                <li>指標安全：懸空指標、野指標、常見錯誤</li>
+                <li>實用範例：函數參數、字串處理、動態操作</li>
             </ul>
         </div>
 
-        
         <div class="content">
             <h2>1. 指標概念</h2>
+            
+            <h3>什麼是指標？</h3>
+            <p>指標（Pointer）是一個變數，它儲存的是另一個變數的<strong>記憶體位址</strong>。透過指標，我們可以：</p>
             <ul>
-                <li>什麼是指標</li>
-                <li>記憶體位址</li>
-                <li>指標的優勢</li>
-                <li>指標變數宣告</li>
-                <li>NULL 指標</li>
+                <li>直接存取和修改記憶體中的資料</li>
+                <li>動態配置記憶體</li>
+                <li>在函數間有效地傳遞大型資料結構</li>
+                <li>實作複雜的資料結構（如鏈結串列、樹）</li>
             </ul>
-            
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
 
-int main() {
-    printf("Week 5 - 指標概念\n");
-    return 0;
-}
+            <h3>記憶體位址概念</h3>
+            <p>電腦的記憶體就像一排有編號的儲存格，每個儲存格都有一個唯一的位址。變數儲存在這些儲存格中，而指標就是用來記錄這些位址的。</p>
+
+            <div class="memory-diagram">
+<strong>記憶體示意圖</strong>
+┌─────────┬─────────┬─────────┬─────────┐
+│ 位址    │ 0x1000  │ 0x1004  │ 0x1008  │
+├─────────┼─────────┼─────────┼─────────┤
+│ 變數    │   num   │   ptr   │   x     │
+├─────────┼─────────┼─────────┼─────────┤
+│ 內容    │   42    │ 0x1000  │   100   │
+└─────────┴─────────┴─────────┴─────────┘
             </div>
+
+            <h3>指標變數的宣告</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== 指標變數宣告 ==========</span>
+    <span class="keyword">int</span> *ptr;        <span class="comment">// 宣告一個指向 int 的指標</span>
+    <span class="keyword">double</span> *dptr;   <span class="comment">// 宣告一個指向 double 的指標</span>
+    <span class="keyword">char</span> *cptr;      <span class="comment">// 宣告一個指向 char 的指標</span>
+    
+    <span class="comment">// ========== 指標的初始化 ==========</span>
+    <span class="keyword">int</span> num = <span class="number">42</span>;
+    <span class="keyword">int</span> *p = &num;   <span class="comment">// p 指向 num 的位址</span>
+    
+    <span class="comment">// ========== 顯示位址和值 ==========</span>
+    <span class="function">printf</span>(<span class="string">"num 的值: %d\n"</span>, num);
+    <span class="function">printf</span>(<span class="string">"num 的位址: %p\n"</span>, (<span class="keyword">void</span>*)&num);
+    <span class="function">printf</span>(<span class="string">"p 的值（num 的位址）: %p\n"</span>, (<span class="keyword">void</span>*)p);
+    <span class="function">printf</span>(<span class="string">"p 指向的值: %d\n"</span>, *p);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="note-box">
+                <strong>重要觀念：</strong>
+                <ul>
+                    <li><code>int *ptr</code> - ptr 是一個指向整數的指標</li>
+                    <li><code>&num</code> - 取得 num 的記憶體位址</li>
+                    <li><code>*ptr</code> - 取得指標 ptr 所指向位址的值</li>
+                    <li><code>%p</code> - printf 中用來顯示指標位址的格式</li>
+                </ul>
+            </div>
+
+            <h3>指標的基本操作</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> x = <span class="number">10</span>;
+    <span class="keyword">int</span> *ptr;
+    
+    <span class="comment">// 將 x 的位址賦給 ptr</span>
+    ptr = &x;
+    
+    <span class="function">printf</span>(<span class="string">"x 的值: %d\n"</span>, x);              <span class="comment">// 10</span>
+    <span class="function">printf</span>(<span class="string">"ptr 指向的值: %d\n"</span>, *ptr);    <span class="comment">// 10</span>
+    
+    <span class="comment">// 透過指標修改 x 的值</span>
+    *ptr = <span class="number">20</span>;
+    
+    <span class="function">printf</span>(<span class="string">"修改後 x 的值: %d\n"</span>, x);        <span class="comment">// 20</span>
+    <span class="function">printf</span>(<span class="string">"ptr 指向的值: %d\n"</span>, *ptr);    <span class="comment">// 20</span>
+    
+    <span class="comment">// 修改 x，也會影響 *ptr</span>
+    x = <span class="number">30</span>;
+    <span class="function">printf</span>(<span class="string">"再次修改後 ptr 指向的值: %d\n"</span>, *ptr);  <span class="comment">// 30</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>NULL 指標</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stddef.h&gt;</span>  <span class="comment">// for NULL</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== NULL 指標 ==========</span>
+    <span class="keyword">int</span> *ptr = NULL;  <span class="comment">// 初始化為 NULL（不指向任何地方）</span>
+    
+    <span class="comment">// 檢查指標是否為 NULL</span>
+    <span class="keyword">if</span> (ptr == NULL) {
+        <span class="function">printf</span>(<span class="string">"指標是 NULL，尚未指向任何位址\n"</span>);
+    }
+    
+    <span class="comment">// ========== 使用前檢查 ==========</span>
+    <span class="keyword">if</span> (ptr != NULL) {
+        <span class="function">printf</span>(<span class="string">"指標的值: %d\n"</span>, *ptr);
+    } <span class="keyword">else</span> {
+        <span class="function">printf</span>(<span class="string">"無法取值，指標為 NULL\n"</span>);
+    }
+    
+    <span class="comment">// ========== 賦予有效位址 ==========</span>
+    <span class="keyword">int</span> num = <span class="number">100</span>;
+    ptr = &num;
+    
+    <span class="keyword">if</span> (ptr != NULL) {
+        <span class="function">printf</span>(<span class="string">"現在指標指向: %d\n"</span>, *ptr);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="warning-box">
+                <strong>重要提醒：</strong>
+                <ul>
+                    <li>未初始化的指標會指向隨機位址（野指標），非常危險！</li>
+                    <li>對 NULL 指標取值會導致程式崩潰</li>
+                    <li>使用指標前應該檢查是否為 NULL</li>
+                    <li>不再使用的指標應該設為 NULL</li>
+                </ul>
+            </div>
+
+            <h3>指標的大小</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> *ip;
+    <span class="keyword">double</span> *dp;
+    <span class="keyword">char</span> *cp;
+    
+    <span class="comment">// 指標的大小取決於系統架構，不是指向的資料型態</span>
+    <span class="comment">// 32 位元系統：4 bytes</span>
+    <span class="comment">// 64 位元系統：8 bytes</span>
+    
+    <span class="function">printf</span>(<span class="string">"int* 的大小: %lu bytes\n"</span>, <span class="keyword">sizeof</span>(ip));
+    <span class="function">printf</span>(<span class="string">"double* 的大小: %lu bytes\n"</span>, <span class="keyword">sizeof</span>(dp));
+    <span class="function">printf</span>(<span class="string">"char* 的大小: %lu bytes\n"</span>, <span class="keyword">sizeof</span>(cp));
+    
+    <span class="comment">// 所有指標的大小都一樣！</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
         </div>
 
         <div class="content">
             <h2>2. 指標運算符</h2>
-            <ul>
-                <li>取址運算符 &</li>
-                <li>取值運算符 *</li>
-                <li>指標的賦值</li>
-                <li>指標的比較</li>
-                <li>指標運算限制</li>
-            </ul>
             
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h3>取址運算符 &</h3>
+            <p><code>&</code> 運算符用來取得變數的記憶體位址。</p>
 
-int main() {
-    printf("Week 5 - 指標運算符\n");
-    return 0;
-}
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> a = <span class="number">10</span>;
+    <span class="keyword">int</span> b = <span class="number">20</span>;
+    <span class="keyword">int</span> c = <span class="number">30</span>;
+    
+    <span class="comment">// 取得各變數的位址</span>
+    <span class="function">printf</span>(<span class="string">"a 的位址: %p\n"</span>, (<span class="keyword">void</span>*)&a);
+    <span class="function">printf</span>(<span class="string">"b 的位址: %p\n"</span>, (<span class="keyword">void</span>*)&b);
+    <span class="function">printf</span>(<span class="string">"c 的位址: %p\n"</span>, (<span class="keyword">void</span>*)&c);
+    
+    <span class="comment">// 位址通常是連續的（但不保證）</span>
+    <span class="function">printf</span>(<span class="string">"\na = %d, 位於 %p\n"</span>, a, (<span class="keyword">void</span>*)&a);
+    <span class="function">printf</span>(<span class="string">"b = %d, 位於 %p\n"</span>, b, (<span class="keyword">void</span>*)&b);
+    <span class="function">printf</span>(<span class="string">"c = %d, 位於 %p\n"</span>, c, (<span class="keyword">void</span>*)&c);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>取值運算符 *</h3>
+            <p><code>*</code> 運算符（也稱為解參考運算符）用來存取指標所指向位址的值。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> num = <span class="number">42</span>;
+    <span class="keyword">int</span> *ptr = &num;
+    
+    <span class="function">printf</span>(<span class="string">"num = %d\n"</span>, num);
+    <span class="function">printf</span>(<span class="string">"ptr = %p\n"</span>, (<span class="keyword">void</span>*)ptr);
+    <span class="function">printf</span>(<span class="string">"*ptr = %d\n"</span>, *ptr);  <span class="comment">// 透過指標取值</span>
+    
+    <span class="comment">// 透過指標修改值</span>
+    *ptr = <span class="number">100</span>;
+    <span class="function">printf</span>(<span class="string">"\n修改後:\n"</span>);
+    <span class="function">printf</span>(<span class="string">"num = %d\n"</span>, num);    <span class="comment">// 100</span>
+    <span class="function">printf</span>(<span class="string">"*ptr = %d\n"</span>, *ptr);  <span class="comment">// 100</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>* 的兩種用法</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> x = <span class="number">10</span>;
+    
+    <span class="comment">// 用法一：宣告指標變數（與型態一起使用）</span>
+    <span class="keyword">int</span> *ptr;  <span class="comment">// * 表示 ptr 是一個指標</span>
+    
+    <span class="comment">// 用法二：取值運算符（對已宣告的指標使用）</span>
+    ptr = &x;
+    <span class="function">printf</span>(<span class="string">"*ptr = %d\n"</span>, *ptr);  <span class="comment">// * 表示取得指標指向的值</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>指標的賦值</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;
+    <span class="keyword">int</span> *p1, *p2;
+    
+    <span class="comment">// ========== 指標賦值 ==========</span>
+    p1 = &a;
+    p2 = &b;
+    
+    <span class="function">printf</span>(<span class="string">"p1 指向 a: *p1 = %d\n"</span>, *p1);  <span class="comment">// 10</span>
+    <span class="function">printf</span>(<span class="string">"p2 指向 b: *p2 = %d\n"</span>, *p2);  <span class="comment">// 20</span>
+    
+    <span class="comment">// ========== 指標之間的賦值 ==========</span>
+    p2 = p1;  <span class="comment">// 現在 p2 也指向 a</span>
+    
+    <span class="function">printf</span>(<span class="string">"\n將 p1 賦值給 p2 後:\n"</span>);
+    <span class="function">printf</span>(<span class="string">"p1 指向: *p1 = %d\n"</span>, *p1);  <span class="comment">// 10</span>
+    <span class="function">printf</span>(<span class="string">"p2 指向: *p2 = %d\n"</span>, *p2);  <span class="comment">// 10</span>
+    
+    <span class="comment">// 透過 p2 修改，a 也會改變</span>
+    *p2 = <span class="number">99</span>;
+    <span class="function">printf</span>(<span class="string">"\n透過 p2 修改後:\n"</span>);
+    <span class="function">printf</span>(<span class="string">"a = %d\n"</span>, a);      <span class="comment">// 99</span>
+    <span class="function">printf</span>(<span class="string">"*p1 = %d\n"</span>, *p1);  <span class="comment">// 99</span>
+    <span class="function">printf</span>(<span class="string">"*p2 = %d\n"</span>, *p2);  <span class="comment">// 99</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>指標的比較</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> x = <span class="number">10</span>, y = <span class="number">20</span>;
+    <span class="keyword">int</span> *p1 = &x;
+    <span class="keyword">int</span> *p2 = &y;
+    <span class="keyword">int</span> *p3 = &x;
+    
+    <span class="comment">// ========== 比較指標是否指向同一位址 ==========</span>
+    <span class="keyword">if</span> (p1 == p3) {
+        <span class="function">printf</span>(<span class="string">"p1 和 p3 指向同一位址\n"</span>);
+    }
+    
+    <span class="keyword">if</span> (p1 != p2) {
+        <span class="function">printf</span>(<span class="string">"p1 和 p2 指向不同位址\n"</span>);
+    }
+    
+    <span class="comment">// ========== 比較指標指向的值 ==========</span>
+    <span class="keyword">if</span> (*p1 < *p2) {
+        <span class="function">printf</span>(<span class="string">"*p1 (%d) < *p2 (%d)\n"</span>, *p1, *p2);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="note-box">
+                <strong>指標運算符總結：</strong>
+                <table>
+                    <tr>
+                        <th>運算符</th>
+                        <th>名稱</th>
+                        <th>用途</th>
+                        <th>範例</th>
+                    </tr>
+                    <tr>
+                        <td>&</td>
+                        <td>取址運算符</td>
+                        <td>取得變數的位址</td>
+                        <td>ptr = &num;</td>
+                    </tr>
+                    <tr>
+                        <td>*</td>
+                        <td>取值運算符</td>
+                        <td>取得指標指向的值</td>
+                        <td>value = *ptr;</td>
+                    </tr>
+                    <tr>
+                        <td>*</td>
+                        <td>宣告符號</td>
+                        <td>宣告指標變數</td>
+                        <td>int *ptr;</td>
+                    </tr>
+                </table>
             </div>
         </div>
 
         <div class="content">
             <h2>3. 指標與陣列</h2>
-            <ul>
-                <li>陣列名稱即指標</li>
-                <li>指標存取陣列元素</li>
-                <li>指標算術運算</li>
-                <li>陣列與指標的差異</li>
-                <li>字串與字元指標</li>
-            </ul>
             
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h3>陣列名稱即指標</h3>
+            <p>在 C 語言中，陣列名稱本身就代表陣列第一個元素的位址。</p>
 
-int main() {
-    printf("Week 5 - 指標與陣列\n");
-    return 0;
-}
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> arr[] = {<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>};
+    <span class="keyword">int</span> *ptr;
+    
+    <span class="comment">// 陣列名稱等同於第一個元素的位址</span>
+    ptr = arr;  <span class="comment">// 等同於 ptr = &arr[0];</span>
+    
+    <span class="function">printf</span>(<span class="string">"arr 的位址: %p\n"</span>, (<span class="keyword">void</span>*)arr);
+    <span class="function">printf</span>(<span class="string">"&arr[0] 的位址: %p\n"</span>, (<span class="keyword">void</span>*)&arr[<span class="number">0</span>]);
+    <span class="function">printf</span>(<span class="string">"ptr 的值: %p\n"</span>, (<span class="keyword">void</span>*)ptr);
+    
+    <span class="comment">// 三者相同</span>
+    <span class="function">printf</span>(<span class="string">"\narr[0] = %d\n"</span>, arr[<span class="number">0</span>]);
+    <span class="function">printf</span>(<span class="string">"*arr = %d\n"</span>, *arr);
+    <span class="function">printf</span>(<span class="string">"*ptr = %d\n"</span>, *ptr);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>指標算術運算</h3>
+            <p>指標可以進行加減運算，每次移動的單位是所指向資料型態的大小。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> arr[] = {<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>};
+    <span class="keyword">int</span> *ptr = arr;
+    
+    <span class="comment">// ========== 指標遞增 ==========</span>
+    <span class="function">printf</span>(<span class="string">"*ptr = %d\n"</span>, *ptr);      <span class="comment">// 10</span>
+    ptr++;
+    <span class="function">printf</span>(<span class="string">"*ptr = %d\n"</span>, *ptr);      <span class="comment">// 20</span>
+    ptr++;
+    <span class="function">printf</span>(<span class="string">"*ptr = %d\n"</span>, *ptr);      <span class="comment">// 30</span>
+    
+    <span class="comment">// ========== 指標加法 ==========</span>
+    ptr = arr;
+    <span class="function">printf</span>(<span class="string">"\n*(ptr + 0) = %d\n"</span>, *(ptr + <span class="number">0</span>));  <span class="comment">// 10</span>
+    <span class="function">printf</span>(<span class="string">"*(ptr + 1) = %d\n"</span>, *(ptr + <span class="number">1</span>));    <span class="comment">// 20</span>
+    <span class="function">printf</span>(<span class="string">"*(ptr + 2) = %d\n"</span>, *(ptr + <span class="number">2</span>));    <span class="comment">// 30</span>
+    <span class="function">printf</span>(<span class="string">"*(ptr + 3) = %d\n"</span>, *(ptr + <span class="number">3</span>));    <span class="comment">// 40</span>
+    <span class="function">printf</span>(<span class="string">"*(ptr + 4) = %d\n"</span>, *(ptr + <span class="number">4</span>));    <span class="comment">// 50</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>使用指標遍歷陣列</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> arr[] = {<span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">25</span>};
+    <span class="keyword">int</span> size = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>]);
+    <span class="keyword">int</span> *ptr = arr;
+    
+    <span class="comment">// ========== 方法一：使用陣列索引 ==========</span>
+    <span class="function">printf</span>(<span class="string">"使用陣列索引:\n"</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"arr[%d] = %d\n"</span>, i, arr[i]);
+    }
+    
+    <span class="comment">// ========== 方法二：使用指標運算 ==========</span>
+    <span class="function">printf</span>(<span class="string">"\n使用指標運算:\n"</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"*(ptr + %d) = %d\n"</span>, i, *(ptr + i));
+    }
+    
+    <span class="comment">// ========== 方法三：移動指標 ==========</span>
+    <span class="function">printf</span>(<span class="string">"\n移動指標:\n"</span>);
+    ptr = arr;  <span class="comment">// 重置指標</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"*ptr = %d\n"</span>, *ptr);
+        ptr++;
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>陣列與指標的差異</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> arr[] = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>};
+    <span class="keyword">int</span> *ptr = arr;
+    
+    <span class="comment">// ========== 相同點 ==========</span>
+    <span class="function">printf</span>(<span class="string">"arr[2] = %d\n"</span>, arr[<span class="number">2</span>]);    <span class="comment">// 3</span>
+    <span class="function">printf</span>(<span class="string">"ptr[2] = %d\n"</span>, ptr[<span class="number">2</span>]);    <span class="comment">// 3</span>
+    <span class="function">printf</span>(<span class="string">"*(arr+2) = %d\n"</span>, *(arr+<span class="number">2</span>));  <span class="comment">// 3</span>
+    <span class="function">printf</span>(<span class="string">"*(ptr+2) = %d\n"</span>, *(ptr+<span class="number">2</span>));  <span class="comment">// 3</span>
+    
+    <span class="comment">// ========== 差異點 ==========</span>
+    <span class="function">printf</span>(<span class="string">"\nsizeof(arr) = %lu\n"</span>, <span class="keyword">sizeof</span>(arr));  <span class="comment">// 20 (5個int)</span>
+    <span class="function">printf</span>(<span class="string">"sizeof(ptr) = %lu\n"</span>, <span class="keyword">sizeof</span>(ptr));    <span class="comment">// 8 (指標大小)</span>
+    
+    <span class="comment">// arr 不能被修改（是常數）</span>
+    <span class="comment">// arr = ptr;  // 錯誤！不能修改陣列名稱</span>
+    
+    <span class="comment">// ptr 可以被修改</span>
+    ptr = arr;   <span class="comment">// 正確</span>
+    ptr++;       <span class="comment">// 正確</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="tip-box">
+                <strong>陣列 vs 指標：</strong>
+                <ul>
+                    <li><strong>相同點</strong>：都可以用 [] 和 * 來存取元素</li>
+                    <li><strong>差異點</strong>：
+                        <ul>
+                            <li>陣列名稱是常數指標，不能被重新賦值</li>
+                            <li>sizeof(陣列) 返回整個陣列大小</li>
+                            <li>sizeof(指標) 只返回指標本身的大小</li>
+                            <li>指標可以移動和修改</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
-
         <div class="content">
             <h2>4. 指標作為參數</h2>
-            <ul>
-                <li>傳址呼叫</li>
-                <li>swap 函數實作</li>
-                <li>陣列參數實質上是指標</li>
-                <li>字串參數處理</li>
-                <li>const 指標參數</li>
-            </ul>
             
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h3>傳址呼叫（Call by Reference）</h3>
+            <p>透過傳遞指標，函數可以直接修改原始變數的值。</p>
 
-int main() {
-    printf("Week 5 - 指標作為參數\n");
-    return 0;
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// ========== 傳值呼叫（無法修改原變數）==========</span>
+<span class="keyword">void</span> <span class="function">changeValueBad</span>(<span class="keyword">int</span> x) {
+    x = <span class="number">100</span>;
+    <span class="function">printf</span>(<span class="string">"函數內 x = %d\n"</span>, x);
 }
+
+<span class="comment">// ========== 傳址呼叫（可以修改原變數）==========</span>
+<span class="keyword">void</span> <span class="function">changeValueGood</span>(<span class="keyword">int</span> *x) {
+    *x = <span class="number">100</span>;
+    <span class="function">printf</span>(<span class="string">"函數內 *x = %d\n"</span>, *x);
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> num = <span class="number">10</span>;
+    
+    <span class="function">printf</span>(<span class="string">"原始值: %d\n"</span>, num);
+    
+    <span class="comment">// 傳值呼叫</span>
+    <span class="function">changeValueBad</span>(num);
+    <span class="function">printf</span>(<span class="string">"呼叫 changeValueBad 後: %d\n\n"</span>, num);  <span class="comment">// 還是 10</span>
+    
+    <span class="comment">// 傳址呼叫</span>
+    <span class="function">changeValueGood</span>(&num);
+    <span class="function">printf</span>(<span class="string">"呼叫 changeValueGood 後: %d\n"</span>, num);  <span class="comment">// 變成 100</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>經典範例：swap 函數</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// ========== 錯誤的 swap（傳值）==========</span>
+<span class="keyword">void</span> <span class="function">swapWrong</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {
+    <span class="keyword">int</span> temp = a;
+    a = b;
+    b = temp;
+    <span class="function">printf</span>(<span class="string">"函數內: a = %d, b = %d\n"</span>, a, b);
+}
+
+<span class="comment">// ========== 正確的 swap（傳址）==========</span>
+<span class="keyword">void</span> <span class="function">swap</span>(<span class="keyword">int</span> *a, <span class="keyword">int</span> *b) {
+    <span class="keyword">int</span> temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> x = <span class="number">5</span>, y = <span class="number">10</span>;
+    
+    <span class="function">printf</span>(<span class="string">"原始值: x = %d, y = %d\n\n"</span>, x, y);
+    
+    <span class="comment">// 錯誤的 swap</span>
+    <span class="function">swapWrong</span>(x, y);
+    <span class="function">printf</span>(<span class="string">"swapWrong 後: x = %d, y = %d\n\n"</span>, x, y);  <span class="comment">// 沒有交換</span>
+    
+    <span class="comment">// 正確的 swap</span>
+    <span class="function">swap</span>(&x, &y);
+    <span class="function">printf</span>(<span class="string">"swap 後: x = %d, y = %d\n"</span>, x, y);  <span class="comment">// 成功交換</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>多個返回值</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// 計算矩形的面積和周長</span>
+<span class="keyword">void</span> <span class="function">rectangleInfo</span>(<span class="keyword">double</span> width, <span class="keyword">double</span> height, 
+                     <span class="keyword">double</span> *area, <span class="keyword">double</span> *perimeter) {
+    *area = width * height;
+    *perimeter = <span class="number">2</span> * (width + height);
+}
+
+<span class="comment">// 找出陣列的最大值和最小值</span>
+<span class="keyword">void</span> <span class="function">findMinMax</span>(<span class="keyword">int</span> arr[], <span class="keyword">int</span> size, <span class="keyword">int</span> *min, <span class="keyword">int</span> *max) {
+    *min = *max = arr[<span class="number">0</span>];
+    
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i < size; i++) {
+        <span class="keyword">if</span> (arr[i] < *min) *min = arr[i];
+        <span class="keyword">if</span> (arr[i] > *max) *max = arr[i];
+    }
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// 測試矩形資訊</span>
+    <span class="keyword">double</span> area, perimeter;
+    <span class="function">rectangleInfo</span>(<span class="number">5.0</span>, <span class="number">3.0</span>, &area, &perimeter);
+    <span class="function">printf</span>(<span class="string">"面積: %.2f, 周長: %.2f\n\n"</span>, area, perimeter);
+    
+    <span class="comment">// 測試最大最小值</span>
+    <span class="keyword">int</span> numbers[] = {<span class="number">23</span>, <span class="number">5</span>, <span class="number">67</span>, <span class="number">12</span>, <span class="number">45</span>, <span class="number">89</span>, <span class="number">3</span>};
+    <span class="keyword">int</span> size = <span class="keyword">sizeof</span>(numbers) / <span class="keyword">sizeof</span>(numbers[<span class="number">0</span>]);
+    <span class="keyword">int</span> min, max;
+    
+    <span class="function">findMinMax</span>(numbers, size, &min, &max);
+    <span class="function">printf</span>(<span class="string">"最小值: %d, 最大值: %d\n"</span>, min, max);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>陣列參數實質上是指標</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// 這兩種宣告方式完全等價</span>
+<span class="keyword">void</span> <span class="function">printArray1</span>(<span class="keyword">int</span> arr[], <span class="keyword">int</span> size) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+}
+
+<span class="keyword">void</span> <span class="function">printArray2</span>(<span class="keyword">int</span> *arr, <span class="keyword">int</span> size) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+}
+
+<span class="comment">// 修改陣列元素</span>
+<span class="keyword">void</span> <span class="function">doubleArray</span>(<span class="keyword">int</span> *arr, <span class="keyword">int</span> size) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        arr[i] *= <span class="number">2</span>;  <span class="comment">// 會修改原陣列</span>
+    }
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> numbers[] = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>};
+    <span class="keyword">int</span> size = <span class="number">5</span>;
+    
+    <span class="function">printf</span>(<span class="string">"原始陣列: "</span>);
+    <span class="function">printArray1</span>(numbers, size);
+    
+    <span class="function">doubleArray</span>(numbers, size);
+    
+    <span class="function">printf</span>(<span class="string">"加倍後: "</span>);
+    <span class="function">printArray2</span>(numbers, size);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>字串與字元指標</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="comment">// 計算字串長度（自製版本）</span>
+<span class="keyword">int</span> <span class="function">myStrlen</span>(<span class="keyword">char</span> *str) {
+    <span class="keyword">int</span> len = <span class="number">0</span>;
+    <span class="keyword">while</span> (*str != <span class="string">'\0'</span>) {
+        len++;
+        str++;
+    }
+    <span class="keyword">return</span> len;
+}
+
+<span class="comment">// 字串複製（自製版本）</span>
+<span class="keyword">void</span> <span class="function">myStrcpy</span>(<span class="keyword">char</span> *dest, <span class="keyword">char</span> *src) {
+    <span class="keyword">while</span> (*src != <span class="string">'\0'</span>) {
+        *dest = *src;
+        dest++;
+        src++;
+    }
+    *dest = <span class="string">'\0'</span>;  <span class="comment">// 別忘了結尾</span>
+}
+
+<span class="comment">// 轉換為大寫</span>
+<span class="keyword">void</span> <span class="function">toUpper</span>(<span class="keyword">char</span> *str) {
+    <span class="keyword">while</span> (*str != <span class="string">'\0'</span>) {
+        <span class="keyword">if</span> (*str >= <span class="string">'a'</span> && *str <= <span class="string">'z'</span>) {
+            *str = *str - <span class="number">32</span>;
+        }
+        str++;
+    }
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> str1[] = <span class="string">"Hello World"</span>;
+    <span class="keyword">char</span> str2[<span class="number">50</span>];
+    
+    <span class="function">printf</span>(<span class="string">"長度: %d\n"</span>, <span class="function">myStrlen</span>(str1));
+    
+    <span class="function">myStrcpy</span>(str2, str1);
+    <span class="function">printf</span>(<span class="string">"複製結果: %s\n"</span>, str2);
+    
+    <span class="function">toUpper</span>(str1);
+    <span class="function">printf</span>(<span class="string">"轉大寫: %s\n"</span>, str1);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>const 指標參數</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// const 保護參數不被修改</span>
+<span class="keyword">int</span> <span class="function">sumArray</span>(<span class="keyword">const int</span> *arr, <span class="keyword">int</span> size) {
+    <span class="keyword">int</span> sum = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        sum += arr[i];
+        <span class="comment">// arr[i] = 0;  // 錯誤！不能修改 const 指標指向的值</span>
+    }
+    <span class="keyword">return</span> sum;
+}
+
+<span class="comment">// 列印字串（不修改原字串）</span>
+<span class="keyword">void</span> <span class="function">printString</span>(<span class="keyword">const char</span> *str) {
+    <span class="function">printf</span>(<span class="string">"%s\n"</span>, str);
+    <span class="comment">// str[0] = 'X';  // 錯誤！不能修改</span>
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> numbers[] = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>};
+    <span class="keyword">char</span> text[] = <span class="string">"Hello"</span>;
+    
+    <span class="function">printf</span>(<span class="string">"總和: %d\n"</span>, <span class="function">sumArray</span>(numbers, <span class="number">5</span>));
+    <span class="function">printString</span>(text);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="tip-box">
+                <strong>const 指標的使用時機：</strong>
+                <ul>
+                    <li>當函數只需要讀取資料，不需要修改時</li>
+                    <li>可以防止意外修改資料</li>
+                    <li>讓程式碼更安全、更易維護</li>
+                    <li>明確表達函數的意圖</li>
+                </ul>
             </div>
         </div>
 
         <div class="content">
             <h2>5. 指標安全</h2>
-            <ul>
-                <li>懸空指標（dangling pointer）</li>
-                <li>野指標（wild pointer）</li>
-                <li>記憶體洩漏預防</li>
-                <li>指標除錯技巧</li>
-                <li>常見指標錯誤</li>
-            </ul>
             
-            <div class="note-box">
-                <strong>重要概念：</strong>
-                <p>本節內容是本週學習的核心部分，請確實理解並多加練習。</p>
-            </div>
-            
-            <h3>程式碼範例</h3>
-            <div class="code-block">
-// 範例程式碼
-#include &lt;stdio.h&gt;
+            <h3>懸空指標（Dangling Pointer）</h3>
+            <p>懸空指標是指標指向的記憶體已經被釋放或不再有效。</p>
 
-int main() {
-    printf("Week 5 - 指標安全\n");
-    return 0;
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span>* <span class="function">createDanglingPointer</span>() {
+    <span class="keyword">int</span> x = <span class="number">10</span>;  <span class="comment">// 區域變數</span>
+    <span class="keyword">return</span> &x;  <span class="comment">// ❌ 危險！返回區域變數的位址</span>
+    <span class="comment">// x 在函數結束後就被銷毀了</span>
 }
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> *ptr = <span class="function">createDanglingPointer</span>();
+    
+    <span class="comment">// ❌ 危險！ptr 現在是懸空指標</span>
+    <span class="comment">// printf("%d\n", *ptr);  // 可能崩潰或得到垃圾值</span>
+    
+    <span class="function">printf</span>(<span class="string">"這是懸空指標的示範（不要實際使用）\n"</span>);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>野指標（Wild Pointer）</h3>
+            <p>野指標是未初始化的指標，指向隨機的記憶體位址。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ❌ 危險！未初始化的指標</span>
+    <span class="keyword">int</span> *wildPtr;  <span class="comment">// 指向隨機位址</span>
+    
+    <span class="comment">// ❌ 危險！不要對野指標取值</span>
+    <span class="comment">// printf("%d\n", *wildPtr);  // 可能崩潰</span>
+    <span class="comment">// *wildPtr = 10;  // 非常危險！</span>
+    
+    <span class="comment">// ✅ 正確做法：初始化為 NULL</span>
+    <span class="keyword">int</span> *safePtr = NULL;
+    
+    <span class="keyword">if</span> (safePtr != NULL) {
+        <span class="function">printf</span>(<span class="string">"%d\n"</span>, *safePtr);
+    } <span class="keyword">else</span> {
+        <span class="function">printf</span>(<span class="string">"指標為 NULL，安全\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>NULL 指標檢查</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// 安全的指標操作</span>
+<span class="keyword">void</span> <span class="function">safeOperation</span>(<span class="keyword">int</span> *ptr) {
+    <span class="keyword">if</span> (ptr == NULL) {
+        <span class="function">printf</span>(<span class="string">"錯誤：NULL 指標\n"</span>);
+        <span class="keyword">return</span>;
+    }
+    
+    <span class="comment">// 安全地使用指標</span>
+    <span class="function">printf</span>(<span class="string">"值: %d\n"</span>, *ptr);
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> num = <span class="number">42</span>;
+    <span class="keyword">int</span> *ptr1 = &num;
+    <span class="keyword">int</span> *ptr2 = NULL;
+    
+    <span class="function">safeOperation</span>(ptr1);  <span class="comment">// 正常執行</span>
+    <span class="function">safeOperation</span>(ptr2);  <span class="comment">// 安全地處理 NULL</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>常見指標錯誤</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> x = <span class="number">10</span>;
+    <span class="keyword">int</span> *ptr;
+    
+    <span class="comment">// ❌ 錯誤一：忘記初始化</span>
+    <span class="comment">// printf("%d\n", *ptr);  // 野指標！</span>
+    
+    <span class="comment">// ✅ 正確：先初始化</span>
+    ptr = &x;
+    <span class="function">printf</span>(<span class="string">"%d\n"</span>, *ptr);  <span class="comment">// 正確</span>
+    
+    <span class="comment">// ❌ 錯誤二：型態不符</span>
+    <span class="keyword">double</span> d = <span class="number">3.14</span>;
+    <span class="comment">// ptr = &d;  // 警告！型態不符</span>
+    
+    <span class="comment">// ❌ 錯誤三：陣列越界</span>
+    <span class="keyword">int</span> arr[<span class="number">5</span>] = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>};
+    ptr = arr;
+    <span class="comment">// ptr += 10;  // 超出陣列範圍</span>
+    <span class="comment">// printf("%d\n", *ptr);  // 危險！</span>
+    
+    <span class="comment">// ❌ 錯誤四：修改字串常量</span>
+    <span class="keyword">char</span> *str = <span class="string">"Hello"</span>;  <span class="comment">// 字串常量</span>
+    <span class="comment">// str[0] = 'h';  // 錯誤！不能修改字串常量</span>
+    
+    <span class="comment">// ✅ 正確：使用字元陣列</span>
+    <span class="keyword">char</span> str2[] = <span class="string">"Hello"</span>;
+    str2[<span class="number">0</span>] = <span class="string">'h'</span>;  <span class="comment">// 正確</span>
+    <span class="function">printf</span>(<span class="string">"%s\n"</span>, str2);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>指標除錯技巧</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> x = <span class="number">10</span>;
+    <span class="keyword">int</span> *ptr = &x;
+    
+    <span class="comment">// ========== 除錯技巧 ==========</span>
+    
+    <span class="comment">// 1. 列印指標位址和值</span>
+    <span class="function">printf</span>(<span class="string">"指標位址: %p\n"</span>, (<span class="keyword">void</span>*)ptr);
+    <span class="function">printf</span>(<span class="string">"指標指向的值: %d\n"</span>, *ptr);
+    
+    <span class="comment">// 2. 檢查是否為 NULL</span>
+    <span class="keyword">if</span> (ptr == NULL) {
+        <span class="function">printf</span>(<span class="string">"警告：NULL 指標\n"</span>);
+    } <span class="keyword">else</span> {
+        <span class="function">printf</span>(<span class="string">"指標有效\n"</span>);
+    }
+    
+    <span class="comment">// 3. 使用後設為 NULL</span>
+    ptr = NULL;
+    <span class="keyword">if</span> (ptr == NULL) {
+        <span class="function">printf</span>(<span class="string">"指標已清空\n"</span>);
+    }
+    
+    <span class="comment">// 4. 比較指標</span>
+    <span class="keyword">int</span> *ptr2 = &x;
+    <span class="keyword">if</span> (ptr == ptr2) {
+        <span class="function">printf</span>(<span class="string">"指向同一位址\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="warning-box">
+                <strong>指標安全準則：</strong>
+                <ul>
+                    <li>✅ 永遠初始化指標（至少初始化為 NULL）</li>
+                    <li>✅ 使用前檢查指標是否為 NULL</li>
+                    <li>✅ 不要返回區域變數的位址</li>
+                    <li>✅ 確保指標指向有效的記憶體</li>
+                    <li>✅ 注意陣列邊界</li>
+                    <li>✅ 使用後將指標設為 NULL</li>
+                    <li>❌ 不要對 NULL 指標取值</li>
+                    <li>❌ 不要使用未初始化的指標</li>
+                    <li>❌ 不要修改字串常量</li>
+                </ul>
             </div>
+        </div>
+
+        <div class="content">
+            <h2>6. 綜合範例</h2>
+            
+            <h3>範例一：陣列排序（使用指標）</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// 使用指標實作氣泡排序</span>
+<span class="keyword">void</span> <span class="function">bubbleSort</span>(<span class="keyword">int</span> *arr, <span class="keyword">int</span> size) {
+    <span class="keyword">int</span> i, j, temp;
+    
+    <span class="keyword">for</span> (i = <span class="number">0</span>; i < size - <span class="number">1</span>; i++) {
+        <span class="keyword">for</span> (j = <span class="number">0</span>; j < size - i - <span class="number">1</span>; j++) {
+            <span class="keyword">if</span> (*(arr + j) > *(arr + j + <span class="number">1</span>)) {
+                <span class="comment">// 交換</span>
+                temp = *(arr + j);
+                *(arr + j) = *(arr + j + <span class="number">1</span>);
+                *(arr + j + <span class="number">1</span>) = temp;
+            }
+        }
+    }
+}
+
+<span class="comment">// 列印陣列</span>
+<span class="keyword">void</span> <span class="function">printArray</span>(<span class="keyword">int</span> *arr, <span class="keyword">int</span> size) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, *(arr + i));
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> arr[] = {<span class="number">64</span>, <span class="number">34</span>, <span class="number">25</span>, <span class="number">12</span>, <span class="number">22</span>, <span class="number">11</span>, <span class="number">90</span>};
+    <span class="keyword">int</span> size = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>]);
+    
+    <span class="function">printf</span>(<span class="string">"排序前: "</span>);
+    <span class="function">printArray</span>(arr, size);
+    
+    <span class="function">bubbleSort</span>(arr, size);
+    
+    <span class="function">printf</span>(<span class="string">"排序後: "</span>);
+    <span class="function">printArray</span>(arr, size);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>範例二：字串反轉</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="comment">// 使用指標反轉字串</span>
+<span class="keyword">void</span> <span class="function">reverseString</span>(<span class="keyword">char</span> *str) {
+    <span class="keyword">if</span> (str == NULL) <span class="keyword">return</span>;
+    
+    <span class="keyword">char</span> *start = str;
+    <span class="keyword">char</span> *end = str + <span class="function">strlen</span>(str) - <span class="number">1</span>;
+    <span class="keyword">char</span> temp;
+    
+    <span class="keyword">while</span> (start < end) {
+        <span class="comment">// 交換字元</span>
+        temp = *start;
+        *start = *end;
+        *end = temp;
+        
+        start++;
+        end--;
+    }
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> str[] = <span class="string">"Hello World"</span>;
+    
+    <span class="function">printf</span>(<span class="string">"原字串: %s\n"</span>, str);
+    <span class="function">reverseString</span>(str);
+    <span class="function">printf</span>(<span class="string">"反轉後: %s\n"</span>, str);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>範例三：查找與替換</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// 在陣列中查找元素，返回指標</span>
+<span class="keyword">int</span>* <span class="function">findElement</span>(<span class="keyword">int</span> *arr, <span class="keyword">int</span> size, <span class="keyword">int</span> target) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="keyword">if</span> (*(arr + i) == target) {
+            <span class="keyword">return</span> arr + i;  <span class="comment">// 返回元素位址</span>
+        }
+    }
+    <span class="keyword">return</span> NULL;  <span class="comment">// 未找到</span>
+}
+
+<span class="comment">// 替換所有符合的元素</span>
+<span class="keyword">int</span> <span class="function">replaceAll</span>(<span class="keyword">int</span> *arr, <span class="keyword">int</span> size, <span class="keyword">int</span> oldVal, <span class="keyword">int</span> newVal) {
+    <span class="keyword">int</span> count = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="keyword">if</span> (*(arr + i) == oldVal) {
+            *(arr + i) = newVal;
+            count++;
+        }
+    }
+    <span class="keyword">return</span> count;
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> arr[] = {<span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">9</span>};
+    <span class="keyword">int</span> size = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>]);
+    
+    <span class="comment">// 查找元素</span>
+    <span class="keyword">int</span> *found = <span class="function">findElement</span>(arr, size, <span class="number">5</span>);
+    <span class="keyword">if</span> (found != NULL) {
+        <span class="function">printf</span>(<span class="string">"找到 5，索引: %ld\n"</span>, found - arr);
+    }
+    
+    <span class="comment">// 替換所有的 5 為 99</span>
+    <span class="keyword">int</span> count = <span class="function">replaceAll</span>(arr, size, <span class="number">5</span>, <span class="number">99</span>);
+    <span class="function">printf</span>(<span class="string">"替換了 %d 個元素\n"</span>, count);
+    
+    <span class="function">printf</span>(<span class="string">"替換後陣列: "</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li>
+                        <strong>指標基本操作</strong><br>
+                        宣告一個整數變數和一個指標，透過指標修改變數的值，並列印修改前後的結果。
+                    </li>
+                    <li>
+                        <strong>陣列指標遍歷</strong><br>
+                        使用指標遍歷陣列，計算所有元素的總和與平均值。
+                    </li>
+                    <li>
+                        <strong>swap 函數</strong><br>
+                        實作 swap 函數，交換兩個整數的值。
+                    </li>
+                    <li>
+                        <strong>字串長度</strong><br>
+                        不使用 strlen()，用指標實作自己的字串長度計算函數。
+                    </li>
                 </ol>
+
+                <h4>進階練習</h4>
+                <ol start="5">
+                    <li>
+                        <strong>陣列最大最小值</strong><br>
+                        撰寫函數使用指標參數返回陣列的最大值和最小值。
+                    </li>
+                    <li>
+                        <strong>字串比較</strong><br>
+                        不使用 strcmp()，用指標實作字串比較函數。
+                    </li>
+                    <li>
+                        <strong>陣列元素移位</strong><br>
+                        使用指標將陣列所有元素向右移動 n 個位置（循環移位）。
+                    </li>
+                    <li>
+                        <strong>字串分割</strong><br>
+                        使用指標實作簡單的字串分割功能（以空格為分隔符）。
+                    </li>
+                </ol>
+
+                <h4>挑戰練習</h4>
+                <ol start="9">
+                    <li>
+                        <strong>指標陣列排序</strong><br>
+                        建立一個指標陣列，每個指標指向一個字串，<br>
+                        實作排序功能（按字典序排列，但不移動字串本身，只交換指標）。
+                    </li>
+                    <li>
+                        <strong>矩陣運算</strong><br>
+                        使用指標實作二維陣列（矩陣）的轉置功能。
+                    </li>
+                    <li>
+                        <strong>通用 swap</strong><br>
+                        撰寫一個通用的 swap 函數，可以交換任意型態的資料<br>
+                        （提示：使用 void* 和 memcpy）。
+                    </li>
+                </ol>
+
+                <div class="tip-box">
+                    <strong>練習提示：</strong>
+                    <ul>
+                        <li>畫圖理解指標與記憶體的關係</li>
+                        <li>使用 printf 列印指標位址幫助除錯</li>
+                        <li>注意指標初始化，避免野指標</li>
+                        <li>使用前檢查指標是否為 NULL</li>
+                        <li>注意陣列邊界，避免越界存取</li>
+                        <li>理解 & 和 * 運算符的用法</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="content">
             <h2>本週總結</h2>
-            <div class="tip-box">
-                <strong>重點回顧：</strong>
+            
+            <h3>重點回顧</h3>
+            <ul>
+                <li>✓ 理解指標的概念：指標儲存記憶體位址</li>
+                <li>✓ 掌握 & 和 * 運算符的使用</li>
+                <li>✓ 了解指標與陣列的關係</li>
+                <li>✓ 學會使用指標作為函數參數（傳址呼叫）</li>
+                <li>✓ 認識指標的安全問題並知道如何避免</li>
+                <li>✓ 能夠使用指標進行陣列和字串操作</li>
+            </ul>
+
+            <h3>指標運算符速查表</h3>
+            <table>
+                <tr>
+                    <th>符號</th>
+                    <th>名稱</th>
+                    <th>說明</th>
+                    <th>範例</th>
+                </tr>
+                <tr>
+                    <td>int *ptr</td>
+                    <td>指標宣告</td>
+                    <td>宣告指向 int 的指標</td>
+                    <td>int *p;</td>
+                </tr>
+                <tr>
+                    <td>&var</td>
+                    <td>取址運算符</td>
+                    <td>取得變數位址</td>
+                    <td>p = &x;</td>
+                </tr>
+                <tr>
+                    <td>*ptr</td>
+                    <td>取值運算符</td>
+                    <td>取得指標指向的值</td>
+                    <td>y = *p;</td>
+                </tr>
+                <tr>
+                    <td>ptr++</td>
+                    <td>指標遞增</td>
+                    <td>移到下一個元素</td>
+                    <td>ptr++;</td>
+                </tr>
+                <tr>
+                    <td>ptr--</td>
+                    <td>指標遞減</td>
+                    <td>移到上一個元素</td>
+                    <td>ptr--;</td>
+                </tr>
+            </table>
+
+            <h3>常見錯誤整理</h3>
+            <div class="warning-box">
+                <strong>需要特別注意：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li><strong>未初始化指標</strong>：使用前未賦值（野指標）</li>
+                    <li><strong>NULL 指標取值</strong>：對 NULL 指標使用 * 運算符</li>
+                    <li><strong>懸空指標</strong>：指向已釋放的記憶體</li>
+                    <li><strong>陣列越界</strong>：指標超出陣列範圍</li>
+                    <li><strong>型態不符</strong>：將不同型態的指標混用</li>
+                    <li><strong>返回區域變數位址</strong>：函數返回區域變數的指標</li>
+                </ul>
+            </div>
+
+            <h3>下週預告</h3>
+            <div class="note-box">
+                <h4>Week 6 - 動態記憶體配置</h4>
+                <p>下週將學習：</p>
+                <ul>
+                    <li>動態記憶體配置：malloc、calloc、realloc</li>
+                    <li>記憶體釋放：free 的使用</li>
+                    <li>動態陣列的建立與使用</li>
+                    <li>記憶體洩漏的預防</li>
+                    <li>指標的指標（雙重指標）</li>
+                    <li>實用範例：動態資料結構</li>
                 </ul>
             </div>
         </div>
@@ -310,6 +1236,12 @@ int main() {
             <a href="week4.html" class="btn btn-secondary">← Week 4</a>
             <a href="week6.html" class="btn">Week 6 →</a>
         </div>
+
+        <footer style="text-align: center; padding: 30px 0; color: #7f8c8d; margin-top: 50px; border-top: 1px solid #ddd;">
+            <p style="margin: 10px 0;">C語言程式設計 Week 5 完整教材</p>
+            <p style="margin: 10px 0; font-size: 0.9em;">指標基礎 · 記憶體位址 · 指標運算 · 傳址呼叫</p>
+            <p style="margin: 10px 0; font-size: 0.85em; color: #95a5a6;">© 2024 All Rights Reserved</p>
+        </footer>
     </div>
 </body>
 </html>

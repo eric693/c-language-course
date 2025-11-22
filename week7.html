@@ -14,105 +14,80 @@
         }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .nav {
-            background: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white; padding: 15px 25px; border-radius: 8px;
+            margin-bottom: 30px; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .nav a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            color: #3498db; text-decoration: none; font-weight: 600;
+            padding: 8px 16px; border-radius: 4px; transition: all 0.3s ease;
         }
         .nav a:hover { background: #3498db; color: white; }
         header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: white; padding: 50px 40px; border-radius: 8px;
+            margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         header h1 { font-size: 2.5em; margin-bottom: 10px; }
         header .subtitle { font-size: 1.1em; opacity: 0.9; }
         .content {
-            background: white;
-            border-radius: 8px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white; border-radius: 8px; padding: 40px;
+            margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .content h2 {
-            color: #2c3e50;
-            font-size: 2em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3498db;
+            color: #2c3e50; font-size: 2em; margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 3px solid #3498db;
         }
-        .content h3 {
-            color: #34495e;
-            font-size: 1.5em;
-            margin: 30px 0 15px 0;
-        }
+        .content h3 { color: #34495e; font-size: 1.5em; margin: 30px 0 15px 0; }
+        .content h4 { color: #34495e; font-size: 1.2em; margin: 20px 0 10px 0; }
         .code-block {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            border-radius: 4px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 0.95em;
-            overflow-x: auto;
-            margin: 20px 0;
-            line-height: 1.6;
+            background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95em;
+            overflow-x: auto; margin: 20px 0; line-height: 1.8; white-space: pre-wrap;
         }
+        .code-block .comment { color: #95a5a6; }
+        .code-block .keyword { color: #3498db; font-weight: bold; }
+        .code-block .string { color: #2ecc71; }
+        .code-block .function { color: #f39c12; }
+        .code-block .number { color: #e74c3c; }
         .note-box {
-            background: #e8f4f8;
-            border-left: 4px solid #3498db;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f4f8; border-left: 4px solid #3498db;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff8e1; border-left: 4px solid #ffa726;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .tip-box {
-            background: #e8f5e9;
-            border-left: 4px solid #66bb6a;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f5e9; border-left: 4px solid #66bb6a;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .exercise-section {
-            background: #f8f9fa;
-            border: 2px solid #3498db;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
+            background: #f8f9fa; border: 2px solid #3498db;
+            padding: 30px; margin: 30px 0; border-radius: 8px;
         }
+        table {
+            width: 100%; border-collapse: collapse; margin: 20px 0;
+        }
+        table th, table td {
+            padding: 12px; text-align: left; border: 1px solid #ddd;
+        }
+        table th {
+            background: #34495e; color: white; font-weight: 600;
+        }
+        table tr:nth-child(even) { background: #f8f9fa; }
         ul, ol { margin-left: 30px; margin-top: 10px; }
         li { margin: 8px 0; }
         .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
+            display: flex; justify-content: space-between; margin-top: 40px;
         }
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
+            display: inline-block; padding: 12px 30px; background: #3498db;
+            color: white; text-decoration: none; border-radius: 4px; font-weight: 600;
             transition: all 0.3s ease;
         }
         .btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+            background: #2980b9; transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .btn-secondary { background: #95a5a6; }
@@ -135,67 +110,1259 @@
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>核心概念與理論基礎</li>
-                <li>程式碼範例與詳細說明</li>
-                <li>實作練習與應用</li>
-                <li>常見問題與解決方案</li>
-                <li>最佳實務與開發技巧</li>
+                <li>結構（struct）：定義、宣告與初始化</li>
+                <li>結構成員存取：點運算符與箭頭運算符</li>
+                <li>結構陣列與指標：批次資料處理</li>
+                <li>巢狀結構：複雜資料結構的建立</li>
+                <li>聯合（union）與列舉（enum）</li>
+                <li>typedef：型態別名的定義</li>
+                <li>實用範例：學生管理、圖書系統、鏈結串列</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>核心內容</h2>
-            <p>本週將深入學習 結構體與自定義型態，這是 C 語言程式設計中的重要主題。</p>
+            <h2>1. 結構基礎</h2>
             
-            <div class="note-box">
-                <strong>學習重點：</strong>
-                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
-            </div>
-            
-            <h3>詳細說明</h3>
-            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
-            
-            <h3>實作建議</h3>
+            <h3>什麼是結構？</h3>
+            <p>結構（structure）是 C 語言中用來組合不同型態資料的自定義資料型態。它允許我們將相關的資料組合在一起，形成一個有意義的單位。</p>
+
+            <h4>為什麼需要結構？</h4>
             <ul>
-                <li>從基本概念開始，逐步進階</li>
-                <li>每個範例都要實際撰寫並執行</li>
-                <li>遇到問題要積極查找資料</li>
-                <li>完成練習題以驗證理解程度</li>
+                <li>將相關資料組織在一起（例如：學生的姓名、學號、成績）</li>
+                <li>使程式碼更易讀和維護</li>
+                <li>方便傳遞多個相關資料給函數</li>
+                <li>建立複雜的資料結構（如鏈結串列、樹）</li>
             </ul>
-        </div>
 
-        <div class="content">
-            <div class="exercise-section">
-                <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
-                <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
-                </ol>
-            </div>
-        </div>
+            <h3>結構的定義</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
 
-        <div class="content">
-            <h2>本週總結</h2>
-            <div class="tip-box">
-                <strong>重點回顧：</strong>
+<span class="comment">// ========== 結構定義 ==========</span>
+<span class="comment">// 語法：struct 結構名稱 { 成員列表 };</span>
+
+<span class="keyword">struct</span> Student {
+    <span class="keyword">int</span> id;              <span class="comment">// 學號</span>
+    <span class="keyword">char</span> name[<span class="number">50</span>];      <span class="comment">// 姓名</span>
+    <span class="keyword">int</span> age;             <span class="comment">// 年齡</span>
+    <span class="keyword">float</span> score;         <span class="comment">// 成績</span>
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// 宣告結構變數</span>
+    <span class="keyword">struct</span> Student s1;
+    
+    <span class="comment">// 設定成員值</span>
+    s1.id = <span class="number">1001</span>;
+    <span class="function">strcpy</span>(s1.name, <span class="string">"張小明"</span>);
+    s1.age = <span class="number">20</span>;
+    s1.score = <span class="number">85.5</span>;
+    
+    <span class="comment">// 顯示資料</span>
+    <span class="function">printf</span>(<span class="string">"學號: %d\n"</span>, s1.id);
+    <span class="function">printf</span>(<span class="string">"姓名: %s\n"</span>, s1.name);
+    <span class="function">printf</span>(<span class="string">"年齡: %d\n"</span>, s1.age);
+    <span class="function">printf</span>(<span class="string">"成績: %.1f\n"</span>, s1.score);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>結構的初始化</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">struct</span> Point {
+    <span class="keyword">int</span> x;
+    <span class="keyword">int</span> y;
+};
+
+<span class="keyword">struct</span> Rectangle {
+    <span class="keyword">int</span> width;
+    <span class="keyword">int</span> height;
+    <span class="keyword">char</span> color[<span class="number">20</span>];
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== 方法一：宣告時初始化 ==========</span>
+    <span class="keyword">struct</span> Point p1 = {<span class="number">10</span>, <span class="number">20</span>};
+    
+    <span class="comment">// ========== 方法二：指定成員初始化（C99）==========</span>
+    <span class="keyword">struct</span> Point p2 = {.y = <span class="number">30</span>, .x = <span class="number">15</span>};
+    
+    <span class="comment">// ========== 方法三：部分初始化 ==========</span>
+    <span class="keyword">struct</span> Rectangle r1 = {<span class="number">100</span>, <span class="number">50</span>};  <span class="comment">// color 自動為空字串</span>
+    
+    <span class="comment">// ========== 方法四：完整初始化 ==========</span>
+    <span class="keyword">struct</span> Rectangle r2 = {<span class="number">200</span>, <span class="number">100</span>, <span class="string">"紅色"</span>};
+    
+    <span class="function">printf</span>(<span class="string">"p1: (%d, %d)\n"</span>, p1.x, p1.y);
+    <span class="function">printf</span>(<span class="string">"p2: (%d, %d)\n"</span>, p2.x, p2.y);
+    <span class="function">printf</span>(<span class="string">"r2: %dx%d, 顏色: %s\n"</span>, r2.width, r2.height, r2.color);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>結構的複製</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">struct</span> Book {
+    <span class="keyword">char</span> title[<span class="number">100</span>];
+    <span class="keyword">char</span> author[<span class="number">50</span>];
+    <span class="keyword">int</span> year;
+    <span class="keyword">float</span> price;
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">struct</span> Book book1 = {
+        <span class="string">"C程式設計"</span>,
+        <span class="string">"作者A"</span>,
+        <span class="number">2024</span>,
+        <span class="number">450.0</span>
+    };
+    
+    <span class="comment">// ========== 結構可以直接賦值 ==========</span>
+    <span class="keyword">struct</span> Book book2 = book1;  <span class="comment">// 複製所有成員</span>
+    
+    <span class="function">printf</span>(<span class="string">"Book 1: %s by %s\n"</span>, book1.title, book1.author);
+    <span class="function">printf</span>(<span class="string">"Book 2: %s by %s\n"</span>, book2.title, book2.author);
+    
+    <span class="comment">// 修改 book2 不會影響 book1</span>
+    <span class="function">strcpy</span>(book2.title, <span class="string">"資料結構"</span>);
+    book2.price = <span class="number">500.0</span>;
+    
+    <span class="function">printf</span>(<span class="string">"\n修改後:\n"</span>);
+    <span class="function">printf</span>(<span class="string">"Book 1: %s, $%.1f\n"</span>, book1.title, book1.price);
+    <span class="function">printf</span>(<span class="string">"Book 2: %s, $%.1f\n"</span>, book2.title, book2.price);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="note-box">
+                <strong>結構的重要特性：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li>結構成員可以是任何資料型態（包括其他結構）</li>
+                    <li>結構變數可以直接賦值（會複製所有成員）</li>
+                    <li>結構大小 ≥ 所有成員大小之和（可能有對齊填充）</li>
+                    <li>使用 . 運算符存取成員</li>
+                </ul>
+            </div>
+
+            <h3>結構與函數</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">struct</span> Employee {
+    <span class="keyword">int</span> id;
+    <span class="keyword">char</span> name[<span class="number">50</span>];
+    <span class="keyword">double</span> salary;
+};
+
+<span class="comment">// ========== 傳值：傳遞結構副本 ==========</span>
+<span class="keyword">void</span> <span class="function">printEmployee</span>(<span class="keyword">struct</span> Employee emp) {
+    <span class="function">printf</span>(<span class="string">"員工編號: %d\n"</span>, emp.id);
+    <span class="function">printf</span>(<span class="string">"姓名: %s\n"</span>, emp.name);
+    <span class="function">printf</span>(<span class="string">"薪資: $%.2f\n"</span>, emp.salary);
+}
+
+<span class="comment">// ========== 傳址：傳遞結構指標（更有效率）==========</span>
+<span class="keyword">void</span> <span class="function">raiseSalary</span>(<span class="keyword">struct</span> Employee *emp, <span class="keyword">double</span> percent) {
+    emp->salary *= (<span class="number">1</span> + percent / <span class="number">100.0</span>);
+}
+
+<span class="comment">// ========== 返回結構 ==========</span>
+<span class="keyword">struct</span> Employee <span class="function">createEmployee</span>(<span class="keyword">int</span> id, <span class="keyword">const char</span> *name, <span class="keyword">double</span> salary) {
+    <span class="keyword">struct</span> Employee emp;
+    emp.id = id;
+    <span class="function">strcpy</span>(emp.name, name);
+    emp.salary = salary;
+    <span class="keyword">return</span> emp;
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">struct</span> Employee emp1 = <span class="function">createEmployee</span>(<span class="number">1001</span>, <span class="string">"王小華"</span>, <span class="number">50000</span>);
+    
+    <span class="function">printf</span>(<span class="string">"原始資料:\n"</span>);
+    <span class="function">printEmployee</span>(emp1);
+    
+    <span class="comment">// 加薪 10%</span>
+    <span class="function">raiseSalary</span>(&emp1, <span class="number">10</span>);
+    
+    <span class="function">printf</span>(<span class="string">"\n加薪後:\n"</span>);
+    <span class="function">printEmployee</span>(emp1);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="tip-box">
+                <strong>結構作為函數參數的建議：</strong>
+                <ul>
+                    <li><strong>傳值</strong>：適用於小型結構或需要保護原資料時</li>
+                    <li><strong>傳址（指標）</strong>：適用於大型結構或需要修改資料時</li>
+                    <li>使用 const 指標可以防止意外修改：<code>void func(const struct Data *ptr)</code></li>
+                    <li>傳遞指標比傳遞整個結構更有效率</li>
                 </ul>
             </div>
         </div>
 
-        <div class="nav-buttons">
-            <a href="week6.html" class="btn btn-secondary">← Week 6</a>
-            <a href="week8.html" class="btn">Week 8 →</a>
+        <div class="content">
+            <h2>2. 結構指標與箭頭運算符</h2>
+            
+            <h3>結構指標</h3>
+            <p>結構指標指向結構變數的記憶體位址，使用箭頭運算符 <code>-&gt;</code> 存取成員。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">struct</span> Car {
+    <span class="keyword">char</span> brand[<span class="number">30</span>];
+    <span class="keyword">char</span> model[<span class="number">30</span>];
+    <span class="keyword">int</span> year;
+    <span class="keyword">double</span> price;
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">struct</span> Car car1 = {<span class="string">"Toyota"</span>, <span class="string">"Camry"</span>, <span class="number">2024</span>, <span class="number">850000</span>};
+    <span class="keyword">struct</span> Car *ptr = &car1;
+    
+    <span class="comment">// ========== 方法一：使用點運算符 ==========</span>
+    <span class="function">printf</span>(<span class="string">"使用點運算符:\n"</span>);
+    <span class="function">printf</span>(<span class="string">"品牌: %s\n"</span>, car1.brand);
+    <span class="function">printf</span>(<span class="string">"型號: %s\n"</span>, car1.model);
+    
+    <span class="comment">// ========== 方法二：使用箭頭運算符 ==========</span>
+    <span class="function">printf</span>(<span class="string">"\n使用箭頭運算符:\n"</span>);
+    <span class="function">printf</span>(<span class="string">"品牌: %s\n"</span>, ptr->brand);
+    <span class="function">printf</span>(<span class="string">"型號: %s\n"</span>, ptr->model);
+    <span class="function">printf</span>(<span class="string">"年份: %d\n"</span>, ptr->year);
+    <span class="function">printf</span>(<span class="string">"價格: $%.0f\n"</span>, ptr->price);
+    
+    <span class="comment">// ========== 等價寫法 ==========</span>
+    <span class="comment">// ptr->brand 等於 (*ptr).brand</span>
+    <span class="function">printf</span>(<span class="string">"\n使用 (*ptr).member:\n"</span>);
+    <span class="function">printf</span>(<span class="string">"品牌: %s\n"</span>, (*ptr).brand);
+    
+    <span class="comment">// 透過指標修改</span>
+    ptr->year = <span class="number">2025</span>;
+    ptr->price = <span class="number">900000</span>;
+    
+    <span class="function">printf</span>(<span class="string">"\n修改後: %d年 $%.0f\n"</span>, car1.year, car1.price);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>動態結構配置</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">struct</span> Person {
+    <span class="keyword">char</span> name[<span class="number">50</span>];
+    <span class="keyword">int</span> age;
+    <span class="keyword">double</span> height;
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">struct</span> Person *p;
+    
+    <span class="comment">// ========== 動態配置結構 ==========</span>
+    p = (<span class="keyword">struct</span> Person*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Person));
+    
+    <span class="keyword">if</span> (p == NULL) {
+        <span class="function">printf</span>(<span class="string">"記憶體配置失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="comment">// 設定成員值</span>
+    <span class="function">strcpy</span>(p->name, <span class="string">"李大明"</span>);
+    p->age = <span class="number">25</span>;
+    p->height = <span class="number">175.5</span>;
+    
+    <span class="comment">// 顯示資料</span>
+    <span class="function">printf</span>(<span class="string">"姓名: %s\n"</span>, p->name);
+    <span class="function">printf</span>(<span class="string">"年齡: %d\n"</span>, p->age);
+    <span class="function">printf</span>(<span class="string">"身高: %.1f cm\n"</span>, p->height);
+    
+    <span class="comment">// 釋放記憶體</span>
+    <span class="function">free</span>(p);
+    p = NULL;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="note-box">
+                <strong>點運算符 vs 箭頭運算符：</strong>
+                <table>
+                    <tr>
+                        <th>運算符</th>
+                        <th>用途</th>
+                        <th>範例</th>
+                    </tr>
+                    <tr>
+                        <td>.</td>
+                        <td>存取結構變數的成員</td>
+                        <td>student.name</td>
+                    </tr>
+                    <tr>
+                        <td>-&gt;</td>
+                        <td>存取結構指標的成員</td>
+                        <td>ptr-&gt;name</td>
+                    </tr>
+                    <tr>
+                        <td>(*ptr).</td>
+                        <td>等價於箭頭運算符</td>
+                        <td>(*ptr).name</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>3. 結構陣列</h2>
+            
+            <h3>結構陣列的宣告與使用</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">struct</span> Student {
+    <span class="keyword">int</span> id;
+    <span class="keyword">char</span> name[<span class="number">50</span>];
+    <span class="keyword">float</span> score;
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== 宣告結構陣列 ==========</span>
+    <span class="keyword">struct</span> Student students[<span class="number">3</span>] = {
+        {<span class="number">1001</span>, <span class="string">"張三"</span>, <span class="number">85.5</span>},
+        {<span class="number">1002</span>, <span class="string">"李四"</span>, <span class="number">92.0</span>},
+        {<span class="number">1003</span>, <span class="string">"王五"</span>, <span class="number">78.5</span>}
+    };
+    
+    <span class="comment">// ========== 遍歷顯示 ==========</span>
+    <span class="function">printf</span>(<span class="string">"學生資料:\n"</span>);
+    <span class="function">printf</span>(<span class="string">"學號\t姓名\t成績\n"</span>);
+    <span class="function">printf</span>(<span class="string">"================================\n"</span>);
+    
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">3</span>; i++) {
+        <span class="function">printf</span>(<span class="string">"%d\t%s\t%.1f\n"</span>, 
+               students[i].id, 
+               students[i].name, 
+               students[i].score);
+    }
+    
+    <span class="comment">// ========== 計算平均 ==========</span>
+    <span class="keyword">float</span> sum = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">3</span>; i++) {
+        sum += students[i].score;
+    }
+    <span class="function">printf</span>(<span class="string">"\n平均成績: %.2f\n"</span>, sum / <span class="number">3</span>);
+    
+    <span class="comment">// ========== 找出最高分 ==========</span>
+    <span class="keyword">int</span> maxIndex = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i < <span class="number">3</span>; i++) {
+        <span class="keyword">if</span> (students[i].score > students[maxIndex].score) {
+            maxIndex = i;
+        }
+    }
+    <span class="function">printf</span>(<span class="string">"最高分: %s (%.1f)\n"</span>, 
+           students[maxIndex].name, 
+           students[maxIndex].score);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>動態結構陣列</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">struct</span> Product {
+    <span class="keyword">int</span> id;
+    <span class="keyword">char</span> name[<span class="number">50</span>];
+    <span class="keyword">double</span> price;
+    <span class="keyword">int</span> quantity;
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> n;
+    <span class="keyword">struct</span> Product *products;
+    
+    <span class="function">printf</span>(<span class="string">"請輸入產品數量: "</span>);
+    <span class="function">scanf</span>(<span class="string">"%d"</span>, &n);
+    
+    <span class="comment">// 動態配置結構陣列</span>
+    products = (<span class="keyword">struct</span> Product*) <span class="function">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">struct</span> Product));
+    
+    <span class="keyword">if</span> (products == NULL) {
+        <span class="function">printf</span>(<span class="string">"記憶體配置失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="comment">// 輸入產品資料</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+        <span class="function">printf</span>(<span class="string">"\n產品 %d:\n"</span>, i + <span class="number">1</span>);
+        <span class="function">printf</span>(<span class="string">"編號: "</span>);
+        <span class="function">scanf</span>(<span class="string">"%d"</span>, &products[i].id);
+        <span class="function">printf</span>(<span class="string">"名稱: "</span>);
+        <span class="function">scanf</span>(<span class="string">"%s"</span>, products[i].name);
+        <span class="function">printf</span>(<span class="string">"價格: "</span>);
+        <span class="function">scanf</span>(<span class="string">"%lf"</span>, &products[i].price);
+        <span class="function">printf</span>(<span class="string">"數量: "</span>);
+        <span class="function">scanf</span>(<span class="string">"%d"</span>, &products[i].quantity);
+    }
+    
+    <span class="comment">// 顯示產品列表</span>
+    <span class="function">printf</span>(<span class="string">"\n產品列表:\n"</span>);
+    <span class="function">printf</span>(<span class="string">"編號\t名稱\t\t價格\t\t數量\t總值\n"</span>);
+    <span class="function">printf</span>(<span class="string">"==================================================\n"</span>);
+    
+    <span class="keyword">double</span> totalValue = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+        <span class="keyword">double</span> itemValue = products[i].price * products[i].quantity;
+        <span class="function">printf</span>(<span class="string">"%d\t%-10s\t%.2f\t\t%d\t%.2f\n"</span>,
+               products[i].id,
+               products[i].name,
+               products[i].price,
+               products[i].quantity,
+               itemValue);
+        totalValue += itemValue;
+    }
+    
+    <span class="function">printf</span>(<span class="string">"==================================================\n"</span>);
+    <span class="function">printf</span>(<span class="string">"總庫存價值: $%.2f\n"</span>, totalValue);
+    
+    <span class="comment">// 釋放記憶體</span>
+    <span class="function">free</span>(products);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+    </div>
+    <div class="content">
+        <h2>4. 巢狀結構</h2>
+        
+        <h3>什麼是巢狀結構？</h3>
+        <p>巢狀結構是指在一個結構中包含另一個結構作為成員，用於表示更複雜的資料關係。</p>
+
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="comment">// ========== 定義日期結構 ==========</span>
+<span class="keyword">struct</span> Date {
+<span class="keyword">int</span> year;
+<span class="keyword">int</span> month;
+<span class="keyword">int</span> day;
+};
+
+<span class="comment">// ========== 定義地址結構 ==========</span>
+<span class="keyword">struct</span> Address {
+<span class="keyword">char</span> street[<span class="number">100</span>];
+<span class="keyword">char</span> city[<span class="number">50</span>];
+<span class="keyword">char</span> zipcode[<span class="number">10</span>];
+};
+
+<span class="comment">// ========== 定義員工結構（包含其他結構）==========</span>
+<span class="keyword">struct</span> Employee {
+<span class="keyword">int</span> id;
+<span class="keyword">char</span> name[<span class="number">50</span>];
+<span class="keyword">struct</span> Date birthdate;     <span class="comment">// 巢狀結構</span>
+<span class="keyword">struct</span> Address address;    <span class="comment">// 巢狀結構</span>
+<span class="keyword">double</span> salary;
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+<span class="keyword">struct</span> Employee emp = {
+    <span class="number">1001</span>,
+    <span class="string">"陳小華"</span>,
+    {<span class="number">1990</span>, <span class="number">5</span>, <span class="number">15</span>},                    <span class="comment">// 生日</span>
+    {<span class="string">"中山路100號"</span>, <span class="string">"台北市"</span>, <span class="string">"10001"</span>},  <span class="comment">// 地址</span>
+    <span class="number">55000</span>
+};
+
+<span class="comment">// 存取巢狀結構成員</span>
+<span class="function">printf</span>(<span class="string">"員工資料:\n"</span>);
+<span class="function">printf</span>(<span class="string">"編號: %d\n"</span>, emp.id);
+<span class="function">printf</span>(<span class="string">"姓名: %s\n"</span>, emp.name);
+<span class="function">printf</span>(<span class="string">"生日: %d年%d月%d日\n"</span>, 
+       emp.birthdate.year, 
+       emp.birthdate.month, 
+       emp.birthdate.day);
+<span class="function">printf</span>(<span class="string">"地址: %s, %s %s\n"</span>, 
+       emp.address.street,
+       emp.address.city,
+       emp.address.zipcode);
+<span class="function">printf</span>(<span class="string">"薪資: $%.2f\n"</span>, emp.salary);
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+        <h3>複雜巢狀結構範例</h3>
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">struct</span> Score {
+<span class="keyword">int</span> math;
+<span class="keyword">int</span> english;
+<span class="keyword">int</span> science;
+};
+
+<span class="keyword">struct</span> Student {
+<span class="keyword">int</span> id;
+<span class="keyword">char</span> name[<span class="number">50</span>];
+<span class="keyword">struct</span> Score scores;
+<span class="keyword">float</span> average;
+};
+
+<span class="comment">// 計算平均分數</span>
+<span class="keyword">void</span> <span class="function">calculateAverage</span>(<span class="keyword">struct</span> Student *s) {
+s->average = (s->scores.math + s->scores.english + s->scores.science) / <span class="number">3.0</span>;
+}
+
+<span class="comment">// 顯示學生資料</span>
+<span class="keyword">void</span> <span class="function">printStudent</span>(<span class="keyword">struct</span> Student s) {
+<span class="function">printf</span>(<span class="string">"學號: %d\n"</span>, s.id);
+<span class="function">printf</span>(<span class="string">"姓名: %s\n"</span>, s.name);
+<span class="function">printf</span>(<span class="string">"數學: %d, 英文: %d, 自然: %d\n"</span>,
+       s.scores.math, s.scores.english, s.scores.science);
+<span class="function">printf</span>(<span class="string">"平均: %.2f\n"</span>, s.average);
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+<span class="keyword">struct</span> Student students[<span class="number">3</span>] = {
+    {<span class="number">1001</span>, <span class="string">"張三"</span>, {<span class="number">85</span>, <span class="number">90</span>, <span class="number">88</span>}, <span class="number">0</span>},
+    {<span class="number">1002</span>, <span class="string">"李四"</span>, {<span class="number">92</span>, <span class="number">87</span>, <span class="number">91</span>}, <span class="number">0</span>},
+    {<span class="number">1003</span>, <span class="string">"王五"</span>, {<span class="number">78</span>, <span class="number">85</span>, <span class="number">82</span>}, <span class="number">0</span>}
+};
+
+<span class="comment">// 計算每個學生的平均</span>
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">3</span>; i++) {
+    <span class="function">calculateAverage</span>(&students[i]);
+}
+
+<span class="comment">// 顯示所有學生資料</span>
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">3</span>; i++) {
+    <span class="function">printf</span>(<span class="string">"\n學生 %d:\n"</span>, i + <span class="number">1</span>);
+    <span class="function">printStudent</span>(students[i]);
+}
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+        <h3>自我參照結構（Self-Referential Structure）</h3>
+        <p>自我參照結構包含指向同類型結構的指標，常用於建立鏈結串列等資料結構。</p>
+
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="comment">// ========== 鏈結串列節點 ==========</span>
+<span class="keyword">struct</span> Node {
+<span class="keyword">int</span> data;
+<span class="keyword">struct</span> Node *next;  <span class="comment">// 指向下一個節點</span>
+};
+
+<span class="comment">// 建立新節點</span>
+<span class="keyword">struct</span> Node* <span class="function">createNode</span>(<span class="keyword">int</span> value) {
+<span class="keyword">struct</span> Node *newNode = (<span class="keyword">struct</span> Node*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Node));
+<span class="keyword">if</span> (newNode != NULL) {
+    newNode->data = value;
+    newNode->next = NULL;
+}
+<span class="keyword">return</span> newNode;
+}
+
+<span class="comment">// 在串列末端新增節點</span>
+<span class="keyword">void</span> <span class="function">append</span>(<span class="keyword">struct</span> Node **head, <span class="keyword">int</span> value) {
+<span class="keyword">struct</span> Node *newNode = <span class="function">createNode</span>(value);
+
+<span class="keyword">if</span> (*head == NULL) {
+    *head = newNode;
+    <span class="keyword">return</span>;
+}
+
+<span class="keyword">struct</span> Node *current = *head;
+<span class="keyword">while</span> (current->next != NULL) {
+    current = current->next;
+}
+current->next = newNode;
+}
+
+<span class="comment">// 顯示串列</span>
+<span class="keyword">void</span> <span class="function">printList</span>(<span class="keyword">struct</span> Node *head) {
+<span class="keyword">struct</span> Node *current = head;
+<span class="function">printf</span>(<span class="string">"串列: "</span>);
+<span class="keyword">while</span> (current != NULL) {
+    <span class="function">printf</span>(<span class="string">"%d -> "</span>, current->data);
+    current = current->next;
+}
+<span class="function">printf</span>(<span class="string">"NULL\n"</span>);
+}
+
+<span class="comment">// 釋放串列</span>
+<span class="keyword">void</span> <span class="function">freeList</span>(<span class="keyword">struct</span> Node *head) {
+<span class="keyword">struct</span> Node *current = head;
+<span class="keyword">struct</span> Node *next;
+
+<span class="keyword">while</span> (current != NULL) {
+    next = current->next;
+    <span class="function">free</span>(current);
+    current = next;
+}
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+<span class="keyword">struct</span> Node *head = NULL;
+
+<span class="comment">// 建立鏈結串列</span>
+<span class="function">append</span>(&head, <span class="number">10</span>);
+<span class="function">append</span>(&head, <span class="number">20</span>);
+<span class="function">append</span>(&head, <span class="number">30</span>);
+<span class="function">append</span>(&head, <span class="number">40</span>);
+
+<span class="comment">// 顯示串列</span>
+<span class="function">printList</span>(head);
+
+<span class="comment">// 釋放記憶體</span>
+<span class="function">freeList</span>(head);
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+        <div class="note-box">
+            <strong>自我參照結構的應用：</strong>
+            <ul>
+                <li>鏈結串列（Linked List）</li>
+                <li>二元樹（Binary Tree）</li>
+                <li>圖（Graph）</li>
+                <li>堆疊和佇列的動態實作</li>
+            </ul>
         </div>
     </div>
+
+    <div class="content">
+        <h2>5. typedef 型態定義</h2>
+        
+        <h3>什麼是 typedef？</h3>
+        <p><code>typedef</code> 用於為現有的資料型態定義新的名稱，使程式碼更簡潔易讀。</p>
+
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="comment">// ========== 方法一：使用 typedef ==========</span>
+<span class="keyword">typedef struct</span> {
+<span class="keyword">int</span> x;
+<span class="keyword">int</span> y;
+} Point;  <span class="comment">// Point 是型態名稱</span>
+
+<span class="comment">// ========== 方法二：先定義結構，再用 typedef ==========</span>
+<span class="keyword">struct</span> Rectangle {
+<span class="keyword">int</span> width;
+<span class="keyword">int</span> height;
+};
+<span class="keyword">typedef struct</span> Rectangle Rect;
+
+<span class="comment">// ========== 方法三：同時定義 ==========</span>
+<span class="keyword">typedef struct</span> Circle {
+<span class="keyword">double</span> radius;
+Point center;  <span class="comment">// 使用 typedef 定義的型態</span>
+} Circle;
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+<span class="comment">// 不需要寫 struct，直接使用型態名稱</span>
+Point p1 = {<span class="number">10</span>, <span class="number">20</span>};
+Rect r1 = {<span class="number">100</span>, <span class="number">50</span>};
+Circle c1 = {<span class="number">5.0</span>, {<span class="number">0</span>, <span class="number">0</span>}};
+
+<span class="function">printf</span>(<span class="string">"Point: (%d, %d)\n"</span>, p1.x, p1.y);
+<span class="function">printf</span>(<span class="string">"Rectangle: %dx%d\n"</span>, r1.width, r1.height);
+<span class="function">printf</span>(<span class="string">"Circle: radius=%.1f, center=(%d,%d)\n"</span>, 
+       c1.radius, c1.center.x, c1.center.y);
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+        <h3>typedef 的其他用途</h3>
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// ========== 為基本型態定義別名 ==========</span>
+<span class="keyword">typedef</span> <span class="keyword">unsigned int</span> uint;
+<span class="keyword">typedef</span> <span class="keyword">unsigned long</span> ulong;
+
+<span class="comment">// ========== 為陣列定義別名 ==========</span>
+<span class="keyword">typedef</span> <span class="keyword">int</span> IntArray[<span class="number">10</span>];
+
+<span class="comment">// ========== 為指標定義別名 ==========</span>
+<span class="keyword">typedef</span> <span class="keyword">char</span>* String;
+
+<span class="comment">// ========== 為函數指標定義別名 ==========</span>
+<span class="keyword">typedef</span> <span class="keyword">int</span> (*CompareFunc)(<span class="keyword">int</span>, <span class="keyword">int</span>);
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+uint age = <span class="number">25</span>;
+ulong distance = <span class="number">1000000</span>;
+
+IntArray numbers = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>};
+
+String name = <span class="string">"Hello"</span>;
+
+<span class="function">printf</span>(<span class="string">"Age: %u\n"</span>, age);
+<span class="function">printf</span>(<span class="string">"First number: %d\n"</span>, numbers[<span class="number">0</span>]);
+<span class="function">printf</span>(<span class="string">"Name: %s\n"</span>, name);
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+        <div class="tip-box">
+            <strong>typedef 的優點：</strong>
+            <ul>
+                <li>使程式碼更簡潔易讀</li>
+                <li>提高程式碼的可移植性</li>
+                <li>便於修改型態定義</li>
+                <li>增強程式碼的抽象層次</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>6. 聯合（Union）與列舉（Enum）</h2>
+        
+        <h3>聯合（Union）</h3>
+        <p>聯合允許在同一記憶體位置儲存不同的資料型態，但同一時間只能使用其中一個成員。</p>
+
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="comment">// ========== 聯合定義 ==========</span>
+<span class="keyword">union</span> Data {
+<span class="keyword">int</span> i;
+<span class="keyword">float</span> f;
+<span class="keyword">char</span> str[<span class="number">20</span>];
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+<span class="keyword">union</span> Data data;
+
+<span class="comment">// ========== 使用整數 ==========</span>
+data.i = <span class="number">10</span>;
+<span class="function">printf</span>(<span class="string">"data.i: %d\n"</span>, data.i);
+
+<span class="comment">// ========== 使用浮點數 ==========</span>
+data.f = <span class="number">220.5</span>;
+<span class="function">printf</span>(<span class="string">"data.f: %.1f\n"</span>, data.f);
+
+<span class="comment">// ========== 使用字串 ==========</span>
+<span class="function">strcpy</span>(data.str, <span class="string">"Hello"</span>);
+<span class="function">printf</span>(<span class="string">"data.str: %s\n"</span>, data.str);
+
+<span class="comment">// 注意：此時 data.i 和 data.f 的值已經無效</span>
+<span class="function">printf</span>(<span class="string">"\nUnion 大小: %lu bytes\n"</span>, <span class="keyword">sizeof</span>(data));
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+        <h3>結構 vs 聯合</h3>
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="keyword">struct</span> StructExample {
+<span class="keyword">int</span> i;
+<span class="keyword">float</span> f;
+<span class="keyword">char</span> c;
+};
+
+<span class="keyword">union</span> UnionExample {
+<span class="keyword">int</span> i;
+<span class="keyword">float</span> f;
+<span class="keyword">char</span> c;
+};
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+<span class="keyword">struct</span> StructExample s;
+<span class="keyword">union</span> UnionExample u;
+
+<span class="function">printf</span>(<span class="string">"結構大小: %lu bytes\n"</span>, <span class="keyword">sizeof</span>(s));  <span class="comment">// 所有成員加總</span>
+<span class="function">printf</span>(<span class="string">"聯合大小: %lu bytes\n"</span>, <span class="keyword">sizeof</span>(u));  <span class="comment">// 最大成員的大小</span>
+
+<span class="comment">// 結構：所有成員都可以同時使用</span>
+s.i = <span class="number">10</span>;
+s.f = <span class="number">3.14</span>;
+s.c = <span class="string">'A'</span>;
+<span class="function">printf</span>(<span class="string">"\n結構: i=%d, f=%.2f, c=%c\n"</span>, s.i, s.f, s.c);
+
+<span class="comment">// 聯合：同一時間只能使用一個成員</span>
+u.i = <span class="number">10</span>;
+<span class="function">printf</span>(<span class="string">"\n聯合 i: %d\n"</span>, u.i);
+
+u.f = <span class="number">3.14</span>;  <span class="comment">// 覆蓋 i 的值</span>
+<span class="function">printf</span>(<span class="string">"聯合 f: %.2f\n"</span>, u.f);
+<span class="function">printf</span>(<span class="string">"聯合 i (已無效): %d\n"</span>, u.i);  <span class="comment">// 已被覆蓋</span>
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+        <h3>列舉（Enum）</h3>
+        <p>列舉用於定義一組命名的整數常數，使程式碼更易讀。</p>
+
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+
+<span class="comment">// ========== 定義列舉 ==========</span>
+<span class="keyword">enum</span> Weekday {
+MONDAY,      <span class="comment">// 0</span>
+TUESDAY,     <span class="comment">// 1</span>
+WEDNESDAY,   <span class="comment">// 2</span>
+THURSDAY,    <span class="comment">// 3</span>
+FRIDAY,      <span class="comment">// 4</span>
+SATURDAY,    <span class="comment">// 5</span>
+SUNDAY       <span class="comment">// 6</span>
+};
+
+<span class="comment">// ========== 指定起始值 ==========</span>
+<span class="keyword">enum</span> Month {
+JAN = <span class="number">1</span>, FEB, MAR, APR, MAY, JUN,
+JUL, AUG, SEP, OCT, NOV, DEC
+};
+
+<span class="comment">// ========== 搭配 typedef ==========</span>
+<span class="keyword">typedef enum</span> {
+RED,
+GREEN,
+BLUE,
+YELLOW
+} Color;
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+<span class="keyword">enum</span> Weekday today = FRIDAY;
+<span class="keyword">enum</span> Month currentMonth = MAR;
+Color favoriteColor = BLUE;
+
+<span class="function">printf</span>(<span class="string">"今天是星期: %d\n"</span>, today);
+<span class="function">printf</span>(<span class="string">"當前月份: %d\n"</span>, currentMonth);
+<span class="function">printf</span>(<span class="string">"喜愛顏色: %d\n"</span>, favoriteColor);
+
+<span class="comment">// 使用 switch 判斷</span>
+<span class="keyword">switch</span> (today) {
+    <span class="keyword">case</span> MONDAY:
+    <span class="keyword">case</span> TUESDAY:
+    <span class="keyword">case</span> WEDNESDAY:
+    <span class="keyword">case</span> THURSDAY:
+    <span class="keyword">case</span> FRIDAY:
+        <span class="function">printf</span>(<span class="string">"工作日\n"</span>);
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> SATURDAY:
+    <span class="keyword">case</span> SUNDAY:
+        <span class="function">printf</span>(<span class="string">"週末\n"</span>);
+        <span class="keyword">break</span>;
+}
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+        <div class="note-box">
+            <strong>結構、聯合、列舉比較：</strong>
+            <table>
+                <tr>
+                    <th>類型</th>
+                    <th>用途</th>
+                    <th>記憶體</th>
+                    <th>成員存取</th>
+                </tr>
+                <tr>
+                    <td>struct</td>
+                    <td>組合多個資料</td>
+                    <td>所有成員加總</td>
+                    <td>可同時使用所有成員</td>
+                </tr>
+                <tr>
+                    <td>union</td>
+                    <td>共享記憶體空間</td>
+                    <td>最大成員的大小</td>
+                    <td>同一時間只能使用一個</td>
+                </tr>
+                <tr>
+                    <td>enum</td>
+                    <td>定義常數集合</td>
+                    <td>整數大小</td>
+                    <td>只讀常數</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>7. 實用範例</h2>
+        
+        <h3>範例一：學生成績管理系統</h3>
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">typedef struct</span> {
+<span class="keyword">int</span> id;
+<span class="keyword">char</span> name[<span class="number">50</span>];
+<span class="keyword">int</span> math;
+<span class="keyword">int</span> english;
+<span class="keyword">int</span> science;
+<span class="keyword">float</span> average;
+} Student;
+
+<span class="comment">// 計算平均成績</span>
+<span class="keyword">void</span> <span class="function">calculateAverage</span>(Student *s) {
+s->average = (s->math + s->english + s->science) / <span class="number">3.0</span>;
+}
+
+<span class="comment">// 輸入學生資料</span>
+<span class="keyword">void</span> <span class="function">inputStudent</span>(Student *s, <span class="keyword">int</span> id) {
+s->id = id;
+<span class="function">printf</span>(<span class="string">"姓名: "</span>);
+<span class="function">scanf</span>(<span class="string">"%s"</span>, s->name);
+<span class="function">printf</span>(<span class="string">"數學成績: "</span>);
+<span class="function">scanf</span>(<span class="string">"%d"</span>, &s->math);
+<span class="function">printf</span>(<span class="string">"英文成績: "</span>);
+<span class="function">scanf</span>(<span class="string">"%d"</span>, &s->english);
+<span class="function">printf</span>(<span class="string">"自然成績: "</span>);
+<span class="function">scanf</span>(<span class="string">"%d"</span>, &s->science);
+<span class="function">calculateAverage</span>(s);
+}
+
+<span class="comment">// 顯示學生資料</span>
+<span class="keyword">void</span> <span class="function">printStudent</span>(Student s) {
+<span class="function">printf</span>(<span class="string">"%d\t%-10s\t%d\t%d\t%d\t%.2f\n"</span>,
+       s.id, s.name, s.math, s.english, s.science, s.average);
+}
+
+<span class="comment">// 找出最高平均成績</span>
+<span class="keyword">int</span> <span class="function">findTopStudent</span>(Student students[], <span class="keyword">int</span> n) {
+<span class="keyword">int</span> topIndex = <span class="number">0</span>;
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i < n; i++) {
+    <span class="keyword">if</span> (students[i].average > students[topIndex].average) {
+        topIndex = i;
+    }
+}
+<span class="keyword">return</span> topIndex;
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+<span class="keyword">int</span> n;
+
+<span class="function">printf</span>(<span class="string">"請輸入學生人數: "</span>);
+<span class="function">scanf</span>(<span class="string">"%d"</span>, &n);
+
+Student *students = (Student*) <span class="function">malloc</span>(n * <span class="keyword">sizeof</span>(Student));
+<span class="keyword">if</span> (students == NULL) {
+    <span class="function">printf</span>(<span class="string">"記憶體配置失敗！\n"</span>);
+    <span class="keyword">return</span> <span class="number">1</span>;
+}
+
+<span class="comment">// 輸入學生資料</span>
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+    <span class="function">printf</span>(<span class="string">"\n學生 %d:\n"</span>, i + <span class="number">1</span>);
+    <span class="function">inputStudent</span>(&students[i], i + <span class="number">1</span>);
+}
+
+<span class="comment">// 顯示所有學生</span>
+<span class="function">printf</span>(<span class="string">"\n學生成績表:\n"</span>);
+<span class="function">printf</span>(<span class="string">"學號\t姓名\t\t數學\t英文\t自然\t平均\n"</span>);
+<span class="function">printf</span>(<span class="string">"========================================================\n"</span>);
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+    <span class="function">printStudent</span>(students[i]);
+}
+
+<span class="comment">// 找出最高分</span>
+<span class="keyword">int</span> topIndex = <span class="function">findTopStudent</span>(students, n);
+<span class="function">printf</span>(<span class="string">"\n最高平均成績: %s (%.2f)\n"</span>,
+       students[topIndex].name, students[topIndex].average);
+
+<span class="function">free</span>(students);
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+        <h3>範例二：圖書管理系統</h3>
+        <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">typedef enum</span> {
+AVAILABLE,
+BORROWED,
+RESERVED
+} BookStatus;
+
+<span class="keyword">typedef struct</span> {
+<span class="keyword">int</span> year;
+<span class="keyword">int</span> month;
+<span class="keyword">int</span> day;
+} Date;
+
+<span class="keyword">typedef struct</span> {
+<span class="keyword">char</span> isbn[<span class="number">20</span>];
+<span class="keyword">char</span> title[<span class="number">100</span>];
+<span class="keyword">char</span> author[<span class="number">50</span>];
+Date publishDate;
+BookStatus status;
+<span class="keyword">char</span> borrower[<span class="number">50</span>];
+} Book;
+
+<span class="comment">// 初始化圖書</span>
+Book <span class="function">createBook</span>(<span class="keyword">const char</span> *isbn, <span class="keyword">const char</span> *title, 
+             <span class="keyword">const char</span> *author, <span class="keyword">int</span> year, <span class="keyword">int</span> month, <span class="keyword">int</span> day) {
+Book book;
+<span class="function">strcpy</span>(book.isbn, isbn);
+<span class="function">strcpy</span>(book.title, title);
+<span class="function">strcpy</span>(book.author, author);
+book.publishDate.year = year;
+book.publishDate.month = month;
+book.publishDate.day = day;
+book.status = AVAILABLE;
+<span class="function">strcpy</span>(book.borrower, <span class="string">""</span>);
+<span class="keyword">return</span> book;
+}
+
+<span class="comment">// 借書</span>
+<span class="keyword">int</span> <span class="function">borrowBook</span>(Book *book, <span class="keyword">const char</span> *name) {
+<span class="keyword">if</span> (book->status != AVAILABLE) {
+    <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">// 借閱失敗</span>
+}
+book->status = BORROWED;
+<span class="function">strcpy</span>(book->borrower, name);
+<span class="keyword">return</span> <span class="number">1</span>;  <span class="comment">// 借閱成功</span>
+}
+
+<span class="comment">// 還書</span>
+<span class="keyword">void</span> <span class="function">returnBook</span>(Book *book) {
+book->status = AVAILABLE;
+<span class="function">strcpy</span>(book->borrower, <span class="string">""</span>);
+}
+
+<span class="comment">// 顯示圖書資訊</span>
+<span class="keyword">void</span> <span class="function">printBook</span>(Book book) {
+<span class="keyword">const char</span> *statusStr[] = {<span class="string">"可借閱"</span>, <span class="string">"已借出"</span>, <span class="string">"已預約"</span>};
+
+<span class="function">printf</span>(<span class="string">"ISBN: %s\n"</span>, book.isbn);
+<span class="function">printf</span>(<span class="string">"書名: %s\n"</span>, book.title);
+<span class="function">printf</span>(<span class="string">"作者: %s\n"</span>, book.author);
+<span class="function">printf</span>(<span class="string">"出版日期: %d/%d/%d\n"</span>, 
+       book.publishDate.year, book.publishDate.month, book.publishDate.day);
+<span class="function">printf</span>(<span class="string">"狀態: %s\n"</span>, statusStr[book.status]);
+<span class="keyword">if</span> (book.status == BORROWED) {
+    <span class="function">printf</span>(<span class="string">"借閱者: %s\n"</span>, book.borrower);
+}
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+Book library[<span class="number">3</span>];
+
+<span class="comment">// 建立圖書</span>
+library[<span class="number">0</span>] = <span class="function">createBook</span>(<span class="string">"978-1-2345"</span>, <span class="string">"C程式設計"</span>, <span class="string">"作者A"</span>, <span class="number">2024</span>, <span class="number">1</span>, <span class="number">15</span>);
+library[<span class="number">1</span>] = <span class="function">createBook</span>(<span class="string">"978-1-2346"</span>, <span class="string">"資料結構"</span>, <span class="string">"作者B"</span>, <span class="number">2023</span>, <span class="number">6</span>, <span class="number">20</span>);
+library[<span class="number">2</span>] = <span class="function">createBook</span>(<span class="string">"978-1-2347"</span>, <span class="string">"演算法導論"</span>, <span class="string">"作者C"</span>, <span class="number">2022</span>, <span class="number">9</span>, <span class="number">10</span>);
+
+<span class="comment">// 借閱圖書</span>
+<span class="keyword">if</span> (<span class="function">borrowBook</span>(&library[<span class="number">0</span>], <span class="string">"張三"</span>)) {
+    <span class="function">printf</span>(<span class="string">"借閱成功！\n\n"</span>);
+}
+
+<span class="comment">// 顯示所有圖書</span>
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">3</span>; i++) {
+    <span class="function">printf</span>(<span class="string">"========== 圖書 %d ==========\n"</span>, i + <span class="number">1</span>);
+    <span class="function">printBook</span>(library[i]);
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+}
+
+<span class="comment">// 還書</span>
+<span class="function">returnBook</span>(&library[<span class="number">0</span>]);
+<span class="function">printf</span>(<span class="string">"還書後狀態:\n"</span>);
+<span class="function">printBook</span>(library[<span class="number">0</span>]);
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+    </div>
+
+    <div class="content">
+        <div class="exercise-section">
+            <h3>本週練習題</h3>
+            
+            <h4>基礎練習</h4>
+            <ol>
+                <li>
+                    <strong>點座標結構</strong><br>
+                    定義一個點（Point）結構，包含 x 和 y 座標，<br>
+                    撰寫函數計算兩點之間的距離。
+                </li>
+                <li>
+                    <strong>員工資料</strong><br>
+                    建立員工結構包含編號、姓名、部門、薪資，<br>
+                    建立陣列儲存 5 個員工並顯示所有資料。
+                </li>
+                <li>
+                    <strong>時間結構</strong><br>
+                    定義時間結構（時、分、秒），<br>
+                    撰寫函數比較兩個時間的先後順序。
+                </li>
+                <li>
+                    <strong>typedef 練習</strong><br>
+                    使用 typedef 簡化結構宣告，<br>
+                    建立學生資料結構並實作輸入輸出功能。
+                </li>
+            </ol>
+
+            <h4>進階練習</h4>
+            <ol start="5">
+                <li>
+                    <strong>通訊錄系統</strong><br>
+                    建立通訊錄結構（姓名、電話、email、地址），<br>
+                    使用動態陣列儲存聯絡人，<br>
+                    提供新增、刪除、搜尋、顯示功能。
+                </li>
+                <li>
+                    <strong>成績統計</strong><br>
+                    建立學生結構包含多科成績，<br>
+                    計算每個學生的總分、平均、排名，<br>
+                    找出各科最高分和全班平均。
+                </li>
+                <li>
+                    <strong>商品庫存管理</strong><br>
+                    設計商品結構（編號、名稱、單價、庫存），<br>
+                    實作進貨、出貨、查詢、低庫存警示功能。
+                </li>
+                <li>
+                    <strong>日期計算</strong><br>
+                    建立日期結構，撰寫函數計算兩日期相差天數，<br>
+                    判斷是否為閏年，計算某日期的下一天。
+                </li>
+            </ol>
+
+            <h4>挑戰練習</h4>
+            <ol start="9">
+                <li>
+                    <strong>簡易銀行系統</strong><br>
+                    設計帳戶結構（帳號、姓名、餘額、交易記錄），<br>
+                    實作開戶、存款、提款、轉帳、查詢功能，<br>
+                    使用鏈結串列儲存交易記錄。
+                </li>
+                <li>
+                    <strong>撲克牌遊戲</strong><br>
+                    定義撲克牌結構（花色、點數），<br>
+                    建立一副牌，實作洗牌、發牌、排序功能，<br>
+                    計算牌型（對子、順子、同花等）。
+                </li>
+                <li>
+                    <strong>多項式計算器</strong><br>
+                    使用鏈結串列表示多項式（係數、指數），<br>
+                    實作多項式的加法、減法、乘法運算，<br>
+                    支援多項式求值和顯示。
+                </li>
+            </ol>
+
+            <div class="tip-box">
+                <strong>練習提示：</strong>
+                <ul>
+                    <li>先在紙上設計結構的成員</li>
+                    <li>考慮使用 typedef 簡化程式碼</li>
+                    <li>適當使用巢狀結構組織資料</li>
+                    <li>函數參數使用指標提高效率</li>
+                    <li>動態配置記憶體時記得釋放</li>
+                    <li>測試各種邊界情況</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>本週總結</h2>
+        
+        <h3>重點回顧</h3>
+        <ul>
+            <li>✓ 理解結構的概念與定義方式</li>
+            <li>✓ 掌握結構成員的存取（. 和 ->）</li>
+            <li>✓ 學會使用結構陣列和動態配置</li>
+            <li>✓ 了解巢狀結構和自我參照結構</li>
+            <li>✓ 認識 typedef、union、enum 的用途</li>
+            <li>✓ 能夠設計和實作複雜的資料結構</li>
+        </ul>
+
+        <h3>結構相關運算符</h3>
+        <table>
+            <tr>
+                <th>運算符</th>
+                <th>用途</th>
+                <th>範例</th>
+                <th>說明</th>
+            </tr>
+            <tr>
+                <td>.</td>
+                <td>成員存取</td>
+                <td>student.name</td>
+                <td>用於結構變數</td>
+            </tr>
+            <tr>
+                <td>-></td>
+                <td>指標成員存取</td>
+                <td>ptr->name</td>
+                <td>用於結構指標</td>
+            </tr>
+            <tr>
+                <td>=</td>
+                <td>結構賦值</td>
+                <td>s2 = s1;</td>
+                <td>複製所有成員</td>
+            </tr>
+            <tr>
+                <td>&</td>
+                <td>取址</td>
+                <td>&student</td>
+                <td>取得結構位址</td>
+            </tr>
+        </table>
+
+        <h3>最佳實踐</h3>
+        <div class="tip-box">
+            <strong>結構設計原則：</strong>
+            <ul>
+                <li>使用有意義的結構名稱和成員名稱</li>
+                <li>相關資料組織在同一結構中</li>
+                <li>考慮使用 typedef 簡化程式碼</li>
+                <li>大型結構使用指標傳遞</li>
+                <li>使用 const 保護不應修改的參數</li>
+                <li>適當使用巢狀結構表達層次關係</li>
+            </ul>
+        </div>
+
+        <h3>常見錯誤</h3>
+        <div class="warning-box">
+            <strong>需要特別注意：</strong>
+            <ul>
+                <li>忘記在結構定義後加分號</li>
+                <li>混淆 . 和 -> 運算符</li>
+                <li>直接比較結構（應逐一比較成員）</li>
+                <li>字串成員使用 = 賦值（應用 strcpy）</li>
+                <li>動態結構忘記釋放記憶體</li>
+                <li>返回區域結構的指標</li>
+            </ul>
+        </div>
+
+        <h3>下週預告</h3>
+        <div class="note-box">
+            <h4>Week 8 - 檔案處理</h4>
+            <p>下週將學習：</p>
+            <ul>
+                <li>檔案開啟與關閉</li>
+                <li>文字檔案讀寫：fprintf、fscanf、fgets、fputs</li>
+                <li>二進位檔案讀寫：fread、fwrite</li>
+                <li>檔案定位：fseek、ftell、rewind</li>
+                <li>錯誤處理：feof、ferror</li>
+                <li>實用範例：資料永久儲存、日誌記錄</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="week6.html" class="btn btn-secondary">← Week 6</a>
+        <a href="week8.html" class="btn">Week 8 →</a>
+    </div>
+
+    <footer style="text-align: center; padding: 30px 0; color: #7f8c8d; margin-top: 50px; border-top: 1px solid #ddd;">
+        <p style="margin: 10px 0;">C語言程式設計 Week 7 完整教材</p>
+        <p style="margin: 10px 0; font-size: 0.9em;">結構體與自定義型態 · typedef · Union · Enum · 資料結構</p>
+        <p style="margin: 10px 0; font-size: 0.85em; color: #95a5a6;">© 2024 All Rights Reserved</p>
+    </footer>
+</div>
 </body>
 </html>

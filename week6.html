@@ -14,109 +14,89 @@
         }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .nav {
-            background: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white; padding: 15px 25px; border-radius: 8px;
+            margin-bottom: 30px; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .nav a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            color: #3498db; text-decoration: none; font-weight: 600;
+            padding: 8px 16px; border-radius: 4px; transition: all 0.3s ease;
         }
         .nav a:hover { background: #3498db; color: white; }
         header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: white; padding: 50px 40px; border-radius: 8px;
+            margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         header h1 { font-size: 2.5em; margin-bottom: 10px; }
         header .subtitle { font-size: 1.1em; opacity: 0.9; }
         .content {
-            background: white;
-            border-radius: 8px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white; border-radius: 8px; padding: 40px;
+            margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .content h2 {
-            color: #2c3e50;
-            font-size: 2em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3498db;
+            color: #2c3e50; font-size: 2em; margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 3px solid #3498db;
         }
-        .content h3 {
-            color: #34495e;
-            font-size: 1.5em;
-            margin: 30px 0 15px 0;
-        }
+        .content h3 { color: #34495e; font-size: 1.5em; margin: 30px 0 15px 0; }
+        .content h4 { color: #34495e; font-size: 1.2em; margin: 20px 0 10px 0; }
         .code-block {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            border-radius: 4px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 0.95em;
-            overflow-x: auto;
-            margin: 20px 0;
-            line-height: 1.6;
+            background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95em;
+            overflow-x: auto; margin: 20px 0; line-height: 1.8; white-space: pre-wrap;
         }
+        .code-block .comment { color: #95a5a6; }
+        .code-block .keyword { color: #3498db; font-weight: bold; }
+        .code-block .string { color: #2ecc71; }
+        .code-block .function { color: #f39c12; }
+        .code-block .number { color: #e74c3c; }
         .note-box {
-            background: #e8f4f8;
-            border-left: 4px solid #3498db;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f4f8; border-left: 4px solid #3498db;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff8e1; border-left: 4px solid #ffa726;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .tip-box {
-            background: #e8f5e9;
-            border-left: 4px solid #66bb6a;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: #e8f5e9; border-left: 4px solid #66bb6a;
+            padding: 20px; margin: 20px 0; border-radius: 4px;
         }
         .exercise-section {
-            background: #f8f9fa;
-            border: 2px solid #3498db;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
+            background: #f8f9fa; border: 2px solid #3498db;
+            padding: 30px; margin: 30px 0; border-radius: 8px;
         }
+        table {
+            width: 100%; border-collapse: collapse; margin: 20px 0;
+        }
+        table th, table td {
+            padding: 12px; text-align: left; border: 1px solid #ddd;
+        }
+        table th {
+            background: #34495e; color: white; font-weight: 600;
+        }
+        table tr:nth-child(even) { background: #f8f9fa; }
         ul, ol { margin-left: 30px; margin-top: 10px; }
         li { margin: 8px 0; }
         .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
+            display: flex; justify-content: space-between; margin-top: 40px;
         }
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
+            display: inline-block; padding: 12px 30px; background: #3498db;
+            color: white; text-decoration: none; border-radius: 4px; font-weight: 600;
             transition: all 0.3s ease;
         }
         .btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+            background: #2980b9; transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .btn-secondary { background: #95a5a6; }
         .btn-secondary:hover { background: #7f8c8d; }
+        .memory-diagram {
+            background: #f8f9fa; border: 2px solid #3498db;
+            padding: 15px; margin: 20px 0; border-radius: 4px;
+            font-family: monospace; text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -135,59 +115,1059 @@
         <div class="content">
             <h2>本週學習內容</h2>
             <ul>
-                <li>核心概念與理論基礎</li>
-                <li>程式碼範例與詳細說明</li>
-                <li>實作練習與應用</li>
-                <li>常見問題與解決方案</li>
-                <li>最佳實務與開發技巧</li>
+                <li>動態記憶體配置：malloc、calloc、realloc</li>
+                <li>記憶體釋放：free 的使用與重要性</li>
+                <li>動態陣列：建立與應用</li>
+                <li>記憶體洩漏：預防與偵測</li>
+                <li>雙重指標：指標的指標</li>
+                <li>實用範例：動態資料結構、記憶體管理最佳實踐</li>
             </ul>
         </div>
 
-        
         <div class="content">
-            <h2>核心內容</h2>
-            <p>本週將深入學習 動態記憶體管理，這是 C 語言程式設計中的重要主題。</p>
+            <h2>1. 動態記憶體配置基礎</h2>
             
-            <div class="note-box">
-                <strong>學習重點：</strong>
-                <p>請確實理解每個概念，並完成所有練習題。建議配合實際程式碼演練，加深理解。</p>
-            </div>
-            
-            <h3>詳細說明</h3>
-            <p>詳細的教學內容、程式碼範例和實作練習將在課程中提供。請按照學習進度，逐步掌握本週的核心知識。</p>
-            
-            <h3>實作建議</h3>
+            <h3>為什麼需要動態記憶體配置？</h3>
+            <p>靜態記憶體配置（使用陣列）的限制：</p>
             <ul>
-                <li>從基本概念開始，逐步進階</li>
-                <li>每個範例都要實際撰寫並執行</li>
-                <li>遇到問題要積極查找資料</li>
-                <li>完成練習題以驗證理解程度</li>
+                <li>必須在編譯時就確定大小</li>
+                <li>無法根據執行時的需求調整大小</li>
+                <li>可能造成記憶體浪費或不足</li>
             </ul>
+            <p>動態記憶體配置的優點：</p>
+            <ul>
+                <li>可以在程式執行時配置記憶體</li>
+                <li>根據實際需求決定大小</li>
+                <li>更有效率地使用記憶體</li>
+                <li>可以建立大小可變的資料結構</li>
+            </ul>
+
+            <h3>記憶體分區</h3>
+            <div class="memory-diagram">
+<strong>程式記憶體分區</strong>
+┌─────────────────────┐
+│   Stack (堆疊)      │ ← 區域變數、函數參數
+├─────────────────────┤
+│        ↓            │
+│                     │
+│        ↑            │
+├─────────────────────┤
+│   Heap (堆積)       │ ← malloc/calloc 配置的記憶體
+├─────────────────────┤
+│   BSS (未初始化)    │ ← 未初始化的全域變數
+├─────────────────────┤
+│   Data (已初始化)   │ ← 已初始化的全域變數
+├─────────────────────┤
+│   Code (程式碼)     │ ← 程式指令
+└─────────────────────┘
+            </div>
+
+            <h3>malloc() - 基本記憶體配置</h3>
+            <p><code>malloc()</code> 函數用於配置指定大小的記憶體區塊。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>  <span class="comment">// malloc, free</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// ========== 語法：malloc(size) ==========</span>
+    <span class="comment">// 返回 void* 型態，需要轉型</span>
+    <span class="comment">// size：要配置的位元組數</span>
+    
+    <span class="keyword">int</span> *ptr;
+    
+    <span class="comment">// 配置一個 int 的記憶體空間</span>
+    ptr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    
+    <span class="comment">// 檢查是否配置成功</span>
+    <span class="keyword">if</span> (ptr == NULL) {
+        <span class="function">printf</span>(<span class="string">"記憶體配置失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="comment">// 使用配置的記憶體</span>
+    *ptr = <span class="number">42</span>;
+    <span class="function">printf</span>(<span class="string">"值: %d\n"</span>, *ptr);
+    
+    <span class="comment">// ========== 重要！使用完畢後釋放記憶體 ==========</span>
+    <span class="function">free</span>(ptr);
+    ptr = NULL;  <span class="comment">// 避免懸空指標</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>動態陣列配置</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> *arr;
+    <span class="keyword">int</span> n;
+    
+    <span class="comment">// 讓使用者決定陣列大小</span>
+    <span class="function">printf</span>(<span class="string">"請輸入陣列大小: "</span>);
+    <span class="function">scanf</span>(<span class="string">"%d"</span>, &n);
+    
+    <span class="comment">// 配置 n 個整數的記憶體空間</span>
+    arr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    
+    <span class="keyword">if</span> (arr == NULL) {
+        <span class="function">printf</span>(<span class="string">"記憶體配置失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="comment">// 輸入資料</span>
+    <span class="function">printf</span>(<span class="string">"請輸入 %d 個整數：\n"</span>, n);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+        <span class="function">printf</span>(<span class="string">"arr[%d]: "</span>, i);
+        <span class="function">scanf</span>(<span class="string">"%d"</span>, &arr[i]);
+    }
+    
+    <span class="comment">// 顯示資料</span>
+    <span class="function">printf</span>(<span class="string">"\n陣列內容: "</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="comment">// 釋放記憶體</span>
+    <span class="function">free</span>(arr);
+    arr = NULL;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="note-box">
+                <strong>malloc 使用要點：</strong>
+                <ul>
+                    <li>malloc 返回 void*，通常需要轉型</li>
+                    <li>配置大小 = 元素數量 × sizeof(型態)</li>
+                    <li>必須檢查返回值是否為 NULL</li>
+                    <li>使用完畢後必須呼叫 free() 釋放</li>
+                    <li>malloc 配置的記憶體內容是未定義的（垃圾值）</li>
+                </ul>
+            </div>
+
+            <h3>calloc() - 初始化為零的記憶體配置</h3>
+            <p><code>calloc()</code> 會將配置的記憶體初始化為 0。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> *arr1, *arr2;
+    <span class="keyword">int</span> n = <span class="number">5</span>;
+    
+    <span class="comment">// ========== 使用 malloc ==========</span>
+    arr1 = (<span class="keyword">int</span>*) <span class="function">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    <span class="function">printf</span>(<span class="string">"malloc 配置（未初始化）: "</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr1[i]);  <span class="comment">// 垃圾值</span>
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="comment">// ========== 使用 calloc ==========</span>
+    <span class="comment">// 語法：calloc(元素數量, 每個元素大小)</span>
+    arr2 = (<span class="keyword">int</span>*) <span class="function">calloc</span>(n, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    <span class="function">printf</span>(<span class="string">"calloc 配置（初始化為0）: "</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr2[i]);  <span class="comment">// 全部是 0</span>
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="comment">// 釋放記憶體</span>
+    <span class="function">free</span>(arr1);
+    <span class="function">free</span>(arr2);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>realloc() - 調整記憶體大小</h3>
+            <p><code>realloc()</code> 用於調整已配置記憶體的大小。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> *arr;
+    <span class="keyword">int</span> size = <span class="number">3</span>;
+    
+    <span class="comment">// 初始配置</span>
+    arr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(size * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    
+    <span class="comment">// 填入資料</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        arr[i] = i + <span class="number">1</span>;
+    }
+    
+    <span class="function">printf</span>(<span class="string">"原始陣列: "</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="comment">// ========== 擴大陣列 ==========</span>
+    size = <span class="number">6</span>;
+    arr = (<span class="keyword">int</span>*) <span class="function">realloc</span>(arr, size * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    
+    <span class="keyword">if</span> (arr == NULL) {
+        <span class="function">printf</span>(<span class="string">"realloc 失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="comment">// 填入新資料</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i < size; i++) {
+        arr[i] = i + <span class="number">1</span>;
+    }
+    
+    <span class="function">printf</span>(<span class="string">"擴大後陣列: "</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="comment">// 釋放記憶體</span>
+    <span class="function">free</span>(arr);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="warning-box">
+                <strong>realloc 注意事項：</strong>
+                <ul>
+                    <li>realloc 可能會移動記憶體位置</li>
+                    <li>應該將 realloc 的返回值存到臨時變數，避免失敗時丟失原指標</li>
+                    <li>如果 realloc 失敗，原記憶體仍然有效</li>
+                    <li>舊資料會被保留（如果記憶體被移動，會自動複製）</li>
+                </ul>
+                
+                <strong>安全的 realloc 用法：</strong>
+                <pre>int *temp = realloc(arr, new_size);
+if (temp == NULL) {
+    // 處理錯誤，arr 仍然有效
+} else {
+    arr = temp;  // 成功，更新指標
+}</pre>
+            </div>
+
+            <h3>記憶體配置函數比較</h3>
+            <table>
+                <tr>
+                    <th>函數</th>
+                    <th>功能</th>
+                    <th>初始化</th>
+                    <th>語法</th>
+                </tr>
+                <tr>
+                    <td>malloc</td>
+                    <td>配置記憶體</td>
+                    <td>❌ 未初始化（垃圾值）</td>
+                    <td>malloc(size)</td>
+                </tr>
+                <tr>
+                    <td>calloc</td>
+                    <td>配置記憶體</td>
+                    <td>✅ 初始化為 0</td>
+                    <td>calloc(count, size)</td>
+                </tr>
+                <tr>
+                    <td>realloc</td>
+                    <td>調整大小</td>
+                    <td>保留舊資料</td>
+                    <td>realloc(ptr, new_size)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="content">
+            <h2>2. 記憶體釋放與管理</h2>
+            
+            <h3>free() - 釋放記憶體</h3>
+            <p>使用 malloc/calloc/realloc 配置的記憶體必須用 free() 釋放。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> *ptr;
+    
+    <span class="comment">// ========== 配置記憶體 ==========</span>
+    ptr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    
+    <span class="keyword">if</span> (ptr == NULL) {
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="comment">// 使用記憶體</span>
+    *ptr = <span class="number">100</span>;
+    <span class="function">printf</span>(<span class="string">"值: %d\n"</span>, *ptr);
+    
+    <span class="comment">// ========== 釋放記憶體 ==========</span>
+    <span class="function">free</span>(ptr);
+    
+    <span class="comment">// ========== 最佳實踐：設為 NULL ==========</span>
+    ptr = NULL;  <span class="comment">// 防止懸空指標</span>
+    
+    <span class="comment">// 此時若嘗試使用 ptr，會立即發現問題</span>
+    <span class="keyword">if</span> (ptr != NULL) {
+        <span class="function">printf</span>(<span class="string">"%d\n"</span>, *ptr);
+    } <span class="keyword">else</span> {
+        <span class="function">printf</span>(<span class="string">"指標已釋放\n"</span>);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>記憶體洩漏（Memory Leak）</h3>
+            <p>記憶體洩漏是指配置的記憶體沒有被釋放，導致記憶體無法重複使用。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="comment">// ❌ 記憶體洩漏範例</span>
+<span class="keyword">void</span> <span class="function">memoryLeakBad</span>() {
+    <span class="keyword">int</span> *ptr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    *ptr = <span class="number">42</span>;
+    <span class="comment">// 忘記呼叫 free(ptr)！</span>
+    <span class="comment">// 函數結束後，ptr 被銷毀，但記憶體沒被釋放</span>
+}
+
+<span class="comment">// ✅ 正確的做法</span>
+<span class="keyword">void</span> <span class="function">memoryLeakGood</span>() {
+    <span class="keyword">int</span> *ptr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    <span class="keyword">if</span> (ptr == NULL) <span class="keyword">return</span>;
+    
+    *ptr = <span class="number">42</span>;
+    
+    <span class="comment">// 使用完畢後釋放</span>
+    <span class="function">free</span>(ptr);
+}
+
+<span class="comment">// ❌ 另一種記憶體洩漏</span>
+<span class="keyword">void</span> <span class="function">memoryLeakBad2</span>() {
+    <span class="keyword">int</span> *ptr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    ptr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));  <span class="comment">// 第一塊記憶體洩漏！</span>
+    <span class="function">free</span>(ptr);  <span class="comment">// 只釋放第二塊</span>
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="comment">// 重複呼叫會累積記憶體洩漏</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">1000</span>; i++) {
+        <span class="function">memoryLeakBad</span>();  <span class="comment">// 洩漏 1000 次！</span>
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>常見記憶體錯誤</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> *ptr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    
+    <span class="comment">// ❌ 錯誤一：重複釋放</span>
+    <span class="comment">// free(ptr);</span>
+    <span class="comment">// free(ptr);  // 危險！重複釋放</span>
+    
+    <span class="comment">// ❌ 錯誤二：釋放後使用</span>
+    <span class="function">free</span>(ptr);
+    <span class="comment">// *ptr = 10;  // 危險！使用已釋放的記憶體</span>
+    
+    <span class="comment">// ❌ 錯誤三：釋放非動態記憶體</span>
+    <span class="keyword">int</span> x = <span class="number">10</span>;
+    <span class="keyword">int</span> *p = &x;
+    <span class="comment">// free(p);  // 錯誤！x 不是 malloc 配置的</span>
+    
+    <span class="comment">// ❌ 錯誤四：忘記檢查 NULL</span>
+    <span class="keyword">int</span> *arr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="number">1000000000</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    <span class="comment">// arr[0] = 10;  // 如果配置失敗，arr 是 NULL，會崩潰</span>
+    
+    <span class="comment">// ✅ 正確做法</span>
+    <span class="keyword">if</span> (arr != NULL) {
+        arr[<span class="number">0</span>] = <span class="number">10</span>;
+        <span class="function">free</span>(arr);
+        arr = NULL;
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="warning-box">
+                <strong>記憶體管理黃金法則：</strong>
+                <ul>
+                    <li>✅ 每個 malloc/calloc/realloc 都要有對應的 free</li>
+                    <li>✅ 釋放後立即將指標設為 NULL</li>
+                    <li>✅ 使用前檢查指標是否為 NULL</li>
+                    <li>❌ 不要重複釋放同一塊記憶體</li>
+                    <li>❌ 不要使用已釋放的記憶體</li>
+                    <li>❌ 不要釋放非動態配置的記憶體</li>
+                    <li>❌ 不要忘記釋放記憶體</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>3. 動態陣列應用</h2>
+            
+            <h3>動態字串處理</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> *str;
+    <span class="keyword">int</span> len;
+    
+    <span class="function">printf</span>(<span class="string">"請輸入字串長度: "</span>);
+    <span class="function">scanf</span>(<span class="string">"%d"</span>, &len);
+    <span class="function">getchar</span>();  <span class="comment">// 清除緩衝區的換行符</span>
+    
+    <span class="comment">// 配置記憶體（+1 給 '\0'）</span>
+    str = (<span class="keyword">char</span>*) <span class="function">malloc</span>((len + <span class="number">1</span>) * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));
+    
+    <span class="keyword">if</span> (str == NULL) {
+        <span class="function">printf</span>(<span class="string">"記憶體配置失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="function">printf</span>(<span class="string">"請輸入字串: "</span>);
+    <span class="function">fgets</span>(str, len + <span class="number">1</span>, stdin);
+    
+    <span class="comment">// 移除 fgets 讀入的換行符</span>
+    str[<span class="function">strcspn</span>(str, <span class="string">"\n"</span>)] = <span class="string">'\0'</span>;
+    
+    <span class="function">printf</span>(<span class="string">"你輸入的字串: %s\n"</span>, str);
+    <span class="function">printf</span>(<span class="string">"字串長度: %lu\n"</span>, <span class="function">strlen</span>(str));
+    
+    <span class="comment">// 釋放記憶體</span>
+    <span class="function">free</span>(str);
+    str = NULL;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>動態二維陣列</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> **matrix;
+    <span class="keyword">int</span> rows, cols;
+    
+    <span class="function">printf</span>(<span class="string">"請輸入矩陣大小 (rows cols): "</span>);
+    <span class="function">scanf</span>(<span class="string">"%d %d"</span>, &rows, &cols);
+    
+    <span class="comment">// ========== 配置二維陣列 ==========</span>
+    <span class="comment">// 1. 配置行指標陣列</span>
+    matrix = (<span class="keyword">int</span>**) <span class="function">malloc</span>(rows * <span class="keyword">sizeof</span>(<span class="keyword">int</span>*));
+    
+    <span class="keyword">if</span> (matrix == NULL) {
+        <span class="function">printf</span>(<span class="string">"記憶體配置失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="comment">// 2. 為每一行配置列</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < rows; i++) {
+        matrix[i] = (<span class="keyword">int</span>*) <span class="function">malloc</span>(cols * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+        <span class="keyword">if</span> (matrix[i] == NULL) {
+            <span class="comment">// 釋放已配置的記憶體</span>
+            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j < i; j++) {
+                <span class="function">free</span>(matrix[j]);
+            }
+            <span class="function">free</span>(matrix);
+            <span class="function">printf</span>(<span class="string">"記憶體配置失敗！\n"</span>);
+            <span class="keyword">return</span> <span class="number">1</span>;
+        }
+    }
+    
+    <span class="comment">// ========== 填入資料 ==========</span>
+    <span class="keyword">int</span> value = <span class="number">1</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < rows; i++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j < cols; j++) {
+            matrix[i][j] = value++;
+        }
+    }
+    
+    <span class="comment">// ========== 顯示矩陣 ==========</span>
+    <span class="function">printf</span>(<span class="string">"\n矩陣內容：\n"</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < rows; i++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j < cols; j++) {
+            <span class="function">printf</span>(<span class="string">"%3d "</span>, matrix[i][j]);
+        }
+        <span class="function">printf</span>(<span class="string">"\n"</span>);
+    }
+    
+    <span class="comment">// ========== 釋放記憶體 ==========</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < rows; i++) {
+        <span class="function">free</span>(matrix[i]);
+    }
+    <span class="function">free</span>(matrix);
+    matrix = NULL;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+        </div>
+        <div class="content">
+            <h2>4. 雙重指標與進階應用</h2>
+            
+            <h3>指標的指標（Double Pointer）</h3>
+            <p>雙重指標是指向指標的指標，常用於動態二維陣列和函數參數。</p>
+
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> x = <span class="number">10</span>;
+    <span class="keyword">int</span> *ptr = &x;      <span class="comment">// ptr 指向 x</span>
+    <span class="keyword">int</span> **pptr = &ptr;  <span class="comment">// pptr 指向 ptr</span>
+    
+    <span class="function">printf</span>(<span class="string">"x 的值: %d\n"</span>, x);
+    <span class="function">printf</span>(<span class="string">"*ptr 的值: %d\n"</span>, *ptr);
+    <span class="function">printf</span>(<span class="string">"**pptr 的值: %d\n"</span>, **pptr);
+    
+    <span class="function">printf</span>(<span class="string">"\nx 的位址: %p\n"</span>, (<span class="keyword">void</span>*)&x);
+    <span class="function">printf</span>(<span class="string">"ptr 的值（x的位址）: %p\n"</span>, (<span class="keyword">void</span>*)ptr);
+    <span class="function">printf</span>(<span class="string">"ptr 的位址: %p\n"</span>, (<span class="keyword">void</span>*)&ptr);
+    <span class="function">printf</span>(<span class="string">"pptr 的值（ptr的位址）: %p\n"</span>, (<span class="keyword">void</span>*)pptr);
+    
+    <span class="comment">// 透過雙重指標修改值</span>
+    **pptr = <span class="number">20</span>;
+    <span class="function">printf</span>(<span class="string">"\n修改後 x 的值: %d\n"</span>, x);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>使用雙重指標修改指標</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="comment">// ❌ 錯誤：無法修改指標本身</span>
+<span class="keyword">void</span> <span class="function">allocateWrong</span>(<span class="keyword">int</span> *ptr) {
+    ptr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    *ptr = <span class="number">100</span>;
+    <span class="comment">// 只修改了區域副本，不影響原指標</span>
+}
+
+<span class="comment">// ✅ 正確：使用雙重指標</span>
+<span class="keyword">void</span> <span class="function">allocateCorrect</span>(<span class="keyword">int</span> **ptr) {
+    *ptr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    <span class="keyword">if</span> (*ptr != NULL) {
+        **ptr = <span class="number">100</span>;
+    }
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> *p1 = NULL;
+    <span class="keyword">int</span> *p2 = NULL;
+    
+    <span class="comment">// 錯誤方式</span>
+    <span class="function">allocateWrong</span>(p1);
+    <span class="keyword">if</span> (p1 == NULL) {
+        <span class="function">printf</span>(<span class="string">"p1 仍然是 NULL\n"</span>);
+    }
+    
+    <span class="comment">// 正確方式</span>
+    <span class="function">allocateCorrect</span>(&p2);
+    <span class="keyword">if</span> (p2 != NULL) {
+        <span class="function">printf</span>(<span class="string">"p2 配置成功，值: %d\n"</span>, *p2);
+        <span class="function">free</span>(p2);
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>函數返回動態陣列</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="comment">// 建立並返回動態陣列</span>
+<span class="keyword">int</span>* <span class="function">createArray</span>(<span class="keyword">int</span> size) {
+    <span class="keyword">int</span> *arr = (<span class="keyword">int</span>*) <span class="function">malloc</span>(size * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    
+    <span class="keyword">if</span> (arr == NULL) {
+        <span class="keyword">return</span> NULL;
+    }
+    
+    <span class="comment">// 初始化陣列</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        arr[i] = i * i;  <span class="comment">// 平方數</span>
+    }
+    
+    <span class="keyword">return</span> arr;  <span class="comment">// 返回動態配置的陣列</span>
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">int</span> size = <span class="number">5</span>;
+    <span class="keyword">int</span> *arr = <span class="function">createArray</span>(size);
+    
+    <span class="keyword">if</span> (arr == NULL) {
+        <span class="function">printf</span>(<span class="string">"配置失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="function">printf</span>(<span class="string">"陣列內容: "</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < size; i++) {
+        <span class="function">printf</span>(<span class="string">"%d "</span>, arr[i]);
+    }
+    <span class="function">printf</span>(<span class="string">"\n"</span>);
+    
+    <span class="comment">// 記得釋放！</span>
+    <span class="function">free</span>(arr);
+    arr = NULL;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <div class="note-box">
+                <strong>雙重指標的常見用途：</strong>
+                <ul>
+                    <li>動態二維陣列的配置</li>
+                    <li>在函數中修改指標本身</li>
+                    <li>字串陣列（char **argv）</li>
+                    <li>鏈結串列等動態資料結構</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>5. 實用範例與最佳實踐</h2>
+            
+            <h3>範例一：動態可變長度陣列</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="keyword">typedef struct</span> {
+    <span class="keyword">int</span> *data;      <span class="comment">// 資料陣列</span>
+    <span class="keyword">int</span> size;       <span class="comment">// 目前元素數量</span>
+    <span class="keyword">int</span> capacity;   <span class="comment">// 容量</span>
+} DynamicArray;
+
+<span class="comment">// 初始化動態陣列</span>
+DynamicArray* <span class="function">createDynamicArray</span>(<span class="keyword">int</span> initial_capacity) {
+    DynamicArray *arr = (<span class="keyword">struct</span> DynamicArray*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(DynamicArray));
+    <span class="keyword">if</span> (arr == NULL) <span class="keyword">return</span> NULL;
+    
+    arr->data = (<span class="keyword">int</span>*) <span class="function">malloc</span>(initial_capacity * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+    <span class="keyword">if</span> (arr->data == NULL) {
+        <span class="function">free</span>(arr);
+        <span class="keyword">return</span> NULL;
+    }
+    
+    arr->size = <span class="number">0</span>;
+    arr->capacity = initial_capacity;
+    <span class="keyword">return</span> arr;
+}
+
+<span class="comment">// 新增元素</span>
+<span class="keyword">int</span> <span class="function">append</span>(DynamicArray *arr, <span class="keyword">int</span> value) {
+    <span class="keyword">if</span> (arr->size >= arr->capacity) {
+        <span class="comment">// 擴大容量（雙倍）</span>
+        <span class="keyword">int</span> new_capacity = arr->capacity * <span class="number">2</span>;
+        <span class="keyword">int</span> *new_data = (<span class="keyword">int</span>*) <span class="function">realloc</span>(arr->data, new_capacity * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+        
+        <span class="keyword">if</span> (new_data == NULL) {
+            <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">// 失敗</span>
+        }
+        
+        arr->data = new_data;
+        arr->capacity = new_capacity;
+    }
+    
+    arr->data[arr->size++] = value;
+    <span class="keyword">return</span> <span class="number">1</span>;  <span class="comment">// 成功</span>
+}
+
+<span class="comment">// 顯示陣列</span>
+<span class="keyword">void</span> <span class="function">printArray</span>(DynamicArray *arr) {
+    <span class="function">printf</span>(<span class="string">"[</span>");
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < arr->size; i++) {
+        <span class="function">printf</span>(<span class="string">"%d"</span>, arr->data[i]);
+        <span class="keyword">if</span> (i < arr->size - <span class="number">1</span>) <span class="function">printf</span>(<span class="string">", "</span>);
+    }
+    <span class="function">printf</span>(<span class="string">"] (size: %d, capacity: %d)\n"</span>, arr->size, arr->capacity);
+}
+
+<span class="comment">// 釋放動態陣列</span>
+<span class="keyword">void</span> <span class="function">freeDynamicArray</span>(DynamicArray *arr) {
+    <span class="keyword">if</span> (arr != NULL) {
+        <span class="function">free</span>(arr->data);
+        <span class="function">free</span>(arr);
+    }
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    DynamicArray *arr = <span class="function">createDynamicArray</span>(<span class="number">2</span>);
+    
+    <span class="keyword">if</span> (arr == NULL) {
+        <span class="function">printf</span>(<span class="string">"建立失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="comment">// 新增元素（會自動擴充容量）</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <= <span class="number">10</span>; i++) {
+        <span class="function">append</span>(arr, i * <span class="number">10</span>);
+        <span class="function">printArray</span>(arr);
+    }
+    
+    <span class="function">freeDynamicArray</span>(arr);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>範例二：動態字串處理</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="comment">// 複製字串（動態配置）</span>
+<span class="keyword">char</span>* <span class="function">duplicateString</span>(<span class="keyword">const char</span> *src) {
+    <span class="keyword">if</span> (src == NULL) <span class="keyword">return</span> NULL;
+    
+    <span class="keyword">size_t</span> len = <span class="function">strlen</span>(src);
+    <span class="keyword">char</span> *dest = (<span class="keyword">char</span>*) <span class="function">malloc</span>((len + <span class="number">1</span>) * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));
+    
+    <span class="keyword">if</span> (dest == NULL) <span class="keyword">return</span> NULL;
+    
+    <span class="function">strcpy</span>(dest, src);
+    <span class="keyword">return</span> dest;
+}
+
+<span class="comment">// 連接字串（動態配置）</span>
+<span class="keyword">char</span>* <span class="function">concatenateStrings</span>(<span class="keyword">const char</span> *str1, <span class="keyword">const char</span> *str2) {
+    <span class="keyword">if</span> (str1 == NULL || str2 == NULL) <span class="keyword">return</span> NULL;
+    
+    <span class="keyword">size_t</span> len1 = <span class="function">strlen</span>(str1);
+    <span class="keyword">size_t</span> len2 = <span class="function">strlen</span>(str2);
+    <span class="keyword">char</span> *result = (<span class="keyword">char</span>*) <span class="function">malloc</span>((len1 + len2 + <span class="number">1</span>) * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));
+    
+    <span class="keyword">if</span> (result == NULL) <span class="keyword">return</span> NULL;
+    
+    <span class="function">strcpy</span>(result, str1);
+    <span class="function">strcat</span>(result, str2);
+    
+    <span class="keyword">return</span> result;
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">char</span> *str1 = <span class="function">duplicateString</span>(<span class="string">"Hello"</span>);
+    <span class="keyword">char</span> *str2 = <span class="function">duplicateString</span>(<span class="string">" World"</span>);
+    <span class="keyword">char</span> *str3 = <span class="function">concatenateStrings</span>(str1, str2);
+    
+    <span class="keyword">if</span> (str1 && str2 && str3) {
+        <span class="function">printf</span>(<span class="string">"str1: %s\n"</span>, str1);
+        <span class="function">printf</span>(<span class="string">"str2: %s\n"</span>, str2);
+        <span class="function">printf</span>(<span class="string">"str3: %s\n"</span>, str3);
+    }
+    
+    <span class="comment">// 釋放所有字串</span>
+    <span class="function">free</span>(str1);
+    <span class="function">free</span>(str2);
+    <span class="function">free</span>(str3);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>範例三：簡單的記憶體池</h3>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+
+<span class="keyword">#define</span> POOL_SIZE <span class="number">100</span>
+
+<span class="keyword">typedef struct</span> {
+    <span class="keyword">void</span> *pool;           <span class="comment">// 記憶體池</span>
+    <span class="keyword">size_t</span> block_size;   <span class="comment">// 每個區塊大小</span>
+    <span class="keyword">int</span> total_blocks;    <span class="comment">// 總區塊數</span>
+    <span class="keyword">int</span> used_blocks;     <span class="comment">// 已使用區塊數</span>
+} MemoryPool;
+
+<span class="comment">// 建立記憶體池</span>
+MemoryPool* <span class="function">createMemoryPool</span>(<span class="keyword">size_t</span> block_size, <span class="keyword">int</span> num_blocks) {
+    MemoryPool *mp = (<span class="keyword">struct</span> MemoryPool*) <span class="function">malloc</span>(<span class="keyword">sizeof</span>(MemoryPool));
+    <span class="keyword">if</span> (mp == NULL) <span class="keyword">return</span> NULL;
+    
+    mp->pool = <span class="function">malloc</span>(block_size * num_blocks);
+    <span class="keyword">if</span> (mp->pool == NULL) {
+        <span class="function">free</span>(mp);
+        <span class="keyword">return</span> NULL;
+    }
+    
+    mp->block_size = block_size;
+    mp->total_blocks = num_blocks;
+    mp->used_blocks = <span class="number">0</span>;
+    
+    <span class="keyword">return</span> mp;
+}
+
+<span class="comment">// 從記憶體池配置</span>
+<span class="keyword">void</span>* <span class="function">poolAlloc</span>(MemoryPool *mp) {
+    <span class="keyword">if</span> (mp->used_blocks >= mp->total_blocks) {
+        <span class="keyword">return</span> NULL;  <span class="comment">// 記憶體池已滿</span>
+    }
+    
+    <span class="keyword">void</span> *block = (<span class="keyword">char</span>*)mp->pool + (mp->used_blocks * mp->block_size);
+    mp->used_blocks++;
+    
+    <span class="keyword">return</span> block;
+}
+
+<span class="comment">// 釋放記憶體池</span>
+<span class="keyword">void</span> <span class="function">freeMemoryPool</span>(MemoryPool *mp) {
+    <span class="keyword">if</span> (mp != NULL) {
+        <span class="function">free</span>(mp->pool);
+        <span class="function">free</span>(mp);
+    }
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    MemoryPool *mp = <span class="function">createMemoryPool</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>), <span class="number">10</span>);
+    
+    <span class="keyword">if</span> (mp == NULL) {
+        <span class="function">printf</span>(<span class="string">"建立記憶體池失敗！\n"</span>);
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }
+    
+    <span class="function">printf</span>(<span class="string">"記憶體池已建立，共 %d 個區塊\n"</span>, mp->total_blocks);
+    
+    <span class="comment">// 從記憶體池配置</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+        <span class="keyword">int</span> *num = (<span class="keyword">int</span>*) <span class="function">poolAlloc</span>(mp);
+        <span class="keyword">if</span> (num != NULL) {
+            *num = i * <span class="number">100</span>;
+            <span class="function">printf</span>(<span class="string">"配置區塊 %d，值: %d\n"</span>, i, *num);
+        }
+    }
+    
+    <span class="function">printf</span>(<span class="string">"已使用: %d/%d 個區塊\n"</span>, mp->used_blocks, mp->total_blocks);
+    
+    <span class="function">freeMemoryPool</span>(mp);
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+
+            <h3>記憶體管理最佳實踐</h3>
+            <div class="tip-box">
+                <strong>記憶體配置的最佳實踐：</strong>
+                <ol>
+                    <li><strong>配對原則</strong>：每個 malloc 都要有對應的 free</li>
+                    <li><strong>立即檢查</strong>：配置後立即檢查是否為 NULL</li>
+                    <li><strong>清空指標</strong>：free 後將指標設為 NULL</li>
+                    <li><strong>避免洩漏</strong>：函數返回前確保所有記憶體都已釋放</li>
+                    <li><strong>錯誤處理</strong>：配置失敗時要有適當的錯誤處理</li>
+                    <li><strong>使用 sizeof</strong>：使用 sizeof 而非硬編碼大小</li>
+                    <li><strong>初始化</strong>：需要初始化時使用 calloc</li>
+                    <li><strong>記錄大小</strong>：保存陣列大小，避免越界</li>
+                </ol>
+            </div>
+
+            <h3>記憶體除錯工具</h3>
+            <div class="code-block"><span class="comment">// 使用 Valgrind 檢測記憶體問題（Linux/Mac）</span>
+<span class="comment">// 編譯：gcc -g program.c -o program</span>
+<span class="comment">// 執行：valgrind --leak-check=full ./program</span>
+
+<span class="comment">// 使用條件編譯進行除錯</span>
+<span class="keyword">#ifdef</span> DEBUG_MEMORY
+<span class="keyword">#define</span> MALLOC(size) ({ \
+    <span class="keyword">void</span> *ptr = <span class="function">malloc</span>(size); \
+    <span class="function">printf</span>(<span class="string">"[MALLOC] %p (%zu bytes)\n"</span>, ptr, size); \
+    ptr; \
+})
+
+<span class="keyword">#define</span> FREE(ptr) ({ \
+    <span class="function">printf</span>(<span class="string">"[FREE] %p\n"</span>, ptr); \
+    <span class="function">free</span>(ptr); \
+})
+<span class="keyword">#else</span>
+<span class="keyword">#define</span> MALLOC(size) <span class="function">malloc</span>(size)
+<span class="keyword">#define</span> FREE(ptr) <span class="function">free</span>(ptr)
+<span class="keyword">#endif</span>
+
+<span class="comment">// 使用方式：</span>
+<span class="comment">// gcc -DDEBUG_MEMORY program.c -o program</span></div>
         </div>
 
         <div class="content">
             <div class="exercise-section">
                 <h3>本週練習題</h3>
-                <p>請完成以下練習以鞏固本週所學：</p>
+                
+                <h4>基礎練習</h4>
                 <ol>
-                    <li><strong>基礎練習</strong>：實作本週核心概念的基本應用</li>
-                    <li><strong>進階練習</strong>：結合前幾週內容的綜合應用</li>
-                    <li><strong>實作專案</strong>：開發一個小型專案應用本週知識</li>
-                    <li><strong>程式碼優化</strong>：改進既有程式碼的效能和可讀性</li>
-                    <li><strong>除錯練習</strong>：找出並修正程式碼中的錯誤</li>
+                    <li>
+                        <strong>動態陣列基礎</strong><br>
+                        使用 malloc 建立一個動態整數陣列，讓使用者輸入大小和元素值，<br>
+                        計算總和與平均值後釋放記憶體。
+                    </li>
+                    <li>
+                        <strong>字串複製</strong><br>
+                        撰寫函數使用 malloc 動態配置記憶體來複製字串，<br>
+                        記得處理錯誤並釋放記憶體。
+                    </li>
+                    <li>
+                        <strong>記憶體比較</strong><br>
+                        比較 malloc 和 calloc 的差異，觀察初始化的效果。
+                    </li>
+                    <li>
+                        <strong>動態矩陣</strong><br>
+                        建立一個 n×n 的動態二維陣列，填入資料後顯示並釋放。
+                    </li>
                 </ol>
+
+                <h4>進階練習</h4>
+                <ol start="5">
+                    <li>
+                        <strong>動態字串陣列</strong><br>
+                        建立一個可以儲存任意數量字串的程式，<br>
+                        讓使用者持續輸入字串直到輸入 "quit"，<br>
+                        然後顯示所有字串並釋放記憶體。
+                    </li>
+                    <li>
+                        <strong>陣列擴充</strong><br>
+                        使用 realloc 實作一個可以動態擴充的陣列，<br>
+                        當陣列滿時自動擴大為原來的兩倍。
+                    </li>
+                    <li>
+                        <strong>矩陣轉置</strong><br>
+                        讀取一個 m×n 矩陣，建立並返回其轉置矩陣（n×m），<br>
+                        使用動態記憶體配置。
+                    </li>
+                    <li>
+                        <strong>記憶體洩漏偵測</strong><br>
+                        撰寫一個有意製造記憶體洩漏的程式，<br>
+                        然後修正它並驗證沒有洩漏。
+                    </li>
+                </ol>
+
+                <h4>挑戰練習</h4>
+                <ol start="9">
+                    <li>
+                        <strong>簡單鏈結串列</strong><br>
+                        使用動態記憶體配置實作簡單的鏈結串列，<br>
+                        包含新增、刪除、顯示和釋放所有節點的功能。
+                    </li>
+                    <li>
+                        <strong>動態堆疊</strong><br>
+                        實作一個動態大小的堆疊（Stack），<br>
+                        支援 push、pop、peek 和 isEmpty 操作。
+                    </li>
+                    <li>
+                        <strong>記憶體管理器</strong><br>
+                        設計一個簡單的記憶體管理器，<br>
+                        追蹤所有配置的記憶體並確保都被正確釋放，<br>
+                        提供統計資訊（配置次數、釋放次數、目前使用量）。
+                    </li>
+                </ol>
+
+                <div class="tip-box">
+                    <strong>練習提示：</strong>
+                    <ul>
+                        <li>每次配置後立即檢查是否成功</li>
+                        <li>畫圖理解記憶體配置的過程</li>
+                        <li>使用 Valgrind 或其他工具檢查記憶體洩漏</li>
+                        <li>養成配置後立即寫 free 的習慣</li>
+                        <li>注意二維陣列的釋放順序</li>
+                        <li>測試邊界情況（大小為 0、配置失敗等）</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="content">
             <h2>本週總結</h2>
-            <div class="tip-box">
-                <strong>重點回顧：</strong>
+            
+            <h3>重點回顧</h3>
+            <ul>
+                <li>✓ 理解動態記憶體配置的必要性與優勢</li>
+                <li>✓ 掌握 malloc、calloc、realloc 的使用</li>
+                <li>✓ 了解記憶體洩漏的原因與預防方法</li>
+                <li>✓ 學會使用 free 釋放記憶體</li>
+                <li>✓ 理解雙重指標的概念與應用</li>
+                <li>✓ 能夠建立和管理動態資料結構</li>
+            </ul>
+
+            <h3>記憶體函數速查表</h3>
+            <table>
+                <tr>
+                    <th>函數</th>
+                    <th>功能</th>
+                    <th>初始化</th>
+                    <th>使用時機</th>
+                </tr>
+                <tr>
+                    <td>malloc(size)</td>
+                    <td>配置記憶體</td>
+                    <td>未初始化</td>
+                    <td>一般用途</td>
+                </tr>
+                <tr>
+                    <td>calloc(n, size)</td>
+                    <td>配置記憶體</td>
+                    <td>初始化為 0</td>
+                    <td>需要初始化</td>
+                </tr>
+                <tr>
+                    <td>realloc(ptr, size)</td>
+                    <td>調整大小</td>
+                    <td>保留舊資料</td>
+                    <td>動態調整</td>
+                </tr>
+                <tr>
+                    <td>free(ptr)</td>
+                    <td>釋放記憶體</td>
+                    <td>-</td>
+                    <td>使用完畢後</td>
+                </tr>
+            </table>
+
+            <h3>常見錯誤整理</h3>
+            <div class="warning-box">
+                <strong>需要特別注意：</strong>
                 <ul>
-                    <li>確實理解本週所有核心概念</li>
-                    <li>能夠獨立撰寫相關程式碼</li>
-                    <li>完成所有練習題並理解解答</li>
-                    <li>能夠除錯和優化程式碼</li>
+                    <li><strong>記憶體洩漏</strong>：配置後忘記釋放</li>
+                    <li><strong>重複釋放</strong>：對同一塊記憶體呼叫兩次 free</li>
+                    <li><strong>使用已釋放記憶體</strong>：free 後仍然存取</li>
+                    <li><strong>未檢查 NULL</strong>：配置失敗但沒有檢查</li>
+                    <li><strong>陣列越界</strong>：存取超出配置的範圍</li>
+                    <li><strong>懸空指標</strong>：free 後沒有設為 NULL</li>
+                    <li><strong>錯誤的大小計算</strong>：sizeof 使用錯誤</li>
+                </ul>
+            </div>
+
+            <h3>記憶體管理檢查清單</h3>
+            <div class="note-box">
+                <strong>✓ 配置記憶體時：</strong>
+                <ul>
+                    <li>使用正確的大小（元素數 × sizeof(型態)）</li>
+                    <li>立即檢查返回值是否為 NULL</li>
+                    <li>適當轉型（C++ 需要，C 可選）</li>
+                </ul>
+                
+                <strong>✓ 使用記憶體時：</strong>
+                <ul>
+                    <li>不要超出配置的範圍</li>
+                    <li>記錄並使用正確的大小</li>
+                    <li>注意是否已初始化</li>
+                </ul>
+                
+                <strong>✓ 釋放記憶體時：</strong>
+                <ul>
+                    <li>確保每個 malloc/calloc 都有對應的 free</li>
+                    <li>釋放後立即設為 NULL</li>
+                    <li>二維陣列要按順序釋放（先內層後外層）</li>
+                    <li>函數返回前檢查是否有未釋放的記憶體</li>
+                </ul>
+            </div>
+
+            <h3>下週預告</h3>
+            <div class="note-box">
+                <h4>Week 7 - 結構與聯合</h4>
+                <p>下週將學習：</p>
+                <ul>
+                    <li>結構（struct）的定義與使用</li>
+                    <li>結構成員的存取</li>
+                    <li>結構陣列與指標</li>
+                    <li>巢狀結構與自我參照結構</li>
+                    <li>聯合（union）的概念</li>
+                    <li>typedef 的使用</li>
+                    <li>實用範例：學生資料管理、圖書館系統</li>
                 </ul>
             </div>
         </div>
@@ -196,6 +1176,12 @@
             <a href="week5.html" class="btn btn-secondary">← Week 5</a>
             <a href="week7.html" class="btn">Week 7 →</a>
         </div>
+
+        <footer style="text-align: center; padding: 30px 0; color: #7f8c8d; margin-top: 50px; border-top: 1px solid #ddd;">
+            <p style="margin: 10px 0;">C語言程式設計 Week 6 完整教材</p>
+            <p style="margin: 10px 0; font-size: 0.9em;">動態記憶體管理 · malloc/free · 記憶體洩漏預防 · 雙重指標</p>
+            <p style="margin: 10px 0; font-size: 0.85em; color: #95a5a6;">© 2024 All Rights Reserved</p>
+        </footer>
     </div>
 </body>
 </html>

@@ -44,6 +44,7 @@
             background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 4px;
             font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95em;
             overflow-x: auto; margin: 20px 0; line-height: 1.6;
+            white-space: pre;
         }
         .code-block .comment { color: #95a5a6; }
         .code-block .keyword { color: #3498db; }
@@ -97,7 +98,7 @@
 
         <header>
             <h1>Week 2 - 流程控制</h1>
-            <div class="subtitle">學習目標：掌握條件判斷與迴圈結構，實現程式的流程控制</div>
+            <div class="subtitle">學習目標:掌握條件判斷與迴圈結構，實現程式的流程控制</div>
         </header>
 
         <div class="content">
@@ -117,8 +118,7 @@
             <h2>1. 條件判斷（if-else）</h2>
             
             <h3>基本 if 敘述</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">int</span> score = <span class="number">85</span>;
@@ -129,12 +129,10 @@
     }
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <h3>if-else 雙向判斷</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">int</span> age;
@@ -149,12 +147,10 @@
     }
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <h3>多重條件判斷（else if）</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">int</span> score;
@@ -175,8 +171,7 @@
     }
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <div class="tip-box">
                 <strong>重要觀念：</strong>
@@ -239,8 +234,7 @@
             </table>
 
             <h3>邏輯運算符</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">int</span> age = <span class="number">20</span>;
@@ -262,12 +256,10 @@
     }
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <h3>短路求值</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">int</span> x = <span class="number">5</span>, y = <span class="number">10</span>;
@@ -285,8 +277,7 @@
     <span class="function">printf</span>(<span class="string">"y = %d\n"</span>, y);  <span class="comment">// y 還是 10</span>
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <div class="warning-box">
                 <strong>常見錯誤：</strong>
@@ -302,8 +293,7 @@
             <h2>3. switch-case 多重選擇</h2>
 
             <h3>基本語法</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">int</span> choice;
@@ -334,12 +324,10 @@
     }
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <h3>Fall-through 特性</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">char</span> grade;
@@ -373,8 +361,7 @@
     }
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <div class="note-box">
                 <strong>switch-case 要點：</strong>
@@ -391,8 +378,7 @@
             <h2>4. for 迴圈</h2>
 
             <h3>基本語法</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="comment">// 輸出 1 到 10</span>
@@ -409,12 +395,10 @@
     <span class="function">printf</span>(<span class="string">"1到100的總和：%d\n"</span>, sum);
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <h3>巢狀迴圈 - 九九乘法表</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="function">printf</span>(<span class="string">"==== 九九乘法表 ====\n"</span>);
@@ -427,16 +411,14 @@
     }
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
         </div>
 
         <div class="content">
             <h2>5. while 與 do-while 迴圈</h2>
 
             <h3>while 迴圈</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">int</span> i = <span class="number">1</span>;
@@ -450,12 +432,10 @@
     <span class="function">printf</span>(<span class="string">"總和：%d\n"</span>, sum);
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <h3>do-while 迴圈</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="keyword">int</span> number;
@@ -472,16 +452,14 @@
     <span class="function">printf</span>(<span class="string">"你輸入的是：%d\n"</span>, number);
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
         </div>
 
         <div class="content">
             <h2>6. break 與 continue</h2>
 
             <h3>break - 跳出迴圈</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="comment">// 找到第一個能被7整除的數</span>
@@ -493,12 +471,10 @@
     }
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
 
             <h3>continue - 跳過本次迭代</h3>
-            <div class="code-block">
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+            <div class="code-block"><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="comment">// 輸出1到10中的奇數</span>
@@ -511,8 +487,7 @@
     <span class="function">printf</span>(<span class="string">"\n"</span>);
     
     <span class="keyword">return</span> <span class="number">0</span>;
-}
-            </div>
+}</div>
         </div>
 
         <div class="content">
